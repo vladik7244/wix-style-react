@@ -35,4 +35,4 @@ type TypographyAppearances = 'T1' | 'T1.1' | 'T1.2' | 'T1.3' | 'T1.4' |
     'T4' | 'T4.1' | 'T4.2' | 'T4.3' |
     'T5' | 'T5.1';
 
-  export default Label
+export default Label
