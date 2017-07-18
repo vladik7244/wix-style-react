@@ -8,7 +8,7 @@ import TabbedView from '../utils/Components/TabbedView';
 import ReadmeTestKit from '../../src/Label/README.TESTKIT.md';
 
 import ExampleStandard from './ExampleStandard';
-import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
+//import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
 storiesOf('Core', module)
   .add('Label', () => (
@@ -16,7 +16,7 @@ storiesOf('Core', module)
       <div>
         <AutoDocs source={LabelSource}/>
         <h1>Usage examples</h1>
-        <CodeExample title="Standard" code={ExampleStandardRaw}>
+        <CodeExample title="Standard">
           <ExampleStandard/>
         </CodeExample>
       </div>

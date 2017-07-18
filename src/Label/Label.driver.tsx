@@ -1,14 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { ILabelProps } from './label';
 
-const labelDriverFactory = ({element, wrapper, component}) => {
+const labelDriverFactory = ({element, wrapper, component}: {element:any, wrapper:any, component:any}) => {
   return {
     exists: () => !!element,
     getTagName: () => element.tagName.toLowerCase(),
     getLabelText: () => element.textContent,
     getClassList: () => element.className,
-    getAttr: attrName => element.getAttribute(attrName),
-    setProps: props => {
+    getAttr: (attrName: string) => element.getAttribute(attrName),
+    setProps: (props: ILabelProps) => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     }

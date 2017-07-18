@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "pretty": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "es2016",
+      "es2017"
+    ],
+    "types": [
+      "node",
+      "mocha",
+      "chai"
+    ],
+    "experimentalDecorators": true
+  },
+  "include": [
+    "./src/types/**/*.d.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.js",
+    "./src/**/*.jsx",
+    "./test/**/*.ts",
+    "./test/**/*.tsx",
+    "./test/**/*.js",
+    "./test/**/*.jsx"
+  ]
+}
