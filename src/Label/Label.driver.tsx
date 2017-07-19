@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { ILabelProps } from './label';
+import {ILabelProps} from './label';
 
-const labelDriverFactory = ({element, wrapper, component}: {element:any, wrapper:any, component:any}) => {
+const labelDriverFactory = ({element, wrapper, component}: {element:any, wrapper:any, component: any}) => {
   return {
     exists: () => !!element,
     getTagName: () => element.tagName.toLowerCase(),

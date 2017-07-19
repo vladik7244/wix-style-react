@@ -1,20 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
 const MOUSE_EVENTS_SUPPORTED = ['click'];
 
-export class WixComponent extends React.Component {
+export interface IWixComponentProps {
+  dataHook?: string;
+}
 
-  constructor(params) {
+export interface IWixComponentState {
+
+}
+
+class WixComponent<P extends IWixComponentProps, S extends IWixComponentState> extends React.Component <P, S> {
+  private _boundEvents: string[];
+  protected onClickOutside: Function;
+
+  constructor(params: P) {
     super(params);
     this._addDataHook = this._addDataHook.bind(this);
     this._supportOnClickOutside = this._supportOnClickOutside.bind(this);
     this._onMouseEventsHandler = this._onMouseEventsHandler.bind(this);
   }
 
-  checkIfEventOnElements(e, elem) {
-    let current = e.target;
+  checkIfEventOnElements(e: Event, elem: Element[]) {
+    let current = e.target as any;
     while (current.parentNode) {
       if (elem.indexOf(current) > -1) {
         return true;
@@ -25,17 +34,17 @@ export class WixComponent extends React.Component {
     return current !== document;
   }
 
-  componentElements() {
+  componentElements(): Element[] {
     return [ReactDOM.findDOMNode(this)];
   }
 
-  _onMouseEventsHandler(e) {
+  _onMouseEventsHandler(e: Event) {
     if (!this.checkIfEventOnElements(e, this.componentElements())) {
       this.onClickOutside(e);
     }
   }
 
-  _addDataHook(dataHook) {
+  _addDataHook(dataHook: string) {
     const domNode = ReactDOM.findDOMNode(this);
     if (domNode) {
       domNode.setAttribute('data-hook', dataHook);
@@ -69,9 +78,5 @@ export class WixComponent extends React.Component {
     }
   }
 }
-
-WixComponent.propTypes = {
-  dataHook: PropTypes.string
-};
 
 export default WixComponent;

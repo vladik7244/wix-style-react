@@ -52,6 +52,7 @@
     "@storybook/storybook-deployer": "^2.0.0",
     "@types/chai": "^4.0.0",
     "@types/enzyme": "^2.8.2",
+    "@types/jest": "^20.0.4",
     "@types/mocha": "^2.2.41",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.27",
@@ -139,15 +140,17 @@
     "slate": "^0.20.3"
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/node_modules/babel-polyfill"
-    ],
+    "transform": {
+      ".(ts|tsx|js|jsx)": "./preprocessor.js"
+    },
     "moduleNameMapper": {
       "\\.(css|less|scss)$": "identity-obj-proxy"
     },
-    "testPathIgnorePatterns": [
-      "<rootDir>/dist/",
-      "<rootDir>/node_modules/"
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx"
     ]
   },
   "eslintConfig": {

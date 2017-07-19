@@ -1,6 +1,6 @@
 import * as React from 'react';
 import typography, {convertFromUxLangToCss} from '../Typography';
-import {WixComponent, IWixComponentProps} from '../BaseComponents/WixComponent';
+import WixComponent, {IWixComponentProps} from '../BaseComponents/WixComponent';
 export interface ILabelProps extends IWixComponentProps {
   for?: string;
   appearance?: TypographyAppearances;
@@ -11,7 +11,7 @@ export interface ILabelProps extends IWixComponentProps {
 /**
   * a regular html `<label>` element but in wix style
   */
-class Label extends WixComponent<ILabelProps, any> {
+class Label extends WixComponent<ILabelProps, {}> {
   public static defaultProps: Partial<ILabelProps> = {
         appearance: "T1"
   };
