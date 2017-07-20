@@ -15,9 +15,7 @@ class Label extends WixComponent<ILabelProps, {}> {
   public static defaultProps: Partial<ILabelProps> = {
         appearance: "T1"
   };
-  constructor(props: ILabelProps) {
-    super(props);
-  }
+  
   render() {
     const {appearance, id, children, for: forAttr} = this.props;
     const className = typography[convertFromUxLangToCss(appearance)];
