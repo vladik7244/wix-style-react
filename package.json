@@ -54,6 +54,8 @@
     "@types/chai": "^4.0.0",
     "@types/enzyme": "^2.8.2",
     "@types/jest": "^20.0.4",
+    "@types/jquery": "^3.2.9",
+    "@types/lodash": "^4.14.70",
     "@types/mocha": "^2.2.41",
     "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.27",
@@ -99,6 +101,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
+    "@types/classnames": "^2.2.0",
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "color": "^1.0.3",

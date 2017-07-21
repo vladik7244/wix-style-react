@@ -1,34 +1,33 @@
-import styles from './Checkbox.scss';
-import {any, bool, func, oneOf, string} from 'prop-types';
-import uniqueId from 'lodash.uniqueid';
-import React from 'react';
-import classNames from 'classnames';
+import * as styles from './Checkbox.scss';
+import {uniqueId} from 'lodash';
+import * as React from 'react';
+import * as classNames from 'classnames';
 import SvgV from '../svg/V';
-import WixComponent from '../BaseComponents/WixComponent';
+import WixComponent, {IWixComponentProps} from '../BaseComponents/WixComponent';
 import Label from '../Label/Label';
 
+export interface ICheckboxProps extends IWixComponentProps {
+  active?: boolean,
+  checked?: boolean,
+  children?: any,
+  disabled?: boolean,
+  id?: string,
+  indeterminate?: boolean,
+  /** used for automatic testing */
+  hover?: boolean,
+  size?: 'medium' | 'large',
+  onChange?: React.EventHandler<React.FormEvent<HTMLInputElement>>,
+}
+
 /** a simple WixStyle checkbox */
-class Checkbox extends WixComponent {
-  static propTypes = {
-    /** used for automatic testing */
-    active: bool,
-    checked: bool,
-    children: any,
-    disabled: bool,
-    id: string,
-    indeterminate: bool,
-    /** used for automatic testing */
-    hover: bool,
-    size: oneOf(['medium', 'large']),
-    onChange: func,
-  }
+class Checkbox extends WixComponent<ICheckboxProps, {}> {
 
-  static defaultProps = {
+  public static defaultProps: Partial<ICheckboxProps> = {
     size: 'medium',
-    onChange: () => { },
-  }
+    onChange: (event: React.FormEvent<HTMLInputElement>) => { event.preventDefault() },
+  };
 
-  static displayName = 'Checkbox'
+  public static displayName = 'Checkbox';
 
   render() {
     const {id = uniqueId(), checked, indeterminate, disabled, hover, active, size, onChange} = this.props;
