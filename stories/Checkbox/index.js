@@ -3,8 +3,7 @@ import {storiesOf} from '@storybook/react';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 
-import CheckboxSource from '!raw-loader!../../src/Checkbox/Checkbox';
-import AutoDocs from '../utils/Components/AutoDocs';
+import Readme from '../../src/Checkbox/README.md';
 
 import TabbedView from '../utils/Components/TabbedView';
 import ReadmeTestKit from '../../src/Checkbox/README.TESTKIT.md';
@@ -25,7 +24,7 @@ storiesOf('Core', module)
   .add('Checkbox', () => (
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
-        <AutoDocs source={CheckboxSource}/>
+        <Markdown source={Readme}/>
         <h1>Usage examples</h1>
         <CodeExample title="Standard" code={ExampleStandardRaw}>
           <ExampleStandard/>
@@ -43,3 +42,7 @@ storiesOf('Core', module)
       <Markdown source={ReadmeTestKit}/>
     </TabbedView>
   ));
+
+
+
+

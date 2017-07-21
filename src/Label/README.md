@@ -1,6 +1,4 @@
-# ButtonLayout component
-
-> General Buttons
+# Label component
 
 ## Properties
 
