@@ -1,27 +1,37 @@
 import React from 'react';
+import WixComponent from '../BaseComponents/WixComponent';
 import classnames from 'classnames';
 import {node, oneOf, string} from 'prop-types';
 
 import typography, {convertFromUxLangToCss} from '../Typography';
-import styles from './Badge.scss';
+import badgeStyles from './Badge.scss';
 
 /**
-  * General purpose badge component to indicate important (or not so) things
-  */
-const Badge = ({children, type, appearance, alignment, dataHook}) => {
-  const className = classnames(
-    styles.badge,
-    styles[type],
-    styles[alignment],
-    typography[convertFromUxLangToCss(appearance)
-  ]);
+ * General purpose badge component to indicate important (or not so) things
+ */
+class Badge extends WixComponent {
+  constructor(props) {
+    super(props);
+    this.setStyles(badgeStyles, typography);
+  }
 
-  return (
-    <span className={className} data-hook={dataHook}>
-      {children}
-    </span>
-  );
-};
+  render() {
+    const {children, type, appearance, alignment, dataHook} = this.props;
+    const {styles, typography} = this;
+    const className = classnames(
+      styles.badge,
+      styles[type],
+      styles[alignment],
+      typography[convertFromUxLangToCss(appearance)
+        ]);
+
+    return (
+      <span className={className} data-hook={dataHook}>
+        {children}
+      </span>
+    );
+  }
+}
 
 Badge.propTypes = {
   /** node to render into badge */
@@ -56,3 +66,4 @@ Badge.defaultProps = {
 Badge.displayName = 'Badge';
 
 export default Badge;
+

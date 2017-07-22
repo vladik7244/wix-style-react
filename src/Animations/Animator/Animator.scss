@@ -1,0 +1,318 @@
+// HTML/REACT Structure
+///////////////////////
+
+/*
+ *
+ * React Element Structure
+ * <Animate>
+ *   <ChildAnimate>
+ *     {children}
+ *   </ChildAnimate>
+ * </Animate>
+ *
+ *
+ * HTML Structure
+ *                     Animation Classes
+ *                     -----------------
+ * <div class="        ...    Parent classes   ...  ">  <--- Animator
+ *   <div class="      ...Child layer 1 classes...  ">  <--- ChildAnimate: layer 1
+ *     <div class="    ...Child layer 2 classes...  ">  <--- ChildAnimate: layer 2
+ *       <div class="  ...Child layer 2 classes...  ">  <--- ChildAnimate: layer 3
+ *         {children}                                   <--- Content from the outside world
+ *       </div>
+ *     </div>
+ *   </div>
+ * </div>
+ *
+ * */
+
+// Cubic Bezier
+///////////////
+
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+
+//Basics CSS
+////////////
+
+.child-layer-1, .child-layer-2, .child-layer-3 {
+  height: 100%;
+  width: 100%;
+}
+
+// Duration
+///////////
+
+$timing-micro: .12s;
+$timing-small: .15s;
+$timing-medium: .2s;
+$timing-large: .3s;
+$timing-translate: $timing-large;
+
+@mixin timing() {
+  .timing-micro {
+    transition-duration: $timing-micro;
+  }
+
+  .timing-small {
+    transition-duration: $timing-small;
+  }
+
+  .timing-medium {
+    transition-duration: $timing-medium;
+  }
+
+  .timing-large {
+    transition-duration: $timing-large;
+  }
+
+  .translate-wrapper {
+    transition-duration: $timing-translate;
+  }
+
+}
+
+// TimingFunction
+/////////////////
+
+@mixin timingFunction() {
+  .timing-micro, .timing-small {
+    transition-timing-function: $easeOutCubic;
+  }
+
+  .timing-medium, .timing-large {
+    transition-timing-function: $easeOutQuint;
+  }
+}
+
+// Sequence Delay
+/////////////////
+
+@keyframes hide-animation-hack {
+  0% {
+    opacity: 1
+  }
+  99% {
+    opacity: 1
+  }
+  100% {
+    opacity: 0
+  }
+}
+
+@mixin delayEnter() {
+  &.child-sequence {
+    transition-property: opacity;
+    transition-duration: 0s;
+    transition-timing-function: linear;
+    opacity: 0;
+  }
+}
+
+@mixin delayEnterActive() {
+  &.child-sequence {
+    opacity: 1;
+  }
+}
+
+@mixin delayLeave() {
+  &.child-sequence {
+    animation-name: hide-animation-hack;
+    animation-fill-mode: forwards;
+  }
+}
+
+// Opacity
+//////////
+
+@mixin opacityEnter() {
+  .opacity {
+    &.timing-micro {
+      opacity: .9;
+    }
+    &.timing-small, &.timing-medium {
+      opacity: .5;
+    }
+    &.timing-large {
+      opacity: .66;
+    }
+  }
+}
+
+@mixin opacityEnterActive() {
+  .opacity {
+    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin opacityLeave() {
+  .opacity {
+    opacity: 1;
+  }
+}
+
+@mixin opacityLeaveActive() {
+  .opacity {
+    opacity: 0;
+  }
+}
+
+// Scale
+////////
+
+@mixin scaleMinimum() {
+  .scale {
+    &.timing-micro, &.timing-large {
+      transform: scale(0.9);
+    }
+
+    &.timing-small, &.timing-medium {
+      transform: scale(0.75);
+    }
+
+  }
+}
+
+@mixin scaleMaximum() {
+  .scale {
+    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large {
+      transform: scale(1);
+    }
+  }
+}
+
+// Height
+/////////
+
+@mixin heightEnter() {
+  .height {
+    overflow: hidden;
+  }
+}
+
+@mixin heightLeave() {
+  .height {
+    overflow: hidden;
+  }
+}
+
+// Width
+/////////
+
+//@keyframes dimensions-enter-active-hack {
+//  0% {
+//    visibility: hidden;
+//    color: red;
+//  }
+//  50% {
+//    color: blue;
+//    visibility: visible;
+//  }
+//  100% {
+//    color: green;
+//    visibility: visible;
+//  }
+//}
+//
+//@mixin widthEnter() {
+//  .width {
+//    //animation-name: dimensions-enter-active-hack;
+//    //overflow: hidden;
+//    //visibility: hidden;
+//  }
+//}
+//
+//@mixin widthEnterActive() {
+//  .width {
+//    //transition: visibility .01s linear .1s, width .3s linear;
+//    //visibility: visible;
+//    ////animation-name: dimensions-enter-active-hack;
+//    ////animation-fill-mode: forwards;
+//    //width: 0;
+//  }
+//}
+//
+//@mixin widthLeave() {
+//  .width {
+//    //overflow: hidden;
+//  }
+//}
+
+// Translate
+////////////
+
+@mixin translateEnter() {
+  .translate {
+    transition-property: all;
+    transition-duration: .3s;
+    transition-timing-function: $easeOutCubic;
+  }
+}
+
+@mixin translateEnterActive() {
+  .translate {
+    transform: translate(0, 0) !important;
+  }
+}
+
+@mixin translateLeave() {
+  .translate {
+    transition-property: all;
+    transition-duration: .3s;
+    transition-timing-function: $easeInOutQuint;
+    transform: translate(0, 0);
+  }
+}
+
+// Minimum Maximum Summary
+//////////////////////////
+
+@mixin minimum() {
+  @include scaleMinimum();
+}
+
+@mixin maximum() {
+  @include scaleMaximum();
+}
+
+// Animation classes
+////////////////////
+
+.enter, .leave {
+  @include timing();
+}
+
+.enter {
+  transition-property: all;
+  @include timingFunction();
+  @include opacityEnter();
+  @include translateEnter();
+  @include minimum();
+  @include delayEnter();
+  @include heightEnter();
+}
+
+.enter-active {
+  @include opacityEnterActive();
+  @include translateEnterActive();
+  @include maximum();
+  @include delayEnterActive();
+}
+
+.leave {
+  transition-property: all;
+  @include timingFunction();
+  @include opacityLeave();
+  @include translateLeave();
+  @include maximum();
+  @include delayLeave();
+  @include heightLeave();
+}
+
+.leave-active {
+  @include opacityLeaveActive();
+  @include minimum();
+}

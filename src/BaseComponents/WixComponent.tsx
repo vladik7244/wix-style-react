@@ -5,6 +5,7 @@ const MOUSE_EVENTS_SUPPORTED = ['click'];
 
 export interface IWixComponentProps {
   dataHook?: string;
+  styles?: string
 }
 
 export interface IWixComponentState {
@@ -36,6 +37,15 @@ class WixComponent<P extends IWixComponentProps, S extends IWixComponentState> e
 
   componentElements(): Element[] {
     return [ReactDOM.findDOMNode(this)];
+  }
+
+  setStyles(styles, typography = {}) {
+    if (this.props.styles) {
+      this.styles = this.props.styles;
+    } else {
+      this.styles = styles;
+    }
+    this.typography = this.props.styles || typography;
   }
 
   _onMouseEventsHandler(e: Event) {

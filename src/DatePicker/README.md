@@ -18,6 +18,7 @@ __Note__: This component has multiple issues and will most likely change in the 
 | filterDate | func | () => true | - | Only the truthy dates are selectable |
 | excludePastDates | bool | false | - | Past dates are unselectable |
 | readOnly | bool | false | - | Is the input field readOnly |
+| disabled | bool | false | - | Is the DatePicker disabled |
 | showYearDropdown | bool | false | - | Display a selectable yearDropdown |
 | rtl | bool | false | - | RTL mode |
 | theme | string | normal | - | Theme of the Input |

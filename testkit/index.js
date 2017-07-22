@@ -105,6 +105,9 @@ export const buttonHeaderTestkitFactory = testkitFactoryCreator(buttonHeaderDriv
 import linkHeaderDriverFactory from '../src/Card/LinkHeader/LinkHeader.driver';
 export const linkHeaderTestkitFactory = testkitFactoryCreator(linkHeaderDriverFactory);
 
+import collapsedHeaderDriverFactory from '../src/Card/CollapsedHeader/CollapsedHeader.driver';
+export const collapsedHeaderTestkitFactory = testkitFactoryCreator(collapsedHeaderDriverFactory);
+
 import headerDriverFactory from '../src/Card/Header/Header.driver';
 export const headerTestkitFactory = testkitFactoryCreator(headerDriverFactory);
 
@@ -138,8 +141,6 @@ export const sideMenuTestkitFactory = testkitFactoryCreator(sideMenuDriverFactor
 import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driver';
 export const sideMenuDrillTestkitFactory = testkitFactoryCreator(sideMenuDrillDriverFactory);
 
-export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
-
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFactory);
 
@@ -151,6 +152,9 @@ export const tpaFloatingTabsTestkitFactory = testkitFactoryCreator(tpaFloatingTa
 
 import tpaInputDriverFactory from '../src/TPA/Input/Input.driver';
 export const tpaInputTestkitFactory = testkitFactoryCreator(tpaInputDriverFactory);
+
+import tpaBadgeDriverFactory from '../src/TPA/Badge/Badge.driver';
+export const tpaBadgeTestkitFactory = testkitFactoryCreator(tpaBadgeDriverFactory);
 
 import tpaLabelDriverFactory from '../src/TPA/Label/Label.driver';
 export const tpaLabelTestkitFactory = testkitFactoryCreator(tpaLabelDriverFactory);

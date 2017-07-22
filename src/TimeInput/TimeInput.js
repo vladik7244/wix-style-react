@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import isUndefined from 'lodash.isundefined';
+import isUndefined from 'lodash/isUndefined';
 import classNames from 'classnames';
 import moment from 'moment';
 

@@ -11,7 +11,7 @@
   display: flex;
 }
 
-.horizontal .radio-wrapper > label, :global(.ltr) .horizontal .radio-wrapper > label
+.horizontal .radio-wrapper > label
 {
   margin-right: 20px;
 }
@@ -45,9 +45,6 @@
 .radio-wrapper > label
 {
     display: flex;
-}
-
-:global(.ltr) .radio-wrapper > label {
     flex-direction: row;
 }
 
@@ -65,12 +62,12 @@
     align-items: top;
 }
 
-.horizontal .children, :global(.ltr) .horizontal .children
+.horizontal .children
 {
     padding-left: 6px;
 }
 
-.children, :global(.ltr) .children
+.children
 {
     padding-left: 12px;
 }

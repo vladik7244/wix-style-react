@@ -105,6 +105,9 @@ export const buttonHeaderTestkitFactory = enzymeTestkitFactoryCreator(buttonHead
 import linkHeaderDriverFactory from '../src/Card/LinkHeader/LinkHeader.driver';
 export const linkHeaderTestkitFactory = enzymeTestkitFactoryCreator(linkHeaderDriverFactory);
 
+import collapsedHeaderDriverFactory from '../src/Card/CollapsedHeader/CollapsedHeader.driver';
+export const collapsedHeaderTestkitFactory = enzymeTestkitFactoryCreator(collapsedHeaderDriverFactory);
+
 import headerDriverFactory from '../src/Card/Header/Header.driver';
 export const headerTestkitFactory = enzymeTestkitFactoryCreator(headerDriverFactory);
 
@@ -122,8 +125,6 @@ export const filePickerTestkitFactory = enzymeTestkitFactoryCreator(filePickerDr
 
 import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
 export const timeInputTestkitFactory = enzymeTestkitFactoryCreator(timeInputDriverFactory);
-
-export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
 
 import {sliderDriverFactory} from '../src/Slider/testkit/Slider';
 export const sliderTestkitFactory = enzymeTestkitFactoryCreator(sliderDriverFactory);

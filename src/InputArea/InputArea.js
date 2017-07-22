@@ -153,7 +153,7 @@ class InputArea extends WixComponent {
 
   _onChange(e) {
     this.props.hasCounter && this.setState({counter: e.target.value.length});
-    this.props.onChange(e);
+    this.props.onChange && this.props.onChange(e);
   }
 }
 
