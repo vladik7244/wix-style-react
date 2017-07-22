@@ -5,7 +5,7 @@ const MOUSE_EVENTS_SUPPORTED = ['click'];
 
 export interface IWixComponentProps {
   dataHook?: string;
-  styles?: string
+  styles?: object
 }
 
 export interface IWixComponentState {
@@ -15,6 +15,8 @@ export interface IWixComponentState {
 class WixComponent<P extends IWixComponentProps, S extends IWixComponentState> extends React.Component <P, S> {
   private _boundEvents: string[];
   protected onClickOutside: Function;
+  protected styles: object;
+  protected typography: object;
 
   constructor(params: P) {
     super(params);
@@ -39,7 +41,7 @@ class WixComponent<P extends IWixComponentProps, S extends IWixComponentState> e
     return [ReactDOM.findDOMNode(this)];
   }
 
-  setStyles(styles, typography = {}) {
+  setStyles(styles: object, typography: object = {}) {
     if (this.props.styles) {
       this.styles = this.props.styles;
     } else {
