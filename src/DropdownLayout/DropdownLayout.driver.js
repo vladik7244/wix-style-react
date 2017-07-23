@@ -35,7 +35,7 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     optionContentAt: position => optionAt(position).textContent,
     clickAtOption: position => ReactTestUtils.Simulate.click(optionAt(position)),
     clickAtOptionWithValue: value => {
-      const option = Object.values(options.childNodes).find(option => option.innerHTML === value);
+      const option =  Object.keys(options.childNodes).map((key) => options.childNodes[key]).find(option => option.innerHTML === value);
       option && ReactTestUtils.Simulate.click(option);
     },
     isOptionADivider: position => isClassExists(optionAt(position), 'divider'),

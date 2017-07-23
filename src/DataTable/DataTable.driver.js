@@ -10,14 +10,14 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   const getRows = () => element.querySelectorAll('tbody tr');
   const getRowsCount = () => getRows().length;
   const getRow = rowIndex => getRows()[rowIndex];
-
+  const getValues = (object) => Object.keys(object).map((key) => object[key]);
 
   return {
     getRowsCount,
-    getRowsWithClassCount: className => Object.values(getRows()).filter(elem => elem.classList.contains(className)).length,
-    getRowText: index => Object.values(getRows()[index].querySelectorAll('td')).map(td => td.textContent),
+    getRowsWithClassCount: className => getValues(getRows()).filter(elem => elem.classList.contains(className)).length,
+    getRowText: index => getValues(getRows()[index].querySelectorAll('td')).map(td => td.textContent),
     isRowClickable: index => getRows()[index].classList.contains('clickableDataRow'),
-    getTitles: () => Object.values(getHeader().querySelectorAll('th')).map(th => th.textContent),
+    getTitles: () => getValues(getHeader().querySelectorAll('th')).map(th => th.textContent),
     isDisplayingNothing: () => !!element,
     isDisplayingHeaderOnly: () => hasHeader() && getRowsCount() === 0,
     hasChildWithId: id => !!element.querySelector(`#${id}`),
