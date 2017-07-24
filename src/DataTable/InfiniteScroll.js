@@ -90,9 +90,9 @@ export default class InfiniteScroll extends Component {
       offset = el.scrollHeight - el.parentNode.scrollTop - el.parentNode.clientHeight;
     }
 
-    if (offset < Number(this.props.threshold)) {
-      this.detachScrollListener();
+    if (offset && offset < Number(this.props.threshold)) {
       // Call loadMore after detachScrollListener to allow for non-async loadMore functions
+      this.detachScrollListener();
       if (typeof this.props.loadMore === 'function') {
         this.props.loadMore(this.pageLoaded += 1);
       }
@@ -104,31 +104,26 @@ export default class InfiniteScroll extends Component {
       return;
     }
 
-    let scrollEl = window;
     if (this.props.scrollElement) {
-      scrollEl = this.scrollComponent;
-    } else if (this.props.useWindow === false) {
-      scrollEl = this.scrollComponent.parentNode;
+      const scrollEl = this.scrollComponent;
+      scrollEl.addEventListener('scroll', this.scrollListener);
+      scrollEl.addEventListener('resize', this.scrollListener);
+
+      if (this.props.initialLoad) {
+        this.scrollListener();
+      }
     }
 
-    scrollEl.addEventListener('scroll', this.scrollListener);
-    scrollEl.addEventListener('resize', this.scrollListener);
 
-    if (this.props.initialLoad) {
-      this.scrollListener();
-    }
   }
 
   detachScrollListener() {
-    let scrollEl = window;
     if (this.props.scrollElement) {
-      scrollEl = this.scrollComponent;
-    } else if (this.props.useWindow === false) {
-      scrollEl = this.scrollComponent.parentNode;
+      const scrollEl = this.scrollComponent;
+      scrollEl.removeEventListener('scroll', this.scrollListener);
+      scrollEl.removeEventListener('resize', this.scrollListener);
     }
 
-    scrollEl.removeEventListener('scroll', this.scrollListener);
-    scrollEl.removeEventListener('resize', this.scrollListener);
   }
 
   componentWillUnmount() {
