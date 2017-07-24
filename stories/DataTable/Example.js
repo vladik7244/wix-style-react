@@ -30,7 +30,7 @@ const data = [
     {title: 'Another', render: (rowData) => rowData.another},
 ];
 
-const onRowClick = (row, index) => console.log(row, index);
+const onRowClick = (row, index) => console.log(row, index); 
 
 class DataTableExample extends React.Component {
 
@@ -40,7 +40,7 @@ class DataTableExample extends React.Component {
         <DataTable
           columns={columns}
           data={data}
-          onRowClick={onRowClick}
+          onRowClick={onRowClick} 
         />
       </div>
     );

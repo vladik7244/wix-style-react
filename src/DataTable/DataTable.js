@@ -17,7 +17,7 @@ class DataTable extends WixComponent {
     if (index < 0) {
       return style.headerRow;
     } else {
-      return classNames(style.bodyRow, this.props.rowClassName);
+      return classNames(style.bodyRow, {[style.clickable]: !!this.props.onRowClick}, this.props.rowClassName);
     }
   }
 
@@ -67,7 +67,7 @@ class DataTable extends WixComponent {
               dataKey=''
               cellRenderer={this.cellRenderer}
               width={column.width}
-              className={style.rowColumn}
+              className={classNames(style.rowColumn, {[style.clickable]: !!this.props.onRowClick})}
           />;
           })}
         </Table>

@@ -74,6 +74,10 @@
   }
 }
 
+.clickable {
+    cursor: pointer;
+  }
+
 .headerColumn {
   &:hover {
     cursor: default;
