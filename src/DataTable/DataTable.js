@@ -67,7 +67,7 @@ class DataTable extends WixComponent {
               dataKey=''
               cellRenderer={this.cellRenderer}
               width={column.width}
-              className={classNames(style.rowColumn, {[style.clickable]: !!this.props.onRowClick})}
+              className={style.rowColumn}
           />;
           })}
         </Table>

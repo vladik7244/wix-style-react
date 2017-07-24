@@ -68,15 +68,15 @@
 }
 
 .bodyRow {
-  &:hover {
-    background-color: #eaf7ff;
+  outline: none;
+  &.clickable {
     cursor: pointer;
+    &:hover {
+      background-color: #eaf7ff;
+      cursor: pointer;
+    }
   }
 }
-
-.clickable {
-    cursor: pointer;
-  }
 
 .headerColumn {
   &:hover {
@@ -90,8 +90,4 @@
   color: #7a92a5;
   padding: 9px 0;
   border-bottom: 1px solid #f0f4f7;
-  
-  &:hover {
-    cursor: default;
-  }
 }
