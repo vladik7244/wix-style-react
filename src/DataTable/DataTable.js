@@ -62,6 +62,7 @@ class DataTable extends WixComponent {
     ];
     return (
         <Table
+          className={style.wixStyleDataTable}
           width={1000}
           height={300}
           headerHeight={14}
