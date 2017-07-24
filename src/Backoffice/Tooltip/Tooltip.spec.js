@@ -255,7 +255,7 @@ describe('Tooltip', () => {
       });
     });
 
-    it('show with delay and immediately hide', () => {
+    xit('show with delay and immediately hide', () => {
       const driver = createDriver(<Tooltip {...{..._props, hideDelay: 0, showDelay: 50}}>{children}</Tooltip>);
       driver.mouseEnter();
       driver.mouseLeave();
