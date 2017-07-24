@@ -6,27 +6,40 @@ const style = {
   width: '50%',
 };
 
-const baseData = [
-    {firstName: 'Meghan', lastName: 'Bishop'},
-    {firstName: 'Sara', lastName: 'Porter'},
-    {firstName: 'Deborah', lastName: 'Rhodes'},
-    {firstName: 'Walter', lastName: 'Jenning'}
+const data = [
+      { name: 'Brian Vaughn', description: 'Software engineer', another: 'wut' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
+      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' } ];
+
+  const columns = [
+    {title: 'Name', render: (rowData, rowIndex) => rowData.name + rowIndex},
+    {title: 'Description', render: (rowData) => rowData.description},
+    {title: 'Another', render: (rowData) => rowData.another},
 ];
 
-const generateData = () => {
-  let data = [];
-  for (let i = 0; i < 10; i++) {
-    data = data.concat(baseData);
-  }
-  return data;
-};
 
 class DataTableExample extends React.Component {
 
   render() {
     return (
       <div style={style}>
-        <DataTable/>
+        <DataTable
+          columns={columns}
+          data={data}
+        />
       </div>
     );
   }

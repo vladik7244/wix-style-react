@@ -4,6 +4,7 @@ import style from './DataTable.scss';
 import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 import { Table, Column } from 'react-virtualized';
+import PropTypes from 'prop-types';
 
 class DataTable extends WixComponent {
   headerRenderer() {
@@ -20,24 +21,10 @@ class DataTable extends WixComponent {
     }
   }
 
+  cellRenderer = ({rowData, columnIndex, rowIndex}) => this.props.columns[columnIndex].render(rowData, rowIndex);
+
   render() {
-    const list = [
-      { name: 'Brian Vaughn', description: 'Software engineer', another: 'wut' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' },
-      { name: 'Brian Vaughn2', description: 'Software engineer2', another: 'wat' }
+
       // And so on...
 
       /* suggested API :
@@ -59,7 +46,7 @@ class DataTable extends WixComponent {
         we might be able to use the existing InfiniteScroller thing..
        */
 
-    ];
+
     return (
         <Table
           className={style.wixStyleDataTable}
@@ -67,34 +54,33 @@ class DataTable extends WixComponent {
           height={300}
           headerHeight={14}
           rowHeight={30}
-          rowCount={list.length}
+          rowCount={this.props.data.length}
           rowClassName={this.rowClassName}
           headerClassName={style.headerColumn}
-          rowGetter={({ index }) => list[index]}
+          rowGetter={({ index }) => this.props.data[index]}
           tabIndex={null}
         >
-          <Column
-            label='Name'
-            dataKey='name'
-            width={100}
-            className={style.rowColumn}
-          />
-          <Column
-            width={200}
-            label='Description'
-            dataKey='description'
-            className={style.rowColumn}
-          />
-          <Column
-            width={200}
-            label='Another one'
-            dataKey='another'
-            className={style.rowColumn}
-          />
+          {this.props.columns.map(column => {
+            return <Column
+              label={column.title}
+              dataKey=''
+              cellRenderer={this.cellRenderer}
+              width={100}
+              className={style.rowColumn}
+          />;
+          })}
         </Table>
     );
   }
 
 }
+
+DataTable.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string
+  })),
+  render: PropTypes.func,
+  data: PropTypes.array
+};
 
 export default DataTable;
