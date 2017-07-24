@@ -22,7 +22,7 @@ class DataTable extends WixComponent {
   }
 
   cellRenderer = ({rowData, columnIndex, rowIndex}) => this.props.columns[columnIndex].render(rowData, rowIndex);
-
+  onRowClick = ({index, rowData}) => this.props.onRowClick && this.props.onRowClick(rowData, index);
   render() {
 
       // And so on...
@@ -59,13 +59,14 @@ class DataTable extends WixComponent {
           headerClassName={style.headerColumn}
           rowGetter={({ index }) => this.props.data[index]}
           tabIndex={null}
+          onRowClick={this.onRowClick}
         >
           {this.props.columns.map(column => {
             return <Column
               label={column.title}
               dataKey=''
               cellRenderer={this.cellRenderer}
-              width={100}
+              width={column.width}
               className={style.rowColumn}
           />;
           })}
@@ -77,10 +78,13 @@ class DataTable extends WixComponent {
 
 DataTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string
+    title: PropTypes.string.isRequired,
+    render: PropTypes.func.isRequired,
+    width: PropTypes.number
   })),
-  render: PropTypes.func,
-  data: PropTypes.array
+  data: PropTypes.array.isRequired,
+  onRowClick: PropTypes.func,
+  dataHook: PropTypes.string
 };
 
 export default DataTable;
