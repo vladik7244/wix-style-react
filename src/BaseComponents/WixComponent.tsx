@@ -83,7 +83,7 @@ class WixComponent<P extends IWixComponentProps, S extends IWixComponentState> e
   }
 
   componentWillUnmount() {
-    if (this._boundEvents) {
+    if (this._boundEvents && typeof document !== 'undefined') {
       this._boundEvents.forEach(eventName => {
         document.removeEventListener(eventName, this._onMouseEventsHandler, true);
       });
