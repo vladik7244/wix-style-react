@@ -103,15 +103,6 @@ class DataTable extends WixComponent {
     );
   }
 
-  rowClassName = ({ index }) => {
-    if (index < 0) {
-      return style.headerRow;
-    } else {
-      return classNames(style.bodyRow, { [style.clickable]: !!this.props.onRowClick }, this.props.rowClassName);
-    }
-  }
-
-  cellRenderer = ({ rowData, columnIndex, rowIndex }) => this.props.columns[columnIndex].render(rowData, rowIndex);
   onRowClick = ({ index, rowData }) => this.props.onRowClick && this.props.onRowClick(rowData, index);
 
   renderRow = (rowData, rowIndex) => {
@@ -123,7 +114,7 @@ class DataTable extends WixComponent {
   }
 
 
-  renderContnet = () => {
+  renderContent = () => {
     return (
       <ul className={style.tableContent}>
         {
@@ -168,7 +159,7 @@ class DataTable extends WixComponent {
     return (
       <div>
         {this.renderHeader()}
-        {this.renderContnet()}
+        {this.renderContent()}
       </div>
     );
   }
