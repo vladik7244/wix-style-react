@@ -49,12 +49,13 @@ class DataTableExample extends React.Component {
             window.alert(`You clicked "${row.firstName} ${row.lastName}", row number ${rowNum + 1}`);
             /*eslint-enable no-alert*/
           }}
+          height={400}
           infiniteScroll
           itemsPerPage={20}
           columns={[
-              {title: 'Row Number', render: (row, rowNum) => "#" + (rowNum + 1), width: '20%', minWidth: '75px', important: true},
-              {title: 'First Name', render: row => <span>{row.firstName}</span>, width: '40%', minWidth: '100px',},
-              {title: 'Last Name', render: row => <span>{row.lastName}</span>, width: '40%', minWidth: '100px',}
+              {title: 'Row Number', render: (row, rowNum) => '#' + (rowNum + 1), width: '20%', minWidth: '75px', important: true},
+              {title: 'First Name', render: row => <span>{row.firstName}</span>, width: '40%', minWidth: '100px' },
+              {title: 'Last Name', render: row => <span>{row.lastName}</span>, width: '40%', minWidth: '100px' }
           ]}
           hasMore={this.state.hasMore}
           loadMore={this.loadMore}

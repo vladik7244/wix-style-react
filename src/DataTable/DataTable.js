@@ -1,11 +1,13 @@
 
 import React from 'react';
-import style from './DataTable.scss';
+import css from './DataTable.scss';
 import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 //import InfiniteScroll from './InfiniteScroll';
 import PropTypes from 'prop-types';
 import {ArrowVertical} from '../Icons';
+
+const headerHeight = 36;
 
 class DataTable extends WixComponent {
   // constructor(props) {
@@ -72,7 +74,7 @@ class DataTable extends WixComponent {
 
   renderSortableColumn = (column, index) => {
     return (
-      <div className={style.sortableColumn} onClick={() => this.props.onSort && this.props.onSort(index)}>
+      <div className={css.sortableColumn} onClick={() => this.props.onSort && this.props.onSort(index)}>
         {column}
         {this.props.onSort && this.props.columnToSortBy === index ? this.renderSortArrow() : null}
       </div>
@@ -81,22 +83,22 @@ class DataTable extends WixComponent {
 
   renderSortArrow = () => {
     return (
-      <div className={classNames(style.sortArrow, {[style.descent]: this.props.sortDirection === 'descent'})} >
-        <ArrowVertical width={7} height={7}/>
+      <div className={classNames(css.sortArrow, {[css.descent]: this.props.sortDirection === 'descent'})} >
+        <ArrowVertical width="7px" height="7px"/>
       </div>);
   };
 
-  renderHeaderColumn = column => <span className={style.headerTitle}>{column.title}</span>;
+  renderHeaderColumn = column => <span className={css.headerTitle}>{column.title}</span>;
 
   renderHeader() {
     return (
-      <div className={style.headerRow}>
+      <div className={css.headerRow}>
         {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
             renderedColumn = this.renderSortableColumn(renderedColumn, column.sortKey);
           }
-          return <div key={index} className={style.cell} style={{width: column.width}}>{renderedColumn}</div>;
+          return <div key={index} className={css.headerCell} style={{width: column.width}}>{renderedColumn}</div>;
         })}
       </div>
     );
@@ -104,19 +106,19 @@ class DataTable extends WixComponent {
 
   renderRow = (rowData, rowIndex) => {
     return (
-      <div className={classNames(style.bodyRow, {[style.cdivckable]: !!this.props.onRowClick})} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
-        {this.props.columns.map((column, index) => <div key={index} className={style.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
+      <div key={rowIndex} className={classNames(css.bodyRow, {[css.clickable]: !!this.props.onRowClick})} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
+        {this.props.columns.map((column, index) => <div key={index} className={css.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
       </div>
     );
   }
 
   renderContent = () => {
+    const style = {height: this.props.height - headerHeight};
     return (
-      <div className={style.tableContent}>
+      <div className={css.tableContent} style={style}>
         {
           this.props.data.map((rowData, index) => this.renderRow(rowData, index))
         }
-
       </div>
     );
   }
@@ -135,7 +137,7 @@ DataTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     render: PropTypes.func.isRequired,
-    width: PropTypes.number,
+    width: PropTypes.string,
     sortable: PropTypes.bool
   })),
   data: PropTypes.array.isRequired,
@@ -144,6 +146,7 @@ DataTable.propTypes = {
   onRowClick: PropTypes.func,
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
   columnToSortBy: PropTypes.string,
+  height: PropTypes.number.isRequired,
   onSort: PropTypes.func
 };
 
