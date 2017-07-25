@@ -6,6 +6,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import { Table, Column } from 'react-virtualized';
 import InfiniteScroll from './InfiniteScroll';
 import PropTypes from 'prop-types';
+import { ArrowVertical } from '../Icons';
 
 class DataTable extends WixComponent {
   constructor(props) {
@@ -14,6 +15,29 @@ class DataTable extends WixComponent {
     if (props.infiniteScroll) {
       this.state = this.createInitialScrollingState(props);
     }
+  }
+
+  renderSortArrow = () => {
+    return (
+    <div className={classNames(style.sortArrow, { [style.descent]: this.props.sortDirection === 'descent' })} >
+      <ArrowVertical width={7} height={7} />
+    </div>);
+  };
+
+  headerRowRenderer = ({ className, columns, ...rest }) => {
+    delete rest.style.paddingRight;
+    return (
+      <div className={className} role="row" style={rest.style}>
+        {columns.map((column, index) => {
+          return (
+            <div className={style.headerCell} onClick={() => this.props.onSort(index)}>
+              {column}
+              {this.props.columnToSortBy === index ? this.renderSortArrow() : null}
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -92,6 +116,7 @@ class DataTable extends WixComponent {
           className={style.wixStyleDataTable}
           width={1000}
           height={300}
+          headerRowRenderer={this.headerRowRenderer}
           headerHeight={14}
           rowHeight={30}
           rowCount={data.length}
@@ -149,6 +174,9 @@ class DataTable extends WixComponent {
   }
 
 }
+DataTable.defaultProps = {
+  columnToSortBy: 0
+};
 
 DataTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
@@ -160,7 +188,10 @@ DataTable.propTypes = {
   loader: PropTypes.node,
   itemsPerPage: PropTypes.number,
   onRowClick: PropTypes.func,
-  dataHook: PropTypes.string
+  dataHook: PropTypes.string,
+  sortDirection: PropTypes.oneOf(['ascent', 'descent']),
+  columnToSortBy: PropTypes.number,
+  onSort: PropTypes.func
 };
 
 DataTable.defaultProps = {
