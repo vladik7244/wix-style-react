@@ -112,7 +112,6 @@
     "react-onclickoutside": "^5.7.1",
     "react-remarkable": "^1.1.1",
     "react-transition-group": "^2.2.0",
-    "react-virtualized": "^9.9.0",
     "slate": "^0.20.3"
   },
   "jest": {
