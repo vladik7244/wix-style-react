@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {ILabelProps} from './label';
+import {ILabelProps} from './Label';
 
 const labelDriverFactory = ({element, wrapper, component}: {element:any, wrapper:any, component: any}) => {
   return {
