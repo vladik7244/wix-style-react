@@ -25,9 +25,9 @@ const data = [
       { name: 'Brian Vaughn', description: 'Software engineer', another: 'wat' } ];
 
   const columns = [
-    {title: 'Name', render: (rowData, rowIndex) => rowData.name + rowIndex, width: '20%', sortable: true},
+    {title: 'Name', render: (rowData, rowIndex) => rowData.name + rowIndex, width: '20%', sortable: true, sortKey: 'name'},
     {title: 'Description', render: (rowData) => rowData.description , width: '20%'},
-    {title: 'Another', render: (rowData) => rowData.another , width: '40%', sortable: true},
+    {title: 'Another', render: (rowData) => rowData.another , width: '40%', sortable: true, sortKey: 'author'},
 ];
 
 const onRowClick = (row, index) => console.log(row, index); 
@@ -35,15 +35,15 @@ const onRowClick = (row, index) => console.log(row, index);
 class DataTableExample extends React.Component {
   constructor(props){
     super(props);
-    this.state = {sortDirection: 'ascent', sortByCol: 0};
+    this.state = {sortDirection: 'ascent', sortByCol: 'name'};
   }
   switchSortDirection = () => {
       this.setState({sortDirection: this.state.sortDirection === 'ascent'? 'descent': 'ascent'});
   }
 
-  onSort = (columnIndex) => {
-    this.setState({sortByCol: columnIndex});
-    if (columnIndex === this.state.sortByCol) {
+  onSort = (sortKey) => {
+    this.setState({sortByCol: sortKey});
+    if (sortKey === this.state.sortByCol) {
       this.switchSortDirection();
     }
   }
