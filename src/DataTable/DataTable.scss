@@ -6,6 +6,10 @@
   margin: 0; 
 }
 
+ .cell{
+    padding: 15px;
+  }
+  
 .headerRow {
   padding: 15px;
   font-weight: 700;
@@ -23,6 +27,10 @@
   
   .headerTitle {
     cursor: default;
+    &:hover {
+      cursor: default;
+      color: #3899ec;
+    }
   }
   .sortableColumn {
     display: inline-flex;
@@ -31,9 +39,9 @@
       display: inline-block;
       cursor: pointer;
       transition: all .1s linear;
-        &.descent {
-       transform: rotate(-180deg);
-    }
+      &.descent {
+        transform: rotate(-180deg);
+      }
     }
   }
 }
@@ -42,7 +50,10 @@
   outline: none;
   display: flex;
   list-style: none;
-
+  font-size: 14px;
+  color: #7a92a5;
+  border-bottom: 1px solid #f0f4f7;
+  
   &.clickable {
     cursor: pointer;
     &:hover {
@@ -50,18 +61,4 @@
       cursor: pointer;
     }
   }
-}
-
-.headerColumn {
-  &:hover {
-    cursor: default;
-    color: #3899ec;
-  }
-}
-
-.rowColumn {
-  font-size: 14px;
-  color: #7a92a5;
-  padding: 9px 0;
-  border-bottom: 1px solid #f0f4f7;
 }

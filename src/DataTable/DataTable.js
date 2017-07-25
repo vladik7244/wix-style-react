@@ -96,7 +96,7 @@ class DataTable extends WixComponent {
           if (column.sortable) {
             renderedColumn = this.renderSortableColumn(renderedColumn, column.sortKey);
           }
-          return <div key={index} style={{width: column.width}}>{renderedColumn}</div>;
+          return <div key={index} className={style.cell} style={{width: column.width}}>{renderedColumn}</div>;
         })}
       </div>
     );
@@ -105,7 +105,7 @@ class DataTable extends WixComponent {
   renderRow = (rowData, rowIndex) => {
     return (
       <li className={classNames(style.bodyRow, {[style.clickable]: !!this.props.onRowClick})} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
-        {this.props.columns.map(column => <div style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
+        {this.props.columns.map(column => <div className={style.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
       </li>
     );
   }
