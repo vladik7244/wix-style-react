@@ -3,7 +3,7 @@ import React from 'react';
 import css from './DataTable.scss';
 import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
-//import InfiniteScroll from './InfiniteScroll';
+import InfiniteScroll from 'react-infinite-scroller';
 import PropTypes from 'prop-types';
 import {ArrowVertical} from '../Icons';
 import getScrollbarWidth from 'scrollbar-width';
@@ -11,67 +11,59 @@ import getScrollbarWidth from 'scrollbar-width';
 const headerHeight = 36;
 
 class DataTable extends WixComponent {
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  //   if (props.infiniteScroll) {
-  //     this.state = this.createInitialScrollingState(props);
-  //   }
-  // }
+    if (props.infiniteScroll) {
+      this.state = this.createInitialScrollingState(props);
+    }
+  }
 
-  // componentWillReceiveProps(nextProps) {
-  //   let isLoadingMore = false;
-  //   if (this.props.infiniteScroll && nextProps.data !== this.props.data) {
-  //     if (nextProps.data instanceof Array && this.props.data instanceof Array) {
-  //       if (this.props.data.every((elem, index) => {
-  //         return nextProps.data.length > index && nextProps.data[index] === elem;
-  //       })) {
-  //         isLoadingMore = true;
-  //         this.setState({lastPage: this.calcLastPage(nextProps)});
-  //       }
-  //     }
+  createInitialScrollingState(props) {
+    return {currentPage: 0, lastPage: this.calcLastPage(props)};
+  }
 
-  //     if (!isLoadingMore) {
-  //       this.setState(this.createInitialScrollingState(nextProps));
-  //     }
-  //   }
-  // }
+  calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
 
-  // calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
+  componentWillReceiveProps(nextProps) {
+    let isLoadingMore = false;
+    if (this.props.infiniteScroll && nextProps.data !== this.props.data) {
+      if (nextProps.data instanceof Array && this.props.data instanceof Array) {
+        if (this.props.data.every((elem, index) => {
+          return nextProps.data.length > index && nextProps.data[index] === elem;
+        })) {
+          isLoadingMore = true;
+          this.setState({lastPage: this.calcLastPage(nextProps)});
+        }
+      }
 
-  // loadMore = () => {
-  //   if (this.state.currentPage < this.state.lastPage) {
-  //     this.setState({currentPage: this.state.currentPage + 1});
-  //   } else {
-  //     this.props.loadMore && this.props.loadMore();
-  //   }
-  // }
+      if (!isLoadingMore) {
+        this.setState(this.createInitialScrollingState(nextProps));
+      }
+    }
+  }
 
-  // createInitialScrollingState(props) {
-  //   return {currentPage: 0, lastPage: this.calcLastPage(props)};
-  // }
+  loadMore = () => {
+    if (this.state.currentPage < this.state.lastPage) {
+      this.setState({currentPage: this.state.currentPage + 1});
+    } else {
+      this.props.loadMore && this.props.loadMore();
+    }
+  }
 
-  // componentDidMount() {
-  //   this.scrollContainer = document.getElementsByClassName('ReactVirtualized__Grid ReactVirtualized__Table__Grid');
-  //   if (this.scrollContainer.length) {
-  //     this.scrollContainer = this.scrollContainer[this.scrollContainer.length - 1];
-  //   }
-  // }
-
-  // wrapWithInfiniteScroll = table => {
-  //   return (
-  //     <InfiniteScroll
-  //       pageStart={0}
-  //       loadMore={this.loadMore}
-  //       hasMore={this.state.currentPage < this.state.lastPage || (this.props.hasMore)}
-  //       loader={this.props.loader}
-  //       scrollElement={this.scrollContainer}
-  //       >
-  //       {table}
-  //     </InfiniteScroll>
-  //   );
-  // };
-
+  wrapWithInfiniteScroll = content => {
+    return (
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={this.loadMore}
+        hasMore={this.state.currentPage < this.state.lastPage || (this.props.hasMore)}
+        loader={this.props.loader}
+        useWindow={false}
+        >
+        {content}
+      </InfiniteScroll>
+    );
+  };
 
   renderSortableColumn = (column, index) => {
     return (
@@ -114,13 +106,18 @@ class DataTable extends WixComponent {
   }
 
   renderContent = () => {
+    let tableContent = (
+      <div className={css.tableContent}>
+        {
+          this.props.data.map((rowData, index) => this.renderRow(rowData, index))
+        }
+      </div>);
+    if (this.props.infiniteScroll) {
+      tableContent = this.wrapWithInfiniteScroll(tableContent);
+    }
     return (
-      <div className={css.scrollable} style={{height: this.props.height, paddingRight: this.props.scrollBarOffset}}>
-        <div className={css.tableContent}>
-          {
-            this.props.data.map((rowData, index) => this.renderRow(rowData, index))
-          }
-        </div>
+      <div className={css.scrollable} style={{height: this.props.height - headerHeight, paddingRight: this.props.scrollBarOffset}}>
+        {tableContent}
       </div>
 
     );
@@ -142,21 +139,25 @@ DataTable.propTypes = {
     render: PropTypes.func.isRequired,
     width: PropTypes.string,
     sortable: PropTypes.bool
-  })),
+  })).isRequired,
   data: PropTypes.array.isRequired,
-  loader: PropTypes.node,
-  itemsPerPage: PropTypes.number,
+  height: PropTypes.number.isRequired,
+  itemsPerPage: PropTypes.number, // Why the fuck do we need this thing?
   onRowClick: PropTypes.func,
+  infiniteScroll: PropTypes.bool,
+  loader: PropTypes.node,
+  hasMore: PropTypes.bool,
+  loadMore: PropTypes.func,
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
   columnToSortBy: PropTypes.string,
-  height: PropTypes.number.isRequired,
   scrollBarOffset: PropTypes.number,
   onSort: PropTypes.func
 };
 
 DataTable.defaultProps = {
-  loader: <div className="loader">Loading ...</div>,
+  loader: <div className={css.loader}>Loading ...</div>,
   scrollBarOffset: 0,
+  infiniteScroll: false,
   columnToSortBy: 0
 };
 
