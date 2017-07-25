@@ -1,4 +1,4 @@
-$header-hegiht: 36px;
+$header-height: 36px;
 
 .scrollable {
   overflow-y: scroll
@@ -8,12 +8,8 @@ $header-hegiht: 36px;
   position: relative;
 }
 .tableContent {
-  padding: 0 15px 0 15px;
   margin: 0; 
   background-color: #fff;
-  &.paddingMode {
-    padding-top: $header-hegiht;
-  }
 }
 
 .headerCell {
@@ -29,7 +25,7 @@ $header-hegiht: 36px;
   
 .headerRow {
   padding: 0 15px;
-  height: $header-hegiht;
+  height: $header-height;
   box-sizing: border-box;
   font-weight: 700;
   text-transform: uppercase;
@@ -43,11 +39,6 @@ $header-hegiht: 36px;
   text-align: start;
   color: #7a92a5;
   border-top: 1px solid #dfe5eb;
-
-  &.paddingMode {
-    position: relative;
-    top: $header-hegiht;
-  }
   
   .headerTitle {
     cursor: default;
@@ -76,6 +67,7 @@ $header-hegiht: 36px;
 }
 
 .bodyRow {
+  padding: 0 15px;
   outline: none;
   display: flex;
   list-style: none;
