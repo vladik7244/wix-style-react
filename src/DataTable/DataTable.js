@@ -104,20 +104,20 @@ class DataTable extends WixComponent {
 
   renderRow = (rowData, rowIndex) => {
     return (
-      <li className={classNames(style.bodyRow, {[style.clickable]: !!this.props.onRowClick})} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
-        {this.props.columns.map(column => <div className={style.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
-      </li>
+      <div className={classNames(style.bodyRow, {[style.cdivckable]: !!this.props.onRowClick})} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
+        {this.props.columns.map((column, index) => <div key={index} className={style.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
+      </div>
     );
   }
 
   renderContent = () => {
     return (
-      <ul className={style.tableContent}>
+      <div className={style.tableContent}>
         {
           this.props.data.map((rowData, index) => this.renderRow(rowData, index))
         }
 
-      </ul>
+      </div>
     );
   }
 
