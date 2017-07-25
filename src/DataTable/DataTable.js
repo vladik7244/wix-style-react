@@ -104,7 +104,7 @@ class DataTable extends WixComponent {
 
   renderRow = (rowData, rowIndex) => {
     return (
-      <li className={style.bodyRow} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
+      <li className={classNames(style.bodyRow, {[style.clickable]: !!this.props.onRowClick})} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
         {this.props.columns.map(column => <div style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
       </li>
     );
@@ -143,7 +143,7 @@ DataTable.propTypes = {
   itemsPerPage: PropTypes.number,
   onRowClick: PropTypes.func,
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
-  columnToSortBy: PropTypes.number,
+  columnToSortBy: PropTypes.string,
   onSort: PropTypes.func
 };
 
