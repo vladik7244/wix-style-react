@@ -91,7 +91,7 @@ class DataTable extends WixComponent {
   renderHeader() {
     return (
       <div className={style.headerRow}>
-        {this.props.columns.map((column) => {
+        {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
             renderedColumn = this.renderSortableColumn(renderedColumn, column.sortKey);
@@ -104,7 +104,7 @@ class DataTable extends WixComponent {
 
   renderRow = (rowData, rowIndex) => {
     return (
-      <li className={style.bodyRow} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex) } >
+      <li className={style.bodyRow} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
         {this.props.columns.map(column => <div style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
       </li>
     );
