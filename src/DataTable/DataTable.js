@@ -17,11 +17,20 @@ class DataTable extends WixComponent {
     }
   }
 
+  renderSortableColumn = (column, index) => {
+    return (
+      <div className={style.sortableColumn} onClick={() => this.props.onSort && this.props.onSort(index)}>
+        {column}
+        {this.props.onSort && this.props.columnToSortBy === index ? this.renderSortArrow() : null}
+      </div>
+    );
+  }
+
   renderSortArrow = () => {
     return (
-    <div className={classNames(style.sortArrow, { [style.descent]: this.props.sortDirection === 'descent' })} >
-      <ArrowVertical width={7} height={7} />
-    </div>);
+      <div className={classNames(style.sortArrow, { [style.descent]: this.props.sortDirection === 'descent' })} >
+        <ArrowVertical width={7} height={7} />
+      </div>);
   };
 
   headerRowRenderer = ({ className, columns, ...rest }) => {
@@ -29,12 +38,11 @@ class DataTable extends WixComponent {
     return (
       <div className={className} role="row" style={rest.style}>
         {columns.map((column, index) => {
-          return (
-            <div className={style.headerCell} onClick={() => this.props.onSort(index)}>
-              {column}
-              {this.props.columnToSortBy === index ? this.renderSortArrow() : null}
-            </div>
-          );
+          if (this.props.columns[index].sortable) {
+            return this.renderSortableColumn(column, index);
+          } else {
+            return column;
+          };
         })}
       </div>
     );
@@ -48,7 +56,7 @@ class DataTable extends WixComponent {
           return nextProps.data.length > index && nextProps.data[index] === elem;
         })) {
           isLoadingMore = true;
-          this.setState({lastPage: this.calcLastPage(nextProps)});
+          this.setState({ lastPage: this.calcLastPage(nextProps) });
         }
       }
 
@@ -58,18 +66,18 @@ class DataTable extends WixComponent {
     }
   }
 
-  calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
+  calcLastPage = ({ data, itemsPerPage }) => Math.ceil(data.length / itemsPerPage) - 1;
 
   loadMore = () => {
     if (this.state.currentPage < this.state.lastPage) {
-      this.setState({currentPage: this.state.currentPage + 1});
+      this.setState({ currentPage: this.state.currentPage + 1 });
     } else {
       this.props.loadMore && this.props.loadMore();
     }
   }
 
   createInitialScrollingState(props) {
-    return {currentPage: 0, lastPage: this.calcLastPage(props)};
+    return { currentPage: 0, lastPage: this.calcLastPage(props) };
   }
 
   componentDidMount() {
@@ -87,7 +95,7 @@ class DataTable extends WixComponent {
         hasMore={this.state.currentPage < this.state.lastPage || (this.props.hasMore)}
         loader={this.props.loader}
         scrollElement={this.scrollContainer}
-        >
+      >
         {table}
       </InfiniteScroll>
     );
@@ -99,70 +107,70 @@ class DataTable extends WixComponent {
     );
   }
 
-  rowClassName = ({index}) => {
+  rowClassName = ({ index }) => {
     if (index < 0) {
       return style.headerRow;
     } else {
-      return classNames(style.bodyRow, {[style.clickable]: !!this.props.onRowClick}, this.props.rowClassName);
+      return classNames(style.bodyRow, { [style.clickable]: !!this.props.onRowClick }, this.props.rowClassName);
     }
   }
 
-  cellRenderer = ({rowData, columnIndex, rowIndex}) => this.props.columns[columnIndex].render(rowData, rowIndex);
-  onRowClick = ({index, rowData}) => this.props.onRowClick && this.props.onRowClick(rowData, index);
+  cellRenderer = ({ rowData, columnIndex, rowIndex }) => this.props.columns[columnIndex].render(rowData, rowIndex);
+  onRowClick = ({ index, rowData }) => this.props.onRowClick && this.props.onRowClick(rowData, index);
 
   renderTable(data) {
     return (
-        <Table
-          className={style.wixStyleDataTable}
-          width={1000}
-          height={300}
-          headerRowRenderer={this.headerRowRenderer}
-          headerHeight={14}
-          rowHeight={30}
-          rowCount={data.length}
-          rowClassName={this.rowClassName}
-          headerClassName={style.headerColumn}
-          rowGetter={({ index }) => data[index]}
-          tabIndex={null}
-          onRowClick={this.onRowClick}
-        >
-          {this.props.columns.map((column, idx) => {
-            return <Column
-              label={column.title}
-              dataKey=''
-              key={idx}
-              cellRenderer={this.cellRenderer}
-              width={column.width}
-              className={style.rowColumn}
+      <Table
+        className={style.wixStyleDataTable}
+        width={1000}
+        height={300}
+        headerRowRenderer={this.headerRowRenderer}
+        headerHeight={14}
+        rowHeight={30}
+        rowCount={data.length}
+        rowClassName={this.rowClassName}
+        headerClassName={style.headerColumn}
+        rowGetter={({ index }) => data[index]}
+        tabIndex={null}
+        onRowClick={this.onRowClick}
+      >
+        {this.props.columns.map((column, idx) => {
+          return <Column
+            label={column.title}
+            dataKey=''
+            key={idx}
+            cellRenderer={this.cellRenderer}
+            width={column.width}
+            className={style.rowColumn}
           />;
-          })}
-        </Table>
+        })}
+      </Table>
     );
   }
 
   render() {
 
-      // And so on...
+    // And so on...
 
-      /* suggested API :
-      
-        columns - array of column objects
-        columnObj = {
-          title - header text,
-          render - render function for the column,
-          width
-          sortable?
-          onSort
-        }
+    /* suggested API :
+    
+      columns - array of column objects
+      columnObj = {
+        title - header text,
+        render - render function for the column,
+        width
+        sortable?
+        onSort
+      }
 
-        when iterating on the columns prop
-        use the headerRenderer inside Column with a component that has/hasnt the sort functionality
-      
-        if theres onRowClick, add cursor pointer on cell hover
+      when iterating on the columns prop
+      use the headerRenderer inside Column with a component that has/hasnt the sort functionality
+    
+      if theres onRowClick, add cursor pointer on cell hover
 
-        we might be able to use the existing InfiniteScroller thing..
-       */
-    const {data, infiniteScroll} = this.props;
+      we might be able to use the existing InfiniteScroller thing..
+     */
+    const { data, infiniteScroll } = this.props;
 
     const table = this.renderTable(data);
 
@@ -174,28 +182,26 @@ class DataTable extends WixComponent {
   }
 
 }
-DataTable.defaultProps = {
-  columnToSortBy: 0
-};
 
 DataTable.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     render: PropTypes.func.isRequired,
-    width: PropTypes.number
+    width: PropTypes.number,
+    sortable: PropTypes.bool
   })),
   data: PropTypes.array.isRequired,
   loader: PropTypes.node,
   itemsPerPage: PropTypes.number,
   onRowClick: PropTypes.func,
-  dataHook: PropTypes.string,
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
   columnToSortBy: PropTypes.number,
   onSort: PropTypes.func
 };
 
 DataTable.defaultProps = {
-  loader: <div className="loader">Loading ...</div>
+  loader: <div className="loader">Loading ...</div>,
+  columnToSortBy: 0
 };
 
 export default DataTable;
