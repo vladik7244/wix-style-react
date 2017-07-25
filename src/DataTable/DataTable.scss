@@ -1,7 +1,19 @@
+$header-hegiht: 36px;
 
+.scrollable {
+  overflow-y: scroll
+}
+
+.dataTable {
+  position: relative;
+}
 .tableContent {
-  overflow-y: scroll;
+  padding: 0 15px 0 15px;
   margin: 0; 
+  background-color: #fff;
+  &.paddingMode {
+    padding-top: $header-hegiht;
+  }
 }
 
 .headerCell {
@@ -16,7 +28,8 @@
   }
   
 .headerRow {
-  height: 36px;
+  padding: 0 15px;
+  height: $header-hegiht;
   box-sizing: border-box;
   font-weight: 700;
   text-transform: uppercase;
@@ -26,10 +39,15 @@
   font-size: 10px;
   line-height: 12px;
   text-align: left;
-  background-color: rgba(240,243,247,.5);
+  background-color: rgba(240,243,247,1);
   text-align: start;
   color: #7a92a5;
   border-top: 1px solid #dfe5eb;
+
+  &.paddingMode {
+    position: relative;
+    top: $header-hegiht;
+  }
   
   .headerTitle {
     cursor: default;

@@ -58,7 +58,8 @@ class DataTableExample extends React.Component {
           sortDirection={this.state.sortDirection}
           columnToSortBy={this.state.sortByCol}
           onSort={this.onSort}
-          />
+          padding={40}
+    />
       </div>
     );
   }

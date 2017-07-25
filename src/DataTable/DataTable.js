@@ -5,7 +5,8 @@ import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
 //import InfiniteScroll from './InfiniteScroll';
 import PropTypes from 'prop-types';
-import {ArrowVertical} from '../Icons';
+import { ArrowVertical } from '../Icons';
+import getScrollbarWidth from 'scrollbar-width';
 
 const headerHeight = 36;
 
@@ -83,8 +84,8 @@ class DataTable extends WixComponent {
 
   renderSortArrow = () => {
     return (
-      <div className={classNames(css.sortArrow, {[css.descent]: this.props.sortDirection === 'descent'})} >
-        <ArrowVertical width="7px" height="7px"/>
+      <div className={classNames(css.sortArrow, { [css.descent]: this.props.sortDirection === 'descent' })} >
+        <ArrowVertical width="7px" height="7px" />
       </div>);
   };
 
@@ -92,13 +93,13 @@ class DataTable extends WixComponent {
 
   renderHeader() {
     return (
-      <div className={css.headerRow}>
+      <div className={classNames(css.headerRow, {[css.paddingMode]: !!this.props.padding})} style={{ marginLeft: this.props.padding, marginRight: this.props.padding + getScrollbarWidth() }}>
         {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
             renderedColumn = this.renderSortableColumn(renderedColumn, column.sortKey);
           }
-          return <div key={index} className={css.headerCell} style={{width: column.width}}>{renderedColumn}</div>;
+          return <div key={index} className={css.headerCell} style={{ width: column.width }}>{renderedColumn}</div>;
         })}
       </div>
     );
@@ -106,26 +107,28 @@ class DataTable extends WixComponent {
 
   renderRow = (rowData, rowIndex) => {
     return (
-      <div key={rowIndex} className={classNames(css.bodyRow, {[css.clickable]: !!this.props.onRowClick})} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
-        {this.props.columns.map((column, index) => <div key={index} className={css.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
+      <div key={rowIndex} className={classNames(css.bodyRow, { [css.clickable]: !!this.props.onRowClick })} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
+        {this.props.columns.map((column, index) => <div key={index} className={css.cell} style={{ width: column.width }}>{column.render(rowData, rowIndex)}</div>)}
       </div>
     );
   }
 
   renderContent = () => {
-    const style = {height: this.props.height - headerHeight};
     return (
-      <div className={css.tableContent} style={style}>
-        {
-          this.props.data.map((rowData, index) => this.renderRow(rowData, index))
-        }
+      <div className={css.scrollable} style={{height: this.props.height, paddingLeft: this.props.padding, paddingRight: this.props.padding}}>
+        <div className={classNames(css.tableContent, {[css.paddingMode]: !!this.props.padding})}>
+          {
+            this.props.data.map((rowData, index) => this.renderRow(rowData, index))
+          }
+        </div>
       </div>
+
     );
   }
 
   render() {
     return (
-      <div>
+      <div className={css.dataTable}>
         {this.renderHeader()}
         {this.renderContent()}
       </div>
@@ -147,7 +150,8 @@ DataTable.propTypes = {
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
   columnToSortBy: PropTypes.string,
   height: PropTypes.number.isRequired,
-  onSort: PropTypes.func
+  onSort: PropTypes.func,
+  padding: PropTypes.any
 };
 
 DataTable.defaultProps = {
