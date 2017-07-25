@@ -25,9 +25,9 @@ const data = [
       { name: 'Brian Vaughn', description: 'Software engineer', another: 'wat' } ];
 
   const columns = [
-    {title: 'Name', render: (rowData, rowIndex) => rowData.name + rowIndex, width: 100, sortable: true},
-    {title: 'Description', render: (rowData) => rowData.description , width: 100},
-    {title: 'Another', render: (rowData) => rowData.another , width: 100, sortable: true},
+    {title: 'Name', render: (rowData, rowIndex) => rowData.name + rowIndex, width: '20%', sortable: true},
+    {title: 'Description', render: (rowData) => rowData.description , width: '20%'},
+    {title: 'Another', render: (rowData) => rowData.another , width: '40%', sortable: true},
 ];
 
 const onRowClick = (row, index) => console.log(row, index); 

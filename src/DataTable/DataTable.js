@@ -33,20 +33,6 @@ class DataTable extends WixComponent {
       </div>);
   };
 
-  headerRowRenderer = ({ className, columns, ...rest }) => {
-    delete rest.style.paddingRight;
-    return (
-      <div className={className} role="row" style={rest.style}>
-        {columns.map((column, index) => {
-          if (this.props.columns[index].sortable) {
-            return this.renderSortableColumn(column, index);
-          } else {
-            return column;
-          };
-        })}
-      </div>
-    );
-  }
 
   componentWillReceiveProps(nextProps) {
     let isLoadingMore = false;
@@ -101,9 +87,19 @@ class DataTable extends WixComponent {
     );
   };
 
-  headerRenderer() {
+  renderHeaderColumn = column => <span className={style.headerTitle}>{column.title}</span>;
+
+  renderHeader() {
     return (
-      <div>Full Name</div>
+      <div className={style.headerRow}>
+        {this.props.columns.map((column, index) => {
+          let renderedColumn = this.renderHeaderColumn(column);
+          if (column.sortable) {
+            renderedColumn = this.renderSortableColumn(renderedColumn, index);
+          }
+          return <div style={{width: column.width}}>{renderedColumn}</div>;
+        })}
+      </div>
     );
   }
 
@@ -117,6 +113,26 @@ class DataTable extends WixComponent {
 
   cellRenderer = ({ rowData, columnIndex, rowIndex }) => this.props.columns[columnIndex].render(rowData, rowIndex);
   onRowClick = ({ index, rowData }) => this.props.onRowClick && this.props.onRowClick(rowData, index);
+
+  renderRow = (rowData, rowIndex) => {
+    return (
+      <li className={style.bodyRow} >
+        {this.props.columns.map(column => <div style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
+      </li>
+    );
+  }
+
+
+  renderContnet = () => {
+    return (
+      <ul className={style.tableContent}>
+        {
+          this.props.data.map((rowData, index) => this.renderRow(rowData, index))
+        }
+
+      </ul>
+    );
+  }
 
   renderTable(data) {
     return (
@@ -149,6 +165,15 @@ class DataTable extends WixComponent {
   }
 
   render() {
+    return (
+      <div>
+        {this.renderHeader()}
+        {this.renderContnet()}
+      </div>
+    );
+  }
+
+  render2() {
 
     // And so on...
 

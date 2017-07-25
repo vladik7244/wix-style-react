@@ -1,3 +1,4 @@
+
 .wixStyleDataTable {
   :global {
     .ReactVirtualized__Table__headerRow {
@@ -56,8 +57,20 @@
   }
 }
 
+.tableContent {
+  height: 300px;
+  overflow: scroll;
+  padding: 0 15px 0 15px;
+  margin: 0; 
+}
+
 .headerRow {
-  padding: 11.5px 0 12.5px 0;
+  padding: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 10px;
   line-height: 12px;
   text-align: left;
@@ -66,8 +79,12 @@
   color: #7a92a5;
   border-top: 1px solid #dfe5eb;
   
+  .headerTitle {
+    cursor: default;
+  }
   .sortableColumn {
     display: inline-flex;
+    cursor: pointer;
     .sortArrow {
       display: inline-block;
       cursor: pointer;
@@ -81,6 +98,9 @@
 
 .bodyRow {
   outline: none;
+  display: flex;
+  list-style: none;
+
   &.clickable {
     cursor: pointer;
     &:hover {
