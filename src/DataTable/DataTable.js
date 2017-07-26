@@ -85,7 +85,7 @@ class DataTable extends WixComponent {
 
   renderHeader() {
     return (
-      <div className={css.headerRow} style={{marginRight: this.props.scrollBarOffset + getScrollbarWidth()}}>
+      <div className={css.headerRow} {...this.scrollBarMargin()}>
         {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
@@ -123,11 +123,25 @@ class DataTable extends WixComponent {
     );
   }
 
+  scrollBarMargin() {
+    return {
+      style: {
+        marginRight: this.props.scrollBarOffset + getScrollbarWidth()
+      }
+    };
+  }
+
   render() {
     return (
       <div className={css.dataTable}>
+        <div {...this.scrollBarMargin()}>
+          {this.props.header}
+        </div>
         {this.renderHeader()}
         {this.renderContent()}
+        <div {...this.scrollBarMargin()}>
+          {this.props.footer}
+        </div>
       </div>
     );
   }
@@ -144,6 +158,8 @@ DataTable.propTypes = {
   height: PropTypes.number.isRequired,
   itemsPerPage: PropTypes.number, // Why the fuck do we need this thing?
   onRowClick: PropTypes.func,
+  header: PropTypes.node,
+  footer: PropTypes.node,
   infiniteScroll: PropTypes.bool,
   loader: PropTypes.node,
   hasMore: PropTypes.bool,
@@ -157,6 +173,8 @@ DataTable.propTypes = {
 DataTable.defaultProps = {
   loader: <div className={css.loader}>Loading ...</div>,
   scrollBarOffset: 0,
+  header: null,
+  footer: null,
   infiniteScroll: false,
   columnToSortBy: 0
 };

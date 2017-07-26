@@ -12,6 +12,9 @@ const baseData = [
     {firstName: 'Walter', lastName: 'Jenning'}
 ];
 
+const header = <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', height: 40}}>Pizdez</div>;
+const footer = <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'green', height: 20}}>Dayum</div>;
+
 const generateData = count => {
   let data = [];
   for (let i = 0; i < count; i++) {
@@ -49,6 +52,8 @@ class DataTableExample extends React.Component {
             window.alert(`You clicked "${row.firstName} ${row.lastName}", row number ${rowNum + 1}`);
             /*eslint-enable no-alert*/
           }}
+          header={header}
+          footer={footer}
           height={400}
           scrollBarOffset={30}
           infiniteScroll
