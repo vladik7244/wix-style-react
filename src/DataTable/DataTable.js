@@ -16,11 +16,23 @@ class DataTable extends WixComponent {
     super(props);
 
     this.state = {topHeight: 0, tableWidth: 0};
-    //window resize listener
+
+    if (this.props.isPage) {
+      window.addEventListener('resize', this.onWindowResize);
+    }
 
     if (props.infiniteScroll) {
       this.state = this.createInitialScrollingState(props);
     }
+  }
+
+  onWindowResize = () => {
+    const width = this.table && this.table.getBoundingClientRect().width;
+    this.setState({tableWidth: width});
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onWindowResize);
   }
 
   componentDidMount() {
