@@ -185,7 +185,7 @@ class DataTable extends WixComponent {
 
   render() {
     let topSection = [
-      <div key={0} style={this.props.isPage ? {} : this.scrollBarMargin()}>
+      <div key={0} style={this.props.isPage ? this.scrollBarMargin() : {}}>
         {this.props.header}
       </div>,
       this.renderHeader()
@@ -211,7 +211,7 @@ class DataTable extends WixComponent {
         <div>
           <div ref={node => this.table = node} className={css.dataTable}>
             {this.renderContent()}
-            <div style={this.props.isPage ? {} : this.scrollBarMargin()}>
+            <div style={this.scrollBarMargin()}>
               {this.props.footer}
             </div>
           </div>
