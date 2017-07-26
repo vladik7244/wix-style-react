@@ -14,7 +14,6 @@ $header-height: 36px;
 
 .headerCell {
   padding: 0 15px;
-  box-sizing: border-box;
 }
 
  .cell{
@@ -101,5 +100,25 @@ $header-height: 36px;
   overflow-y: scroll;
   background: #f0f4f7;
   position: relative;
+}
+
+.container {
+  min-width: 894px;
+  max-width: 1254px;
+  padding: 0;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+  @media (min-width: 992px) {
+
+      width: 970px;
+  }
+  @media (min-width: 768px) {
+      width: 750px;
+  }
+
 }
   

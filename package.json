@@ -112,6 +112,7 @@
     "react-motion": "^0.4.7",
     "react-onclickoutside": "^5.7.1",
     "react-remarkable": "^1.1.1",
+    "react-scrollbar-size": "^2.0.0",
     "react-transition-group": "^2.2.0",
     "slate": "^0.20.3"
   },

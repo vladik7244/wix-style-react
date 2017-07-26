@@ -6,8 +6,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import InfiniteScroll from 'react-infinite-scroller';
 import PropTypes from 'prop-types';
 import {ArrowVertical} from '../Icons';
-import getScrollbarWidth from 'scrollbar-width';
-import {Container} from '../Grid';
+import ScrollbarSize from 'react-scrollbar-size';
 
 const headerHeight = 36;
 
@@ -15,7 +14,6 @@ class DataTable extends WixComponent {
   constructor(props) {
     super(props);
 
-    this.state = {topHeight: 0, tableWidth: 0};
 
     if (this.props.isPage) {
       window.addEventListener('resize', this.onWindowResize);
@@ -23,6 +21,8 @@ class DataTable extends WixComponent {
 
     if (props.infiniteScroll) {
       this.state = this.createInitialScrollingState(props);
+    } else {
+      this.state = {topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0};
     }
   }
 
@@ -37,14 +37,17 @@ class DataTable extends WixComponent {
 
   componentDidMount() {
     if (this.props.isPage) {
-      const height = this.topSection && this.topSection.getBoundingClientRect().height;
-      const width = this.table && this.table.getBoundingClientRect().width;
-      this.setState({topHeight: height, tableWidth: width});
+      const topHeight = this.topSection && this.topSection.getBoundingClientRect().height;
+      const tableWidth = this.table && this.table.getBoundingClientRect().width;
+      this.setState({topHeight, tableWidth});
+    } else {
+      const headerPaddingRight = this.tableHeader && window.getComputedStyle(this.tableHeader)['padding-right'];
+      this.setState({headerPaddingRight: headerPaddingRight || this.state.headerPaddingRight});
     }
   }
 
   createInitialScrollingState(props) {
-    return {currentPage: 0, lastPage: this.calcLastPage(props), topHeight: 0, tableWidth: 0};
+    return {currentPage: 0, lastPage: this.calcLastPage(props), topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0};
   }
 
   calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
@@ -105,24 +108,24 @@ class DataTable extends WixComponent {
       </div>);
   };
 
-  scrollBarMargin() {
-    return {
-      marginRight: getScrollbarWidth()
-    };
-  }
-
   renderHeaderColumn = column => <span className={css.headerTitle}>{column.title}</span>;
 
+  headerPaddingWithScrollWidth = () => {
+    let currPadding = this.state.headerPaddingRight;
+    currPadding = Number(currPadding.substr(0, currPadding.indexOf('px')));
+    return currPadding + Number(this.state.scrollBarWidth);
+  }
+
   renderHeader() {
+    const style = this.state.headerPaddingRight ? {paddingRight: this.headerPaddingWithScrollWidth()} : {};
     return (
-      <div className={css.headerRow} style={this.props.isPage ? {} : this.scrollBarMargin()}>
+      <div className={css.headerRow} style={style} ref={node => this.tableHeader = node}>
         {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
             renderedColumn = this.renderSortableColumn(renderedColumn, column.sortKey);
           }
-          const margin = this.props.isPage ? {} : this.scrollBarMargin();
-          return <div key={index} className={css.headerCell} style={{width: column.width, ...margin}}>{renderedColumn}</div>;
+          return <div key={index} className={css.headerCell} style={{width: column.width}}>{renderedColumn}</div>;
         })}
       </div>
     );
@@ -134,6 +137,18 @@ class DataTable extends WixComponent {
         {this.props.columns.map((column, index) => <div key={index} className={css.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
       </div>
     );
+  }
+
+  setScrollBarWidth = ({scrollbarWidth}) => {
+    this.setState({scrollBarWidth: scrollbarWidth});
+  }
+
+  scrollbarSizeLoad = measurements => {
+    this.setScrollBarWidth(measurements);
+  }
+
+  scrollbarSizeChange = measurements => {
+    this.setScrollBarWidth(measurements);
   }
 
   renderContent = () => {
@@ -149,24 +164,25 @@ class DataTable extends WixComponent {
     return (
       <div className={classNames({[css.scrollable]: !this.props.isPage})} style={this.props.isPage ? {paddingTop: this.state.topHeight} : {height: this.props.height - headerHeight}}>
         {tableContent}
+        <ScrollbarSize
+          onLoad={this.scrollbarSizeLoad}
+          onChange={this.scrollbarSizeChange}
+          />
       </div>
 
     );
   }
 
   renderPage(table, topSection) {
-    const pageContent = (
-      <Container>
-        {table}
-      </Container>
-    );
+    const wrapWithContainer = (node, style) => (<div style={style} className={css.container}>
+      {node}
+    </div>);
     const style = {
       position: 'absolute',
       top: 0,
       left: 0,
       width: this.state.tableWidth,
-      margin: '0 auto',
-      right: getScrollbarWidth() || 0,
+      right: this.state.scrollBarWidth,
       zIndex: 9999,
     };
     if (this.props.infiniteScroll) {
@@ -174,20 +190,16 @@ class DataTable extends WixComponent {
     }
     return (
       <div data-hook="page-container" className={css.pageContainer}>
-        <div style={style}>
-          {topSection}
-        </div>
+        {wrapWithContainer(topSection, style)}
         <div className={css.scrollContainer}>
-          {pageContent}
+          {wrapWithContainer(table)}
         </div>
       </div>);
   }
 
   render() {
     let topSection = [
-      <div key={0} style={this.props.isPage ? this.scrollBarMargin() : {}}>
-        {this.props.header}
-      </div>,
+      this.props.header,
       this.renderHeader()
     ];
     if (this.props.isPage) {
@@ -211,9 +223,7 @@ class DataTable extends WixComponent {
         <div>
           <div ref={node => this.table = node} className={css.dataTable}>
             {this.renderContent()}
-            <div style={this.scrollBarMargin()}>
-              {this.props.footer}
-            </div>
+            {this.props.footer}
           </div>
         </div>,
         topSection
