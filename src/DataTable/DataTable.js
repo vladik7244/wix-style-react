@@ -176,7 +176,15 @@ class DataTable extends WixComponent {
     );
 
     if (this.props.isPage) {
-      table = this.renderPage(table);
+      table = this.renderPage(
+        <div>
+          {topSection}
+          <div className={css.dataTable}>
+            {this.renderContent()}
+            {this.props.footer}
+          </div>
+        </div>
+      );
     }
 
     return table;
