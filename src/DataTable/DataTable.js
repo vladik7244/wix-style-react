@@ -105,11 +105,17 @@ class DataTable extends WixComponent {
       </div>);
   };
 
+  scrollBarMargin() {
+    return {
+      marginRight: getScrollbarWidth()
+    };
+  }
+
   renderHeaderColumn = column => <span className={css.headerTitle}>{column.title}</span>;
 
   renderHeader() {
     return (
-      <div className={css.headerRow}>
+      <div className={css.headerRow} style={this.prop.isPage ? {} : this.scrollBarMargin()}>
         {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
@@ -178,7 +184,9 @@ class DataTable extends WixComponent {
 
   render() {
     let topSection = [
-      this.props.header,
+      <div key={0} style={this.prop.isPage ? {} : this.scrollBarMargin()}>
+        {this.props.header}
+      </div>,
       this.renderHeader()
     ];
     if (this.props.isPage) {
@@ -202,7 +210,9 @@ class DataTable extends WixComponent {
         <div>
           <div ref={node => this.table = node} className={css.dataTable}>
             {this.renderContent()}
-            {this.props.footer}
+            <div style={this.prop.isPage ? {} : this.scrollBarMargin()}>
+              {this.props.footer}
+            </div>
           </div>
         </div>,
         topSection
