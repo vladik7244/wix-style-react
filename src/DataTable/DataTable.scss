@@ -10,6 +10,8 @@ $header-height: 36px;
 .tableContent {
   margin: 0; 
   background-color: #fff;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .headerCell {
@@ -93,6 +95,8 @@ $header-height: 36px;
   position: relative;
   overflow-x: hidden;
   height: 100%;
+  padding-bottom: 32px;
+  background: #f0f4f7;
 }
 
 .scrollContainer {
@@ -100,7 +104,6 @@ $header-height: 36px;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  background: #f0f4f7;
   position: relative;
 }
 
@@ -121,6 +124,5 @@ $header-height: 36px;
   @media (min-width: 768px) {
       width: 750px;
   }
-
 }
   

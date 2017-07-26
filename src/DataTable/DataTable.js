@@ -185,14 +185,15 @@ class DataTable extends WixComponent {
       right: this.state.scrollBarWidth,
       zIndex: 9999,
     };
+    let tableContent = wrapWithContainer(table);
     if (this.props.infiniteScroll) {
-      table = this.wrapWithInfiniteScroll(table);
+      tableContent = this.wrapWithInfiniteScroll(tableContent);
     }
     return (
       <div data-hook="page-container" className={css.pageContainer}>
         {wrapWithContainer(topSection, style)}
         <div className={css.scrollContainer}>
-          {wrapWithContainer(table)}
+          {tableContent}
         </div>
       </div>);
   }
