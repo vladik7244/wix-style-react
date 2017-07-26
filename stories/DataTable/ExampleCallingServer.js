@@ -2,7 +2,8 @@ import React from 'react';
 import DataTable from 'wix-style-react/DataTable';
 
 const style = {
-  width: '50%',
+  width: '100%',
+  height: 600
 };
 
 const baseData = [
@@ -54,6 +55,7 @@ class DataTableExample extends React.Component {
           }}
           header={header}
           footer={footer}
+          isPage={true}
           height={400}
           scrollBarOffset={30}
           infiniteScroll

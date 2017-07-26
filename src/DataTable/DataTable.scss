@@ -88,3 +88,12 @@ $header-height: 36px;
   padding: 10px 0;
   text-align: center;
 }
+
+.pageContainer {
+  padding: 0 48px auto;
+  height: 100%;
+  overflow-y: scroll;
+  background: #f0f4f7;
+  position: relative;
+}
+  

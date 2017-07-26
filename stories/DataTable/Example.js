@@ -3,7 +3,8 @@ import DataTable from 'wix-style-react/DataTable';
 import s from './Example.scss';
 
 const style = {
-  width: '50%',
+  width: '100%',
+  height: 600
 };
 
 const header = <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', height: 40}}>Pizdez</div>;
@@ -58,6 +59,7 @@ class DataTableExample extends React.Component {
           data={data}
           header={header}
           footer={footer}
+          isPage={true}
           onRowClick={onRowClick}
           height={400}
           sortDirection={this.state.sortDirection}

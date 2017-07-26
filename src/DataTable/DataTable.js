@@ -6,6 +6,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import InfiniteScroll from 'react-infinite-scroller';
 import PropTypes from 'prop-types';
 import {ArrowVertical} from '../Icons';
+import {Container} from '../Grid';
 
 const headerHeight = 36;
 
@@ -13,13 +14,22 @@ class DataTable extends WixComponent {
   constructor(props) {
     super(props);
 
+    this.state = {topHeight: 0};
+
     if (props.infiniteScroll) {
       this.state = this.createInitialScrollingState(props);
     }
   }
 
+  componentDidMount() {
+    if (this.props.isPage) {
+      const {height} = this.topSection.getBoundingClientRect();
+      this.setState({topHeight: height});
+    }
+  }
+
   createInitialScrollingState(props) {
-    return {currentPage: 0, lastPage: this.calcLastPage(props)};
+    return {currentPage: 0, lastPage: this.calcLastPage(props), topHeight: 0};
   }
 
   calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
@@ -111,26 +121,65 @@ class DataTable extends WixComponent {
           this.props.data.map((rowData, index) => this.renderRow(rowData, index))
         }
       </div>);
-    if (this.props.infiniteScroll) {
+    if (this.props.infiniteScroll && !this.props.isPage) {
       tableContent = this.wrapWithInfiniteScroll(tableContent);
     }
     return (
-      <div className={css.scrollable} style={{height: this.props.height - headerHeight, paddingRight: this.props.scrollBarOffset}}>
+      <div className={classNames({[css.scrollable]: !this.props.isPage})} style={this.props.isPage ? {paddingTop: this.state.topHeight} : {height: this.props.height - headerHeight}}>
         {tableContent}
       </div>
 
     );
   }
 
-  render() {
+  renderPage(table) {
+    let pageContent = (
+      <Container>
+        {table}
+      </Container>
+    );
+    if (this.props.infiniteScroll) {
+      pageContent = this.wrapWithInfiniteScroll(pageContent);
+    }
     return (
+      <div className={css.pageContainer}>
+        {pageContent}
+      </div>);
+  }
+
+  render() {
+    const style = {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 9999
+    };
+    let topSection = [
+      this.props.header,
+      this.renderHeader()
+    ];
+    if (this.props.isPage) {
+      topSection = (
+        <div ref={node => this.topSection = node} style={style}>
+          {topSection}
+        </div>
+      );
+    }
+
+    let table = (
       <div className={css.dataTable}>
-        {this.props.header}
-        {this.renderHeader()}
+        {topSection}
         {this.renderContent()}
         {this.props.footer}
       </div>
     );
+
+    if (this.props.isPage) {
+      table = this.renderPage(table);
+    }
+
+    return table;
   }
 }
 
