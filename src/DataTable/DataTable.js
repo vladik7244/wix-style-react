@@ -186,7 +186,7 @@ class DataTable extends WixComponent {
       zIndex: 9999,
     };
     if (this.props.infiniteScroll) {
-      //pageContent = this.wrapWithInfiniteScroll(pageContent);
+      table = this.wrapWithInfiniteScroll(table);
     }
     return (
       <div data-hook="page-container" className={css.pageContainer}>

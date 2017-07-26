@@ -70,7 +70,7 @@ class DataTableExample extends React.Component {
           data={data}
           header={header}
           footer={footer}
-          isPage={false}
+          isPage={true}
           onRowClick={onRowClick}
           height={400}
           sortDirection={this.state.sortDirection}
