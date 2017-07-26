@@ -8,7 +8,6 @@ const style = {
 };
 
 const header = <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'red', height: 40}}>Pizdez</div>;
-const footer = <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'green', height: 20}}>Dayum</div>;
 
 const data = [
       {name: 'Brian Vaughn', description: 'Software engineer', another: 'wut'},
@@ -68,8 +67,7 @@ class DataTableExample extends React.Component {
         <DataTable
           columns={columns}
           data={data}
-          header={header}
-          footer={footer}
+          pageHeading={header}
           isPage={false}
           onRowClick={onRowClick}
           height={400}

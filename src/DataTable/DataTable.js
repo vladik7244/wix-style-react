@@ -14,16 +14,11 @@ class DataTable extends WixComponent {
   constructor(props) {
     super(props);
 
-
     if (this.props.isPage) {
       window.addEventListener('resize', this.onWindowResize);
     }
 
-    if (props.infiniteScroll) {
-      this.state = this.createInitialScrollingState(props);
-    } else {
-      this.state = {topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0};
-    }
+    this.state = {topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0};
   }
 
   onWindowResize = () => {
@@ -46,36 +41,8 @@ class DataTable extends WixComponent {
     }
   }
 
-  createInitialScrollingState(props) {
-    return {currentPage: 0, lastPage: this.calcLastPage(props), topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0};
-  }
-
-  calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
-
-  componentWillReceiveProps(nextProps) {
-    let isLoadingMore = false;
-    if (this.props.infiniteScroll && nextProps.data !== this.props.data) {
-      if (nextProps.data instanceof Array && this.props.data instanceof Array) {
-        if (this.props.data.every((elem, index) => {
-          return nextProps.data.length > index && nextProps.data[index] === elem;
-        })) {
-          isLoadingMore = true;
-          this.setState({lastPage: this.calcLastPage(nextProps)});
-        }
-      }
-
-      if (!isLoadingMore) {
-        this.setState(this.createInitialScrollingState(nextProps));
-      }
-    }
-  }
-
   loadMore = () => {
-    if (this.state.currentPage < this.state.lastPage) {
-      this.setState({currentPage: this.state.currentPage + 1});
-    } else {
-      this.props.loadMore && this.props.loadMore();
-    }
+    this.props.loadMore && this.props.loadMore();
   }
 
   wrapWithInfiniteScroll = content => {
@@ -83,7 +50,7 @@ class DataTable extends WixComponent {
       <InfiniteScroll
         pageStart={0}
         loadMore={this.loadMore}
-        hasMore={this.state.currentPage < this.state.lastPage || (this.props.hasMore)}
+        hasMore={this.props.hasMore}
         loader={this.props.loader}
         useWindow={false}
         >
@@ -190,7 +157,7 @@ class DataTable extends WixComponent {
       tableContent = this.wrapWithInfiniteScroll(tableContent);
     }
     return (
-      <div data-hook="page-container" className={css.pageContainer}>
+      <div id={this.props.id} data-hook="page-container" className={css.pageContainer}>
         {wrapWithContainer(topSection, style)}
         <div className={css.scrollContainer}>
           {tableContent}
@@ -200,7 +167,7 @@ class DataTable extends WixComponent {
 
   render() {
     let topSection = [
-      this.props.header,
+      this.props.pageHeading,
       this.renderHeader()
     ];
     if (this.props.isPage) {
@@ -212,10 +179,9 @@ class DataTable extends WixComponent {
     }
 
     let table = (
-      <div className={css.dataTable}>
+      <div id={this.props.id} className={css.dataTable}>
         {topSection}
         {this.renderContent()}
-        {this.props.footer}
       </div>
     );
 
@@ -224,7 +190,6 @@ class DataTable extends WixComponent {
         <div>
           <div ref={node => this.table = node} className={css.dataTable}>
             {this.renderContent()}
-            {this.props.footer}
           </div>
         </div>,
         topSection
@@ -236,35 +201,42 @@ class DataTable extends WixComponent {
 }
 
 DataTable.propTypes = {
+  id: PropTypes.string,
+  data: PropTypes.array.isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     render: PropTypes.func.isRequired,
     width: PropTypes.string,
     sortable: PropTypes.bool
   })).isRequired,
-  data: PropTypes.array.isRequired,
-  height: PropTypes.number.isRequired,
-  itemsPerPage: PropTypes.number, // Why the fuck do we need this thing?
+  showHeaderWhenEmpty: PropTypes.bool,
+  rowDataHook: PropTypes.string,
+  rowClass: PropTypes.string,
+  dynamicRowClass: PropTypes.string,
   onRowClick: PropTypes.func,
-  header: PropTypes.node,
-  footer: PropTypes.node,
   infiniteScroll: PropTypes.bool,
-  loader: PropTypes.node,
+  height: PropTypes.number,
+  width: PropTypes.string,
   hasMore: PropTypes.bool,
   loadMore: PropTypes.func,
-  isPage: PropTypes.bool,
+  loader: PropTypes.node,
+  onSort: PropTypes.func,
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
+  pageHeading: PropTypes.node,
+  isPage: PropTypes.bool,
   columnToSortBy: PropTypes.string,
-  onSort: PropTypes.func
+  thPadding: PropTypes.string,
+  thHeight: PropTypes.string,
+  thFontSize: PropTypes.string
 };
 
 DataTable.defaultProps = {
   loader: <div className={css.loader}>Loading ...</div>,
   isPage: false,
-  header: null,
-  footer: null,
+  pageHeading: null,
   infiniteScroll: false,
-  columnToSortBy: 0
+  columnToSortBy: 0,
+  width: '100%'
 };
 
 export default DataTable;
