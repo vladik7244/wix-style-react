@@ -144,6 +144,8 @@ class DataTable extends WixComponent {
       position: 'absolute',
       top: 0,
       left: 0,
+      width: this.state.tableWidth,
+      margin: '0 auto',
       right: 0,
       zIndex: 9999,
     };
@@ -151,11 +153,9 @@ class DataTable extends WixComponent {
       //pageContent = this.wrapWithInfiniteScroll(pageContent);
     }
     return (
-      <div data-hook="page-container" style={{position: 'relative'}}>
+      <div data-hook="page-container" className={css.pageContainer}>
         <div style={style}>
-          <Container>
-            {topSection}
-          </Container>
+          {topSection}
         </div>
         <div className={css.scrollContainer}>
           {pageContent}
