@@ -6,7 +6,6 @@ import WixComponent from '../BaseComponents/WixComponent';
 import InfiniteScroll from 'react-infinite-scroller';
 import PropTypes from 'prop-types';
 import {ArrowVertical} from '../Icons';
-import getScrollbarWidth from 'scrollbar-width';
 
 const headerHeight = 36;
 
@@ -85,7 +84,7 @@ class DataTable extends WixComponent {
 
   renderHeader() {
     return (
-      <div className={css.headerRow} {...this.scrollBarMargin()}>
+      <div className={css.headerRow}>
         {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
@@ -123,25 +122,13 @@ class DataTable extends WixComponent {
     );
   }
 
-  scrollBarMargin() {
-    return {
-      style: {
-        marginRight: this.props.scrollBarOffset + getScrollbarWidth()
-      }
-    };
-  }
-
   render() {
     return (
       <div className={css.dataTable}>
-        <div {...this.scrollBarMargin()}>
-          {this.props.header}
-        </div>
+        {this.props.header}
         {this.renderHeader()}
         {this.renderContent()}
-        <div {...this.scrollBarMargin()}>
-          {this.props.footer}
-        </div>
+        {this.props.footer}
       </div>
     );
   }
@@ -164,15 +151,15 @@ DataTable.propTypes = {
   loader: PropTypes.node,
   hasMore: PropTypes.bool,
   loadMore: PropTypes.func,
+  isPage: PropTypes.bool,
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
   columnToSortBy: PropTypes.string,
-  scrollBarOffset: PropTypes.number,
   onSort: PropTypes.func
 };
 
 DataTable.defaultProps = {
   loader: <div className={css.loader}>Loading ...</div>,
-  scrollBarOffset: 0,
+  isPage: false,
   header: null,
   footer: null,
   infiniteScroll: false,
