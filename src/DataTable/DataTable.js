@@ -115,13 +115,13 @@ class DataTable extends WixComponent {
 
   renderHeader() {
     return (
-      <div className={css.headerRow} style={this.prop.isPage ? {} : this.scrollBarMargin()}>
+      <div className={css.headerRow} style={this.props.isPage ? {} : this.scrollBarMargin()}>
         {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
             renderedColumn = this.renderSortableColumn(renderedColumn, column.sortKey);
           }
-          const margin = this.prop.isPage ? {} : this.scrollBarMargin();
+          const margin = this.props.isPage ? {} : this.scrollBarMargin();
           return <div key={index} className={css.headerCell} style={{width: column.width, ...margin}}>{renderedColumn}</div>;
         })}
       </div>
@@ -185,7 +185,7 @@ class DataTable extends WixComponent {
 
   render() {
     let topSection = [
-      <div key={0} style={this.prop.isPage ? {} : this.scrollBarMargin()}>
+      <div key={0} style={this.props.isPage ? {} : this.scrollBarMargin()}>
         {this.props.header}
       </div>,
       this.renderHeader()
@@ -211,7 +211,7 @@ class DataTable extends WixComponent {
         <div>
           <div ref={node => this.table = node} className={css.dataTable}>
             {this.renderContent()}
-            <div style={this.prop.isPage ? {} : this.scrollBarMargin()}>
+            <div style={this.props.isPage ? {} : this.scrollBarMargin()}>
               {this.props.footer}
             </div>
           </div>
