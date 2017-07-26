@@ -6,6 +6,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import InfiniteScroll from 'react-infinite-scroller';
 import PropTypes from 'prop-types';
 import {ArrowVertical} from '../Icons';
+import getScrollbarWidth from 'scrollbar-width';
 import {Container} from '../Grid';
 
 const headerHeight = 36;
@@ -146,7 +147,7 @@ class DataTable extends WixComponent {
       left: 0,
       width: this.state.tableWidth,
       margin: '0 auto',
-      right: 0,
+      right: getScrollbarWidth() || 0,
       zIndex: 9999,
     };
     if (this.props.infiniteScroll) {
@@ -164,16 +165,13 @@ class DataTable extends WixComponent {
   }
 
   render() {
-    const style = {
-      width: this.state.tableWidth
-    };
     let topSection = [
       this.props.header,
       this.renderHeader()
     ];
     if (this.props.isPage) {
       topSection = (
-        <div data-hook="top-section" ref={node => this.topSection = node} style={style}>
+        <div data-hook="top-section" ref={node => this.topSection = node}>
           {topSection}
         </div>
       );
