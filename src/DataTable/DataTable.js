@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 import {ArrowVertical} from '../Icons';
 import ScrollbarSize from 'react-scrollbar-size';
 
-const headerHeight = 36;
-
 class DataTable extends WixComponent {
   constructor(props) {
     super(props);
@@ -86,7 +84,10 @@ class DataTable extends WixComponent {
   renderHeader() {
     const style = this.state.headerPaddingRight ? {paddingRight: this.headerPaddingWithScrollWidth()} : {};
     return (
-      <div className={css.headerRow} style={style} ref={node => this.tableHeader = node}>
+      <div
+        className={css.headerRow} ref={node => this.tableHeader = node}
+        style={{...style, height: this.props.headerHeight, fontSize: this.props.headerFontSize}}
+        >
         {this.props.columns.map((column, index) => {
           let renderedColumn = this.renderHeaderColumn(column);
           if (column.sortable) {
@@ -100,7 +101,11 @@ class DataTable extends WixComponent {
 
   renderRow = (rowData, rowIndex) => {
     return (
-      <div key={rowIndex} className={classNames(css.bodyRow, {[css.clickable]: !!this.props.onRowClick})} onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}>
+      <div
+        data-hook={this.props.rowDataHook} key={rowIndex}
+        className={classNames(css.bodyRow, {[css.clickable]: !!this.props.onRowClick}, this.props.rowClass)}
+        onClick={() => this.props.onRowClick && this.props.onRowClick(rowData, rowIndex)}
+        >
         {this.props.columns.map((column, index) => <div key={index} className={css.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
       </div>
     );
@@ -129,7 +134,7 @@ class DataTable extends WixComponent {
       tableContent = this.wrapWithInfiniteScroll(tableContent);
     }
     return (
-      <div className={classNames({[css.scrollable]: !this.props.isPage})} style={this.props.isPage ? {paddingTop: this.state.topHeight} : {height: this.props.height - headerHeight}}>
+      <div className={classNames({[css.scrollable]: !this.props.isPage})} style={this.props.isPage ? {paddingTop: this.state.topHeight} : {height: this.props.height - this.props.headerHeight}}>
         {tableContent}
         <ScrollbarSize
           onLoad={this.scrollbarSizeLoad}
@@ -179,7 +184,7 @@ class DataTable extends WixComponent {
     }
 
     let table = (
-      <div id={this.props.id} className={css.dataTable}>
+      <div id={this.props.id} className={css.dataTable} style={{width: this.props.width}}>
         {topSection}
         {this.renderContent()}
       </div>
@@ -210,32 +215,36 @@ DataTable.propTypes = {
     sortable: PropTypes.bool
   })).isRequired,
   showHeaderWhenEmpty: PropTypes.bool,
+  emptyState: PropTypes.node,
   rowDataHook: PropTypes.string,
   rowClass: PropTypes.string,
-  dynamicRowClass: PropTypes.string,
+  dynamicRowClass: PropTypes.func,
   onRowClick: PropTypes.func,
-  infiniteScroll: PropTypes.bool,
   height: PropTypes.number,
   width: PropTypes.string,
+  thPadding: PropTypes.string, // who the hell will use this?
+  headerHeight: PropTypes.string,  // not sure we need this
+  headerFontSize: PropTypes.string, // not sure we need this
+  infiniteScroll: PropTypes.bool,
   hasMore: PropTypes.bool,
   loadMore: PropTypes.func,
   loader: PropTypes.node,
   onSort: PropTypes.func,
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
-  pageHeading: PropTypes.node,
-  isPage: PropTypes.bool,
   columnToSortBy: PropTypes.string,
-  thPadding: PropTypes.string,
-  thHeight: PropTypes.string,
-  thFontSize: PropTypes.string
+  isPage: PropTypes.bool,
+  pageHeading: PropTypes.node
 };
 
 DataTable.defaultProps = {
+  infiniteScroll: false,
   loader: <div className={css.loader}>Loading ...</div>,
+  columnToSortBy: 0,
   isPage: false,
   pageHeading: null,
-  infiniteScroll: false,
-  columnToSortBy: 0,
+  headerHeight: 36,
+  headerFontSize: 10,
+  height: 600,
   width: '100%'
 };
 
