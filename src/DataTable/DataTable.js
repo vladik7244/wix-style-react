@@ -14,7 +14,8 @@ class DataTable extends WixComponent {
   constructor(props) {
     super(props);
 
-    this.state = {topHeight: 0};
+    this.state = {topHeight: 0, tableWidth: 0};
+    //window resize listener
 
     if (props.infiniteScroll) {
       this.state = this.createInitialScrollingState(props);
@@ -23,13 +24,14 @@ class DataTable extends WixComponent {
 
   componentDidMount() {
     if (this.props.isPage) {
-      const {height} = this.topSection.getBoundingClientRect();
-      this.setState({topHeight: height});
+      const height = this.topSection && this.topSection.getBoundingClientRect().height;
+      const width = this.table && this.table.getBoundingClientRect().width;
+      this.setState({topHeight: height, tableWidth: width});
     }
   }
 
   createInitialScrollingState(props) {
-    return {currentPage: 0, lastPage: this.calcLastPage(props), topHeight: 0};
+    return {currentPage: 0, lastPage: this.calcLastPage(props), topHeight: 0, tableWidth: 0};
   }
 
   calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
@@ -132,28 +134,38 @@ class DataTable extends WixComponent {
     );
   }
 
-  renderPage(table) {
-    let pageContent = (
+  renderPage(table, topSection) {
+    const pageContent = (
       <Container>
         {table}
       </Container>
     );
-    if (this.props.infiniteScroll) {
-      pageContent = this.wrapWithInfiniteScroll(pageContent);
-    }
-    return (
-      <div className={css.pageContainer}>
-        {pageContent}
-      </div>);
-  }
-
-  render() {
     const style = {
       position: 'absolute',
       top: 0,
       left: 0,
       right: 0,
-      zIndex: 9999
+      zIndex: 9999,
+    };
+    if (this.props.infiniteScroll) {
+      //pageContent = this.wrapWithInfiniteScroll(pageContent);
+    }
+    return (
+      <div data-hook="page-container" style={{position: 'relative'}}>
+        <div style={style}>
+          <Container>
+            {topSection}
+          </Container>
+        </div>
+        <div className={css.scrollContainer}>
+          {pageContent}
+        </div>
+      </div>);
+  }
+
+  render() {
+    const style = {
+      width: this.state.tableWidth
     };
     let topSection = [
       this.props.header,
@@ -161,7 +173,7 @@ class DataTable extends WixComponent {
     ];
     if (this.props.isPage) {
       topSection = (
-        <div ref={node => this.topSection = node} style={style}>
+        <div data-hook="top-section" ref={node => this.topSection = node} style={style}>
           {topSection}
         </div>
       );
@@ -178,12 +190,12 @@ class DataTable extends WixComponent {
     if (this.props.isPage) {
       table = this.renderPage(
         <div>
-          {topSection}
-          <div className={css.dataTable}>
+          <div ref={node => this.table = node} className={css.dataTable}>
             {this.renderContent()}
             {this.props.footer}
           </div>
-        </div>
+        </div>,
+        topSection
       );
     }
 
