@@ -34,6 +34,7 @@ class DataTable extends WixComponent {
       const tableWidth = this.table && this.table.getBoundingClientRect().width;
       this.setState({topHeight, tableWidth});
     } else {
+      // the padding right thing can be changed to inline style instead of css, and then we wont need this calculation
       const headerPaddingRight = this.tableHeader && window.getComputedStyle(this.tableHeader)['padding-right'];
       this.setState({headerPaddingRight: headerPaddingRight || this.state.headerPaddingRight});
     }
@@ -115,14 +116,6 @@ class DataTable extends WixComponent {
     this.setState({scrollBarWidth: scrollbarWidth});
   }
 
-  scrollbarSizeLoad = measurements => {
-    this.setScrollBarWidth(measurements);
-  }
-
-  scrollbarSizeChange = measurements => {
-    this.setScrollBarWidth(measurements);
-  }
-
   renderContent = () => {
     let tableContent = (
       <div className={css.tableContent}>
@@ -137,8 +130,8 @@ class DataTable extends WixComponent {
       <div className={classNames({[css.scrollable]: !this.props.isPage})} style={this.props.isPage ? {paddingTop: this.state.topHeight} : {height: this.props.height - this.props.headerHeight}}>
         {tableContent}
         <ScrollbarSize
-          onLoad={this.scrollbarSizeLoad}
-          onChange={this.scrollbarSizeChange}
+          onLoad={this.setScrollBarWidth}
+          onChange={this.setScrollBarWidth}
           />
       </div>
 
