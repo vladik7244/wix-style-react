@@ -121,7 +121,8 @@ class DataTable extends WixComponent {
           if (column.sortable) {
             renderedColumn = this.renderSortableColumn(renderedColumn, column.sortKey);
           }
-          return <div key={index} className={css.headerCell} style={{width: column.width}}>{renderedColumn}</div>;
+          const margin = this.prop.isPage ? {} : this.scrollBarMargin();
+          return <div key={index} className={css.headerCell} style={{width: column.width, ...margin}}>{renderedColumn}</div>;
         })}
       </div>
     );
