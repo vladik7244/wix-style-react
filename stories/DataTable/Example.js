@@ -68,8 +68,8 @@ class DataTableExample extends React.Component {
           columns={columns}
           data={data}
           pageHeading={header}
-          isPage={true}
-          height={'100%'}
+          isPage={false}
+          height={400}
           headerHeight={60}
           headerFontSize={20}
           onRowClick={onRowClick}

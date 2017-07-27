@@ -4,8 +4,8 @@ import css from './DataTable.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import InfiniteScroll from 'react-infinite-scroller';
 import ScrollbarSize from 'react-scrollbar-size';
-import {TableContent} from './TableContent';
-import {TableHeader} from './TableHeader';
+import { TableContent } from './TableContent';
+import { TableHeader } from './TableHeader';
 
 
 export class FullPageTable extends WixComponent {
@@ -14,9 +14,9 @@ export class FullPageTable extends WixComponent {
     window.addEventListener('resize', this.onWindowResize);
     this.state = { topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0 };
   }
-  
-  setScrollBarWidth = ({scrollbarWidth}) => {
-    this.setState({scrollBarWidth: scrollbarWidth});
+
+  setScrollBarWidth = ({ scrollbarWidth }) => {
+    this.setState({ scrollBarWidth: scrollbarWidth });
   }
 
   onWindowResize = () => {
@@ -36,15 +36,6 @@ export class FullPageTable extends WixComponent {
   wrapWithContainer = (node, style) => (<div style={style} className={css.container}>{node}</div>);
 
 
-  renderPageTableContent = () => {
-    return (
-      <div style={{ paddingTop: this.state.topHeight }}>
-        <TableContent {...this.props} />
-      </div>
-
-    );
-  }
-
   wrapWithInfiniteScroll = content => {
     return (
       <InfiniteScroll
@@ -53,14 +44,14 @@ export class FullPageTable extends WixComponent {
         hasMore={this.props.hasMore}
         loader={this.props.loader}
         useWindow={false}
-        >
+      >
         {content}
       </InfiniteScroll>
     );
   };
 
   render() {
-    console.log('test:',this.state.scrollBarWidth);
+    console.log('test:', this.state.scrollBarWidth);
     const style = {
       position: 'absolute',
       top: 0,
@@ -82,7 +73,9 @@ export class FullPageTable extends WixComponent {
     let table = this.wrapWithContainer(
       <div>
         <div ref={node => this.table = node} className={css.dataTable}>
-          {this.renderPageTableContent()}
+          <div style={{ paddingTop: this.state.topHeight }}>
+            <TableContent {...this.props} />
+          </div>
         </div>
       </div>
     );
@@ -96,7 +89,7 @@ export class FullPageTable extends WixComponent {
         <div className={css.scrollContainer}>
           {table}
         </div>
-        <ScrollbarSize onLoad={this.setScrollBarWidth} onChange={this.setScrollBarWidth}/>
+        <ScrollbarSize onLoad={this.setScrollBarWidth} onChange={this.setScrollBarWidth} />
       </div>);
   }
 }

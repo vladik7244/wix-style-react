@@ -54,7 +54,8 @@ class DataTableExample extends React.Component {
             /*eslint-enable no-alert*/
           }}
           pageHeading={header}
-          isPage={true}
+          isPage={false}
+          height={400}
           scrollBarOffset={30}
           infiniteScroll
           columns={[
