@@ -1,13 +1,13 @@
 import React from 'react';
 import css from './DataTable.scss';
 import classNames from 'classnames';
-import { ArrowVertical } from '../Icons';
+import {ArrowVertical} from '../Icons';
 
-export const TableHeader = (props) => {
+export const TableHeader = props => {
   const renderSortArrow = () => {
     return (
-      <div className={classNames(css.sortArrow, { [css.descent]: props.sortDirection === 'descent' })} >
-        <ArrowVertical width="7px" height="7px" />
+      <div className={classNames(css.sortArrow, {[css.descent]: props.sortDirection === 'descent'})} >
+        <ArrowVertical width="7px" height="7px"/>
       </div>);
   };
   const renderHeaderColumn = column => <span data-hook="headerTitle"className={css.headerTitle}>{column.title}</span>;
@@ -21,19 +21,17 @@ export const TableHeader = (props) => {
   };
 
   return (
-    <div className={css.headerRowContainer}  data-hook="header" style={{ paddingRight: props.headerPaddingRight }}>
-      <div
-        className={css.headerRow}
-        style={{ height: props.headerHeight, fontSize: props.headerFontSize }}
+    <div
+      className={css.headerRow} ref={props.refHeader} data-hook="header"
+      style={{height: props.headerHeight, fontSize: props.headerFontSize, paddingRight: props.headerPaddingRight}}
       >
-        {props.columns.map((column, index) => {
-          let renderedColumn = renderHeaderColumn(column);
-          if (column.sortable) {
-            renderedColumn = renderSortableColumn(renderedColumn, column.sortKey);
-          }
-          return <div key={index} className={css.headerCell} style={{ width: column.width }}>{renderedColumn}</div>;
-        })}
-      </div>
-    </div >
+      {props.columns.map((column, index) => {
+        let renderedColumn = renderHeaderColumn(column);
+        if (column.sortable) {
+          renderedColumn = renderSortableColumn(renderedColumn, column.sortKey);
+        }
+        return <div key={index} className={css.headerCell} style={{width: column.width}}>{renderedColumn}</div>;
+      })}
+    </div>
   );
 };

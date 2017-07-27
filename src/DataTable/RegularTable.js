@@ -1,32 +1,61 @@
 
 import React from 'react';
 import css from './DataTable.scss';
-import { TableContent } from './TableContent';
-import { TableHeader } from './TableHeader';
-import getScrollbarWidth from 'scrollbar-width';
+import {TableContent} from './TableContent';
+import WixComponent from '../BaseComponents/WixComponent';
+import {TableHeader} from './TableHeader';
+import ScrollbarSize from 'react-scrollbar-size';
 import InfiniteScroll from 'react-infinite-scroller';
 
-export const RegularTable = (props) => {
-  const wrapWithInfiniteScroll = content => {
-    return (
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={props.loadMore}
-        hasMore={props.hasMore}
-        loader={props.loader}
-        useWindow={false}
-      >
-        {content}
-      </InfiniteScroll>
-    );
-  };
-
-  let tableContent = <TableContent {...props} />;
-  if (props.infiniteScroll) {
-    tableContent = wrapWithInfiniteScroll(tableContent);
+export class RegularTable extends WixComponent {
+  constructor(props) {
+    super(props);
+    this.state = {headerPaddingRight: null, scrollBarWidth: 0};
   }
-  return (<div id={props.id} className={css.dataTable} style={{ width: props.width }}>
-    {props.hideHeader? null : <TableHeader headerPaddingRight={getScrollbarWidth() || 0} {...props} />}
-    {tableContent}
-  </div>);
-};
+
+  componentDidMount() {
+    const headerPaddingRight = this.tableHeader && window.getComputedStyle(this.tableHeader)['padding-right'];
+    this.setState({headerPaddingRight});
+  }
+
+  setScrollBarWidth = ({scrollbarWidth}) => {
+    this.setState({scrollBarWidth: scrollbarWidth});
+  }
+
+  headerPaddingWithScrollWidth = () => {
+    let currPadding = this.state.headerPaddingRight;
+    currPadding = Number(currPadding.substr(0, currPadding.indexOf('px')));
+    return currPadding + Number(this.state.scrollBarWidth);
+  }
+
+  setHeaderRef = node => this.tableHeader = node;
+
+  render() {
+    const wrapWithInfiniteScroll = content => {
+      return (
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={this.props.loadMore}
+          hasMore={this.props.hasMore}
+          loader={this.props.loader}
+          useWindow={false}
+          >
+          {content}
+        </InfiniteScroll>
+      );
+    };
+
+    const headerPaddingRight = this.state.headerPaddingRight ? this.headerPaddingWithScrollWidth() : null;
+    let tableContent = <TableContent {...this.props}/>;
+    if (this.props.infiniteScroll) {
+      tableContent = wrapWithInfiniteScroll(tableContent);
+    }
+    return (<div id={this.props.id} className={css.dataTable} style={{width: this.props.width}}>
+      {this.props.hideHeader ? null : <TableHeader headerPaddingRight={headerPaddingRight} {...this.props} refHeader={this.setHeaderRef}/>}
+      <div className={css.scrollable} style={{height: this.props.height - this.props.headerHeight}}>
+        {tableContent}
+      </div>
+      <ScrollbarSize onLoad={this.setScrollBarWidth} onChange={this.setScrollBarWidth}/>
+    </div>);
+  }
+}

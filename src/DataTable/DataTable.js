@@ -3,20 +3,18 @@ import React from 'react';
 import css from './DataTable.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import PropTypes from 'prop-types';
-import { FullPageTable } from './FullPageTable';
-import { RegularTable } from './RegularTable';
+import {FullPageTable} from './FullPageTable';
+import {RegularTable} from './RegularTable';
 
 class DataTable extends WixComponent {
   render() {
     return (
       <div id={this.props.id}>
-        {this.props.isPage ? <FullPageTable {...this.props}/> : <RegularTable {...this.props} />}
+        {this.props.isPage ? <FullPageTable {...this.props}/> : <RegularTable {...this.props}/>}
       </div>
     );
   }
 }
-
-
 
 DataTable.propTypes = {
   id: PropTypes.string,
