@@ -8,11 +8,11 @@ import {RegularTable} from './RegularTable';
 
 class DataTable extends WixComponent {
   render() {
-    return (
-      <div id={this.props.id}>
-        {this.props.isPage ? <FullPageTable {...this.props}/> : <RegularTable {...this.props}/>}
-      </div>
-    );
+    if (this.props.isPage) {
+      return <FullPageTable {...this.props}/>;
+    } else {
+      return <RegularTable {...this.props}/>;
+    }
   }
 }
 
@@ -54,6 +54,7 @@ DataTable.defaultProps = {
   isPage: false,
   pageHeading: null,
   headerHeight: 36,
+  hieHeader: false,
   headerFontSize: 10,
   height: '100%',
   width: '100%'

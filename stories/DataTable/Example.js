@@ -65,12 +65,13 @@ class DataTableExample extends React.Component {
     return (
       <div style={style}>
         <DataTable
+          id="kek"
           columns={columns}
           data={data}
           pageHeading={header}
           isPage={false}
           height={400}
-          hideHeader={true}
+          hideHeader={false}
           headerHeight={60}
           headerFontSize={20}
           onRowClick={onRowClick}

@@ -11,7 +11,7 @@ export class FullPageTable extends WixComponent {
   constructor(props) {
     super(props);
     window.addEventListener('resize', this.onWindowResize);
-    this.state = {topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0};
+    this.state = {topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0, scrollBarExists: false};
   }
 
   setScrollBarWidth = ({scrollbarWidth}) => {
@@ -30,7 +30,8 @@ export class FullPageTable extends WixComponent {
   componentDidMount() {
     const topHeight = this.topSection && this.topSection.getBoundingClientRect().height;
     const tableWidth = this.table && this.table.getBoundingClientRect().width;
-    this.setState({topHeight, tableWidth});
+    const scrollBarExists = this.scrollContainer && this.scrollContainer.scrollHeight > this.scrollContainer.getBoundingClientRect().height;
+    this.setState({topHeight, tableWidth, scrollBarExists});
   }
   wrapWithContainer = (node, style) => (<div style={style} className={css.container}>{node}</div>);
 
@@ -54,7 +55,7 @@ export class FullPageTable extends WixComponent {
       top: 0,
       left: 0,
       width: this.state.tableWidth,
-      right: this.state.scrollBarWidth,
+      right: this.state.scrollBarExists ? this.state.scrollBarWidth : 0,
       zIndex: 9999,
     };
     const topSection = this.wrapWithContainer(
@@ -82,9 +83,9 @@ export class FullPageTable extends WixComponent {
     }
 
     return (
-      <div data-hook="page-container" className={css.pageContainer}>
+      <div id={this.props.id} data-hook="page-container" className={css.pageContainer}>
         {topSection}
-        <div className={css.scrollContainer}>
+        <div ref={node => this.scrollContainer = node} className={css.scrollContainer}>
           {table}
         </div>
         <ScrollbarSize onLoad={this.setScrollBarWidth} onChange={this.setScrollBarWidth}/>
