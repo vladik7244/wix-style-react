@@ -3,16 +3,16 @@ import React from 'react';
 import css from './DataTable.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import PropTypes from 'prop-types';
-import {FullPageTable} from './FullPageTable';
-import {RegularTable} from './RegularTable';
+import { FullPageTable } from './FullPageTable';
+import { RegularTable } from './RegularTable';
 
 class DataTable extends WixComponent {
   render() {
-    if (this.props.isPage) {
-      return <FullPageTable {...this.props} />
-    } else {
-      return <RegularTable {...this.props}/>;
-    }
+    return (
+      <div id={this.props.id}>
+        {this.props.isPage ? <FullPageTable {...this.props}/> : <RegularTable {...this.props} />}
+      </div>
+    );
   }
 }
 
@@ -28,9 +28,8 @@ DataTable.propTypes = {
     sortable: PropTypes.bool
   })).isRequired,
   showHeaderWhenEmpty: PropTypes.bool,
-  emptyState: PropTypes.node,
   rowDataHook: PropTypes.string,
-  rowClass: PropTypes.string,
+  rowClass: PropTypes.oneOf(PropTypes.string, PropTypes.func),
   dynamicRowClass: PropTypes.func,
   onRowClick: PropTypes.func,
   height: PropTypes.number,
@@ -46,7 +45,8 @@ DataTable.propTypes = {
   sortDirection: PropTypes.oneOf(['ascent', 'descent']),
   columnToSortBy: PropTypes.string,
   isPage: PropTypes.bool,
-  pageHeading: PropTypes.node
+  pageHeading: PropTypes.node,
+  hideHeader: PropTypes.bool
 };
 
 DataTable.defaultProps = {

@@ -26,7 +26,7 @@ export const RegularTable = (props) => {
     tableContent = wrapWithInfiniteScroll(tableContent);
   }
   return (<div id={props.id} className={css.dataTable} style={{ width: props.width }}>
-    <TableHeader headerPaddingRight={getScrollbarWidth() || 0} {...props} />
+    {props.hideHeader? null : <TableHeader headerPaddingRight={getScrollbarWidth() || 0} {...props} />}
     {tableContent}
   </div>);
 };

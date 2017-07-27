@@ -5,13 +5,19 @@ import classNames from 'classnames';
 
 export const TableContent = (props) => {
   const renderRow = (rowData, rowIndex) => {
+    let rowClass;
+    if(typeof props.rowClass === 'function' ) {
+      rowClass = props.rowClass(rowData, rowIndex);
+    } else {
+      rowClass = props.rowClass;
+    }
     return (
       <div
-        data-hook={props.rowDataHook} key={rowIndex}
-        className={classNames(css.bodyRow, { [css.clickable]: !!props.onRowClick }, props.rowClass)}
-        onClick={() => props.onRowClick && props.onRowClick(rowData, rowIndex)}
+        data-hook="bodyRow" key={rowIndex}
+        className={classNames(css.bodyRow, { [css.clickable]: !!props.onRowClick }, rowClass)}
+        onClick={event => props.onRowClick && !event.isDefaultPrevented() && props.onRowClick(rowData, rowIndex)}
       >
-        {props.columns.map((column, index) => <div key={index} className={css.cell} style={{ width: column.width }}>{column.render(rowData, rowIndex)}</div>)}
+        {props.columns.map((column, index) => <div key={index} data-hook="cell" className={css.cell} style={{ width: column.width }}>{column.render(rowData, rowIndex)}</div>)}
       </div>
     );
   }

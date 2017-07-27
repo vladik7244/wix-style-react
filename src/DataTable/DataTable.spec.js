@@ -36,7 +36,7 @@ describe('Table', () => {
     expect(driver.isDisplayingNothing()).toBeTruthy();
   });
 
-  it('should display header only when data is empty and showHeaderWhenEmpty is true', () => {
+  it('should display header only when data is empty', () => {
     const props = {
       ...defaultProps,
       data: [],
@@ -68,12 +68,16 @@ describe('Table', () => {
     expect(driver.getRowsWithClassCount(defaultProps.rowClass)).toBe(defaultProps.data.length);
   });
 
-  it('should assign a dynamic class to rows', () => {
-    const getClass = rowData => rowData.a.replace(/[\s]+/g, '-');
-    const driver = createDriver(<DataTable {...defaultProps} dynamicRowClass={getClass}/>);
-    expect(driver.getRowsWithClassCount('value-1')).toBe(1);
-    expect(driver.getRowsWithClassCount('value-3')).toBe(1);
-    expect(driver.getRowsWithClassCount(defaultProps.rowClass)).toBe(defaultProps.data.length);
+  it('should allow specifying row class as func', () => {
+    const getClass = (rowData, rowIndex) => rowData.a.replace(/[\s]+/g, '-') +`-rowIndex-${rowIndex}`;
+    const driver = createDriver(<DataTable {...defaultProps} rowClass={getClass}/>);
+    expect(driver.getRowsWithClassCount('value-1-rowIndex-0')).toBe(1);
+    expect(driver.getRowsWithClassCount('value-3-rowIndex-1')).toBe(1);
+  });
+
+  it('should allow specifying row class as string', () => {
+    const driver = createDriver(<DataTable {...defaultProps} rowClass={'staticRowClass'}/>);
+    expect(driver.getRowsWithClassCount('staticRowClass')).toBe(defaultProps.data.length);
   });
 
   it('should call on row click with row data and index', () => {
@@ -83,15 +87,9 @@ describe('Table', () => {
     };
 
     const driver = createDriver(<DataTable {...props}/>);
-
     driver.clickRow(0);
-
-    expect(driver.isRowClickable(0)).toBe(true);
     expect(props.onRowClick).toBeCalledWith(props.data[0], 0);
-
     driver.clickRow(1);
-
-    expect(driver.isRowClickable(1)).toBe(true);
     expect(props.onRowClick).toHaveBeenLastCalledWith(props.data[1], 1);
   });
 
@@ -114,8 +112,6 @@ describe('Table', () => {
 
     const driver = createDriver(<DataTable {...props}/>);
     driver.clickRow(0, {isDefaultPrevented: () => true});
-
-    expect(driver.isRowClickable(0)).toBe(true);
     expect(props.onRowClick).not.toBeCalled();
   });
 

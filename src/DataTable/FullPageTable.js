@@ -84,7 +84,7 @@ export class FullPageTable extends WixComponent {
       table = this.wrapWithInfiniteScroll(table);
     }
     return (
-      <div id={this.props.id} data-hook="page-container" className={css.pageContainer}>
+      <div data-hook="page-container" className={css.pageContainer}>
         {topSection}
         <div className={css.scrollContainer}>
           {table}

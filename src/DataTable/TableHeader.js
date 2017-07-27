@@ -10,7 +10,7 @@ export const TableHeader = (props) => {
         <ArrowVertical width="7px" height="7px" />
       </div>);
   };
-  const renderHeaderColumn = column => <span className={css.headerTitle}>{column.title}</span>;
+  const renderHeaderColumn = column => <span data-hook="headerTitle"className={css.headerTitle}>{column.title}</span>;
   const renderSortableColumn = (column, index) => {
     return (
       <div className={css.sortableColumn} onClick={() => props.onSort && props.onSort(index)}>
@@ -21,7 +21,7 @@ export const TableHeader = (props) => {
   };
 
   return (
-    <div className={css.headerRowContainer} style={{ paddingRight: props.headerPaddingRight }}>
+    <div className={css.headerRowContainer}  data-hook="header" style={{ paddingRight: props.headerPaddingRight }}>
       <div
         className={css.headerRow}
         style={{ height: props.headerHeight, fontSize: props.headerFontSize }}

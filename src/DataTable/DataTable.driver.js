@@ -4,10 +4,10 @@ import ReactTestUtils from 'react-dom/test-utils';
 
 const dataTableDriverFactory = ({element, wrapper, component}) => {
 
-  const getHeader = () => element.querySelector('thead');
+  const getHeader = () => element.querySelector('[data-hook="header"]');
   const hasHeader = () => !!getHeader();
 
-  const getRows = () => element.querySelectorAll('tbody tr');
+  const getRows = () => element.querySelectorAll('[data-hook="bodyRow"]');
   const getRowsCount = () => getRows().length;
   const getRow = rowIndex => getRows()[rowIndex];
 
@@ -15,9 +15,9 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   return {
     getRowsCount,
     getRowsWithClassCount: className => Object.values(getRows()).filter(elem => elem.classList.contains(className)).length,
-    getRowText: index => Object.values(getRows()[index].querySelectorAll('td')).map(td => td.textContent),
+    getRowText: index => Object.values(getRows()[index].querySelectorAll('[data-hook="cell"]')).map(td => td.textContent),
     isRowClickable: index => getRows()[index].classList.contains('clickableDataRow'),
-    getTitles: () => Object.values(getHeader().querySelectorAll('th')).map(th => th.textContent),
+    getTitles: () => Object.values(getHeader().querySelectorAll('[data-hook="headerTitle"]')).map(th => th.textContent),
     isDisplayingNothing: () => !!element,
     isDisplayingHeaderOnly: () => hasHeader() && getRowsCount() === 0,
     hasChildWithId: id => !!element.querySelector(`#${id}`),
