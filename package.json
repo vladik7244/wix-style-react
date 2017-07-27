@@ -114,6 +114,7 @@
     "react-remarkable": "^1.1.1",
     "react-scrollbar-size": "^2.0.0",
     "react-transition-group": "^2.2.0",
+    "scrollbar-width": "3.1.1",
     "slate": "^0.20.3"
   },
   "jest": {

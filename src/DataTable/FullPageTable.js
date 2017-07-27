@@ -14,6 +14,10 @@ export class FullPageTable extends WixComponent {
     window.addEventListener('resize', this.onWindowResize);
     this.state = { topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0 };
   }
+  
+  setScrollBarWidth = ({scrollbarWidth}) => {
+    this.setState({scrollBarWidth: scrollbarWidth});
+  }
 
   onWindowResize = () => {
     const width = this.table && this.table.getBoundingClientRect().width;
@@ -41,15 +45,12 @@ export class FullPageTable extends WixComponent {
     return (
       <div style={{ paddingTop: this.state.topHeight }}>
         <TableContent {...this.props} />
-        <ScrollbarSize
-          onLoad={this.setScrollBarWidth}
-          onChange={this.setScrollBarWidth}
-        />
       </div>
 
     );
   }
   render() {
+    console.log('test:',this.state.scrollBarWidth);
     const style = {
       position: 'absolute',
       top: 0,
@@ -63,8 +64,7 @@ export class FullPageTable extends WixComponent {
         {this.props.pageHeading}
         <TableHeader
           {...this.props}
-          ref={node => this.tableHeader = node}
-          headerPaddingRight={this.state.headerPaddingRight && this.headerPaddingWithScrollWidth()}>
+          ref={node => this.tableHeader = node}>
         </TableHeader>
       </div>, style
     );
@@ -86,6 +86,7 @@ export class FullPageTable extends WixComponent {
         <div className={css.scrollContainer}>
           {table}
         </div>
+        <ScrollbarSize onLoad={this.setScrollBarWidth} onChange={this.setScrollBarWidth}/>
       </div>);
   }
 }
