@@ -2,22 +2,11 @@
 import React from 'react';
 import css from './DataTable.scss';
 import WixComponent from '../BaseComponents/WixComponent';
-import InfiniteScroll from 'react-infinite-scroller';
 import PropTypes from 'prop-types';
 import {FullPageTable} from './FullPageTable';
 import {RegularTable} from './RegularTable';
 
 class DataTable extends WixComponent {
-  constructor(props) {
-    super(props);
-    this.state = { topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0 };
-  }
-
-
-  loadMore = () => {
-    this.props.loadMore && this.props.loadMore();
-  }
-
   render() {
     if (this.props.isPage) {
       return <FullPageTable {...this.props} />

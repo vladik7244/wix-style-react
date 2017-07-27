@@ -33,11 +33,6 @@ export class FullPageTable extends WixComponent {
     const tableWidth = this.table && this.table.getBoundingClientRect().width;
     this.setState({ topHeight, tableWidth });
   }
-  headerPaddingWithScrollWidth = () => {
-    let currPadding = this.state.headerPaddingRight;
-    currPadding = Number(currPadding.substr(0, currPadding.indexOf('px')));
-    return currPadding + Number(this.state.scrollBarWidth);
-  }
   wrapWithContainer = (node, style) => (<div style={style} className={css.container}>{node}</div>);
 
 
@@ -49,6 +44,21 @@ export class FullPageTable extends WixComponent {
 
     );
   }
+
+  wrapWithInfiniteScroll = content => {
+    return (
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={this.props.loadMore}
+        hasMore={this.props.hasMore}
+        loader={this.props.loader}
+        useWindow={false}
+        >
+        {content}
+      </InfiniteScroll>
+    );
+  };
+
   render() {
     console.log('test:',this.state.scrollBarWidth);
     const style = {
@@ -77,9 +87,9 @@ export class FullPageTable extends WixComponent {
       </div>
     );
 
-    // if (this.props.infiniteScroll) {
-    //   table = this.wrapWithInfiniteScroll(table);
-    // }
+    if (this.props.infiniteScroll) {
+      table = this.wrapWithInfiniteScroll(table);
+    }
     return (
       <div id={this.props.id} data-hook="page-container" className={css.pageContainer}>
         {topSection}
