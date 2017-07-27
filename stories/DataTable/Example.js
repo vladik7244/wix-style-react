@@ -40,8 +40,8 @@ const data = [
 
 const columns = [
     {title: 'Name', render: (rowData, rowIndex) => rowData.name + rowIndex, width: '20%', sortable: true, sortKey: 'name'},
-    {title: 'Description', render: rowData => rowData.description, width: '40%'},
-    {title: 'Another', render: rowData => rowData.another, width: '20%', sortable: true, sortKey: 'author'},
+    {title: 'Description', render: rowData => <div style={{backgroundColor: 'goldenrod', color: 'blue', fontSize: 18}}>{rowData.description}</div>, width: '40%'},
+    {title: () => <div>Another<span style={{marginLeft: 5, color: 'red'}}>KEK</span></div>, render: rowData => rowData.another, width: '20%', sortable: true, sortKey: 'author'},
 ];
 
 const onRowClick = (row, index) => console.log(row, index);
@@ -72,8 +72,6 @@ class DataTableExample extends React.Component {
           isPage={false}
           height={400}
           hideHeader={false}
-          headerHeight={60}
-          headerFontSize={20}
           onRowClick={onRowClick}
           sortDirection={this.state.sortDirection}
           columnToSortBy={this.state.sortByCol}

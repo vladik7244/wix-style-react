@@ -136,9 +136,6 @@ class DataTable extends WixComponent {
   renderHeaderCell = (column, colNum) => {
     const style = {
       width: column.width,
-      padding: this.props.thPadding,
-      height: this.props.thHeight,
-      fontSize: this.props.thFontSize
     };
     return <th style={style} key={colNum}>{column.title}</th>;
   };

@@ -20,7 +20,7 @@ DataTable.propTypes = {
   id: PropTypes.string,
   data: PropTypes.array.isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    title: PropTypes.oneOf(PropTypes.string, PropTypes.func).isRequired,
     render: PropTypes.func.isRequired,
     width: PropTypes.string,
     sortable: PropTypes.bool
@@ -32,9 +32,6 @@ DataTable.propTypes = {
   onRowClick: PropTypes.func,
   height: PropTypes.number,
   width: PropTypes.string,
-  thPadding: PropTypes.string, // who the hell will use this?
-  headerHeight: PropTypes.string,  // not sure we need this
-  headerFontSize: PropTypes.string, // not sure we need this
   infiniteScroll: PropTypes.bool,
   hasMore: PropTypes.bool,
   loadMore: PropTypes.func,
@@ -50,12 +47,10 @@ DataTable.propTypes = {
 DataTable.defaultProps = {
   infiniteScroll: false,
   loader: <div className={css.loader}>Loading ...</div>,
-  columnToSortBy: 0,
+  columnToSortBy: '',
   isPage: false,
   pageHeading: null,
-  headerHeight: 36,
-  hieHeader: false,
-  headerFontSize: 10,
+  hideHeader: false,
   height: '100%',
   width: '100%'
 };

@@ -4,6 +4,7 @@ import css from './DataTable.scss';
 import {TableContent} from './TableContent';
 import WixComponent from '../BaseComponents/WixComponent';
 import {TableHeader} from './TableHeader';
+import {headerHeight} from './constants';
 import ScrollbarSize from 'react-scrollbar-size';
 import InfiniteScroll from 'react-infinite-scroller';
 
@@ -53,7 +54,7 @@ export class RegularTable extends WixComponent {
     }
     return (<div id={this.props.id} className={css.dataTable} style={{width: this.props.width}}>
       {this.props.hideHeader ? null : <TableHeader headerPaddingRight={headerPaddingRight} {...this.props} refHeader={this.setHeaderRef}/>}
-      <div className={css.scrollable} ref={node => this.scrollable = node}style={{height: this.props.height - this.props.headerHeight}}>
+      <div className={css.scrollable} ref={node => this.scrollable = node} style={{height: this.props.height - headerHeight}}>
         {tableContent}
       </div>
       <ScrollbarSize onLoad={this.setScrollBarWidth} onChange={this.setScrollBarWidth}/>
