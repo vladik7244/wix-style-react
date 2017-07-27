@@ -55,7 +55,6 @@ class DataTableExample extends React.Component {
           }}
           pageHeading={header}
           isPage={true}
-          height={400}
           scrollBarOffset={30}
           infiniteScroll
           columns={[
