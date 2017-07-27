@@ -68,11 +68,10 @@ class DataTableExample extends React.Component {
           columns={columns}
           data={data}
           pageHeading={header}
-          isPage={false}
+          isPage={true}
           headerHeight={60}
           headerFontSize={20}
           onRowClick={onRowClick}
-          height={400}
           sortDirection={this.state.sortDirection}
           columnToSortBy={this.state.sortByCol}
           onSort={this.onSort}

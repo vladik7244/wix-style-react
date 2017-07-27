@@ -6,6 +6,7 @@
   position: relative;
 }
 .tableContent {
+  overflow: auto;
   margin: 0; 
   background-color: #fff;
   border-bottom-left-radius: 8px;
@@ -16,54 +17,58 @@
   padding: 0 15px;
 }
 
- .cell{
-    padding: 15px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  
-.headerRow {
-  padding: 0 15px;
-  box-sizing: border-box;
-  font-weight: 700;
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 10px;
-  line-height: 12px;
-  text-align: left;
+.cell{
+  padding: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.headerRowContainer {
   background-color: rgba(240,243,247,1);
-  text-align: start;
-  color: #7a92a5;
-  border-top: 1px solid #dfe5eb;
   
-  .headerTitle {
-    cursor: default;
-    user-select: none;
-    &:hover {
-      color: #3899ec;
+  .headerRow {
+    padding: 0 15px;
+    box-sizing: border-box;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: left;
+    text-align: start;
+    color: #7a92a5;
+    border-top: 1px solid #dfe5eb;
+    
+    .headerTitle {
+      cursor: default;
+      user-select: none;
+      &:hover {
+        color: #3899ec;
+      }
     }
-  }
-  .sortableColumn {
-    display: inline-flex;
-
-    .headerTitle,
-    .sortArrow {
-      cursor: pointer;
-    }
-
-    .sortArrow {
-      margin-left: 7px;
-      display: inline-block;
-      transition: all .1s linear;
-      &.descent {
-        transform: rotate(-180deg);
+    .sortableColumn {
+      display: inline-flex;
+      
+      .headerTitle,
+      .sortArrow {
+        cursor: pointer;
+      }
+      
+      .sortArrow {
+        margin-left: 7px;
+        display: inline-block;
+        transition: all .1s linear;
+        &.descent {
+          transform: rotate(-180deg);
+        }
       }
     }
   }
 }
+
 
 .bodyRow {
   padding: 0 15px;
@@ -110,16 +115,15 @@
   padding: 0;
   width: 100%;
   margin: 0 auto;
-
+  
   @media (min-width: 1200px) {
     width: 1170px;
   }
   @media (min-width: 992px) {
-
-      width: 970px;
+    
+    width: 970px;
   }
   @media (min-width: 768px) {
-      width: 750px;
+    width: 750px;
   }
 }
-  
