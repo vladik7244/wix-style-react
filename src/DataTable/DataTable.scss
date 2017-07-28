@@ -14,17 +14,15 @@
   border-bottom-right-radius: 8px;
 }
 
-.headerCell {
-  padding: 0 15px;
-}
-
-.cell{
-  padding: 15px;
+.cellContainer{
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   display: flex;
   align-items: center;
+  .tableCell {
+    padding: 15px;
+  }
 }
 
 .headerRow {
@@ -48,6 +46,9 @@
     user-select: none;
     &:hover {
       color: #3899ec;
+    }
+    .tableCell {
+      padding: 15px;
     }
   }
   .sortableColumn {
@@ -85,7 +86,7 @@
       cursor: pointer;
     }
   }
-
+  
   &:last-of-type {
     border-bottom: none;
   }

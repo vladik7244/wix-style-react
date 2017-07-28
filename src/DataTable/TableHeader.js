@@ -3,6 +3,7 @@ import css from './DataTable.scss';
 import {headerHeight} from './constants';
 import classNames from 'classnames';
 import {ArrowVertical} from '../Icons';
+import {TableCell} from './TableCell';
 
 export const TableHeader = props => {
   const renderSortArrow = () => {
@@ -14,7 +15,7 @@ export const TableHeader = props => {
   const renderHeaderColumn = column => {
     return (
       <span data-hook="headerTitle" className={css.headerTitle}>
-        {typeof column.title === 'function' ? column.title() : column.title}
+        {typeof column.title === 'function' ? column.title() : <TableCell>{column.title}</TableCell>}
       </span>
     );
   };
@@ -37,7 +38,7 @@ export const TableHeader = props => {
         if (column.sortable) {
           renderedColumn = renderSortableColumn(renderedColumn, column.sortKey);
         }
-        return <div key={index} className={css.headerCell} style={{width: column.width}}>{renderedColumn}</div>;
+        return <div key={index} style={{width: column.width}}>{renderedColumn}</div>;
       })}
     </div>
   );

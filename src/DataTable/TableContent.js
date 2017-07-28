@@ -16,7 +16,7 @@ export const TableContent = props => {
         className={classNames(css.bodyRow, {[css.clickable]: !!props.onRowClick}, props.rowClass)}
         onClick={event => props.onRowClick && !event.isDefaultPrevented() && props.onRowClick(rowData, rowIndex)}
         >
-        {props.columns.map((column, index) => <div key={index} className={css.cell} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
+        {props.columns.map((column, index) => <div key={index} className={css.cellContainer} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
       </div>
     );
   };
