@@ -1,25 +1,26 @@
 import React from 'react';
 import css from './DataTable.scss';
-import {headerHeight} from './constants';
+import { headerHeight } from './constants';
 import classNames from 'classnames';
-import {ArrowVertical} from '../Icons';
-import {TableCell} from './TableCell';
+import { ArrowVertical } from '../Icons';
+import { TableCell } from './TableCell';
 
 export const TableHeader = props => {
+  const getPaddingOfFirstRowInColumn = column => column.render(props.data[0], 0).props && column.render(props.data[0], 0).props.padding;
   const renderSortArrow = () => {
     return (
-      <div className={classNames(css.sortArrow, {[css.descent]: props.sortDirection === 'descent'})} >
-        <ArrowVertical width="7px" height="7px"/>
+      <div className={classNames(css.sortArrow, { [css.descent]: props.sortDirection === 'descent' })} >
+        <ArrowVertical width="7px" height="7px" />
       </div>);
   };
-  const renderHeaderColumn = column => {
+  const renderHeaderTitle = column => {
     return (
       <span data-hook="headerTitle" className={css.headerTitle}>
-        {typeof column.title === 'function' ? column.title() : <TableCell>{column.title}</TableCell>}
+        {typeof column.title === 'function' ? column.title() : column.title}
       </span>
     );
   };
-  const renderSortableColumn = (column, index) => {
+  const wrapWithSort = (column, index) => {
     return (
       <div className={css.sortableColumn} data-hook="sortableColumn" onClick={() => props.onSort && props.onSort(index)}>
         {column}
@@ -31,14 +32,20 @@ export const TableHeader = props => {
   return (
     <div
       className={css.headerRow} ref={props.refHeader} data-hook="header"
-      style={{height: headerHeight, paddingRight: props.headerPaddingRight}}
-      >
+      style={{ height: headerHeight, paddingRight: props.headerPaddingRight }}
+    >
       {props.columns.map((column, index) => {
-        let renderedColumn = renderHeaderColumn(column);
+        let renderedTitle = renderHeaderTitle(column);
         if (column.sortable) {
-          renderedColumn = renderSortableColumn(renderedColumn, column.sortKey);
+          renderedTitle = wrapWithSort(renderedTitle, column.sortKey);
         }
-        return <div data-hook="headerColumn" key={index} style={{width: column.width}}>{renderedColumn}</div>;
+        const padding = getPaddingOfFirstRowInColumn(column);
+        return (
+          <div data-hook="headerColumn" key={index} style={{ width: column.width}}>
+            <div style={{ paddingLeft: padding, paddingRight: padding }}>
+              {renderedTitle}
+            </div>
+          </div>);
       })}
     </div>
   );
