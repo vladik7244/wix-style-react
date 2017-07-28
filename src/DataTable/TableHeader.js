@@ -13,7 +13,7 @@ export const TableHeader = props => {
   };
   const renderHeaderColumn = column => {
     return (
-      <span data-hook="headerTitle"className={css.headerTitle}>
+      <span data-hook="headerTitle" className={css.headerTitle}>
         {typeof column.title === 'function' ? column.title() : column.title}
       </span>
     );
