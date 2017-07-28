@@ -6,14 +6,17 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
 
   const getHeader = () => element.querySelector('[data-hook="header"]');
   const hasHeader = () => !!getHeader();
-
+  const getHeaderColumn = index => getHeader().querySelectorAll('[data-hook="headerColumn"]')[index];
   const getRows = () => element.querySelectorAll('[data-hook="bodyRow"]');
   const getRowsCount = () => getRows().length;
   const getRow = rowIndex => getRows()[rowIndex];
-
+  const clickOnHeaderColumn = index => ReactTestUtils.Simulate.click(getHeaderColumn(index));
+  const getAllSortableColumns = () => getHeader().querySelectorAll('[data-hook="sortableColumn"]');
 
   return {
     getRowsCount,
+    clickOnHeaderColumn,
+    getAllSortableColumns,
     getRowsWithClassCount: className => Object.values(getRows()).filter(elem => elem.classList.contains(className)).length,
     getRowText: index => Object.values(getRows()[index].querySelectorAll('[data-hook="cell"]')).map(td => td.textContent),
     isRowClickable: index => getRows()[index].classList.contains('clickableDataRow'),

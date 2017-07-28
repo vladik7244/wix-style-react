@@ -13,10 +13,10 @@ export const TableContent = props => {
     return (
       <div
         data-hook={props.rowDataHook} key={rowIndex} data-hook="bodyRow"
-        className={classNames(css.bodyRow, {[css.clickable]: !!props.onRowClick}, props.rowClass)}
+        className={classNames(css.bodyRow, {[css.clickable]: !!props.onRowClick}, rowClass)}
         onClick={event => props.onRowClick && !event.isDefaultPrevented() && props.onRowClick(rowData, rowIndex)}
         >
-        {props.columns.map((column, index) => <div key={index} className={css.cellContainer} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
+        {props.columns.map((column, index) => <div key={index} data-hook="cell" className={css.cellContainer} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
       </div>
     );
   };

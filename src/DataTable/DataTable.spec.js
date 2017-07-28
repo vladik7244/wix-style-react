@@ -6,6 +6,7 @@ import {createDriverFactory} from '../test-common';
 import {dataTableTestkitFactory} from '../../testkit';
 import {dataTableTestkitFactory as enzymeDataTableTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
+import * as Sinon from 'sinon';
 
 describe('Table', () => {
   const createDriver = createDriverFactory(dataTableDriverFactory);
@@ -80,7 +81,23 @@ describe('Table', () => {
     expect(driver.getRowsWithClassCount('staticRowClass')).toBe(defaultProps.data.length);
   });
 
-  it('should call on row click with row data and index', () => {
+  it('should allow specifying sortable columns', () => {
+    const columns = [ {title: 'Name', render: () => null, width: '20%', sortable: true, sortKey: 'name'},
+                      {title: 'Description', render: () => null, width: '20%', sortable: false}
+                    ];
+    const driver = createDriver(<DataTable {...defaultProps} columns={columns}/>);
+    expect(driver.getAllSortableColumns().length).toBe(1);
+  });
+
+  it('should call onSort callback when clicking on a sortable column', () => {
+    const onSort = Sinon.spy();
+    const columns = [ {title: 'Name', render: () => null, width: '20%', sortable: true, sortKey: 'name'}];
+    const driver = createDriver(<DataTable {...defaultProps} columns={columns} onSort={onSort}/>);
+    ReactTestUtils.Simulate.click(driver.getAllSortableColumns()[0]);
+    expect(onSort.getCall(0).args[0]).toBe('name');
+  });
+
+  it('should call onRowClick callback with row data and index', () => {
     const props = {
       ...defaultProps,
       onRowClick: jest.fn()

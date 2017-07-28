@@ -21,7 +21,7 @@ export const TableHeader = props => {
   };
   const renderSortableColumn = (column, index) => {
     return (
-      <div className={css.sortableColumn} onClick={() => props.onSort && props.onSort(index)}>
+      <div className={css.sortableColumn} data-hook="sortableColumn" onClick={() => props.onSort && props.onSort(index)}>
         {column}
         {props.onSort && props.columnToSortBy === index ? renderSortArrow() : null}
       </div>
@@ -38,7 +38,7 @@ export const TableHeader = props => {
         if (column.sortable) {
           renderedColumn = renderSortableColumn(renderedColumn, column.sortKey);
         }
-        return <div key={index} style={{width: column.width}}>{renderedColumn}</div>;
+        return <div data-hook="headerColumn" key={index} style={{width: column.width}}>{renderedColumn}</div>;
       })}
     </div>
   );
