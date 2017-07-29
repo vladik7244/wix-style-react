@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './DataTable.scss';
+import css from './Table.scss';
 import PropTypes from 'prop-types';
 
 export const TableCell = props => {

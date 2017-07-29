@@ -20,6 +20,7 @@ function loadStories() {
   require('../stories/DropdownLayout');
   require('../stories/EndorseContentLayout');
   require('../stories/FilePicker');
+  require('../stories/FullPageTable');
   require('../stories/GoogleAddressInput');
   require('../stories/ImageViewer');
   require('../stories/Input');
@@ -36,6 +37,7 @@ function loadStories() {
   require('../stories/SideMenu');
   require('../stories/Slider');
   require('../stories/Tag');
+  require('../stories/Table');
   require('../stories/TimeInput');
   require('../stories/ToggleSwitch');
   // require('../stories/Tooltip/Core');
