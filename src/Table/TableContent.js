@@ -2,6 +2,7 @@ import React from 'react';
 import css from './Table.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
+import {defaultPdding} from './constants';
 
 export class TableContent extends WixComponent {
   componentDidUpdate() {
@@ -25,6 +26,7 @@ export class TableContent extends WixComponent {
         {this.props.columns.map((column, index) => {
           const columnStyle = {
             width: column.width,
+            padding: column.padding === undefined? defaultPdding : column.padding,
             flexShrink: column.width.indexOf('px') !== -1 ? 0 : undefined
           };
           return (<div key={index} className={css.cellContainer} style={columnStyle}>{column.render(rowData, rowIndex)}</div>);

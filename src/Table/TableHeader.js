@@ -3,6 +3,7 @@ import css from './Table.scss';
 import {headerHeight} from './constants';
 import classNames from 'classnames';
 import {ArrowVertical} from '../Icons';
+import {defaultPdding} from './constants';
 
 export const TableHeader = props => {
   const renderSortArrow = () => {
@@ -11,14 +12,14 @@ export const TableHeader = props => {
         <ArrowVertical width="7px" height="7px"/>
       </div>);
   };
-  const renderHeaderColumn = column => {
+  const renderHeaderColumnTitle = column => {
     return (
       <span data-hook="headerTitle" className={css.headerTitle}>
         {typeof column.title === 'function' ? column.title() : column.title}
       </span>
     );
   };
-  const renderSortableColumn = (column, index) => {
+  const wrapWithSort = (column, index) => {
     return (
       <div className={css.sortableColumn} onClick={() => props.onSort && props.onSort(index)}>
         {column}
@@ -33,11 +34,14 @@ export const TableHeader = props => {
       style={{height: headerHeight, paddingRight: props.headerPaddingRight}}
       >
       {props.columns.map((column, index) => {
-        let renderedColumn = renderHeaderColumn(column);
+        let renderedColumn = renderHeaderColumnTitle(column);
         if (column.sortable) {
-          renderedColumn = renderSortableColumn(renderedColumn, column.sortKey);
+          renderedColumn = wrapWithSort(renderedColumn, column.sortKey);
         }
-        return <div key={index} className={css.headerCell} style={{width: column.width}}>{renderedColumn}</div>;
+
+        const paddingLeft = column.padding === undefined? defaultPdding : column.padding;
+        const paddingRight = column.padding === undefined? defaultPdding : column.padding;
+        return <div key={index} className={css.headerCell} style={{width: column.width, paddingLeft, paddingRight}}>{renderedColumn}</div>;
       })}
     </div>
   );

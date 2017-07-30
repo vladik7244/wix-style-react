@@ -1,2 +1,2 @@
-export {FullPageTable2} from './FullPageTable2.js';
+export {FullPageTable2 as FullPageTable} from './FullPageTable2.js';
 export {Table} from './Table';

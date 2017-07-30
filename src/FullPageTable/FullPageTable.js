@@ -1,11 +1,11 @@
 
 import React from 'react';
-import css from './DataTable.scss';
+import css from '../Table/Table.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import InfiniteScroll from 'react-infinite-scroller';
 import ScrollbarSize from 'react-scrollbar-size';
-import {TableContent} from './TableContent';
-import {TableHeader} from './TableHeader';
+import {TableContent} from '../Table/TableContent';
+import {TableHeader} from '../Table/TableHeader';
 
 export class FullPageTable extends WixComponent {
   constructor(props) {
