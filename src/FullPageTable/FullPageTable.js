@@ -14,8 +14,34 @@ export class FullPageTable extends WixComponent {
     this.state = {topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0, scrollBarExists: false};
   }
 
+  scrollContainerRefHandler = ref => {
+    this.scrollContainer = ref;
+  }
+
+  topSectionRefHander = ref => {
+    this.topSection = ref;
+  }
+
   setScrollBarWidth = ({scrollbarWidth}) => {
     this.setState({scrollBarWidth: scrollbarWidth});
+  }
+
+  setTopSectionHeight = () => {
+    if (this.scrollContainer) {
+      const topHeight = this.topSection && this.topSection.getBoundingClientRect().height;
+      if (topHeight !== this.state.topHeight) {
+        this.setState({topHeight});
+      }
+    }
+  }
+
+  setScrollBarExists = () => {
+    if (this.scrollContainer) {
+      const scrollBarExists = this.scrollContainer.scrollHeight > this.scrollContainer.getBoundingClientRect().height;
+      if (scrollBarExists !== this.state.scrollBarExists) {
+        this.setState({scrollBarExists});
+      }
+    }
   }
 
   onWindowResize = () => {
@@ -35,15 +61,6 @@ export class FullPageTable extends WixComponent {
   }
   wrapWithContainer = (node, style) => (<div style={style} className={css.container}>{node}</div>);
 
-  setScrollBarExists = () => {
-    if (this.scrollContainer) {
-      const scrollBarExists = this.scrollContainer.scrollHeight > this.scrollContainer.getBoundingClientRect().height;
-      if (scrollBarExists !== this.state.scrollBarExists) {
-        this.setState({scrollBarExists});
-      }
-    }
-  }
-
   wrapWithInfiniteScroll = content => {
     return (
       <InfiniteScroll
@@ -58,10 +75,6 @@ export class FullPageTable extends WixComponent {
     );
   };
 
-  scrollContainerRefHandler = ref => {
-    this.scrollContainer = ref;
-  }
-
   render() {
     const style = {
       position: 'absolute',
@@ -72,7 +85,7 @@ export class FullPageTable extends WixComponent {
       zIndex: 9999,
     };
     const topSection = this.wrapWithContainer(
-      <div data-hook="top-section" className={css.topSection} ref={node => this.topSection = node}>
+      <div data-hook="top-section" className={css.topSection} ref={this.topSectionRefHander}>
         {this.props.pageHeading}
         {this.props.hideHeader ? null :
         <TableHeader
