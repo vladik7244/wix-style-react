@@ -20,6 +20,19 @@ export class RegularTable extends WixComponent {
     this.setState({headerPaddingRight, scrollBarExists});
   }
 
+  setScrollBarExists = () => {
+    if (this.scrollable) {
+      const scrollBarExists = this.scrollable.scrollHeight > this.scrollable.getBoundingClientRect().height;
+      if (scrollBarExists !== this.state.scrollBarExists) {
+        this.setState({scrollBarExists});
+      }
+    }
+  }
+
+  scrollableRefHandler = ref => {
+    this.scrollContainer = ref;
+  }
+
   setScrollBarWidth = ({scrollbarWidth}) => {
     this.setState({scrollBarWidth: scrollbarWidth});
   }
@@ -48,13 +61,13 @@ export class RegularTable extends WixComponent {
     };
 
     const headerPaddingRight = this.state.headerPaddingRight && this.state.scrollBarExists ? this.headerPaddingWithScrollWidth() : null;
-    let tableContent = <TableContent {...this.props}/>;
+    let tableContent = <TableContent onContentUpdated={this.setScrollBarExists} {...this.props}/>;
     if (this.props.infiniteScroll) {
       tableContent = wrapWithInfiniteScroll(tableContent);
     }
     return (<div id={this.props.id} className={css.dataTable} style={{width: this.props.width}}>
       {this.props.hideHeader ? null : <TableHeader headerPaddingRight={headerPaddingRight} {...this.props} refHeader={this.setHeaderRef}/>}
-      <div className={css.scrollable} ref={node => this.scrollable = node} style={{height: this.props.height - headerHeight}}>
+      <div className={css.scrollable} ref={this.scrollableRefHandler} style={{height: this.props.height - headerHeight}}>
         {tableContent}
       </div>
       <ScrollbarSize onLoad={this.setScrollBarWidth} onChange={this.setScrollBarWidth}/>

@@ -19,8 +19,8 @@ const data = [
 
 const columns = [
     {title: 'Name', render: (rowData, rowIndex) => <TableCell>{rowData.name + rowIndex}</TableCell>, width: '20%', sortable: true, sortKey: 'name'},
-    {title: 'Description', render: rowData => <TableCell><div style={{backgroundColor: 'goldenrod', color: 'blue', fontSize: 18}}>{rowData.description}</div></TableCell>, width: '40%'},
-    {title: () => <div>Another<span style={{marginLeft: 5, color: 'red'}}>KEK</span></div>, render: rowData => <TableCell>{rowData.another}</TableCell>, width: '20%', sortable: true, sortKey: 'author'},
+    {title: 'Description', render: rowData => <div style={{color: 'blue', fontSize: 18, paddingLeft: 30}}>{rowData.description}</div>, width: '40%'},
+    {title: () => <TableCell>Another<span style={{marginLeft: 5, color: 'red'}}>KEK</span></TableCell>, render: rowData => <TableCell>{rowData.another}</TableCell>, width: '20%', sortable: true, sortKey: 'author'},
 ];
 
 const onRowClick = (row, index) => console.log(row, index);

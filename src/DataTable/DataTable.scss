@@ -6,6 +6,10 @@
   position: relative;
 }
 
+.topSection {
+  background-color: rgba(240,243,247,1);
+}
+
 .tableContent {
   overflow: auto;
   margin: 0; 
@@ -96,9 +100,10 @@
 
 .pageContainer {
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   height: 100%;
   padding-bottom: 32px;
+  box-sizing: border-box;
   background: #f0f4f7;
 }
 
@@ -110,21 +115,10 @@
   position: relative;
 }
 
-.container {
+.container {  
   min-width: 894px;
   max-width: 1254px;
   padding: 0;
   width: 100%;
   margin: 0 auto;
-  
-  @media (min-width: 1200px) {
-    width: 1170px;
-  }
-  @media (min-width: 992px) {
-    
-    width: 970px;
-  }
-  @media (min-width: 768px) {
-    width: 750px;
-  }
 }

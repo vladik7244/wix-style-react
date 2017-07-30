@@ -1,7 +1,6 @@
 
 import React from 'react';
 import css from './DataTable.scss';
-import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import InfiniteScroll from 'react-infinite-scroller';
 import ScrollbarSize from 'react-scrollbar-size';
@@ -36,6 +35,15 @@ export class FullPage extends WixComponent {
   }
   wrapWithContainer = (node, style) => (<div style={style} className={css.container}>{node}</div>);
 
+  setScrollBarExists = () => {
+    if (this.scrollContainer) {
+      const scrollBarExists = this.scrollContainer.scrollHeight > this.scrollContainer.getBoundingClientRect().height;
+      if (scrollBarExists !== this.state.scrollBarExists) {
+        this.setState({scrollBarExists});
+      }
+    }
+  }
+
   wrapWithInfiniteScroll = content => {
     return (
       <InfiniteScroll
@@ -50,6 +58,10 @@ export class FullPage extends WixComponent {
     );
   };
 
+  scrollContainerRefHandler = ref => {
+    this.scrollContainer = ref;
+  }
+
   render() {
     const style = {
       position: 'absolute',
@@ -60,7 +72,7 @@ export class FullPage extends WixComponent {
       zIndex: 9999,
     };
     const topSection = this.wrapWithContainer(
-      <div data-hook="top-section" ref={node => this.topSection = node}>
+      <div data-hook="top-section" className={css.topSection} ref={node => this.topSection = node}>
         {this.props.pageHeading}
         {this.props.hideHeader ? null :
         <TableHeader
@@ -74,7 +86,7 @@ export class FullPage extends WixComponent {
       <div>
         <div ref={node => this.table = node} className={css.dataTable}>
           <div style={{paddingTop: this.state.topHeight}}>
-            <TableContent {...this.props}/>
+            <TableContent onContentUpdated={this.setScrollBarExists} {...this.props}/>
           </div>
         </div>
       </div>
@@ -87,7 +99,7 @@ export class FullPage extends WixComponent {
     return (
       <div id={this.props.id} data-hook="page-container" className={css.pageContainer}>
         {topSection}
-        <div data-hook="page-scroller" ref={node => this.scrollContainer = node} className={css.scrollContainer}>
+        <div data-hook="page-scroller" ref={this.scrollContainerRefHandler} className={css.scrollContainer}>
           {table}
         </div>
         <ScrollbarSize onLoad={this.setScrollBarWidth} onChange={this.setScrollBarWidth}/>

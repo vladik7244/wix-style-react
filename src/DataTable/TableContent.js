@@ -1,30 +1,45 @@
 import React from 'react';
 import css from './DataTable.scss';
+import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
 
-export const TableContent = props => {
-  const renderRow = (rowData, rowIndex) => {
+export class TableContent extends WixComponent {
+  componentDidUpdate() {
+    this.props.onContentUpdated && this.props.onContentUpdated();
+  }
+
+  renderRow = (rowData, rowIndex) => {
     let rowClass;
-    if (typeof props.rowClass === 'function') {
-      rowClass = props.rowClass(rowData, rowIndex);
+    if (typeof this.props.rowClass === 'function') {
+      rowClass = this.props.rowClass(rowData, rowIndex);
     } else {
-      rowClass = props.rowClass;
+      rowClass = this.props.rowClass;
     }
+
     return (
       <div
-        data-hook={props.rowDataHook} key={rowIndex} data-hook="bodyRow"
-        className={classNames(css.bodyRow, {[css.clickable]: !!props.onRowClick}, rowClass)}
-        onClick={event => props.onRowClick && !event.isDefaultPrevented() && props.onRowClick(rowData, rowIndex)}
+        data-hook={this.props.rowDataHook} key={rowIndex}
+        className={classNames(css.bodyRow, {[css.clickable]: !!this.props.onRowClick}, rowClass)}
+        onClick={event => this.props.onRowClick && !event.isDefaultPrevented() && this.props.onRowClick(rowData, rowIndex)}
         >
-        {props.columns.map((column, index) => <div key={index} data-hook="cell" className={css.cellContainer} style={{width: column.width}}>{column.render(rowData, rowIndex)}</div>)}
+        {this.props.columns.map((column, index) => {
+          const columnStyle = {
+            width: column.width,
+            flexShrink: column.width.indexOf('px') !== -1 ? 0 : undefined
+          };
+          return (<div key={index} className={css.cellContainer} style={columnStyle}>{column.render(rowData, rowIndex)}</div>);
+        })}
       </div>
     );
   };
 
-  return (
-    <div className={css.tableContent}>
-      {
-        props.data.map((rowData, index) => renderRow(rowData, index))
-      }
-    </div>);
-};
+  render() {
+    return (
+      <div className={css.tableContent}>
+        {
+          this.props.data.map((rowData, index) => this.renderRow(rowData, index))
+        }
+      </div>
+    );
+  }
+}

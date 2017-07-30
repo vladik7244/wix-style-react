@@ -20,14 +20,14 @@ DataTable.propTypes = {
   id: PropTypes.string,
   data: PropTypes.array.isRequired,
   columns: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.oneOf(PropTypes.string, PropTypes.func).isRequired,
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
     render: PropTypes.func.isRequired,
     width: PropTypes.string,
     sortable: PropTypes.bool
   })).isRequired,
   showHeaderWhenEmpty: PropTypes.bool,
   rowDataHook: PropTypes.string,
-  rowClass: PropTypes.oneOf(PropTypes.string, PropTypes.func),
+  rowClass: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   dynamicRowClass: PropTypes.func,
   onRowClick: PropTypes.func,
   height: PropTypes.number,
