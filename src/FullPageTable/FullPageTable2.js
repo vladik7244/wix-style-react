@@ -3,9 +3,9 @@ import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import PropTypes from 'prop-types';
 import Table from './Table';
-import {FullPage} from './FullPage';
+import {FullPageTable} from './FullPageTable';
 
-export class FullPageTable extends WixComponent {
+export class FullPageTable2 extends WixComponent {
   render() {
     const props = React.Children.only(this.props.children).props;
     return (<FullPage pageHeading={this.props.pageHeading} {...props}/>);
