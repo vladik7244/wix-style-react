@@ -107,7 +107,10 @@
     "react-onclickoutside": "^5.7.1",
     "react-remarkable": "^1.1.1",
     "react-transition-group": "^2.2.0",
-    "slate": "^0.20.3"
+    "slate": "^0.20.3",
+    "stylable": "^2.0.4",
+    "stylable-integration": "^3.0.6",
+    "stylable-react-component": "^1.0.3"
   },
   "jest": {
     "setupFiles": [

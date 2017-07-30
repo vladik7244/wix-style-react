@@ -1,0 +1,166 @@
+@namespace "Checkbox";
+
+:import {
+    -st-from: "../../node_modules/stylable-components/lib/components/checkbox/checkbox";
+    -st-named: CheckBox;
+}
+
+:vars {
+    B10: #3899ec;
+    B20: #4eb7f5;
+    B40: #daeffe;
+    D80: #ffffff;
+    GR20: #dadada;
+    GR30: #f1f1f1;
+}
+
+.root {
+    -st-states: checked, disabled, propHovered, propActive;
+    display: inline-block;
+}
+
+.root > label {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.root > input {
+    display: none;
+}
+
+:global(.rtl) .root > label {
+    direction: rtl;
+}
+
+.medium {
+
+}
+
+.large {
+
+}
+
+.checkbox {
+    position: relative;
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    min-height: 16px;
+    border: 1px solid value(B10);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: value(D80);
+}
+
+.checkbox.large {
+    width: 20px;
+    height: 20px;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    color: value(D80);
+
+    opacity: 0;
+}
+
+.checkbox.large > .inner {
+    width: 18px;
+    height: 18px;
+}
+
+.indeterminate {
+    background-color: value(D80);
+    width: 8px;
+    height: 2px;
+}
+
+.inner > svg {
+    width: 9px;
+    height: 9px;
+}
+
+.checkbox.large > .inner > svg {
+    width: 13px;
+    height: 13px;
+}
+
+.inner > svg > path {
+    fill: #fff;
+}
+
+:global(.ltr) .children, .children {
+    padding-left: 12px;
+}
+
+:global(.rtl) .children {
+    padding-right: 12px;
+}
+
+/* Checked State */
+
+.root:checked .checkbox, .root:hover:checked .checkbox, .root:propHovered:checked .checkbox {
+    background-color: value(B10);
+}
+
+.root:checked .checkbox > .inner, .root:hover:checked .checkbox > .inner, .root:propHovered:checked .checkbox > .inner {
+    opacity: 1;
+}
+
+/* Unchecked State */
+
+.root:hover .checkbox, .root:propHovered .checkbox {
+    background-color: value(B40);
+}
+
+.root:active .checkbox, .root:propActive .checkbox {
+    background-color: value(B20);
+}
+
+.root:active .checkbox > .inner, .root:propActive .checkbox > .inner {
+    opacity: 1;
+}
+
+/* Disabled State */
+
+.root:disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.root:disabled .checkbox, .root:disabled:hover .checkbox, .root:disabled:propHovered .checkbox,
+.root:disabled:active .checkbox, .root:disabled:propActive .checkbox {
+    border-color: value(GR20);
+    background-color: value(GR30);
+}
+
+.root:disabled:checked .checkbox, .root:disabled:checked:hover .checkbox, .root:disabled:checked:propHovered .checkbox,
+.root:disabled:checked:active .checkbox, .root:disabled:checked:propActive .checkbox {
+    background-color: value(GR20);
+}
+
+.StylableCheckBox .checkbox {
+    display: inline-block;
+}
+
+.StylableCheckBox .inner {
+    opacity: 1;
+    top: -2px;
+    left: 1px;
+}
+
+.StylableCheckBox label {
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    cursor: pointer;
+}
