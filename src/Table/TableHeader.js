@@ -1,9 +1,8 @@
 import React from 'react';
 import css from './Table.scss';
-import {headerHeight} from './constants';
+import {headerHeight, defaultPadding} from './constants';
 import classNames from 'classnames';
 import {ArrowVertical} from '../Icons';
-import {defaultPdding} from './constants';
 
 export const TableHeader = props => {
   const renderSortArrow = () => {
@@ -39,8 +38,8 @@ export const TableHeader = props => {
           renderedColumn = wrapWithSort(renderedColumn, column.sortKey);
         }
 
-        const paddingLeft = column.padding === undefined? defaultPdding : column.padding;
-        const paddingRight = column.padding === undefined? defaultPdding : column.padding;
+        const paddingLeft = column.padding === undefined ? defaultPadding : column.padding;
+        const paddingRight = column.padding === undefined ? defaultPadding : column.padding;
         return <div key={index} className={css.headerCell} style={{width: column.width, paddingLeft, paddingRight}}>{renderedColumn}</div>;
       })}
     </div>

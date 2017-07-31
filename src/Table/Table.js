@@ -21,6 +21,10 @@ export class Table extends WixComponent {
     this.setState({headerPaddingRight, scrollBarExists});
   }
 
+  componentDidUpdate() {
+    this.setScrollBarExists();
+  }
+
   setScrollBarExists = () => {
     if (this.scrollable) {
       const scrollBarExists = this.scrollable.scrollHeight > this.scrollable.getBoundingClientRect().height;
@@ -30,8 +34,10 @@ export class Table extends WixComponent {
     }
   }
 
+  setHeaderRef = node => this.tableHeader = node;
+
   scrollableRefHandler = ref => {
-    this.scrollContainer = ref;
+    this.scrollable = ref;
   }
 
   setScrollBarWidth = ({scrollbarWidth}) => {
@@ -43,8 +49,6 @@ export class Table extends WixComponent {
     currPadding = Number(currPadding.substr(0, currPadding.indexOf('px')));
     return currPadding + Number(this.state.scrollBarWidth);
   }
-
-  setHeaderRef = node => this.tableHeader = node;
 
   render() {
     const wrapWithInfiniteScroll = content => {
@@ -62,7 +66,7 @@ export class Table extends WixComponent {
     };
 
     const headerPaddingRight = this.state.headerPaddingRight && this.state.scrollBarExists ? this.headerPaddingWithScrollWidth() : null;
-    let tableContent = <TableContent onContentUpdated={this.setScrollBarExists} {...this.props}/>;
+    let tableContent = <TableContent {...this.props}/>;
     if (this.props.infiniteScroll) {
       tableContent = wrapWithInfiniteScroll(tableContent);
     }

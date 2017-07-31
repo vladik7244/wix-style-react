@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import css from './Table.scss';
+import css from '../Table/Table.scss';
 import PropTypes from 'prop-types';
 
 class DataTable extends Component {}

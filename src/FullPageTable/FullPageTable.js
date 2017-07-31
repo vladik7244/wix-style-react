@@ -13,13 +13,28 @@ export class FullPageTable extends WixComponent {
     window.addEventListener('resize', this.onWindowResize);
     this.state = {topHeight: 0, tableWidth: 0, headerPaddingRight: null, scrollBarWidth: 0, scrollBarExists: false};
   }
-
   scrollContainerRefHandler = ref => {
     this.scrollContainer = ref;
   }
 
   topSectionRefHander = ref => {
     this.topSection = ref;
+  }
+
+  componentDidMount() {
+    const topHeight = this.topSection && this.topSection.getBoundingClientRect().height;
+    const tableWidth = this.table && this.table.getBoundingClientRect().width;
+    const scrollBarExists = this.scrollContainer && this.scrollContainer.scrollHeight > this.scrollContainer.getBoundingClientRect().height;
+    this.setState({topHeight, tableWidth, scrollBarExists});
+  }
+
+  componentDidUpdate() {
+    this.setScrollBarExists();
+    this.setTopSectionHeight();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onWindowResize);
   }
 
   setScrollBarWidth = ({scrollbarWidth}) => {
@@ -49,16 +64,6 @@ export class FullPageTable extends WixComponent {
     this.setState({tableWidth: width});
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onWindowResize);
-  }
-
-  componentDidMount() {
-    const topHeight = this.topSection && this.topSection.getBoundingClientRect().height;
-    const tableWidth = this.table && this.table.getBoundingClientRect().width;
-    const scrollBarExists = this.scrollContainer && this.scrollContainer.scrollHeight > this.scrollContainer.getBoundingClientRect().height;
-    this.setState({topHeight, tableWidth, scrollBarExists});
-  }
   wrapWithContainer = (node, style) => (<div style={style} className={css.container}>{node}</div>);
 
   wrapWithInfiniteScroll = content => {
@@ -99,7 +104,7 @@ export class FullPageTable extends WixComponent {
       <div>
         <div ref={node => this.table = node} className={css.dataTable}>
           <div style={{paddingTop: this.state.topHeight}}>
-            <TableContent onContentUpdated={this.setScrollBarExists} {...this.props}/>
+            <TableContent {...this.props}/>
           </div>
         </div>
       </div>

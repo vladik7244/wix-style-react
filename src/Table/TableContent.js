@@ -2,13 +2,9 @@ import React from 'react';
 import css from './Table.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
-import {defaultPdding} from './constants';
+import {defaultPadding} from './constants';
 
 export class TableContent extends WixComponent {
-  componentDidUpdate() {
-    this.props.onContentUpdated && this.props.onContentUpdated();
-  }
-
   renderRow = (rowData, rowIndex) => {
     let rowClass;
     if (typeof this.props.rowClass === 'function') {
@@ -26,7 +22,7 @@ export class TableContent extends WixComponent {
         {this.props.columns.map((column, index) => {
           const columnStyle = {
             width: column.width,
-            padding: column.padding === undefined? defaultPdding : column.padding,
+            padding: column.padding === undefined ? defaultPadding : column.padding,
             flexShrink: column.width.indexOf('px') !== -1 ? 0 : undefined
           };
           return (<div key={index} className={css.cellContainer} style={columnStyle}>{column.render(rowData, rowIndex)}</div>);

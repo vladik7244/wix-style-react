@@ -1,2 +1,2 @@
 export const headerHeight = 36;
-export const defaultPdding = 15;
+export const defaultPadding = 15;
