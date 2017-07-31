@@ -1,13 +1,13 @@
 
 import React from 'react';
-import css from '../Table/Table.scss';
+import css from './Table.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import InfiniteScroll from 'react-infinite-scroller';
 import ScrollbarSize from 'react-scrollbar-size';
-import {TableContent} from '../Table/TableContent';
-import {TableHeader} from '../Table/TableHeader';
+import {TableContent} from './TableContent';
+import {TableHeader} from './TableHeader';
 
-export class FullPageTable extends WixComponent {
+export class TopFixedTable extends WixComponent {
   constructor(props) {
     super(props);
     window.addEventListener('resize', this.onWindowResize);
@@ -91,7 +91,7 @@ export class FullPageTable extends WixComponent {
     };
     const topSection = this.wrapWithContainer(
       <div data-hook="top-section" className={css.topSection} ref={this.topSectionRefHander}>
-        {this.props.pageHeading}
+        {this.props.fixedHeading}
         {this.props.hideHeader ? null :
         <TableHeader
           {...this.props}

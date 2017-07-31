@@ -70,7 +70,7 @@ describe('Table', () => {
   });
 
   it('should allow specifying row class as func', () => {
-    const getClass = (rowData, rowIndex) => rowData.a.replace(/[\s]+/g, '-') +`-rowIndex-${rowIndex}`;
+    const getClass = (rowData, rowIndex) => rowData.a.replace(/[\s]+/g, '-') + `-rowIndex-${rowIndex}`;
     const driver = createDriver(<Table {...defaultProps} rowClass={getClass}/>);
     expect(driver.getRowsWithClassCount('value-1-rowIndex-0')).toBe(1);
     expect(driver.getRowsWithClassCount('value-3-rowIndex-1')).toBe(1);
@@ -82,16 +82,16 @@ describe('Table', () => {
   });
 
   it('should allow specifying sortable columns', () => {
-    const columns = [ {title: 'Name', render: () => null, width: '20%', sortable: true, sortKey: 'name'},
+    const columns = [{title: 'Name', render: () => null, width: '20%', sortable: true, sortKey: 'name'},
                       {title: 'Description', render: () => null, width: '20%', sortable: false}
-                    ];
+    ];
     const driver = createDriver(<Table {...defaultProps} columns={columns}/>);
     expect(driver.getAllSortableColumns().length).toBe(1);
   });
 
   it('should call onSort callback when clicking on a sortable column', () => {
     const onSort = Sinon.spy();
-    const columns = [ {title: 'Name', render: () => null, width: '20%', sortable: true, sortKey: 'name'}];
+    const columns = [{title: 'Name', render: () => null, width: '20%', sortable: true, sortKey: 'name'}];
     const driver = createDriver(<Table {...defaultProps} columns={columns} onSort={onSort}/>);
     ReactTestUtils.Simulate.click(driver.getAllSortableColumns()[0]);
     expect(onSort.getCall(0).args[0]).toBe('name');

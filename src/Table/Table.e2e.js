@@ -1,7 +1,7 @@
 import eyes from 'eyes.it';
 import {dataTableTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
-describe('Data Table', () => {
+describe('Table', () => {
   const storyUrl = getStoryUrl('Core', 'Table');
   const dataHook = 'story-data-table';
 
