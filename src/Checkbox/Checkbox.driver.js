@@ -5,14 +5,13 @@ import $ from 'jquery';
 
 const checkboxDriverFactory = ({element, wrapper, component}) => {
 
-  const checkbox = $(element).find('input')[0];
-  const isClassExists = (element, className) => !!(element.className.match(new RegExp('\\b' + className + '\\b')));
+  const checkbox = $(element).find('[data-automation-id="CHECKBOX_ROOT"]')[0];
 
   return {
     exists: () => !!element,
-    click: () => ReactTestUtils.Simulate.change(checkbox),
-    isChecked: () => isClassExists(element, 'checked'),
-    isDisabled: () => isClassExists(element, 'disabled'),
+    click: () => ReactTestUtils.Simulate.click(checkbox),
+    isChecked: () => $(element).find('.inner').length > 0,
+    isDisabled: () => $(element).find('[data-automation-id="NATIVE_CHECKBOX"]').is(':disabled'),
     isIndeterminate: () => $(element).find('.indeterminate').length === 1,
     getLabel: () => element.textContent,
     setProps: props => {

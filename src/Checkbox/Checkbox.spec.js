@@ -3,7 +3,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import checkboxDriverFactory from './Checkbox.driver';
 import {createDriverFactory} from '../test-common';
 import {checkboxTestkitFactory} from '../../testkit';
-import Checkbox from './Checkbox';
+import Checkbox from './index';
 import {checkboxTestkitFactory as enzymeCheckboxTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
 
