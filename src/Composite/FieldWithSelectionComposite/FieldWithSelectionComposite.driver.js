@@ -6,7 +6,7 @@ import $ from 'jquery';
 const fieldWithSelectionCompositeDriverFactory = ({element, wrapper}) => {
   const label = element.querySelector('.label>label');
   const textInput = element.querySelector('input.input') || element.querySelector('textarea');
-  const selectionInput = element.querySelector('.wrapper').childNodes[0];
+  const selectionInput = element.querySelector('.StylableCheckBox').childNodes[0];
 
   return {
     exists: () => !!element,
