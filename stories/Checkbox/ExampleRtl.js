@@ -14,9 +14,4 @@ export default () =>
     <div className="rtl" style={style}>Checked<br/><Checkbox rtl checked>טקסט בעברית</Checkbox></div>
     <div className="rtl" style={style}>Disabled<br/><Checkbox rtl disabled>טקסט בעברית</Checkbox></div>
     <div className="rtl" style={style}>Disabled and checked<br/><Checkbox rtl disabled checked>טקסט בעברית</Checkbox></div>
-    <br/>
-    <div className="rtl" style={style}>Standard<br/><Checkbox rtl indeterminate>טקסט בעברית</Checkbox></div>
-    <div className="rtl" style={style}>Checked<br/><Checkbox rtl checked indeterminate>טקסט בעברית</Checkbox></div>
-    <div className="rtl" style={style}>Disabled<br/><Checkbox rtl disabled indeterminate>טקסט בעברית</Checkbox></div>
-    <div className="rtl" style={style}>Disabled and checked<br/><Checkbox rtl disabled checked indeterminate>טקסט בעברית</Checkbox></div>
   </div>;

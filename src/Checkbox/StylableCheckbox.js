@@ -33,17 +33,12 @@ class Checkbox extends WixComponent {
   };
 
   static displayName = 'Checkbox';
-
-
   static BoxAndIcons = () => (
     <div className={styles.checkbox}>
       <div className={styles.tickMark}><SvgV/></div>
       <div className={styles.indeterminate}/>
     </div>
   );
-  static TickMark = () => <div className={styles.tickMark}><SvgV/></div>;
-  static BoxAndTickMark = () => <div className={styles.checkbox}><div className={styles.tickMark}><SvgV/></div></div>;
-  static Indeterminate = () => <div className={styles.indeterminate}/>;
 
   render() {
     const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange} = this.props;
