@@ -14,7 +14,7 @@
 }
 
 .root {
-    -st-states: checked, disabled, propHover, propActive, indeterminate;
+    -st-states: checked, disabled, propHover, propActive, indeterminate, large;
     display: inline-block;
 }
 
@@ -32,6 +32,11 @@
     border-radius: 4px;
     box-sizing: border-box;
     background-color: value(D80);
+}
+
+.root:large .checkbox {
+    width: 20px;
+    height: 20px;
 }
 
 .root:hover .checkbox, .root:propHover .checkbox {
@@ -60,11 +65,18 @@
     width: 9px;
     height: 9px;
 }
+.root:large .tickMark {
+    top: -1px;
+}
+
+.root:large .tickMark > svg {
+    width:13px;
+    height:13px;
+}
 
 .tickMark > svg > path {
     fill: #fff;
 }
-
 
 :global(.rtl) .tickMark {
     left: -2px;
@@ -82,6 +94,12 @@
     top: -8px;
     left: 3px;
     opacity: 0;
+}
+
+.root:large .indeterminate {
+    width: 12px;
+    height: 3px;
+    top: -7px;
 }
 
 :global(.rtl) .indeterminate {

@@ -41,10 +41,10 @@ class Checkbox extends WixComponent {
   );
 
   render() {
-    const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange} = this.props;
+    const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange, size} = this.props;
 
     return (
-      <div cssStates={{checked, disabled, propHover: hover, propActive: active, indeterminate}}>
+      <div cssStates={{checked, disabled, propHover: hover, propActive: active, indeterminate, large: size === 'large'}}>
         <StylableCheckBox
           className={styles.stylableCheckBox}
           value={checked || active}
