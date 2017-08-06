@@ -1,4 +1,8 @@
 @namespace "Checkbox";
+:import{
+    -st-from:"../../node_modules/stylable-components";
+    -st-default: Checkbox as CH;
+}
 
 :vars {
     B10: #3899ec;
@@ -10,31 +14,12 @@
 }
 
 .root {
-    -st-states: checked, disabled, propHovered, propActive, indeterminate;
+    -st-states: checked, disabled, propHover, propActive, indeterminate;
     display: inline-block;
-}
-
-.root > label {
-    display: flex;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-}
-
-.root > input {
-    display: none;
 }
 
 :global(.rtl) .root{
     direction: rtl;
-}
-
-.medium {
-
-}
-
-.large {
-
 }
 
 .checkbox {
@@ -49,48 +34,62 @@
     background-color: value(D80);
 }
 
-.checkbox.large {
-    width: 20px;
-    height: 20px;
+.root:hover .checkbox, .root:propHover .checkbox {
+    background-color: value(B40);
 }
 
-.inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
+.root:active .checkbox, .root:propActive .checkbox {
+    background-color: value(B20);
+}
+
+.root:checked .checkbox, .root:hover:checked .checkbox, .root:propHover:checked .checkbox{
+    background-color: value(B10);
+}
+
+.tickMark {
+    position: relative;
+    top: -4px;
+    left: 3px;
     width: 14px;
     height: 14px;
     color: value(D80);
-
     opacity: 0;
 }
 
-.checkbox.large > .inner {
-    width: 18px;
-    height: 18px;
+.tickMark > svg {
+    width: 9px;
+    height: 9px;
+}
+
+.tickMark > svg > path {
+    fill: #fff;
+}
+
+
+:global(.rtl) .tickMark {
+    left: -2px;
+}
+
+.root:checked:not(:indeterminate) .tickMark, .root:hover:checked:not(:indeterminate) .tickMark, .root:propHover:checked:not(:indeterminate) .tickMark, .root:active:not(:indeterminate) .tickMark, .root:propActive:not(:indeterminate) .tickMark {
+    opacity: 1;
 }
 
 .indeterminate {
     background-color: value(D80);
     width: 8px;
     height: 2px;
+    position: relative;
+    top: -8px;
+    left: 3px;
+    opacity: 0;
 }
 
-.inner > svg {
-    width: 9px;
-    height: 9px;
+:global(.rtl) .indeterminate {
+    left: -3px;
 }
 
-/*.checkbox.large > .inner > svg {*/
-    /*width: 13px;*/
-    /*height: 13px;*/
-/*}*/
-
-.inner > svg > path {
-    fill: #fff;
+.root:indeterminate:checked .indeterminate, .root:indeterminate:active .indeterminate, .root:indeterminate:propActive .indeterminate {
+    opacity: 1;
 }
 
 :global(.ltr) .children, .children {
@@ -101,65 +100,31 @@
     padding-right: 12px;
 }
 
-/* Checked State */
-
-.root:checked .checkbox, .root:hover:checked .checkbox, .root:propHovered:checked .checkbox {
-    background-color: value(B10);
-}
-
-.root:checked .inner, .root:hover:checked .inner {
-    opacity: 1;
-}
-
-/* Unchecked State */
-
-.root:hover .checkbox {
-    background-color: value(B40);
-}
-
-.root:active .checkbox {
-    background-color: value(B20);
-}
-
-.root:active .inner {
-    opacity: 1;
-}
-
-.root:indeterminate .tickMark, .root:indeterminate:hover .tickMark, .root:active:indeterminate .tickMark{
-    opacity: 0;
-}
-
-/* Disabled State */
-
 .root:disabled {
     pointer-events: none;
     cursor: default;
 }
 
-.root:disabled .checkbox, .root:disabled:hover .checkbox, .root:disabled:propHovered .checkbox,
-.root:disabled:active .checkbox, .root:disabled:propActive .checkbox {
+.root:disabled .checkbox, .root:disabled:hover .checkbox, .root:disabled:propHover .checkbox, .root:disabled:active .checkbox, .root:disabled:propActive .checkbox{
     border-color: value(GR20);
     background-color: value(GR30);
 }
 
-.root:disabled:checked .checkbox, .root:disabled:checked:hover .checkbox, .root:disabled:checked:propHovered .checkbox,
-.root:disabled:checked:active .checkbox, .root:disabled:checked:propActive .checkbox {
+.root:disabled:checked .checkbox, .root:disabled:checked:hover .checkbox, .root:disabled:checked:propHover .checkbox, .root:disabled:checked:active .checkbox, .root:disabled:checked:propActive .checkbox{
     background-color: value(GR20);
 }
 
-.StylableCheckBox .checkbox {
+.stylableCheckBox {
+    display: flex;
+    align-items: center;
+}
+
+.stylableCheckBox .checkbox {
     display: inline-block;
 }
 
-.StylableCheckBox .inner {
-    opacity: 0;
-    top: -2px;
-    left: 1px;
-}
-
-.StylableCheckBox label {
+.stylableCheckBox label {
     display: inline-block;
     position: relative;
-    top: -2px;
     cursor: pointer;
 }

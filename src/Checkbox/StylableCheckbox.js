@@ -34,26 +34,30 @@ class Checkbox extends WixComponent {
 
   static displayName = 'Checkbox';
 
-  static Box = () => <div className={styles.checkbox}/>;
-  static Mark = () => <div className={styles.inner}><SvgV/></div>;
-  static BothIcon = () => <div className={styles.checkbox}><div className={styles.inner + ' ' + styles.tickMark}><SvgV/></div></div>
-  static Indeterminate = () => <div className={styles.inner}>
-    <div className={styles.indeterminate}/>
-  </div>;
+
+  static BoxAndIcons = () => (
+    <div className={styles.checkbox}>
+      <div className={styles.tickMark}><SvgV/></div>
+      <div className={styles.indeterminate}/>
+    </div>
+  );
+  static TickMark = () => <div className={styles.tickMark}><SvgV/></div>;
+  static BoxAndTickMark = () => <div className={styles.checkbox}><div className={styles.tickMark}><SvgV/></div></div>;
+  static Indeterminate = () => <div className={styles.indeterminate}/>;
 
   render() {
     const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange} = this.props;
 
     return (
-      <div cssStates={{checked, disabled, propHovered: hover, propActive: active, indeterminate}}>
+      <div cssStates={{checked, disabled, propHover: hover, propActive: active, indeterminate}}>
         <StylableCheckBox
-          className={styles.StylableCheckBox}
+          className={styles.stylableCheckBox}
           value={checked || active}
           disabled={disabled}
           indeterminate={indeterminate}
-          tickIcon={() => <span/>}
-          indeterminateIcon={Checkbox.Indeterminate}
-          boxIcon={Checkbox.BothIcon}
+          tickIcon={() => null}
+          indeterminateIcon={() => null}
+          boxIcon={Checkbox.BoxAndIcons}
           onChange={onChange}
           >
           <Label for={id} appearance="T1.1">
