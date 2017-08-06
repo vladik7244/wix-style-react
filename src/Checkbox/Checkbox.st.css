@@ -97,9 +97,8 @@
 }
 
 .root:large .indeterminate {
-    width: 12px;
-    height: 3px;
-    top: -7px;
+    top: -6px;
+    left: 5px;
 }
 
 :global(.rtl) .indeterminate {
