@@ -1,10 +1,5 @@
 @namespace "Checkbox";
 
-:import {
-    -st-from: "../../node_modules/stylable-components/lib/components/checkbox/checkbox";
-    -st-named: CheckBox;
-}
-
 :vars {
     B10: #3899ec;
     B20: #4eb7f5;
@@ -15,7 +10,7 @@
 }
 
 .root {
-    -st-states: checked, disabled, propHovered, propActive;
+    -st-states: checked, disabled, propHovered, propActive, indeterminate;
     display: inline-block;
 }
 
@@ -30,7 +25,7 @@
     display: none;
 }
 
-:global(.rtl) .root > label {
+:global(.rtl) .root{
     direction: rtl;
 }
 
@@ -89,10 +84,10 @@
     height: 9px;
 }
 
-.checkbox.large > .inner > svg {
-    width: 13px;
-    height: 13px;
-}
+/*.checkbox.large > .inner > svg {*/
+    /*width: 13px;*/
+    /*height: 13px;*/
+/*}*/
 
 .inner > svg > path {
     fill: #fff;
@@ -112,22 +107,26 @@
     background-color: value(B10);
 }
 
-.root:checked .checkbox > .inner, .root:hover:checked .checkbox > .inner, .root:propHovered:checked .checkbox > .inner {
+.root:checked .inner, .root:hover:checked .inner {
     opacity: 1;
 }
 
 /* Unchecked State */
 
-.root:hover .checkbox, .root:propHovered .checkbox {
+.root:hover .checkbox {
     background-color: value(B40);
 }
 
-.root:active .checkbox, .root:propActive .checkbox {
+.root:active .checkbox {
     background-color: value(B20);
 }
 
-.root:active .checkbox > .inner, .root:propActive .checkbox > .inner {
+.root:active .inner {
     opacity: 1;
+}
+
+.root:indeterminate .tickMark, .root:indeterminate:hover .tickMark, .root:active:indeterminate .tickMark{
+    opacity: 0;
 }
 
 /* Disabled State */
@@ -153,7 +152,7 @@
 }
 
 .StylableCheckBox .inner {
-    opacity: 1;
+    opacity: 0;
     top: -2px;
     left: 1px;
 }

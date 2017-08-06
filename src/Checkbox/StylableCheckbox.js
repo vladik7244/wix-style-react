@@ -36,6 +36,7 @@ class Checkbox extends WixComponent {
 
   static Box = () => <div className={styles.checkbox}/>;
   static Mark = () => <div className={styles.inner}><SvgV/></div>;
+  static BothIcon = () => <div className={styles.checkbox}><div className={styles.inner + ' ' + styles.tickMark}><SvgV/></div></div>
   static Indeterminate = () => <div className={styles.inner}>
     <div className={styles.indeterminate}/>
   </div>;
@@ -44,15 +45,15 @@ class Checkbox extends WixComponent {
     const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange} = this.props;
 
     return (
-      <div cssStates={{checked, disabled, propHovered: hover, propActive: active}}>
+      <div cssStates={{checked, disabled, propHovered: hover, propActive: active, indeterminate}}>
         <StylableCheckBox
           className={styles.StylableCheckBox}
-          value={checked}
+          value={checked || active}
           disabled={disabled}
           indeterminate={indeterminate}
-          tickIcon={Checkbox.Mark}
+          tickIcon={() => <span/>}
           indeterminateIcon={Checkbox.Indeterminate}
-          boxIcon={Checkbox.Box}
+          boxIcon={Checkbox.BothIcon}
           onChange={onChange}
           >
           <Label for={id} appearance="T1.1">
