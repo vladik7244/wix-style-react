@@ -33,10 +33,10 @@ class Checkbox extends WixComponent {
   };
 
   static displayName = 'Checkbox';
-  static BoxAndIcons = () => (
+  static boxAndIcons = (indeterminate) => (
     <div className={styles.checkbox}>
       <div className={styles.tickMark}><SvgV/></div>
-      <div className={styles.indeterminate}/>
+      { indeterminate ? <div className={styles.indeterminate}/> : null }
     </div>
   );
 
@@ -52,7 +52,7 @@ class Checkbox extends WixComponent {
           indeterminate={indeterminate}
           tickIcon={() => null}
           indeterminateIcon={() => null}
-          boxIcon={Checkbox.BoxAndIcons}
+          boxIcon={() => Checkbox.boxAndIcons(indeterminate)}
           onChange={onChange}
           >
           <Label for={id} appearance="T1.1">

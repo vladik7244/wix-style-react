@@ -10,7 +10,7 @@ const checkboxDriverFactory = ({element, wrapper, component}) => {
   return {
     exists: () => !!element,
     click: () => ReactTestUtils.Simulate.click(checkbox),
-    isChecked: () => $(element).find('.inner').length > 0,
+    isChecked: () => ($(element).find('.tickMark').length === 1) && ($(element).find(':checked').length === 1),
     isDisabled: () => $(element).find('[data-automation-id="NATIVE_CHECKBOX"]').is(':disabled'),
     isIndeterminate: () => $(element).find('.indeterminate').length === 1,
     hasError: () => isClassExists(element, 'hasError'),
