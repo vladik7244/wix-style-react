@@ -20,7 +20,7 @@ export const TableHeader = props => {
   };
   const wrapWithSort = (column, index) => {
     return (
-      <div className={css.sortableColumn} onClick={() => props.onSort && props.onSort(index)}>
+      <div data-hook="sortableColumn" className={css.sortableColumn} onClick={() => props.onSort && props.onSort(index)}>
         {column}
         {props.onSort && props.columnToSortBy === index ? renderSortArrow() : null}
       </div>

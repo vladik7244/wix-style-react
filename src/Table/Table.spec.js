@@ -1,6 +1,6 @@
 import dataTableDriverFactory from './Table.driver';
 import React from 'react';
-import Table from './Table';
+import {Table} from './Table';
 import ReactTestUtils from 'react-dom/test-utils';
 import {createDriverFactory} from '../test-common';
 import {dataTableTestkitFactory} from '../../testkit';
@@ -15,9 +15,9 @@ describe('Table', () => {
     id: 'id',
     data: [{a: 'value 1', b: 'value 2'}, {a: 'value 3', b: 'value 4'}],
     columns: [
-        {title: 'Row Num', render: (row, rowNum) => rowNum},
-        {title: 'A', render: row => row.a},
-        {title: 'B', render: row => row.b}
+        {title: 'Row Num', render: (row, rowNum) => rowNum, width: 400},
+        {title: 'A', render: row => row.a, width: '400px'},
+        {title: 'B', render: row => row.b, width: '100%'}
     ],
     rowClass: 'class-name'
   };

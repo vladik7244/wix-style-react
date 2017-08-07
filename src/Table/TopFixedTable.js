@@ -115,7 +115,7 @@ export class TopFixedTable extends WixComponent {
     }
 
     return (
-      <div id={this.props.id} data-hook="page-container" className={css.pageContainer}>
+      <div data-hook="page-container" className={css.pageContainer}>
         {topSection}
         <div data-hook="page-scroller" ref={this.scrollContainerRefHandler} className={css.scrollContainer}>
           {table}

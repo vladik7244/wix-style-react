@@ -15,7 +15,7 @@ export class TableContent extends WixComponent {
 
     return (
       <div
-        data-hook={this.props.rowDataHook} key={rowIndex}
+        data-hook="bodyRow" key={rowIndex}
         className={classNames(css.bodyRow, {[css.clickable]: !!this.props.onRowClick}, rowClass)}
         onClick={event => this.props.onRowClick && !event.isDefaultPrevented() && this.props.onRowClick(rowData, rowIndex)}
         >
@@ -23,9 +23,9 @@ export class TableContent extends WixComponent {
           const columnStyle = {
             width: column.width,
             padding: column.padding === undefined ? defaultPadding : column.padding,
-            flexShrink: column.width.indexOf('px') !== -1 ? 0 : undefined
+            flexShrink: typeof column.width === 'number' || column.width.indexOf('px') !== -1 ? 0 : undefined
           };
-          return (<div key={index} className={css.cellContainer} style={columnStyle}>{column.render(rowData, rowIndex)}</div>);
+          return (<div key={index} data-hook="cell" className={css.cellContainer} style={columnStyle}>{column.render(rowData, rowIndex)}</div>);
         })}
       </div>
     );

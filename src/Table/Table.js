@@ -6,10 +6,11 @@ import {FixedTable} from './FixedTable';
 
 export class Table extends WixComponent {
   render() {
-    if (this.props.stickToTop) {
-      return <TopFixedTable {...this.props}/>;
-    } else {
-      return <FixedTable {...this.props}/>;
-    }
+    return (
+      <div id={this.props.id}>
+        {this.props.stickToTop ? <TopFixedTable {...this.props} /> :
+          <FixedTable {...this.props} />}
+      </div>
+    );
   }
 }
