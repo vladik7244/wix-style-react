@@ -33,7 +33,7 @@ class Checkbox extends WixComponent {
   };
 
   static displayName = 'Checkbox';
-  static boxAndIcons = (indeterminate) => (
+  static boxAndIcons = indeterminate => (
     <div className={styles.checkbox}>
       <div className={styles.tickMark}><SvgV/></div>
       { indeterminate ? <div className={styles.indeterminate}/> : null }
@@ -46,6 +46,7 @@ class Checkbox extends WixComponent {
     return (
       <div cssStates={{checked, disabled, propHover: hover, propActive: active, indeterminate, large: size === 'large'}}>
         <StylableCheckBox
+          data-hook-checked={checked}
           className={styles.stylableCheckBox}
           value={checked || active}
           disabled={disabled}
