@@ -4,15 +4,14 @@ import ReactTestUtils from 'react-dom/test-utils';
 import $ from 'jquery';
 import styles from './Checkbox.st.css';
 
-function hasCssState(elem, stylesheet, stateMap){
+function hasCssState(elem, stylesheet, stateMap) {
   if (!elem) {
     return false;
   }
-
   const errors = [];
   for (const k in stateMap) {
-    if (stateMap.hasOwnProperty(k)) {
-      const mapping = stylesheet.$stylesheet.cssStates({ [k]: true });
+    if (stateMap.hasOwnProperty(k)) {// eslint-disable-line no-prototype-builtins
+      const mapping = stylesheet.$stylesheet.cssStates({[k]: true});
       if (stateMap[k]) {
         for (const m in mapping) {
           if (!elem.hasAttribute(m)) {
@@ -28,9 +27,7 @@ function hasCssState(elem, stylesheet, stateMap){
       }
     }
   }
-
   return !errors.length;
-
 }
 
 const checkboxDriverFactory = ({element, wrapper, component}) => {
