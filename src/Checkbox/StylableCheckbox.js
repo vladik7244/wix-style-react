@@ -23,7 +23,8 @@ class Checkbox extends WixComponent {
     /** used for automatic testing */
     hover: bool,
     size: oneOf(['medium', 'large']),
-    onChange: func
+    onChange: func,
+    hasError: bool
   };
 
   static defaultProps = {
@@ -41,10 +42,10 @@ class Checkbox extends WixComponent {
   );
 
   render() {
-    const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange, size} = this.props;
+    const {id = uniqueId(), checked, indeterminate, disabled, hover, active, onChange, size, hasError} = this.props;
 
     return (
-      <div cssStates={{checked, disabled, propHover: hover, propActive: active, indeterminate, large: size === 'large'}}>
+      <div cssStates={{checked, disabled, propHover: hover, propActive: active, indeterminate, large: size === 'large', hasError}}>
         <StylableCheckBox
           data-hook-checked={checked}
           className={styles.stylableCheckBox}

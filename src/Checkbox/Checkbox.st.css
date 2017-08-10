@@ -11,10 +11,11 @@
     D80: #ffffff;
     GR20: #dadada;
     GR30: #f1f1f1;
+    R10: #ee5951;
 }
 
 .root {
-    -st-states: checked, disabled, propHover, propActive, indeterminate, large;
+    -st-states: checked, disabled, propHover, propActive, indeterminate, large, hasError;
     display: inline-block;
 }
 
@@ -144,4 +145,8 @@
     display: inline-block;
     position: relative;
     cursor: pointer;
+}
+
+.root:hasError .checkbox {
+    border-color: value(R10);
 }
