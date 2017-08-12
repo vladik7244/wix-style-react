@@ -1,0 +1,12 @@
+@import '../../src/common.scss';
+
+.buttons {
+  font-size: 16px;
+  color: $B10;
+  cursor: pointer;
+
+  &:hover {
+    color: $B20;
+    text-decoration: underline;
+  }
+}

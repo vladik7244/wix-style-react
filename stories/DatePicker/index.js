@@ -11,6 +11,8 @@ import ExampleControlledExcludePast from './ExampleControlledExcludePast';
 import ExampleControlledRawExcludePast from '!raw-loader!./ExampleControlledExcludePast';
 import ExampleDisabled from './ExampleDisabled';
 import ExampleDisabledRaw from '!raw-loader!./ExampleDisabled';
+import ExampleRange from './ExampleRange';
+import ExampleRangeRaw from '!raw-loader!./ExampleRange';
 
 storiesOf('Core', module)
   .add('DatePicker', () => (
@@ -33,6 +35,10 @@ storiesOf('Core', module)
 
       <CodeExample title="Disabled input" code={ExampleDisabledRaw}>
         <ExampleDisabled/>
+      </CodeExample>
+
+      <CodeExample title="Range with custom input" code={ExampleRangeRaw}>
+        <ExampleRange/>
       </CodeExample>
     </div>
   ));

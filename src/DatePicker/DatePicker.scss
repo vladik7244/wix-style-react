@@ -120,3 +120,33 @@ $calendarMargin: 15px;
     pointer-events: none;
     color: $D60;
 }
+
+:global(.react-datepicker__day--in-range) {
+  color: #000;
+  background-color: $B50;
+  border-radius: 0;
+  padding: 8px;
+  margin: 0;
+}
+
+:global(.react-datepicker__day--range-start),
+:global(.react-datepicker__day--range-end) {
+  $padding: 4px;
+
+  padding: $padding;
+  border-radius: 50%;
+  padding: $padding;
+  margin: 0;
+  background-color: $B10 !important;
+  color: #fff;
+}
+
+:global(.react-datepicker__day--sat.react-datepicker__day--in-range) {
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+:global(.react-datepicker__day--sun.react-datepicker__day--in-range) {
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+}
