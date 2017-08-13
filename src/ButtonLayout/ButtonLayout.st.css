@@ -5,17 +5,27 @@
     -st-named: Height, ThemeTypography, Color;
 }
 
-:import {
-    -st-from: "./typography-mixins.js";
-    -st-named: Typography;
-}
-
 :vars {
     D10: #162d3d;   /* Main input text, titles */
     D55: #cbd3dc;   /* Disabled button - new version - naming not final */
+    D80: #ffffff;   /* Content box background */
 
     B10: #3899ec;   /* Main action color, active, buttons */
     B20: #4eb7f5;   /* Hover for elements with B10, buttons */
+    B40: #daeffe;   /* Dividers, table selected */
+    B50: #eaf7ff;   /* Dividers */
+
+    P00: #8e21b1;
+    P10: #aa4dc8;   /* Wix premium */
+    P20: #cd68ed;
+
+    G00: #44823f;
+    G10: #60bc57;   /* CTA hover */
+    G20: #80c979;   /* Notifications */
+
+    R00: #d6453d;
+    R10: #ee5951;   /* Errors, CTA hover */
+    R20: #ff6666;   /* Notifications */
 }
 
 .root {
@@ -67,10 +77,108 @@
 
 .fullblue,
 .icon-standard {
-    -st-mixin: ThemeTypography Color(value(B10));
+    -st-mixin: Color(value(B10)) ThemeTypography;
 }
 
-/*!********** Hover theme **********!*/
+.login {
+    border-radius: 24px;
+    height: 42px;
+    font-size: 16px;
+    background-color: value(B10);
+    border-color: value(B10);
+    color: #fff;
+    min-width: 100px;
+}
+
+.fullpurple {
+    -st-mixin: Color(value(P10)) ThemeTypography;
+}
+
+.fullgreen {
+    -st-mixin: Color(value(G10)) ThemeTypography;
+}
+
+.fullred {
+    -st-mixin: Color(value(R10)) ThemeTypography;
+}
+
+.emptygreen {
+    /*-st-mixin: ThemeTypography(3, value(G10)) Color(value(D80), value(G10), value(G10));*/
+    -st-mixin: Color(#ffffff, #60bc57, #60bc57) ThemeTypography(3, value(G10));
+}
+
+.emptyred {
+    /*-st-mixin: ThemeTypography(3, value(R00)) Color(transparent, value(R10), value(R00));*/
+    -st-mixin: Color(transparent, #ee5951, #d6453d) ThemeTypography(3, value(R00));
+}
+
+.emptyblue {
+    /*-st-mixin: ThemeTypography(3) Color(value(D80), #5babef);*/
+    -st-mixin: Color(#ffffff, #5babef) ThemeTypography(3);
+}
+
+.emptylogin {
+    border-radius: 24px;
+    height: 42px;
+    font-size: 16px;
+    min-width: 100px;
+    /*-st-mixin: Color(value(D80), #5babef, value(B10));*/
+    -st-mixin: Color(#ffffff, #5babef, #3899ec);
+}
+
+.emptypurple {
+    /*-st-mixin: ThemeTypography(3, value(P00)) Color(transparent, value(P10), value(P00));*/
+    -st-mixin: Color(transparent, #aa4dc8, #8e21b1) ThemeTypography(3, #8e21b1);
+}
+
+.close-transparent,
+.transparent {
+    -st-mixin: ThemeTypography;
+    background-color: rgba(22, 45, 61, 0.24);
+    border: 0;
+}
+
+.transparentblue,
+.icon-standardsecondary {
+    /*-st-mixin: Color(transparent, value(B10)) ThemeTypography(3);*/
+    -st-mixin: Color(transparent, #3899ec) ThemeTypography(3);
+}
+
+.emptybluesecondary,
+.icon-greybackground,
+.whiteblueprimary,
+.icon-white,
+.whiteblue {
+    -st-mixin: Color(value(D80)) ThemeTypography(3);
+}
+
+.whitebluesecondary,
+.icon-whitesecondary {
+    /*-st-mixin: Color(transparent, value(D80)) ThemeTypography;*/
+    -st-mixin: Color(transparent, #ffffff) ThemeTypography;
+}
+
+.close-standard {
+    /*-st-mixin: Color(transparent, transparent, value(B10));*/
+    -st-mixin: Color(transparent, transparent, #3899ec);
+}
+
+.close-dark {
+    /*-st-mixin: Color(transparent, transparent, value(D10));*/
+    -st-mixin: Color(transparent, transparent, #162d3d);
+}
+
+/********** Hover theme **********/
+
+.fullgreen:hover, .fullgreen.hover,
+.emptygreen:hover, .emptygreen.hover {
+    -st-mixin: Color(value(G20)) ThemeTypography;
+}
+
+.fullred:hover, .fullred.hover,
+.emptyred:hover, .emptyred.hover {
+    -st-mixin: Color(value(R20)) ThemeTypography;
+}
 
 .icon-greybackground:hover, .icon-greybackground.hover,
 .icon-standard:hover, .icon-standard.hover,
@@ -79,10 +187,44 @@
 .icon-standardsecondary:hover, .icon-standardsecondary.hover,
 .transparentblue:hover, .transparentblue.hover,
 .whiteblue:hover, .whiteblue.hover {
-    -st-mixin: ThemeTypography Color(value(B20));
+    -st-mixin: Color(value(B20)) ThemeTypography;
 }
 
-/*!********** Active theme **********!*/
+.login:hover, .login.hover {
+    -st-mixin: Color(value(B20));
+}
+
+.emptylogin:hover, .emptylogin.hover {
+    background-color: #5babef;
+    color: #fff;
+}
+
+.icon-whitesecondary:hover, .icon-whitesecondary.hover,
+.whitebluesecondary:hover, .whitebluesecondary.hover,
+.icon-white:hover, .icon-white.hover,
+.whiteblueprimary:hover, .whiteblueprimary.hover,
+.emptybluesecondary:hover, .emptybluesecondary.hover {
+    -st-mixin: Color(value(B50)) ThemeTypography(3);
+}
+
+.transparent:hover, .transparent.hover,
+.close-transparent:hover, .close-transparent.hover {
+    -st-mixin: ThemeTypography;
+    background-color: rgba(22, 45, 61, 0.3);
+}
+
+.emptypurple:hover, .emptypurple.hover,
+.fullpurple:hover, .fullpurple.hover {
+    -st-mixin: Color(value(P20)) ThemeTypography;
+}
+
+.close-standard:hover, .close-standard.hover,
+.close-dark:hover, .close-dark.hover {
+    /*-st-mixin: Color(transparent, transparent, value(B20));*/
+    -st-mixin: Color(transparent, transparent, #4eb7f5);
+}
+
+/********** Active theme **********/
 
 .icon-greybackground:active, .icon-greybackground.active,
 .icon-standard:active, .icon-standard.active,
@@ -91,10 +233,57 @@
 .transparentblue:active, .transparentblue.active,
 .whiteblue:active, .whiteblue.active,
 .emptyblue:active, .emptyblue.active {
-    -st-mixin: ThemeTypography Color(value(B10));
+    -st-mixin: Color(value(B10)) ThemeTypography;
 }
 
-/*!********** Disabled theme **********!*/
+.login:active, .login.active {
+    -st-mixin: Color(value(B10));
+}
+
+.emptylogin:active, .emptylogin.active {
+    color: #fff;
+    background-color: #5babef;
+}
+
+.icon-white:active, .icon-white.active,
+.whiteblueprimary:active, .whiteblueprimary.active,
+.icon-whitesecondary:active, .icon-whitesecondary.active,
+.whitebluesecondary:active, .whitebluesecondary.active {
+    -st-mixin: Color(value(B40)) ThemeTypography(3);
+}
+
+.emptybluesecondary:active, .emptybluesecondary.active {
+    -st-mixin: Color(value(D80)) ThemeTypography(3);
+}
+
+.emptypurple:active, .emptypurple.active,
+.fullpurple:active, .fullpurple.active {
+    -st-mixin: Color(value(P10)) ThemeTypography;
+}
+
+.fullgreen:active, .fullgreen.active,
+.emptygreen:active, .emptygreen.active {
+    -st-mixin: Color(value(G00)) ThemeTypography;
+}
+
+.fullred:active, .fullred.active,
+.emptyred:active, .emptyred.active {
+    -st-mixin: Color(value(R10)) ThemeTypography;
+}
+
+.transparent:active, .transparent.active,
+.close-transparent:active, .close-transparent.active {
+    -st-mixin: ThemeTypography;
+    background-color: rgba(22, 45, 61, 0.36);
+}
+
+.close-standard:active, .close-standard.active,
+.close-dark:active, .close-dark.active {
+    /*-st-mixin: Color(transparent, transparent, value(B10));*/
+    -st-mixin: Color(transparent, transparent, #3899ec);
+}
+
+/********** Disabled theme **********/
 
 .transparent.disabled,
 .fullred.disabled,
@@ -108,6 +297,21 @@
 .icon-white.disabled,
 .whiteblueprimary.disabled,
 .close-transparent.disabled {
-    -st-mixin: ThemeTypography Color(value(D55));
+    -st-mixin: Color(value(D55)) ThemeTypography;
+    pointer-events: none;
+}
+
+.button.emptyred.disabled,
+.button.emptygreen.disabled,
+.button.emptybluesecondary.disabled,
+.button.emptyblue.disabled,
+.button.emptypurple.disabled,
+.button.icon-standardsecondary.disabled,
+.button.transparentblue.disabled,
+.button.whiteblue.disabled,
+.button.icon-whitesecondary.disabled,
+.button.whitebluesecondary.disabled {
+    /*-st-mixin: Color(transparent, value(D55)) ThemeTypography(4);*/
+    -st-mixin: Color(transparent, #cbd3dc) ThemeTypography(4);
     pointer-events: none;
 }

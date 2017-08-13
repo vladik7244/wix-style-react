@@ -1,19 +1,13 @@
 const Typography = require('./typography-mixins').Typography;
 
-const DEFAULT_ICON_HEIGHT = 18;
-
-const IconHeight = optionsArr => {
-    const options = {
-        height: optionsArr[0] || DEFAULT_ICON_HEIGHT
-    };
-
+function IconHeight(height) {
     return {
-        height: `${options.height}px`,
-        width: `${options.height}px`,
-        'border-radius': `${options.height / 2}px`,
+        height: `${height}px`,
+        width: `${height}px`,
+        'border-radius': `${height / 2}px`,
         padding: '0'
     };
-};
+}
 
 const DEFAULT_HEIGHT = 'medium';
 
@@ -63,12 +57,12 @@ const Height = optionsArr => {
     };
 
     if (height.closeHeight) {
-        rules['&.close-standard, &.close-dark, &.close-transparent'] = IconHeight([height.closeHeight.toString()]);
+        rules['&.close-standard, &.close-dark, &.close-transparent'] = IconHeight(height.closeHeight);
     }
 
     if (height.supportsIcon) {
         rules['&.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary'] =
-            IconHeight([height.height.toString()]);
+            IconHeight(height.height);
     }
 
     if (height.fontSize) {
@@ -79,10 +73,12 @@ const Height = optionsArr => {
 };
 
 const DEFAULT_COLOR_INDEX = '2';
+const DEFAULT_SMALL_COLOR = '';
 
 const ThemeTypography = optionsArr => {
     const options = {
-        colorIndex: optionsArr[0] || DEFAULT_COLOR_INDEX
+        colorIndex: optionsArr[0] || DEFAULT_COLOR_INDEX,
+        smallColor: optionsArr[1] || DEFAULT_SMALL_COLOR
     };
 
     let rules = Typography(['t', '1', options.colorIndex]);
@@ -90,23 +86,35 @@ const ThemeTypography = optionsArr => {
         'font-size': '20px'
     };
     rules['&.heightsmall'] = Typography(['t', '3', options.colorIndex]);
+    if (options.smallColor) {
+        rules['&.heightsmall'].color = options.smallColor;
+    }
 
     return rules;
 };
 
+const DEFAULT_BORDER_COLOR = '';
+const DEFAULT_TEXT_COLOR = '';
+
 const Color = optionsArr => {
     const options = {
-        color: optionsArr[0]
+        color: optionsArr[0],
+        borderColor: optionsArr[1] || DEFAULT_BORDER_COLOR,
+        textColor: optionsArr[2] || DEFAULT_TEXT_COLOR
     };
 
-    return {
+    let rules = {
         'background-color': options.color,
-        'border-color': options.color
+        'border-color': options.borderColor || options.color
     };
+    if (options.textColor) {
+        rules.color = options.textColor;
+    }
+
+    return rules;
 };
 
 module.exports = {};
 module.exports.Height = Height;
-//module.exports.IconHeight = IconHeight;
 module.exports.ThemeTypography = ThemeTypography;
 module.exports.Color = Color;
