@@ -1,4 +1,4 @@
-@namespace "Checkbox";
+@namespace "WrapperCheckbox";
 :import{
     -st-from:"../../node_modules/stylable-components";
     -st-default: Checkbox as CH;

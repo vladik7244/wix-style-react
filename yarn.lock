@@ -10547,9 +10547,9 @@ yoshi-wnpm-release@latest:
   dependencies:
     wnpm-ci latest
 
-yoshi@^1.1.210:
-  version "1.1.210"
-  resolved "https://registry.yarnpkg.com/yoshi/-/yoshi-1.1.210.tgz#f44781e3ceb8ab063e287795b98155f1365a97dc"
+yoshi@latest:
+  version "1.1.213"
+  resolved "https://registry.yarnpkg.com/yoshi/-/yoshi-1.1.213.tgz#64c4a4f697efd778c45b16a3bb7b5855a4b908c0"
   dependencies:
     autoprefixer "~7.1.2"
     babel-jest "~20.0.3"
