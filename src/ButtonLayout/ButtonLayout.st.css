@@ -1,0 +1,113 @@
+@namespace "ButtonLayout";
+
+:import {
+    -st-from: "./button-mixins.js";
+    -st-named: Height, ThemeTypography, Color;
+}
+
+:import {
+    -st-from: "./typography-mixins.js";
+    -st-named: Typography;
+}
+
+:vars {
+    D10: #162d3d;   /* Main input text, titles */
+    D55: #cbd3dc;   /* Disabled button - new version - naming not final */
+
+    B10: #3899ec;   /* Main action color, active, buttons */
+    B20: #4eb7f5;   /* Hover for elements with B10, buttons */
+}
+
+.root {
+    -st-mixin: Height;
+
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    border: 1px solid;
+    cursor: pointer;
+    outline: none;
+
+    transition: all 100ms linear;
+}
+
+.inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner, .root > div, .inner > div {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+}
+
+/********** Heights **********/
+
+.heightsmall {
+    -st-variant: true;
+    -st-mixin: Height(small);
+}
+
+.heightlarge {
+    -st-variant: true;
+    -st-mixin: Height(large);
+}
+
+.heightx-large {
+    -st-variant: true;
+    -st-mixin: Height(x-large);
+}
+
+/********** Standard theme **********/
+
+.fullblue,
+.icon-standard {
+    -st-mixin: ThemeTypography Color(value(B10));
+}
+
+/*!********** Hover theme **********!*/
+
+.icon-greybackground:hover, .icon-greybackground.hover,
+.icon-standard:hover, .icon-standard.hover,
+.fullblue:hover, .fullblue.hover,
+.emptyblue:hover, .emptyblue.hover,
+.icon-standardsecondary:hover, .icon-standardsecondary.hover,
+.transparentblue:hover, .transparentblue.hover,
+.whiteblue:hover, .whiteblue.hover {
+    -st-mixin: ThemeTypography Color(value(B20));
+}
+
+/*!********** Active theme **********!*/
+
+.icon-greybackground:active, .icon-greybackground.active,
+.icon-standard:active, .icon-standard.active,
+.fullblue:active, .fullblue.active,
+.icon-standardsecondary:active, .icon-standardsecondary.active,
+.transparentblue:active, .transparentblue.active,
+.whiteblue:active, .whiteblue.active,
+.emptyblue:active, .emptyblue.active {
+    -st-mixin: ThemeTypography Color(value(B10));
+}
+
+/*!********** Disabled theme **********!*/
+
+.transparent.disabled,
+.fullred.disabled,
+.fullgreen.disabled,
+.fullpurple.disabled,
+.icon-greybackground.disabled,
+.icon-standard.disabled,
+.fullblue.disabled,
+.login.disabled,
+.emptylogin.disabled,
+.icon-white.disabled,
+.whiteblueprimary.disabled,
+.close-transparent.disabled {
+    -st-mixin: ThemeTypography Color(value(D55));
+    pointer-events: none;
+}
