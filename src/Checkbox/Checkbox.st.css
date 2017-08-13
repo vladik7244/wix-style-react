@@ -1,5 +1,6 @@
 @namespace "WrapperCheckbox";
-:import{
+
+:import {
     -st-from:"../../node_modules/stylable-components";
     -st-default: Checkbox as CH;
 }
@@ -145,6 +146,7 @@
     display: inline-block;
     position: relative;
     cursor: pointer;
+    line-height: 20px;
 }
 
 .root:hasError .checkbox {
