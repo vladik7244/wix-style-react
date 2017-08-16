@@ -12,6 +12,11 @@ import ExampleRaw from '!raw-loader!./Example';
 import ExampleCallingServer from './ExampleCallingServer';
 import ExampleCallingServerRaw from '!raw-loader!./ExampleCallingServer';
 
+import ExampleWithRowDetails from './ExampleWithRowDetails';
+import ExampleWithRowDetailsRaw from '!raw-loader!./ExampleWithRowDetails';
+import ExampleSortable from './ExampleSortable';
+import ExampleSortableRaw from '!raw-loader!./ExampleSortable';
+
 storiesOf('Core', module)
   .add('DataTable', () => (
     <TabbedView tabs={['API', 'TestKits']}>
@@ -20,6 +25,12 @@ storiesOf('Core', module)
         <h1>Usage examples</h1>
         <CodeExample title="With infinite scroll" code={ExampleRaw}>
           <Example/>
+        </CodeExample>
+        <CodeExample title="With row details" code={ExampleWithRowDetailsRaw}>
+          <ExampleWithRowDetails/>
+        </CodeExample>
+        <CodeExample title="With sorting" code={ExampleSortableRaw}>
+          <ExampleSortable/>
         </CodeExample>
         <CodeExample title="With server calling (up to 100 items)" code={ExampleCallingServerRaw}>
           <ExampleCallingServer/>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './FieldLabelAttributes.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import Tooltip from '../Tooltip';
-import {Info2} from '../Icons/dist';
+import Info2 from '../Icons/dist/components/Info2';
 
 class FieldLabelAttributes extends WixComponent {
 

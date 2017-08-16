@@ -3,7 +3,6 @@ import blueStyle from './MenuBlue.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import findIndex from 'lodash/findIndex';
 
 class Menu extends React.Component {
 
@@ -37,7 +36,7 @@ class Menu extends React.Component {
 
     const {title, children, id} = item;
 
-    const selectedChild = findIndex(children, c => c.id === selectedId);
+    const selectedChild = [...children].findIndex(children, c => c.id === selectedId);
     const selected = selectedId === id || selectedChild > -1;
 
     const height = !selected ? 0 : ((children.length * 48) - 18);  /* 48 is item height, 18 is last item margin */

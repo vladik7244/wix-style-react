@@ -22,6 +22,18 @@
   border-bottom: solid 1px $D70;
 }
 
+.table td.details {
+  padding: 0px;
+  height: 0px;
+  border-bottom: none;
+}
+
+.table td.active {
+  padding: 0px;
+  height: auto;
+  border-bottom: solid 1px $D70;
+}
+
 .table td.important {
   font-size: 16px;
   color: $paletteD2;
@@ -29,4 +41,13 @@
 
 .clickableDataRow {
   cursor: pointer;
+}
+
+.sortArrowAsc,
+.sortArrowDesc{
+  font-size: 9px;
+  margin: 0 4px;
+}
+.sortArrowDesc svg{
+  transform: rotate(180deg);
 }

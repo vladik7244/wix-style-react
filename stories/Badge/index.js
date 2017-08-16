@@ -5,10 +5,13 @@ import TabbedView from '../utils/Components/TabbedView';
 import CodeExample from '../utils/Components/CodeExample';
 import BadgeSource from '!raw-loader!../../src/Badge/Badge';
 import TestKitReadme from '../../src/Badge/README.TESTKIT.md';
-import Markdown from '../utils/Components/Markdown'
+import Markdown from '../utils/Components/Markdown';
 
 import DefaultBadgeExample from './DefaultBadge';
 import DefaultBadgeExampleRaw from '!raw-loader!./DefaultBadge';
+
+import RectangleBadgeExample from './RectangleBadge';
+import RectangleBadgeExampleRaw from '!raw-loader!./RectangleBadge';
 
 import AppearanceBadgeExample from './AppearanceBadge';
 import AppearanceBadgeExampleRaw from '!raw-loader!./AppearanceBadge';
@@ -24,6 +27,10 @@ storiesOf('Core', module)
 
         <CodeExample title="Default" code={DefaultBadgeExampleRaw}>
           <DefaultBadgeExample/>
+        </CodeExample>
+
+        <CodeExample title="Shape (Rectangle)" code={RectangleBadgeExampleRaw}>
+          <RectangleBadgeExample/>
         </CodeExample>
 
         <CodeExample title="Appearance" code={AppearanceBadgeExampleRaw}>

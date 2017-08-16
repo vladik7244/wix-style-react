@@ -3,7 +3,7 @@ import WixComponent from '../../BaseComponents/WixComponent';
 import styles from './PopoverMenu.scss';
 import Tooltip from '../Tooltip';
 import Button from '../../Backoffice/Button';
-import {Dots} from '../../Icons/dist';
+import Dots from '../../Icons/dist/components/Dots';
 import PopoverMenuItem from '../PopoverMenuItem';
 
 class PopoverMenu extends WixComponent {

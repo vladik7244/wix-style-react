@@ -27,6 +27,9 @@
 | thPadding | string | '5px' | - | Table headers padding |
 | thHeight | string | '36px' | - | Table headers height |
 | thFontSize | string | '12px' | - | Table headers font size |
+| rowDetails | func | - | - | Function that returns React component that will be rendered in row details section. Example: `rowDetails={(row, rowNum) => <MyRowDetailsComponent {...row} />}` |
+| allowMultiDetailsExpansion | boolean | false | - | Allows to open multiple row details |
+| onSortClick | func | - | - | A callback function called on each column title click. Signature `onSortClick(colData, colNum)` |
 
 ### Column object props
 
@@ -36,3 +39,5 @@
 | render | func | - | true | A function to render column cells. The function will be called with each row's data and should return a jsx element. Signature: `render(rowData, rowNum)` |
 | width | string | - | - | The width to apply to the column. No value means column will try to contain its children, if possible |
 | important | bool | false | - | Whether font color should be stronger, more dominant |
+| sortable | bool | false | - | Enables sorting by column |
+| sortDescending | bool | - | - | Pass false - for ascending sort, true - for descending|

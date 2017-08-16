@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tag from '../Tag/Tag';
 import Input from '../Input';
 import styles from './InputWithTags.scss';
-import omit from 'lodash/omit';
+import omit from 'omit';
 import classNames from 'classnames';
 
 class InputWithTags extends React.Component {
@@ -40,7 +40,7 @@ class InputWithTags extends React.Component {
       [styles.hasFocus]: hasFocus
     });
 
-    const desiredProps = omit(inputProps, ['onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook']);
+    const desiredProps = omit(['onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook'], inputProps);
     const fontSize = (desiredProps.size && desiredProps.size === 'small') ? '14px' : '16px';
 
     return (

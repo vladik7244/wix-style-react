@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../Input';
 import InputWithOptions from '../InputWithOptions';
-import isundefined from 'lodash/isUndefined';
-import includes from 'lodash/includes';
 import {google2address} from './google2address';
 
 class GoogleAddressInput extends React.Component {
@@ -85,7 +83,7 @@ class GoogleAddressInput extends React.Component {
     this.props.onChange && this.props.onChange(e);
     this.props.onSet && this.props.onSet(null);
 
-    if (!isundefined(this.props.value)) {
+    if (this.props.value) {
       // Controlled mode
       return;
     }
@@ -157,7 +155,7 @@ class GoogleAddressInput extends React.Component {
   }
 
   onManuallyInput(value) {
-    this._getSuggestions(value, !isundefined(this.props.value)).then(suggestions => {
+    this._getSuggestions(value, this.props.value).then(suggestions => {
 
       if (suggestions.length === 0) {
         // No suggestion to the text entered
@@ -214,7 +212,7 @@ class GoogleAddressInput extends React.Component {
       }
 
       if (filterTypes) {
-        results = results.filter(result => includes(result.types, filterTypes));
+        results = results.filter(result => (result.types || []).includes(filterTypes));
       }
 
       return Promise.resolve(results);

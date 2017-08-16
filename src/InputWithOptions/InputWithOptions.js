@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import Input from '../Input';
-import omit from 'lodash/omit';
+import omit from 'omit';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 
 class InputWithOptions extends WixComponent {
@@ -42,7 +42,7 @@ class InputWithOptions extends WixComponent {
   }
 
   renderInput() {
-    const inputProps = Object.assign(omit(this.props, Object.keys(DropdownLayout.propTypes).concat(['onChange', 'dataHook'])), this.inputAdditionalProps());
+    const inputProps = Object.assign(omit(Object.keys(DropdownLayout.propTypes).concat(['onChange', 'dataHook']), this.props), this.inputAdditionalProps());
     const {inputElement} = inputProps;
     return React.cloneElement(inputElement, {
       menuArrow: true,
@@ -56,7 +56,7 @@ class InputWithOptions extends WixComponent {
   }
 
   _renderDropdownLayout() {
-    const dropdownProps = Object.assign(omit(this.props, Object.keys(Input.propTypes).concat(['dataHook'])), this.dropdownAdditionalProps());
+    const dropdownProps = Object.assign(omit(Object.keys(Input.propTypes).concat(['dataHook']), this.props), this.dropdownAdditionalProps());
     const customStyle = {marginLeft: this.props.dropdownOffsetLeft};
     if (this.props.dropdownWidth) {
       customStyle.width = this.props.dropdownWidth;

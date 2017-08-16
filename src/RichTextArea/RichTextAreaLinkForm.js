@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import TextField from '../TextField';
 import Button from '../Button';
-import {Close, Check} from '../Icons/dist';
+import Close from '../Icons/dist/components/Close';
+import Check from '../Icons/dist/components/Check';
 import Input from '../Input';
 import styles from './RichTextAreaLinkForm.scss';
 

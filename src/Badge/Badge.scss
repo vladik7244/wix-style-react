@@ -7,10 +7,12 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  border-radius: 1em;
   line-height: 2em;
   font-weight: bold;
 }
+
+.ellipse { border-radius: 1em; }
+.rectangle { border-radius: 0; }
 
 .default { background: $paletteD3; }
 .primary { background: $paletteE1; }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
 import styles from './DropdownLayout.scss';
+import values from 'lodash/values';
 
 const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
@@ -35,7 +36,7 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     optionContentAt: position => optionAt(position).textContent,
     clickAtOption: position => ReactTestUtils.Simulate.click(optionAt(position)),
     clickAtOptionWithValue: value => {
-      const option = Object.values(options.childNodes).find(option => option.innerHTML === value);
+      const option = values(options.childNodes).find(option => option.innerHTML === value);
       option && ReactTestUtils.Simulate.click(option);
     },
     isOptionADivider: position => isClassExists(optionAt(position), 'divider'),

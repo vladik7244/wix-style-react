@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
-import {Languages} from '../Icons/dist';
+import Languages from '../Icons/dist/components/Languages';
 import ButtonWithOptions from '../ButtonWithOptions/ButtonWithOptions';
 
 export default class LanguagePicker extends WixComponent {

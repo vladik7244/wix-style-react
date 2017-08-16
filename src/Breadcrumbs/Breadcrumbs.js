@@ -67,7 +67,7 @@ class Breadcrumbs extends WixComponent {
       <button
         type="button"
         data-hook="breadcrumb-clickable"
-        className={classnames(styles.item, styles.button, {[styles.disabled]: item.disabled})}
+        className={classnames(styles.item, styles.button, {[styles.disabled]: item.disabled, [styles.active]: isActive})}
         onClick={onClick}
         children={breadcrumbValue(item.value)}
         />;
@@ -76,7 +76,7 @@ class Breadcrumbs extends WixComponent {
       <a
         href={item.link}
         data-hook="breadcrumb-clickable"
-        className={classnames(styles.item, styles.link, {[styles.disabled]: item.disabled})}
+        className={classnames(styles.item, styles.link, {[styles.disabled]: item.disabled, [styles.active]: isActive})}
         onClick={onClick}
         children={breadcrumbValue(item.value)}
         />;

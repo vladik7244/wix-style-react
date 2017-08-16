@@ -13,6 +13,9 @@ const tagDriverFactory = ({element, wrapper, component}) => {
   return {
     exists: () => !!element,
     isLarge: () => isClassExists(element, 'large'),
+    isStandardTheme: () => isClassExists(element, 'standard'),
+    isWarningTheme: () => isClassExists(element, 'warning'),
+    isErrorTheme: () => isClassExists(element, 'error'),
     isRemovable: () => isClassExists(removeButton, 'tagRemoveButton'),
     removeTag: () => ReactTestUtils.Simulate.click(removeButton),
     isThumbExists: () => isClassExists(thumb, 'thumb'),

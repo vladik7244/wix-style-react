@@ -3,7 +3,7 @@ import {string} from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../../BaseComponents/WixComponent';
 import tpaStyleInjector from '../TpaStyleInjector';
-import omit from 'lodash/omit';
+import omit from 'omit';
 
 let styles = {locals: {}};
 try {
@@ -30,7 +30,7 @@ class TextLink extends WixComponent {
     const propsToOmit = ['children', 'className', 'link', 'href', 'dataHook'];
 
     return (
-      <a className={classes} href={link} {...omit(this.props, propsToOmit)}>
+      <a className={classes} href={link} {...omit(propsToOmit, this.props)}>
         {children}
       </a>
     );

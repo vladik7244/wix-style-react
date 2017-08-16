@@ -64,7 +64,7 @@
   border: 0;
   padding: 0;
 
-  &:not(.disabled) {
+  &:not(.disabled):not(.active) {
     cursor: pointer;
   }
 }

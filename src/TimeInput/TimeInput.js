@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import isUndefined from 'lodash/isUndefined';
 import classNames from 'classnames';
 import moment from 'moment';
 
@@ -129,7 +128,7 @@ export default class extends Component {
   }
 
   updateDate({time, am}) {
-    am = isUndefined(am) ? this.state.am : am;
+    am = !am ? this.state.am : am;
     let newTime = moment(time, 'HH:mm');
     newTime = newTime.isValid() ? newTime : this.state.time;
     const normalizedTime = this.normalizeTime(am, newTime);

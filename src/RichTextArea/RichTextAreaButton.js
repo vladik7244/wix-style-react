@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Tooltip from '../Tooltip';
-import {Bold, Italic, Underline, UnorderedList, OrderedList, Link, Image} from '../Icons/dist';
+import Bold from './../Icons/dist/components/Bold';
+import Italic from './../Icons/dist/components/Italic';
+import Underline from './../Icons/dist/components/Underline';
+import UnorderedList from './../Icons/dist/components/UnorderedList';
+import OrderedList from './../Icons/dist/components/OrderedList';
+import Link from './../Icons/dist/components/Link';
+import Image from './../Icons/dist/components/Image';
 import styles from './RichTextAreaButton.scss';
 
 const buttons = {

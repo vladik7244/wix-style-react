@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FilePicker.scss';
 import WixComponent from '../BaseComponents/WixComponent';
-import {Add} from '../Icons/dist';
+import Add from '../Icons/dist/components/Add';
 import uniqueId from 'lodash/uniqueId';
 
 class FilePicker extends WixComponent {

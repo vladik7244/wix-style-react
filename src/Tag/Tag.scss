@@ -3,7 +3,6 @@
 .tag {
   @include FontLight();
   position: relative;
-  background-color: $B40;
   border-radius: 100px;
   display: flex;
   align-items: center;
@@ -25,7 +24,6 @@
   .tagRemoveButton {
     cursor: pointer;
     margin-left: 12px;
-    color: $B10;
     width: 6px;
     font-size: 6px;
     line-height: 6px;
@@ -62,5 +60,26 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.standard-theme {
+  background-color: $B40;
+  .tagRemoveButton {
+    color: $B10;
+  }
+}
+
+.warning-theme {
+  background-color: $Y10;
+  .tagRemoveButton {
+    color: white;
+  }
+}
+
+.error-theme {
+  background-color: $R20;
+  .tagRemoveButton {
+    color: black;
+  }
 }
 

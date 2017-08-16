@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Tooltip from '../Tooltip';
-import {Help} from '../Icons/dist';
+import Help from '../Icons/dist/components/Help';
 import styles from './Input.scss';
 
 class InputHelpSuffix extends React.Component {

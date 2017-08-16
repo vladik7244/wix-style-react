@@ -17,6 +17,7 @@ class InputErrorSuffix extends React.Component {
         content={this.props.errorMessage}
         overlay=""
         theme="dark"
+        hideDelay={150}
         >
         <div className={styles.exclamation}><SvgExclamation width={2} height={11}/></div>
       </Tooltip>
