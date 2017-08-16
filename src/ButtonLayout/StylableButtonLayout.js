@@ -9,7 +9,6 @@ const ButtonLayout = props => {
   const {theme, hover, active, disabled, height, children} = props;
 
   const className = classNames({
-    //[styles.button]: true,
     [styles.root]: true,
     [styles[theme]]: true,
     [styles.hover]: hover,
