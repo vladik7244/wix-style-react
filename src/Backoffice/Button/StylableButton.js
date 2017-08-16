@@ -2,7 +2,7 @@ import React from 'react';
 import {any, func, node, string} from 'prop-types';
 import WixComponent from '../../BaseComponents/WixComponent';
 import ButtonLayout from '../../ButtonLayout/StylableButtonLayout';
-import omit from 'lodash/omit';
+import omit from 'omit';
 
 import {SBComponent as sbcomponent} from 'stylable-react-component';
 import styles from './Button.st.css';
@@ -51,7 +51,7 @@ class Button extends WixComponent {
 
   render() {
     const {disabled, onClick, children, type, onMouseEnter, onMouseLeave} = this.props;
-    const buttonLayoutProps = omit(this.props, ['id', 'onClick', 'prefixIcon', 'suffixIcon', 'type']);
+    const buttonLayoutProps = omit(['id', 'onClick', 'prefixIcon', 'suffixIcon', 'type'], this.props);
 
     return (
       <ButtonLayout {...buttonLayoutProps}>
