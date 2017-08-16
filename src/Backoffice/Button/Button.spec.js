@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import buttonDriverFactory from './Button.driver';
-import Button from './Button';
+import Button from './index';
 import {createDriverFactory} from '../../test-common';
 import {buttonTestkitFactory} from '../../../testkit';
 import {buttonTestkitFactory as enzymeButtonTestkitFactory} from '../../../testkit/enzyme';

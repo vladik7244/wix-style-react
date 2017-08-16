@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonLayout from './ButtonLayout';
+import ButtonLayout from './index';
 import {createDriverFactory} from '../test-common';
 import buttonDriverFactory from './ButtonLayout.driver';
 
