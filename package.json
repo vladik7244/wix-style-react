@@ -120,7 +120,8 @@
       "<rootDir>/node_modules/babel-polyfill"
     ],
     "moduleNameMapper": {
-      "\\.(css|less|scss)$": "identity-obj-proxy"
+      "\\.(css)$": "<rootDir>/mock-st-css.js",
+      "\\.(less|scss)$": "identity-obj-proxy"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/dist/",
