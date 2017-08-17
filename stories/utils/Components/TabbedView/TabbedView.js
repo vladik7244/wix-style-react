@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '../../../../src/Tabs/Tabs';
+import Tabs from '../../../../src/Tabs';
 
 class TabbedView extends Component {
   static propTypes = {
