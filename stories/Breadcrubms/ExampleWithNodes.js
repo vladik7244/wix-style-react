@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ExampleBreadcrumbs.scss';
 
-import Breadcrumbs from '../../src/Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '../../src/Breadcrumbs';
 
 const itemsWithNode = [{id: '1', value: <span style={{color: 'red'}}>I'm a span with styles</span>}, {
   id: '2',

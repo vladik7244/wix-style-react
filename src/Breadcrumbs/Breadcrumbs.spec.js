@@ -7,7 +7,7 @@ import {breadcrumbsTestkitFactory} from '../../testkit';
 import {breadcrumbsTestkitFactory as enzymeBreadcrumbsTestkitFactory} from '../../testkit/enzyme';
 import breadcrumbsDriverFactory from './Breadcrumbs.driver';
 
-import Breadcrumbs from './Breadcrumbs';
+import Breadcrumbs from './index';
 
 describe('Breadcrumbs', () => {
   const createDriver = createDriverFactory(breadcrumbsDriverFactory);
