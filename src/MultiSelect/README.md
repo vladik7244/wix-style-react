@@ -9,7 +9,7 @@
 | options | array of option | [] | - | Array of objects. Objects must have an Id and can can include *value* and *node*. If value is '-', a divider will be rendered instead. |
 | onChange | func | - | + | A callback function to be called when the input value changed|
 | value | string | - | - | The value of the current input |
-| onSelect | func | - | - | Callback function called whenever the user selects an option in the list |
+| onSelect | func | - | - | Callback function called whenever the user selects an option |
 | onManuallyInput | func | noop | - | Callback when the user pressed the Enter key or Tab key after he wrote in the Input field - meaning the user selected something not in the list |
 | onRemoveTag | func | - | + | A callback function to be called when a tag should be removed|
 | tags | array of objects | - | + | The tags. tags are just set of selected suggestions|
@@ -19,7 +19,7 @@
 | predicate | func | () => true | - | Callback predicate for the filtering options function |
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
-| delimiters | array | [] | - | delimiters that will be treated like enter press |
+| delimiters | array | [','] (also Enter and Tab) | - | delimiters that will be treated like enter press |
 | ***All of the InputWithOptions Props are also available for this component*** | | | | |
 
 ## Option

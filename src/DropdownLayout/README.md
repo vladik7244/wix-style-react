@@ -19,6 +19,7 @@
 | fixedFooter | node | - | - | A fixed footer to the list |
 | theme | string | - | - | The theme of the dropdown. currently only 'b2b' theme is supported |
 | maxHeightPixels | number | 260 | - | Set the max height of the dropdownLayout in pixels |
+| closeOnSelect | bool | true | - | Will preventDefault of the event when pressing the tab key|
 
 ## Option
 

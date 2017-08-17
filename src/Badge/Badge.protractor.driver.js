@@ -8,6 +8,7 @@ const hasClass = (element, styles, cls) => {
 
 export default component => ({
   element: () => component,
+  isBadge: () => hasClass(component, styles, 'badge'),
   isOfType: type => hasClass(component, styles, type),
   isOfAppearance: appearance => hasClass(component, typography, appearance),
   isOfAlignment: alignment => hasClass(component, styles, alignment),

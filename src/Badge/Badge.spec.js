@@ -12,6 +12,11 @@ describe('Badge', () => {
     expect(driver.text()).toEqual('Hello World');
   });
 
+  it('should have a badge class', () => {
+    const driver = createDriver(<Badge>Hello World</Badge>);
+    expect(driver.isBadge()).toBeTruthy();
+  });
+
   it('should have by default an Ellipse shape', () => {
     const driver = createDriver(<Badge>Hello World</Badge>);
     expect(driver.isOfShape('ellipse')).toBeTruthy();

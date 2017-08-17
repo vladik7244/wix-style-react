@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import classNames from 'classnames';
 
-import {Button} from '../Backoffice';
+import Button from '../Backoffice/Button';
 import SvgX from '../svg/X.js';
 
 import * as styles from './MessageBoxMarketerialLayout.scss';

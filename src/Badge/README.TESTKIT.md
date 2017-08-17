@@ -10,6 +10,7 @@
 | isOfAppearance | string | boolean | true if this appearance appears in the element styles  |
 | isOfAlignment | - | bool | true if this type alignment in the element styles |
 | isOfShape | string | boolean | true if this shape is in the element styles |
+| isBadge | - | bool | true if the component is a badge (has the .badge in the element styles) |
 | text | - | string | get the badge text |
 | exists | - | bool | fulfilled if element in the DOM |
 
@@ -21,6 +22,7 @@
 | isOfAppearance | string | boolean | true if this appearance appears in the element styles  |
 | isOfAlignment | - | bool | true if this type alignment in the element styles |
 | isOfShape | string | boolean | true if this shape is in the element styles |
+| isBadge | - | bool | true if the component is a badge (has the .badge in the element styles) |
 | text | - | string | get the badge text |
 | element | - | element | get the actual element |
 

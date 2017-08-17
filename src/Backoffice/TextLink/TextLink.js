@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import WixComponent from '../../BaseComponents/WixComponent';
-import {BaseTextLink} from '../../BaseComponents';
+import BaseTextLink from '../../BaseComponents/TextLink';
 
 export default class TextLink extends WixComponent {
 

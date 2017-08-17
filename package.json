@@ -84,13 +84,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "color": "^1.0.3",
     "concurrently": "^3.4.0",
-    "deep-eql": "^3.0.0",
-    "difference": "^1.0.2",
     "express": "^4.15.2",
     "github-markdown-css": "^2.4.1",
     "hex-to-rgba": "^0.2.0",
@@ -98,6 +95,7 @@
     "is-image": "^1.0.1",
     "is-url": "^1.2.2",
     "jquery": "^1.12.4",
+    "lodash": "^4.17.4",
     "omit": "^1.0.1",
     "popper.js": "^1.10.8",
     "prop-types": "^15.5.8",
