@@ -88,6 +88,8 @@
     "classnames": "^2.2.5",
     "color": "^1.0.3",
     "concurrently": "^3.4.0",
+    "deep-eql": "^3.0.0",
+    "difference": "^1.0.2",
     "express": "^4.15.2",
     "github-markdown-css": "^2.4.1",
     "hex-to-rgba": "^0.2.0",

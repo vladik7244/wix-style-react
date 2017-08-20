@@ -10,6 +10,13 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
   const contentContainer = element.childNodes[0];
   const options = element.querySelector('[data-hook=dropdown-layout-options]');
   const optionAt = position => (options.childNodes[position]);
+  const optionsLength = () => options.childNodes.length;
+  const doIfOptionExists = (position, onSuccess) => {
+    if (optionsLength() <= position) {
+      throw `index out of bounds, try to get option ${position} while only ${optionsLength()} options exists`;
+    }
+    return onSuccess;
+  };
 
   return {
     exists: () => !!element,
@@ -18,28 +25,28 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     isUp: () => isClassExists(contentContainer, 'up'),
     hasTheme: theme => isClassExists(element, `theme-${theme}`),
     tabIndex: () => element.tabIndex,
-    optionsLength: () => options.childNodes.length,
-    mouseEnterAtOption: position => ReactTestUtils.Simulate.mouseEnter(optionAt(position)),
-    mouseLeaveAtOption: position => ReactTestUtils.Simulate.mouseLeave(optionAt(position)),
+    optionsLength: () => optionsLength(),
+    mouseEnterAtOption: position => doIfOptionExists(position, ReactTestUtils.Simulate.mouseEnter(optionAt(position))),
+    mouseLeaveAtOption: position => doIfOptionExists(position, ReactTestUtils.Simulate.mouseLeave(optionAt(position))),
     mouseClickOutside: () => ReactTestUtils.Simulate.blur(contentContainer),
     isOptionExists: optionText => [].filter.call(options.childNodes, opt => opt.textContent === optionText).length > 0,
-    isOptionHovered: position => isClassExists(optionAt(position), 'hovered'),
-    isOptionSelected: position => isClassExists(optionAt(position), 'selected'),
-    isOptionHoveredWithGlobalClassName: position => isClassExists(optionAt(position), 'wixstylereactHovered'),
-    isOptionSelectedWithGlobalClassName: position => isClassExists(optionAt(position), 'wixstylereactSelected'),
+    isOptionHovered: position => doIfOptionExists(position, isClassExists(optionAt(position), 'hovered')),
+    isOptionSelected: position => doIfOptionExists(position, isClassExists(optionAt(position), 'selected')),
+    isOptionHoveredWithGlobalClassName: position => doIfOptionExists(position, isClassExists(optionAt(position), 'wixstylereactHovered')),
+    isOptionSelectedWithGlobalClassName: position => doIfOptionExists(position, isClassExists(optionAt(position), 'wixstylereactSelected')),
     classes: () => options.className,
     pressDownKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'ArrowDown'}),
     pressUpKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'ArrowUp'}),
     pressEnterKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'Enter'}),
     pressTabKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'Tab'}),
     pressEscKey: () => ReactTestUtils.Simulate.keyDown(element, {key: 'Escape'}),
-    optionContentAt: position => optionAt(position).textContent,
-    clickAtOption: position => ReactTestUtils.Simulate.click(optionAt(position)),
+    optionContentAt: position => doIfOptionExists(position, optionAt(position).textContent),
+    clickAtOption: position => doIfOptionExists(position, ReactTestUtils.Simulate.click(optionAt(position))),
     clickAtOptionWithValue: value => {
       const option = values(options.childNodes).find(option => option.innerHTML === value);
       option && ReactTestUtils.Simulate.click(option);
     },
-    isOptionADivider: position => isClassExists(optionAt(position), 'divider'),
+    isOptionADivider: position => doIfOptionExists(position, isClassExists(optionAt(position), 'divider')),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
