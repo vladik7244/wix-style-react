@@ -1,5 +1,5 @@
 import React from 'react';
-import MessageBoxFunctionalLayout from './MessageBoxFunctionalLayout';
+import {MessageBoxFunctionalLayout} from './index';
 import MessageBoxFunctionalLayoutFactory from './MessageBoxFunctionalLayout.driver';
 import {createDriverFactory} from '../test-common';
 import sinon from 'sinon';

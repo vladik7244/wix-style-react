@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import MessageBoxMarketerialLayout from 'wix-style-react/MessageBox/MessageBoxMarketerialLayout';
-import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
+import {MessageBoxMarketerialLayout, MessageBoxFunctionalLayout} from 'wix-style-react/MessageBox';
 import {Button} from 'wix-style-react/Backoffice';
 
 const NgIf = ({show, children}) => show ? children : null;

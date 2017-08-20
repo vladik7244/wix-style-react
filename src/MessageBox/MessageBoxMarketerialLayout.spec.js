@@ -1,5 +1,5 @@
 import React from 'react';
-import MessageBoxMarketerialLayout from './MessageBoxMarketerialLayout';
+import {MessageBoxMarketerialLayout} from './index';
 import MessageBoxMarketerialLayoutFactory from './MessageBoxMarketerialLayout.driver';
 import {createDriverFactory} from '../test-common';
 import sinon from 'sinon';

@@ -1,0 +1,20 @@
+@namespace "MessageBoxFunctionalLayout";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: FontLight, paletteD2;
+}
+
+.root {
+    border-radius: 8px;
+    background-color: white;
+    width: 600px;
+}
+
+.body {
+    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    padding: 36px 30px 42px 30px;
+    color: value(paletteD2);
+    font-size: 16px;
+    line-height: 24px;
+}
