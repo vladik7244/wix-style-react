@@ -227,6 +227,24 @@ describe('Tooltip', () => {
     });
   });
 
+  describe('padding attribute', () => {
+    it('should set default to none', () => {
+      const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(30).then(() => {
+        expect(driver.getPadding()).toBe(undefined);
+      });
+    });
+    it('should set custom padding', () => {
+      const props = {..._props, padding: '5px'};
+      const driver = createDriver(<Tooltip {...props}>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(30).then(() => {
+        expect(driver.getPadding()).toBe('5px');
+      });
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

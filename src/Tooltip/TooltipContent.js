@@ -36,6 +36,11 @@ class TooltipContent extends Component {
     style: PropTypes.object,
 
     /**
+     * Custom padding (not part of style since it is to the internal component)
+     */
+    padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+    /**
      * Callback triggered when mouse enters the component
      * Used for showing tooltip when mouse leaves the target element, but hovers the tooltip itself
      */
@@ -75,14 +80,15 @@ class TooltipContent extends Component {
       bounce,
       size,
       textAlign,
-      maxWidth
+      maxWidth,
+      padding
     } = this.props;
 
     return (
       <div className={styles.root} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={styles.fadeIn}>
           <div className={classnames({[styles[`bounce-on-${arrowPlacement}`]]: bounce})}>
-            <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, textAlign}}>
+            <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, textAlign, padding}}>
               <div>{children}</div>
               <div className={classnames(styles.arrow, styles[arrowPlacement])} style={arrowStyle}/>
             </div>

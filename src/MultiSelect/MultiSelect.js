@@ -52,6 +52,7 @@ class MultiSelect extends InputWithOptions {
 
   _onChange(event) {
     if (!this.state.pasteDetected) {
+      this.setState({inputValue: event.target.value});
       this.props.onChange && this.props.onChange(event);
     } else {
       const delimitersRegexp = new RegExp(this.props.delimiters.join('|'), 'g');

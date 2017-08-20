@@ -374,8 +374,6 @@ $material-gap: 8px;
 
 .unit {
     padding: 0 $gap;
-    font-size: 13px;
-    line-height: 18px;
     color: $paletteD3;
     @include FontLight();
 }

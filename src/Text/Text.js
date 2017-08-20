@@ -30,14 +30,14 @@ export default class extends WixComponent {
       {type: 'h4', candidates: ['H3']},
       {type: 'h5', candidates: ['H4']}
     ]
-      .filter(({candidates}) => candidates.includes(appearance))
+      .filter(({candidates}) => candidates.indexOf(appearance) !== -1)
       .reduceRight((acc, {type}) => type, 'span');
 
   getClassNames = appearance =>
     [
       {className: styles.headingDefaults, candidates: ['H0', 'H1', 'H2', 'H2.1', 'H3', 'H4']}
     ]
-      .filter(({candidates}) => candidates.includes(appearance))
+      .filter(({candidates}) => candidates.indexOf(appearance) !== -1)
       .reduce((acc, {className}) =>
         acc.concat(className),
         [typography[convertFromUxLangToCss(appearance)]])

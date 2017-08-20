@@ -5,18 +5,18 @@
 
 @mixin Size($height, $fontSize) {
     height: $height;
+    line-height: $height - 2px;
     font-size: $fontSize;
     .input {
         display: block;
-        line-height: 24px;
         font-size: $fontSize;
     }
 
     .prefix,
     .suffix {
+        margin-top: -1px;
         height: $height;
     }
-
 }
 
 @mixin ThemeDefault($borderColor, $backgroundColor, $color) {

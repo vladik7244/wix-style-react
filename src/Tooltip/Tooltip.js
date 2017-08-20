@@ -72,7 +72,12 @@ class Tooltip extends WixComponent {
     moveArrowTo: PropTypes.number,
     size: PropTypes.oneOf(['normal', 'large']),
     shouldCloseOnClickOutside: PropTypes.bool,
-    relative: PropTypes.bool
+    relative: PropTypes.bool,
+
+    /**
+     * Allows changing the padding of the content
+     */
+    padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   };
 
   static defaultProps = {
@@ -126,6 +131,7 @@ class Tooltip extends WixComponent {
           bounce={this.props.bounce}
           arrowPlacement={arrowPlacement[this.props.placement]}
           style={{zIndex: this.props.zIndex, position}}
+          padding={this.props.padding}
           arrowStyle={this.state.arrowStyle}
           maxWidth={this.props.maxWidth}
           size={this.props.size}
