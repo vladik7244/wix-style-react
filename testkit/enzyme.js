@@ -145,13 +145,13 @@ import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driv
 export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDrillDriverFactory);
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
-export const tpaButtonTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaButtonDriverFactory, true);
+export const tpaButtonTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaButtonDriverFactory);
 
 import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
 export const tpaTextLinkTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaTextLinkDriverFactory);
 
 import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
-export const tpaFloatingTabsTestkitFactory = enzymeTestkitFactoryCreator(tpaFloatingTabsDriverFactory, true);
+export const tpaFloatingTabsTestkitFactory = enzymeTestkitFactoryCreator(tpaFloatingTabsDriverFactory);
 
 import fieldLabelAttributesDriverFactory from '../src/FieldLabelAttributes/FieldLabelAttributes.driver';
 export const fieldLabelAttributesTestkitFactory = enzymeTestkitFactoryCreator(fieldLabelAttributesDriverFactory);

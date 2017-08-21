@@ -25,6 +25,11 @@ describe('DropdownLayout', () => {
     expect(driver.isDown()).toBeTruthy();
   });
 
+  it('should throw an error when trying to click on a non exists option', () => {
+    const driver = createDriver(<DropdownLayout visible options={options}/>);
+    expect(() => driver.clickAtOption(20)).toThrow();
+  });
+
   it('should be visible and drop down', () => {
     const driver = createDriver(<DropdownLayout visible options={options}/>);
     expect(driver.isShown()).toBeTruthy();

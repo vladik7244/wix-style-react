@@ -13,7 +13,6 @@ class InputHelpSuffix extends React.Component {
         disabled={this.props.helpMessage.length === 0}
         maxWidth="250px"
         placement="right"
-        moveBy={{x: 2, y: 0}}
         alignment="center"
         hideDelay={100}
         content={this.props.helpMessage}
