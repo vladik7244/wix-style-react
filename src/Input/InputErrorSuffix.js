@@ -12,7 +12,6 @@ class InputErrorSuffix extends React.Component {
         dataHook="input-tooltip"
         disabled={this.props.errorMessage.length === 0}
         placement="top"
-        moveBy={{x: 2, y: 0}}
         alignment="center"
         content={this.props.errorMessage}
         overlay=""
