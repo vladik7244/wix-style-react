@@ -31,7 +31,7 @@ class Button extends WixComponent {
 
   addIcon(className, icon, height) {
     const iconSize = height === 'small' ? '8px' : height === 'medium' ? '12px' : '16px';
-    const dataHook = className === styles.prefix ? 'btn-prefix' : 'btn-suffix';
+    const dataHook = className === 'prefix' ? 'btn-prefix' : 'btn-suffix';
     return (
       icon ?
         <div className={className} data-hook={dataHook}>
@@ -42,11 +42,11 @@ class Button extends WixComponent {
   }
 
   addPrefix() {
-    return this.addIcon(styles.prefix, this.props.prefixIcon, this.props.height);
+    return this.addIcon('prefix', this.props.prefixIcon, this.props.height);
   }
 
   addSuffix() {
-    return this.addIcon(styles.suffix, this.props.suffixIcon, this.props.height);
+    return this.addIcon('suffix', this.props.suffixIcon, this.props.height);
   }
 
   render() {

@@ -51,83 +51,91 @@
 /********** Heights **********/
 
 .heightsmall {
+    -st-extends: root;
     -st-variant: true;
     -st-mixin: Height(small);
 }
 
 .heightlarge {
+    -st-extends: root;
     -st-variant: true;
     -st-mixin: Height(large);
 }
 
 .heightx-large {
+    -st-extends: root;
     -st-variant: true;
     -st-mixin: Height(x-large);
 }
 
 /********** Full variants (theme prop) **********/
 
-.fullblue,
-.icon-standard {
+/* TODO: Unify fullblue and icon-standard when Stylable supports -st-extends on multiple selectors */
+.fullblue {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: FullTheme(value(B10), value(B20));*/
-    -st-mixin: FullTheme(#3899ec, #4eb7f5);
+    -st-mixin: FullTheme(value(B10), value(B20));
+}
+.icon-standard {
+    -st-extends: root;
+    -st-variant: true;
+    -st-mixin: FullTheme(value(B10), value(B20));
 }
 
 .fullpurple {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: FullTheme(value(P10), value(P20));*/
-    -st-mixin: FullTheme(#aa4dc8, #cd68ed);
+    -st-mixin: FullTheme(value(P10), value(P20));
 }
 
 .fullgreen {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: FullTheme(value(G10), value(G20), value(G00));*/
-    -st-mixin: FullTheme(#60bc57, #80c979);
+    -st-mixin: FullTheme(value(G10), value(G20), value(G00));
 }
 .fullgreen:active, .fullgreen.active {
     -st-mixin: Color(value(G00)) ThemeTypography;
 }
 
 .fullred {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: FullTheme(value(R10), value(R20));*/
-    -st-mixin: FullTheme(#ee5951, #ff6666);
+    -st-mixin: FullTheme(value(R10), value(R20));
 }
 
 /********** Empty variants (theme prop) **********/
 
 .emptygreen {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: EmptyTheme(value(D80), value(G10), value(G10), value(G20), value(G00), transparent);*/
-    -st-mixin: EmptyTheme(#ffffff, #60bc57, #60bc57, #80c979, #44823f);
+    -st-mixin: EmptyTheme(value(D80), value(G10), value(G10), value(G20), value(G00), transparent);
 }
 .emptygreen:active, .emptygreen.active {
     -st-mixin: Color(value(G00)) ThemeTypography;
 }
 
 .emptyred {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: EmptyTheme(transparent, value(R10), value(R00), value(R20));*/
-    -st-mixin: EmptyTheme(transparent, #ee5951, #d6453d, #ff6666);
+    -st-mixin: EmptyTheme(transparent, value(R10), value(R00), value(R20));
 }
 .emptyred:active, .emptyred.active {
     -st-mixin: Color(value(R10)) ThemeTypography;
 }
 
 .emptyblue {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: EmptyTheme(value(D80), #5babef, , value(B20), value(B10));*/
-    -st-mixin: EmptyTheme(#ffffff, #5babef, , #4eb7f5, #3899ec);
+    -st-mixin: EmptyTheme(value(D80), #5babef, , value(B20), value(B10));
 }
 .emptyblue:active, .emptyblue.active {
     -st-mixin: Color(value(B10)) ThemeTypography;
 }
 
 .emptypurple {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: EmptyTheme(transparent, value(P10), value(P00), value(P20));*/
-    -st-mixin: EmptyTheme(transparent, #aa4dc8, #8e21b1, #cd68ed);
+    -st-mixin: EmptyTheme(transparent, value(P10), value(P00), value(P20));
 }
 .emptypurple:active, .emptypurple.active {
     -st-mixin: Color(value(P10)) ThemeTypography;
@@ -135,33 +143,48 @@
 
 /********** Secondary variants (theme prop) **********/
 
-.whitebluesecondary,
-.icon-whitesecondary {
+/* TODO: Unify whitebluesecondary and icon-whitesecondary when Stylable supports -st-extends on multiple selectors */
+.whitebluesecondary {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: SecondaryTheme(transparent, value(D80), value(B50), value(B40), 2, 3, empty);*/
-    -st-mixin: SecondaryTheme(transparent, #ffffff, #eaf7ff, #daeffe, 2, 3, empty);
+    -st-mixin: SecondaryTheme(transparent, value(D80), value(B50), value(B40), 2, 3, empty);
+}
+.icon-whitesecondary {
+    -st-extends: root;
+    -st-variant: true;
+    -st-mixin: SecondaryTheme(transparent, value(D80), value(B50), value(B40), 2, 3, empty);
 }
 .whitebluesecondary:active, .whitebluesecondary.active,
 .icon-whitesecondary:active, .icon-whitesecondary.active {
     -st-mixin: Color(value(B40)) ThemeTypography(3);
 }
 
-.transparentblue,
-.icon-standardsecondary {
+/* TODO: Unify transparentblue and icon-standardsecondary when Stylable supports -st-extends on multiple selectors */
+.transparentblue {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: SecondaryTheme(transparent, value(B10), value(B20), value(B10), 3, 2, empty);*/
-    -st-mixin: SecondaryTheme(transparent, #3899ec, #4eb7f5, #3899ec, 3, 2, empty);
+    -st-mixin: SecondaryTheme(transparent, value(B10), value(B20), value(B10), 3, 2, empty);
+}
+.icon-standardsecondary {
+    -st-extends: root;
+    -st-variant: true;
+    -st-mixin: SecondaryTheme(transparent, value(B10), value(B20), value(B10), 3, 2, empty);
 }
 .transparentblue:active, .transparentblue.active,
 .icon-standardsecondary:active, .icon-standardsecondary.active {
     -st-mixin: Color(value(B10)) ThemeTypography;
 }
 
-.whiteblueprimary,
-.icon-white {
+/* TODO: Unify whiteblueprimary and icon-white when Stylable supports -st-extends on multiple selectors */
+.whiteblueprimary {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: SecondaryTheme(value(D80), , value(B50), value(B40), 3, 3, full);*/
-    -st-mixin: SecondaryTheme(#ffffff, , #eaf7ff, #daeffe, 3, 3, full);
+    -st-mixin: SecondaryTheme(value(D80), , value(B50), value(B40), 3, 3, full);
+}
+.icon-white {
+    -st-extends: root;
+    -st-variant: true;
+    -st-mixin: SecondaryTheme(value(D80), , value(B50), value(B40), 3, 3, full);
 }
 .whiteblueprimary:active, .whiteblueprimary.active,
 .icon-white:active, .icon-white.active {
@@ -169,27 +192,27 @@
 }
 
 .emptybluesecondary {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: SecondaryTheme(value(D80), , value(B50), value(D80), 3, 3, empty);*/
-    -st-mixin: SecondaryTheme(#ffffff, , #eaf7ff, #ffffff, 3, 3, empty);
+    -st-mixin: SecondaryTheme(value(D80), , value(B50), value(D80), 3, 3, empty);
 }
 .emptybluesecondary:active, .emptybluesecondary.active {
     -st-mixin: Color(value(D80)) ThemeTypography(3);
 }
 
 .icon-greybackground {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: SecondaryTheme(value(D80), , value(B20), value(B10), 3, 2, full);*/
-    -st-mixin: SecondaryTheme(#ffffff, , #4eb7f5, #3899ec, 3, 2, full);
+    -st-mixin: SecondaryTheme(value(D80), , value(B20), value(B10), 3, 2, full);
 }
 .icon-greybackground:active, .icon-greybackground.active {
     -st-mixin: Color(value(B10)) ThemeTypography;
 }
 
 .whiteblue {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: SecondaryTheme(value(D80), , value(B20), value(B10), 3, 2, empty);*/
-    -st-mixin: SecondaryTheme(#ffffff, , #4eb7f5, #3899ec, 3, 2, empty);
+    -st-mixin: SecondaryTheme(value(D80), , value(B20), value(B10), 3, 2, empty);
 }
 .whiteblue:active, .whiteblue.active {
     -st-mixin: Color(value(B10)) ThemeTypography;
@@ -198,25 +221,33 @@
 /********** Close variants (theme prop) **********/
 
 .close-standard {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: CloseTheme(value(B10), value(B20), value(B10));*/
-    -st-mixin: CloseTheme(#3899ec, #4eb7f5, #3899ec);
+    -st-mixin: CloseTheme(value(B10), value(B20), value(B10));
 }
 
 .close-dark {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: CloseTheme(value(D10), value(B20), value(B10));*/
-    -st-mixin: CloseTheme(#162d3d, #4eb7f5, #3899ec);
+    -st-mixin: CloseTheme(value(D10), value(B20), value(B10));
 }
 .close-dark:active, .close-dark.active {
-    /*-st-mixin: Color(transparent, transparent, value(B10));*/
-    -st-mixin: Color(transparent, transparent, #3899ec);
+    -st-mixin: Color(transparent, transparent, value(B10));
 }
 
 /********** Other variants (theme prop) **********/
 
-.login,
+/* TODO: Unify login and emptylogin when Stylable supports -st-extends on multiple selectors */
+.login {
+    -st-extends: root;
+    -st-variant: true;
+    border-radius: 24px;
+    height: 42px;
+    font-size: 16px;
+    min-width: 100px;
+}
 .emptylogin {
+    -st-extends: root;
     -st-variant: true;
     border-radius: 24px;
     height: 42px;
@@ -225,8 +256,7 @@
 }
 
 .login {
-    /*-st-mixin: Color(value(B10), value(B10), #fff);*/
-    -st-mixin: Color(#3899ec, #3899ec, #fff);
+    -st-mixin: Color(value(B10), value(B10), #fff);
 }
 .login:hover, .login.hover {
     -st-mixin: Color(value(B20));
@@ -236,8 +266,7 @@
 }
 
 .emptylogin {
-    /*-st-mixin: Color(value(D80), #5babef, value(B10));*/
-    -st-mixin: Color(#ffffff, #5babef, #3899ec);
+    -st-mixin: Color(value(D80), #5babef, value(B10));
 }
 .emptylogin:hover, .emptylogin.hover,
 .emptylogin:active, .emptylogin.active {
@@ -245,8 +274,16 @@
     color: #fff;
 }
 
-.transparent,
+/* TODO: Unify transparent and close-transparent when Stylable supports -st-extends on multiple selectors */
+.transparent {
+    -st-extends: root;
+    -st-variant: true;
+    -st-mixin: ThemeTypography;
+    background-color: rgba(22, 45, 61, 0.24);
+    border: 0;
+}
 .close-transparent {
+    -st-extends: root;
     -st-variant: true;
     -st-mixin: ThemeTypography;
     background-color: rgba(22, 45, 61, 0.24);

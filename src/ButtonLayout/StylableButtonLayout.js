@@ -2,7 +2,7 @@ import React from 'react';
 import {any, bool, oneOf} from 'prop-types';
 import classNames from 'classnames';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {SBStateless as sbstateless} from 'stylable-react-component';
 import styles from './ButtonLayout.st.css';
 
 const ButtonLayout = props => {
@@ -77,4 +77,8 @@ ButtonLayout.propTypes = {
 
 ButtonLayout.displayName = 'ButtonLayout';
 
-export default sbcomponent(ButtonLayout, styles);
+const StylableButtonLayout = sbstateless(ButtonLayout, styles);
+StylableButtonLayout.defaultProps = ButtonLayout.defaultProps;
+StylableButtonLayout.propTypes = ButtonLayout.propTypes;
+StylableButtonLayout.displayName = ButtonLayout.displayName;
+export default StylableButtonLayout;
