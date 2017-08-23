@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import isUndefined from 'lodash/isUndefined';
 import InputWithOptions from '../InputWithOptions';
 
