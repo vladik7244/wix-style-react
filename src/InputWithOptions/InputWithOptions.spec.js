@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import inputWithOptionsDriverFactory from './InputWithOptions.driver';
-import InputWithOptions from './InputWithOptions';
+import InputWithOptions from './index';
 import {createDriverFactory} from '../test-common';
 import {inputWithOptionsTestkitFactory} from '../../testkit';
 import {inputWithOptionsTestkitFactory as enzymeInputWithOptionsTestkitFactory} from '../../testkit/enzyme';
