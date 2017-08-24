@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import buttonWithOptionsDriverFactory from './ButtonWithOptions.driver';
-import ButtonWithOptions from './ButtonWithOptions';
+import ButtonWithOptions from './index';
 import {createDriverFactory} from '../test-common';
 import {buttonWithOptionsTestkitFactory} from '../../testkit';
 import {buttonWithOptionsTestkitFactory as enzymeButtonWithOptionsTestkitFactory} from '../../testkit/enzyme';

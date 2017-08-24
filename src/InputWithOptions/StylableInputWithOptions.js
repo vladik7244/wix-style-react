@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import Input from '../Input';
 import omit from 'omit';
-import DropdownLayout from '../DropdownLayout/DropdownLayout';
+import DropdownLayout from '../DropdownLayout';
 
 import {SBComponent as sbcomponent} from 'stylable-react-component';
 import styles from './InputWithOptions.st.css';

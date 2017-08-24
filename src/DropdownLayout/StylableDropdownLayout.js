@@ -147,7 +147,7 @@ class DropdownLayout extends WixComponent {
     const {options, visible, dropDirectionUp, tabIndex, fixedHeader, fixedFooter, withArrow} = this.props;
 
     return (
-      <div tabIndex={tabIndex} className={`theme-${this.props.theme || 'standard'}`} onKeyDown={this._onKeyDown}>
+      <div tabIndex={tabIndex} className={`theme-${this.props.theme || 'none'}`} onKeyDown={this._onKeyDown}>
         <div
           cssStates={{shown: visible, up: dropDirectionUp, down: !dropDirectionUp, withArrow}}
           className="content-container"
