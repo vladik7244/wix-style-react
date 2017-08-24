@@ -107,6 +107,15 @@ describe('Input', () => {
     });
   });
 
+  describe('autocomplete attribute', () => {
+    it('should pass down to the wrapped input', () => {
+      const autocomplete = 'off';
+
+      const driver = createDriver(<Input autocomplete={autocomplete}/>);
+      expect(driver.getAutocomplete()).toEqual(autocomplete);
+    });
+  });
+
   describe('readOnly attribute', () => {
     it('should pass down to the wrapped input', () => {
       const driver = createDriver(<Input readOnly/>);

@@ -50,7 +50,8 @@ class Input extends Component {
       error,
       width,
       tooltipPlacement,
-      onTooltipShow
+      onTooltipShow,
+      autocomplete
     } = this.props;
 
     const onIconClicked = () => {
@@ -97,6 +98,7 @@ class Input extends Component {
         onKeyUp={onKeyUp}
         readOnly={readOnly}
         type={type}
+        autoComplete={autocomplete}
         {...ariaAttribute}
         {...props}
         />);
@@ -242,7 +244,8 @@ Input.propTypes = {
   ariaControls: PropTypes.string,
   tooltipPlacement: PropTypes.string,
   onTooltipShow: PropTypes.func,
-  withSelection: PropTypes.bool
+  withSelection: PropTypes.bool,
+  autocomplete: PropTypes.oneOf(['off', 'on']),
 };
 
 export default Input;

@@ -18,6 +18,7 @@
 | getAriaLabel | - | string | get the component aria-label |
 | getAriaControls | - | string | get the component aria-controls |
 | getAriaDescribedby | - | string | get the component aria-describedby |
+| getAutocomplete | - | string | get the autocomplete attribute of the component |
 | getType | - | string | get the input type |
 | hasPrefix | - | boolean | true if the input have a prefix |
 | hasSuffix | - | boolean | true if the input have a suffix |

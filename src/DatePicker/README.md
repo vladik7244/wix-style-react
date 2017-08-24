@@ -2,6 +2,18 @@
 
 > A DatePicker component
 
+## Testkit
+When testing DatePicker you might see some errors with unknown functions, to fix it - 
+```javascript
+import datePickerPolyfills from 'wix-style-react/dist/src/DatePicker/Polyfills';
+```
+
+Before the tests and after each jsdom cleanup -
+```javascript
+datePickerPolyfills(window, global);
+```
+ 
+
 ## ISSUES
 __Note__: This component has multiple issues and will most likely change in the near future (including interface). Such issues are:
 1. Component allows free 'style' to be given. (Issue #95)
