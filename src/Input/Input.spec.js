@@ -1,6 +1,6 @@
 import React from 'react';
 import inputDriverFactory from './Input.driver';
-import Input from '.';
+import Input from './index';
 import sinon from 'sinon';
 import {createDriverFactory} from '../test-common';
 import {inputTestkitFactory, tooltipTestkitFactory} from '../../testkit';

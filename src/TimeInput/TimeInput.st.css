@@ -1,0 +1,67 @@
+@namespace "TimeInput";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D10, D40, B10;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontRoman;
+}
+
+.root {
+    -st-states: disabled;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    line-height: 15px;
+}
+
+.ampm {
+    margin-top: 1px;
+    font-size: 14px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: value(D10);
+    -st-mixin: FontRoman;
+}
+
+.ampm:hover {
+    color: value(B10);
+}
+
+.root:disabled .ampm {
+    cursor: default;
+    color: value(D40);
+}
+
+.root:disabled .ampm:hover {
+    color: value(D40);
+}
+
+.time {
+    -st-states: focus, hover, rtl;
+    cursor: pointer;
+    display: block;
+    width: 115px;
+    white-space: nowrap;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.time:focus {
+    /*outline: 1px solid black;*/
+}
+
+.time:hover {
+    /*outline: 1px solid blue;*/
+}
+
+.time:rtl {
+    flex-direction: row-reverse;
+}
+
+.input {
+    cursor: pointer;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import TimePicker from './TimeInput';
+import TimePicker from './index';
 import timeInputDriverFactory from './TimeInput.driver';
 import {createDriverFactory} from '../test-common';
 import moment from 'moment';

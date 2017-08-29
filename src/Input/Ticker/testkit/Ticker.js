@@ -1,7 +1,7 @@
 import React from 'react';
 import {Simulate, renderIntoDocument} from 'react-dom/test-utils';
 
-import Ticker from '../Ticker';
+import Ticker from '../index';
 
 import styles from '../Ticker.scss';
 
