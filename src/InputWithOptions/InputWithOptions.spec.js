@@ -84,12 +84,20 @@ const runInputWithOptionsTest = driverFactory => {
       expect(dropdownLayoutDriver.isOptionHovered(3)).toBeTruthy();
     });
 
-    it('should call onManuallyInput on enter key press with a trimed value', () => {
+    it('should call onManuallyInput on enter key press with a trimmed value', () => {
       const onManuallyInput = jest.fn();
       const {driver, inputDriver} = createDriver(<InputWithOptions options={options} onManuallyInput={onManuallyInput}/>);
       inputDriver.enterText('my text      ');
       driver.pressEnterKey();
       expect(onManuallyInput).toBeCalledWith('my text', undefined);
+    });
+
+    it('should call onManuallyInput on any of delimiters being typed', () => {
+      const onManuallyInput = jest.fn();
+      const {driver} = createDriver(<InputWithOptions options={options} delimiters={[',']} onManuallyInput={onManuallyInput}/>);
+      driver.pressAnyKey();
+      driver.pressCommaKey();
+      expect(onManuallyInput).toBeCalledWith('Any', undefined);
     });
 
     it('should call onManuallyInput on enter key press', () => {

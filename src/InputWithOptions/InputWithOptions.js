@@ -42,12 +42,15 @@ class InputWithOptions extends WixComponent {
   }
 
   renderInput() {
-    const inputProps = Object.assign(omit(Object.keys(DropdownLayout.propTypes).concat(['onChange', 'dataHook']), this.props), this.inputAdditionalProps());
-    const {inputElement} = inputProps;
+    const inputProps = Object.assign(
+      omit(Object.keys(DropdownLayout.propTypes).concat(['onChange', 'dataHook']), this.props), this.inputAdditionalProps()
+    );
+    const {inputElement, ...props} = inputProps;
+
     return React.cloneElement(inputElement, {
       menuArrow: true,
       ref: input => this.input = input,
-      ...inputProps,
+      ...props,
       theme: this.props.theme,
       onChange: this._onChange,
       onInputClicked: this._onInputClicked,
@@ -165,19 +168,25 @@ class InputWithOptions extends WixComponent {
     if (this.props.disabled) {
       return;
     }
+
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
-      this.setState({isEditing: true});
-    }
-    if (!this.dropdownLayout._onKeyDown(event)) {
-      switch (event.key) {
-        case 'Enter':
-        case 'Tab': {
-          this._onManuallyInput(this.state.inputValue);
-          break;
+      this.setState({isEditing: true}, () => {
+        if (!this.dropdownLayout._onKeyDown(event)) {
+          if (this.props.delimiters.includes(event.key)) {
+            this._onManuallyInput(this.state.inputValue);
+          }
+
+          switch (event.key) {
+            case 'Enter':
+            case 'Tab': {
+              this._onManuallyInput(this.state.inputValue);
+              break;
+            }
+            default:
+              this.showOptions();
+          }
         }
-        default:
-          this.showOptions();
-      }
+      });
     }
   }
 
@@ -203,7 +212,8 @@ InputWithOptions.defaultProps = {
   inputElement: <Input/>,
   valueParser: option => option.value,
   dropdownWidth: null,
-  dropdownOffsetLeft: '0'
+  dropdownOffsetLeft: '0',
+  delimiters: [',']
 };
 
 InputWithOptions.propTypes = {
@@ -214,7 +224,8 @@ InputWithOptions.propTypes = {
   onManuallyInput: PropTypes.func,
   valueParser: PropTypes.func,
   dropdownWidth: PropTypes.string,
-  dropdownOffsetLeft: PropTypes.string
+  dropdownOffsetLeft: PropTypes.string,
+  delimiters: PropTypes.arrayOf(PropTypes.string)
 };
 
 InputWithOptions.displayName = 'InputWithOptions';

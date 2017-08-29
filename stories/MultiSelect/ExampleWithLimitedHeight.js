@@ -54,7 +54,7 @@ class ExampleWithLimitedHeight extends React.Component {
             onSelect={this.handleOnSelect}
             onRemoveTag={this.handleOnRemoveTag}
             onChange={this.handleOnChange}
-            onManuallyInput={() => console.log('NOW')}
+            onManuallyInput={() => console.log('onManuallyInput called')}
             options={this.state.options}
             value={this.state.inputValue}
             predicate={this.predicate}

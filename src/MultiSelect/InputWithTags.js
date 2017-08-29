@@ -29,8 +29,16 @@ class InputWithTags extends React.Component {
     this.setState({inputHasFocus: false});
   }
 
+  handleInputChange = e => {
+    if (!this.props.delimiters.includes(e.target.value)) {
+      this.setState({inputValue: e.target.value});
+      this.props.onChange && this.props.onChange(e);
+    }
+  };
+
   render() {
-    const {tags, onRemoveTag, placeholder, error, disabled, delimiters, ...inputProps} = this.props;
+    const {tags, onRemoveTag, placeholder, error, disabled, ...inputProps} = this.props;
+
     const hasFocus = this.state.inputHasFocus;
 
     const className = classNames({
@@ -40,8 +48,12 @@ class InputWithTags extends React.Component {
       [styles.hasFocus]: hasFocus
     });
 
-    const desiredProps = omit(['onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook'], inputProps);
-    const fontSize = (desiredProps.size && desiredProps.size === 'small') ? '14px' : '16px';
+    const validInputProps = omit([
+      'onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow',
+      'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook', 'delimiters'
+    ], inputProps);
+
+    const fontSize = (validInputProps.size && validInputProps.size === 'small') ? '14px' : '16px';
 
     return (
       <div
@@ -57,17 +69,12 @@ class InputWithTags extends React.Component {
           </div>
 
           <Input
+            {...validInputProps}
             ref={input => this.input = input}
             onBlur={() => this.handleInputBlur()}
             placeholder={tags.length === 0 ? placeholder : ''}
-            {...desiredProps}
             disabled={disabled}
-            onChange={e => {
-              if (!delimiters.includes(e.target.value)) {
-                this.setState({inputValue: e.target.value});
-                desiredProps.onChange && desiredProps.onChange(e);
-              }
-            }}
+            onChange={this.handleInputChange}
             />
         </span>
       </div>
@@ -98,7 +105,8 @@ InputWithTags.propTypes = {
   autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
-  delimiters: PropTypes.array
+  onChange: PropTypes.func,
+  delimiters: PropTypes.arrayOf(PropTypes.string)
 };
 
 InputWithTags.defaultProps = {

@@ -46,7 +46,10 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     isDisabled: () => element.classList.contains(styles.disabled),
     isOfStyle: style => element.classList.contains(styles[`theme-${style}`]),
     isOfSize: size => element.classList.contains(styles[`size-${size}`]),
-    isFocus: () => document.activeElement === input,
+    isFocus: () => {
+      console.log('______', document.activeElement.isEqualNode(input));
+      return document.activeElement === input;
+    },
     exists: () => !!(element && element.querySelector('input')),
     hasIconLeft: () => !!element.querySelectorAll(`.${styles.prefix}`),
     setProps: props => {
