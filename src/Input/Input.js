@@ -25,6 +25,7 @@ class Input extends Component {
   render(props = {}) {
     const {
       id,
+      name,
       value,
       placeholder,
       help,
@@ -50,7 +51,8 @@ class Input extends Component {
       error,
       width,
       tooltipPlacement,
-      onTooltipShow
+      onTooltipShow,
+      autocomplete
     } = this.props;
 
     const onIconClicked = () => {
@@ -80,6 +82,7 @@ class Input extends Component {
         ref={input => this.input = input}
         className={inputClassNames}
         id={id}
+        name={name}
         disabled={disabled}
         defaultValue={defaultValue}
         value={value}
@@ -97,6 +100,7 @@ class Input extends Component {
         onKeyUp={onKeyUp}
         readOnly={readOnly}
         type={type}
+        autoComplete={autocomplete}
         {...ariaAttribute}
         {...props}
         />);
@@ -196,6 +200,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   id: PropTypes.string,
+  name: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial', 'flat', 'flatdark']),
   forceHover: PropTypes.bool,
@@ -242,7 +247,8 @@ Input.propTypes = {
   ariaControls: PropTypes.string,
   tooltipPlacement: PropTypes.string,
   onTooltipShow: PropTypes.func,
-  withSelection: PropTypes.bool
+  withSelection: PropTypes.bool,
+  autocomplete: PropTypes.oneOf(['off', 'on']),
 };
 
 export default Input;

@@ -13,6 +13,11 @@ const breadcrumbsDriverFactory = ({element, wrapper, component}) => {
     clickBreadcrumbAt: position => ReactTestUtils.Simulate.click(optionAt(position).querySelector('[data-hook="breadcrumb-clickable"]')),
     getActiveItemId: () => {
       const activeItem = element.querySelector('.active');
+
+      if (!activeItem) {
+        return null;
+      }
+
       return Array.from(activeItem.parentNode.children).indexOf(activeItem);
     },
     isLarge: () => isClassExists(element, 'large'),

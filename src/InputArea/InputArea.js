@@ -80,7 +80,7 @@ class InputArea extends WixComponent {
 
     return (
       <div className={styles.wrapper}>
-        <div data-hook={this.props.dataHook} className={classes}>
+        <div className={classes}>
           <textarea
             rows={rows}
             maxLength={maxLength}

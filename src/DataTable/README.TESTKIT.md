@@ -9,11 +9,13 @@
 | getRowsCount | - | number | num of rows |
 | getRowsWithClassCount | string | number | num of rows with <arg> class name |
 | getRowText | number | string | get row index <arg> text |
+| getRowClasses | number | string | get row index <arg> classes |
 | isRowClickable | number | bool | true if row index <arg> is clickable |
 | getTitles | - | map | get map of all titles |
 | isDisplayingNothing | - | bool | true if displaying nothing |
 | isDisplayingHeaderOnly | - | bool | true if displaying only headers |
 | hasChildWithId | string | bool | true if the element has a child with <arg> id |
+| isDisplayingHeader | -| bool | true if the element is displaying it's headers |
 | clickRow | (number, eventData) | - | click with <eventData> the row index <number> |
 | mouseEnterRow | (number, eventData) | - | mouse enter with <eventData> the row index <number> |
 | mouseLeaveRow | (number, eventData) | - | mouse leave with <eventData> the row index <number> |

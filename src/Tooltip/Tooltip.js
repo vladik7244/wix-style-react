@@ -20,9 +20,8 @@ class Tooltip extends WixComponent {
   onClickOutside(e) {
     if (this.props.shouldCloseOnClickOutside) {
       this.hide();
-    } else if (this.props.onClickOutside) {
-      this.props.onClickOutside && this.props.onClickOutside(e);
     }
+    this.props.onClickOutside && this.props.onClickOutside(e);
   }
 
   static propTypes = {
@@ -41,6 +40,8 @@ class Tooltip extends WixComponent {
     disabled: PropTypes.bool,
     maxWidth: PropTypes.string,
     onClickOutside: PropTypes.func,
+    color: PropTypes.string,
+    lineHeight: PropTypes.string,
 
     /**
      * Callback to be called when the tooltip has been shown
@@ -54,6 +55,7 @@ class Tooltip extends WixComponent {
      * Just make sure the CSS are not leaked.
      */
     appendToParent: PropTypes.bool,
+    appendTo: PropTypes.any,
 
     /**
      * Allows to shift the tooltip position by x and y pixels.
@@ -136,6 +138,8 @@ class Tooltip extends WixComponent {
           maxWidth={this.props.maxWidth}
           size={this.props.size}
           textAlign={this.props.textAlign}
+          lineHeight={this.props.lineHeight}
+          color={this.props.color}
           >
           {this.props.content}
         </TooltipContent>);
@@ -204,7 +208,9 @@ class Tooltip extends WixComponent {
     if (typeof document === 'undefined') {
       return null;
     }
-
+    if (this.props.appendTo) {
+      return this.props.appendTo;
+    }
     return this.props.appendToParent ? this._childNode.parentElement : document ? document.body : null;
   }
 
@@ -363,7 +369,7 @@ class Tooltip extends WixComponent {
   }
 
   _getRect(el) {
-    if (this.props.appendToParent) {
+    if (this.props.appendTo || this.props.appendToParent) {
       // TODO: Once thoroughly tested, we could use the same approach in both cases.
       return {
         left: el.offsetLeft,

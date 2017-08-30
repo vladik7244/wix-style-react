@@ -10,7 +10,6 @@ class MultiSelect extends InputWithOptions {
   constructor(props) {
     super(props);
     this.onKeyDown = this.onKeyDown.bind(this);
-    this.onEnterPressed = this.onEnterPressed.bind(this);
     this.onPaste = this.onPaste.bind(this);
     this.state = {pasteDetected: false};
 
@@ -37,9 +36,8 @@ class MultiSelect extends InputWithOptions {
 
   inputAdditionalProps() {
     return {
-      inputElement: <InputWithTags/>,
+      inputElement: <InputWithTags maxHeight={this.props.maxHeight}/>,
       onKeyDown: this.onKeyDown,
-      onEnterPressed: this.onEnterPressed,
       delimiters: this.props.delimiters,
       onPaste: this.onPaste
     };
@@ -90,20 +88,6 @@ class MultiSelect extends InputWithOptions {
     this.clearInput();
   }
 
-  onEnterPressed() {
-    if (this.props.value.trim()) {
-      const unselectedOptions = this.getUnselectedOptions();
-      const visibleOptions = unselectedOptions.filter(this.props.predicate);
-      const maybeNearestOption = visibleOptions[0];
-
-      if (maybeNearestOption) {
-        this.onSelect(maybeNearestOption);
-      }
-
-      this.clearInput();
-    }
-  }
-
   onKeyDown(event) {
     const {tags, value, onRemoveTag, delimiters} = this.props;
 
@@ -116,8 +100,18 @@ class MultiSelect extends InputWithOptions {
       super.hideOptions();
     }
 
-    if (event.key === 'Tab' || delimiters.includes(event.key)) {
-      this.onEnterPressed();
+    if (event.key === 'Enter' || event.key === 'Tab' || delimiters.includes(event.key)) {
+      if (this.props.value.trim()) {
+        const unselectedOptions = this.getUnselectedOptions();
+        const visibleOptions = unselectedOptions.filter(this.props.predicate);
+        const maybeNearestOption = visibleOptions[0];
+
+        if (maybeNearestOption) {
+          this.onSelect(maybeNearestOption);
+        }
+
+        this.clearInput();
+      }
     }
 
     if (this.props.onKeyDown) {
@@ -155,7 +149,7 @@ class MultiSelect extends InputWithOptions {
     }
 
     if (this.props.onManuallyInput) {
-      this.props.onManuallyInput(this.optionToTag({id: uniqueId('customOption_'), value: inputValue}));
+      this.props.onManuallyInput(inputValue, this.optionToTag({id: uniqueId('customOption_'), value: inputValue}));
     }
 
     this.clearInput();
@@ -172,6 +166,7 @@ MultiSelect.propTypes = {
   ...InputWithOptions.propTypes,
   predicate: PropTypes.func,
   tags: PropTypes.array,
+  maxHeight: PropTypes.string,
   delimiters: PropTypes.array
 };
 

@@ -10,12 +10,16 @@
     .input {
         display: block;
         font-size: $fontSize;
+        &:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0 $height white inset;
+        }
     }
 
     .prefix,
     .suffix {
         margin-top: -1px;
         height: $height;
+        line-height: $height;
     }
 }
 
@@ -24,6 +28,13 @@
     background-color: $backgroundColor;
     color: $color;
     .input { color: $color; }
+}
+
+@mixin BorderRadius($borderRadius) {
+  border-radius: $borderRadius;
+  &:-webkit-autofill {
+    border-radius: $borderRadius;
+  }
 }
 
 @mixin ThemeHover($backgroundColor) {

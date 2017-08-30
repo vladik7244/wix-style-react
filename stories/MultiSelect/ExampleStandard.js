@@ -57,7 +57,7 @@ class ExampleStandard extends React.Component {
             value={this.state.inputValue}
             predicate={this.predicate}
             valueParser={valueParser}
-          />
+            />
         </div>
       </div>
     );

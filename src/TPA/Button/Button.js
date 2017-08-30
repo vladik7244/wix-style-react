@@ -18,8 +18,7 @@ class Button extends WixComponent {
   };
 
   static defaultProps = {
-    theme: 'fill',
-    disabled: false
+    theme: 'fill'
   };
 
   render() {

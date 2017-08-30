@@ -160,7 +160,7 @@ class DropdownLayout extends WixComponent {
           <div className={styles.options} style={{maxHeight: this.props.maxHeightPixels - 35 + 'px'}} ref={options => this.options = options} data-hook="dropdown-layout-options">
             {options.map((option, idx) => (
               option.value === '-' ?
-                (this.renderDivider(idx)) :
+                (this.renderDivider(idx, `dropdown-item-${option.id}`)) :
                 (this.renderItem({
                   option,
                   idx,
@@ -168,7 +168,8 @@ class DropdownLayout extends WixComponent {
                   hovered: idx === this.state.hovered,
                   disabled: option.disabled || option.title,
                   title: option.title,
-                  overrideStyle: option.overrideStyle
+                  overrideStyle: option.overrideStyle,
+                  dataHook: `dropdown-item-${option.id}`
                 }))
             ))}
           </div>
@@ -179,11 +180,11 @@ class DropdownLayout extends WixComponent {
     );
   }
 
-  renderDivider(idx) {
-    return (<div key={idx} className={styles.divider}/>);
+  renderDivider(idx, dataHook) {
+    return (<div key={idx} className={styles.divider} data-hook={dataHook}/>);
   }
 
-  renderItem({option, idx, selected, hovered, disabled, title, overrideStyle}) {
+  renderItem({option, idx, selected, hovered, disabled, title, overrideStyle, dataHook}) {
     const optionClassName = classNames({
       [styles.option]: !overrideStyle,
       [styles.selected]: selected && !overrideStyle,
@@ -200,6 +201,7 @@ class DropdownLayout extends WixComponent {
         key={idx}
         onMouseEnter={() => this._onMouseEnter(idx)}
         onMouseLeave={this._onMouseLeave}
+        data-hook={dataHook}
         >
         {option.value}
       </div>

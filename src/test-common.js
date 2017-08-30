@@ -25,13 +25,6 @@ export const enzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}
   return driverFactory({element: component.node, wrapper});
 };
 
-// native enzyme
-export const nativeEnzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
-  const regexp = new RegExp(`^<[^>]+data-hook="${dataHook}"`);
-  const component = wrapper.findWhere(n => typeof n.type() === 'string' && (regexp).test(n.html()));
-  return driverFactory({element: component.root, wrapper});
-};
-
 // protractor
 export const protractorTestkitFactoryCreator = driverFactory => ({dataHook}) => driverFactory($(`[data-hook='${dataHook}']`));
 

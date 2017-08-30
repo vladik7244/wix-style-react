@@ -1,4 +1,4 @@
-import {enzymeTestkitFactoryCreator, nativeEnzymeTestkitFactoryCreator} from '../src/test-common';
+import {enzymeTestkitFactoryCreator} from '../src/test-common';
 
 import buttonSelectionDriverFactory from '../src/ButtonSelection/ButtonSelection.driver';
 export const buttonSelectionTestkitFactory = enzymeTestkitFactoryCreator(buttonSelectionDriverFactory);
@@ -145,10 +145,13 @@ import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driv
 export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDrillDriverFactory);
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
-export const tpaButtonTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaButtonDriverFactory);
+export const tpaButtonTestkitFactory = enzymeTestkitFactoryCreator(tpaButtonDriverFactory);
+
+import tpaInputDriverFactory from '../src/TPA/Input/Input.driver';
+export const tpaInputTestkitFactory = enzymeTestkitFactoryCreator(tpaInputDriverFactory);
 
 import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
-export const tpaTextLinkTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaTextLinkDriverFactory);
+export const tpaTextLinkTestkitFactory = enzymeTestkitFactoryCreator(tpaTextLinkDriverFactory);
 
 import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
 export const tpaFloatingTabsTestkitFactory = enzymeTestkitFactoryCreator(tpaFloatingTabsDriverFactory);
