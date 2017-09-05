@@ -24,10 +24,10 @@ class ControlledModalSelector extends Component {
         <Button onClick={open} >Open Modal Selector</Button>
         <ModalSelector
           isOpen={this.state.isOpen}
-          onRequestClose={close}
           onOk={close}
           onCancel={close}
           loadMore={() => {}}
+          onClose={close}
           >
           <ModalSelector.Search
             onChange={() => {}}
