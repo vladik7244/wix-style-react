@@ -80,6 +80,7 @@ function loadStories() {
   require('../stories/MessageBox');
   require('../stories/Modal');
   require('../stories/ModalSelector');
+  require('../stories/Selector');
 }
 
 configure(loadStories, module);
