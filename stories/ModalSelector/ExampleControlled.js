@@ -27,6 +27,7 @@ class ControlledModalSelector extends Component {
           onRequestClose={close}
           onOk={close}
           onCancel={close}
+          loadMore={() => {}}
           >
           <ModalSelector.Search
             onChange={() => {}}

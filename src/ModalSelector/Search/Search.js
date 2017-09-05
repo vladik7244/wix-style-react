@@ -19,8 +19,10 @@ class Search extends WixComponent {
 
   onChange = e => {
     const {onChange, delayTime, minimumChars} = this.props;
-    if (e.target && e.target.value && e.target.value.length > minimumChars) {
-      setTimeout(() => onChange(e.target.value), delayTime);
+    const charsLength = e.target.value.length;
+    const value = e.target.value;
+    if (charsLength > minimumChars) {
+      setTimeout(() => onChange(value), delayTime);
     }
   }
 

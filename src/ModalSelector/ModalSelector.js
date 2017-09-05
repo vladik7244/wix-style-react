@@ -4,21 +4,26 @@ import WixComponent from '../BaseComponents/WixComponent';
 import Modal from '../Modal/Modal';
 import Search from './Search';
 import MessageBoxFunctionalLayout from '../MessageBox/MessageBoxFunctionalLayout';
+import InfiniteScroll from '../DataTable/InfiniteScroll';
 
 
 class ModalSelector extends WixComponent {
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func,
-    onOk: PropTypes.func,
-    onCancel: PropTypes.func
+    onClose: PropTypes.func.isRequired,
+    onOk: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    loadMore: PropTypes.func.isRequired,
+    hasMore: PropTypes.bool,
   }
 
   static defaultProps = {
     isOpen: false,
-    onOk: () => { },
-    onClose: () => { },
-    onCancel: () => { },
+    onOk: () => {},
+    onClose: () => {},
+    onCancel: () => {},
+    loadMore: () => {},
+    hasMore: false,
   }
 
   render() {
@@ -27,7 +32,9 @@ class ModalSelector extends WixComponent {
       onOk,
       onClose,
       onCancel,
-      children
+      children,
+      loadMore,
+      hasMore,
     } = this.props;
 
     return (
@@ -46,7 +53,12 @@ class ModalSelector extends WixComponent {
           onCancel={onCancel}
           onClose={onClose}
           >
-          {children}
+          <InfiniteScroll
+            loadMore={loadMore}
+            hasMore={hasMore}
+            >
+            {children}
+          </InfiniteScroll>
         </MessageBoxFunctionalLayout>
       </Modal>
     );
