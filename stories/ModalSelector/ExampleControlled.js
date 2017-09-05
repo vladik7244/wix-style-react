@@ -28,7 +28,11 @@ class ControlledModalSelector extends Component {
           onOk={close}
           onCancel={close}
           >
-          <ModalSelector.Search/>
+          <ModalSelector.Search
+            onChange={() => {}}
+            delayTime={1000}
+            minimumChars={5}
+            />
         </ModalSelector>
       </div>
     );
