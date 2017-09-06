@@ -14,6 +14,7 @@ class ModalSelector extends WixComponent {
     onCancel: PropTypes.func.isRequired,
     loadMore: PropTypes.func.isRequired,
     hasMore: PropTypes.bool,
+    modalHeight: PropTypes.string
   }
 
   static defaultProps = {
@@ -28,6 +29,7 @@ class ModalSelector extends WixComponent {
   render() {
     const {
       isOpen,
+      modalHeight,
       onOk,
       onClose,
       onCancel,
@@ -43,7 +45,7 @@ class ModalSelector extends WixComponent {
         contentLabel="Items Selection Modal"
         scrollableContent={false}
         scrollable={false}
-        height="540px"
+        height={modalHeight}
         >
         <MessageBoxFixedHeaderFooter
           theme="blue"

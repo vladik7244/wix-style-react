@@ -28,6 +28,7 @@ class ControlledModalSelector extends Component {
           onCancel={close}
           loadMore={() => {}}
           onClose={close}
+          modalHeight="540px"
           >
           <ModalSelector.Search
             onChange={() => {}}
