@@ -13,7 +13,7 @@ class InputAreaWithLabelComposite extends WixComponent {
         { children.length === 2 ?
           <div className={styles.label}>
             {children[0]}
-            { this.props.required || this.props.info ? <FieldLabelAttributes required={this.props.required} info={this.props.info}/> : null }
+            { this.props.required || this.props.info ? <FieldLabelAttributes appendToParent={this.props.appendToParent} required={this.props.required} info={this.props.info}/> : null }
           </div> : null
         }
         { last(children) }
@@ -24,7 +24,12 @@ class InputAreaWithLabelComposite extends WixComponent {
 
 InputAreaWithLabelComposite.propTypes = {
   children: any,
-  required: bool
+  required: bool,
+  appendToParent: bool
+};
+
+InputAreaWithLabelComposite.defaultProps = {
+  appendToParent: true
 };
 
 InputAreaWithLabelComposite.displayName = 'InputAreaWithLabelComposite';

@@ -28,7 +28,6 @@ function loadStories() {
   require('../stories/LanguagePicker');
   require('../stories/Label');
   require('../stories/Loader');
-  require('../stories/MultiSelect');
   require('../stories/PopoverMenu');
   require('../stories/SideBar');
   require('../stories/SideMenu');
@@ -65,6 +64,7 @@ function loadStories() {
   require('../stories/RichTextAreaComposite');
   require('../stories/FieldWithSelectionComposite');
   require('../stories/Range');
+  require('../stories/MultiSelect');
   require('../stories/AutoCompleteComposite');
   require('../stories/ButtonWithOptions');
   require('../stories/Checkbox/CheckboxStory');
