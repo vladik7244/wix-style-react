@@ -26,7 +26,7 @@ class Checkbox extends WixComponent {
 
   static defaultProps = {
     size: 'medium',
-    onChange: () => { },
+    onChange: (e) => { e.stopPropagation()},
   }
 
   static displayName = 'Checkbox'
@@ -48,7 +48,7 @@ class Checkbox extends WixComponent {
 
     return (
       <div className={classname} >
-        <input type="checkbox" id={id} checked={checked} disabled={disabled} onChange={disabled ? null : onChange}/>
+        <input type="checkbox" id={id} checked={checked} disabled={disabled} onClick={disabled ? null : onChange}/>
         <Label for={id} appearance="T1.1">
           <div className={classNames(styles.checkbox, styles[size])}>
             <div className={styles.inner}>

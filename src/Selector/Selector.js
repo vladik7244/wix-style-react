@@ -16,7 +16,7 @@ const imageStyle = {
   display: 'flex'
 }
 
-class Search extends WixComponent {
+class Selector extends WixComponent {
   static propTypes = {
     onToggle: PropTypes.func,
     isSelected: PropTypes.bool,
@@ -62,4 +62,4 @@ class Search extends WixComponent {
   }
 }
 
-export default Search;
+export default Selector;
