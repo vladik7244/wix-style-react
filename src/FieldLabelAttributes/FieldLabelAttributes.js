@@ -11,7 +11,7 @@ class FieldLabelAttributes extends WixComponent {
     const requiredAstrix = <span data-hook="required" className={styles.required}/>;
     const infoTooltip = (
       <Tooltip
-        appendToParent
+        appendToParent={this.props.appendToParent}
         content={this.props.info}
         theme="light"
         alignment="center"
@@ -31,17 +31,18 @@ class FieldLabelAttributes extends WixComponent {
       </div>
     );
   }
-
 }
 
 FieldLabelAttributes.defaultProps = {
   required: false,
-  info: ''
+  info: '',
+  appendToParent: true
 };
 
 FieldLabelAttributes.propTypes = {
   required: PropTypes.bool,
-  info: PropTypes.string
+  info: PropTypes.string,
+  appendToParent: PropTypes.bool
 };
 
 export default FieldLabelAttributes;
