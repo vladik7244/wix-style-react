@@ -19,6 +19,7 @@ class ModalSelector extends WixComponent {
     delayTime: PropTypes.number,
     minimumChars: PropTypes.number,
     modalHeight: PropTypes.string,
+    footerStatus: PropTypes.node
   }
 
   static defaultProps = {
@@ -48,6 +49,7 @@ class ModalSelector extends WixComponent {
       delayTime,
       minimumChars,
       onSearch,
+      footerStatus
     } = this.props;
 
     const search = isSearchEnabled ? (
@@ -77,6 +79,7 @@ class ModalSelector extends WixComponent {
           onCancel={onCancel}
           onClose={onClose}
           prefixContent={search}
+          footerStatus={footerStatus}
           >
           <InfiniteScroll
             loadMore={loadMore}

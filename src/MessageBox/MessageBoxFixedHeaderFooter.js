@@ -27,6 +27,7 @@ class MessageBoxFixedHeaderFooter extends WixComponent {
       paddingStyle,
       prefixContent,
       suffixContent,
+      footerStatus
     } = this.props;
 
     return (
@@ -45,7 +46,9 @@ class MessageBoxFixedHeaderFooter extends WixComponent {
         {}
         {
           !hideFooter ?
-            <FooterLayout className={styles.footer} enableCancel={!disableCancel} enableOk={!disableConfirmation} buttonsHeight={buttonsHeight} confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={theme}/> :
+            <FooterLayout className={styles.footer} enableCancel={!disableCancel} enableOk={!disableConfirmation} buttonsHeight={buttonsHeight} confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={theme}>
+              {footerStatus}
+            </FooterLayout> :
             null
         }
       </div>
@@ -64,6 +67,7 @@ MessageBoxFixedHeaderFooter.propTypes = {
   onClose: PropTypes.func,
   width: PropTypes.string,
   title: PropTypes.node,
+  footerStatus: PropTypes.node,
   children: PropTypes.any,
   buttonsHeight: PropTypes.string,
   paddingStyle: PropTypes.oneOf(['default', 'wide']),

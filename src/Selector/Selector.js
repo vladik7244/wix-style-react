@@ -24,19 +24,19 @@ class Selector extends WixComponent {
     image: PropTypes.string,
     subTitle: PropTypes.string,
     extraText: PropTypes.string,
+    id: PropTypes.number.isRequired
   };
 
   static defaultProps = {
+    isSelected: false
   };
 
   state = {
     checked: false
   }
 
-  toggle = () => {
-    const newCheckedState = !this.state.checked;
-    this.setState({checked: newCheckedState});
-    this.props.onToggle && this.props.onToggle(newCheckedState);
+  toggle = id => {
+    this.props.onToggle && this.props.onToggle(id);
   }
 
   render() {
@@ -45,11 +45,17 @@ class Selector extends WixComponent {
       imageSrc,
       title,
       subTitle,
-      extra
+      extra,
+      isSelected,
+      id
     } = this.props;
+
     return (
-      <div className={styles.selector} onClick={this.toggle}>
-        <Checkbox style={checkBoxStyle} checked={this.state.checked}/>
+      <div
+        className={styles.selector}
+        onClick={() => this.toggle(id)}
+        >
+        <Checkbox style={checkBoxStyle} checked={isSelected}/>
         {imageSrc ? <div style={imageStyle}><Image imageSrc={imageSrc} imageSize={imageSize}/></div> : ''}
         <span>
           <div><Text appearance="T1">{title}</Text></div>
