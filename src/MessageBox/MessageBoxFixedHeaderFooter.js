@@ -5,7 +5,6 @@ import * as styles from './MessageBoxFixedHeaderFooter.scss';
 import HeaderLayout from './HeaderLayout';
 import FooterLayout from './FooterLayout';
 import WixComponent from '../BaseComponents/WixComponent';
-import Scrollable from '../Scrollable';
 
 class MessageBoxFixedHeaderFooter extends WixComponent {
 
@@ -25,18 +24,25 @@ class MessageBoxFixedHeaderFooter extends WixComponent {
       disableConfirmation,
       disableCancel,
       width,
-      paddingStyle
+      paddingStyle,
+      prefixContent,
+      suffixContent,
     } = this.props;
 
     return (
       <div className={styles.content} style={{width}}>
 
         <HeaderLayout className={styles.header} title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
-        <div className={classNames(styles.body, styles[`body-${paddingStyle}`])}>
-          <Scrollable>
-            {children}
-          </Scrollable>
+        <div className="prefix-content">
+          {prefixContent}
         </div>
+        <div className={classNames(styles.body, styles[`body-${paddingStyle}`])}>
+          {children}
+        </div>
+        <div className="suffix-content">
+          {suffixContent}
+        </div>
+        {}
         {
           !hideFooter ?
             <FooterLayout className={styles.footer} enableCancel={!disableCancel} enableOk={!disableConfirmation} buttonsHeight={buttonsHeight} confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={theme}/> :
@@ -63,7 +69,9 @@ MessageBoxFixedHeaderFooter.propTypes = {
   paddingStyle: PropTypes.oneOf(['default', 'wide']),
   closeButton: PropTypes.bool,
   disableCancel: PropTypes.bool,
-  disableConfirmation: PropTypes.bool
+  disableConfirmation: PropTypes.bool,
+  prefixContent: PropTypes.node,
+  sufixContent: PropTypes.node,
 };
 
 MessageBoxFixedHeaderFooter.defaultProps = {

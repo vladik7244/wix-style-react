@@ -1,10 +1,8 @@
 @import '../common.scss';
 .content {
-  border-radius    : 8px;
-  background-color : white;
-  width            : 600px;
-
-  width: 100%;
+  border-radius: 8px;
+  background-color: white;
+  width: 600px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -15,26 +13,34 @@
   flex-shrink: 0;
 }
 
-.body
-{
-    @include FontLight();
-    color     : $paletteD2;
-    font-size : 16px;
-    line-height: 24px;
+.prefix-content {
+  flex-shrink: 0;
+  padding: 30px 30px 12px;
+}
 
-    flex-grow: 1;
-    overflow: auto;
-    min-height: 2em;
+.body {
+  @include FontLight();
+  color: $paletteD2;
+  font-size : 16px;
+  line-height: 24px;
 
-    &-default {
-        padding   : 36px 30px 42px 30px;
-    }
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 2em;
 
-    &-wide {
-        padding   : 0;
-    }
+  padding: 10px 0;
+
+  &-default {
+    padding: 36px 30px 42px 30px;
+  }
+
+  &-wide {
+    padding: 0;
+  }
 }
 
 .footer {
   flex-shrink: 0;
+  padding: 12px 30px 30px;
 }
+

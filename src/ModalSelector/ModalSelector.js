@@ -14,7 +14,11 @@ class ModalSelector extends WixComponent {
     onCancel: PropTypes.func.isRequired,
     loadMore: PropTypes.func.isRequired,
     hasMore: PropTypes.bool,
-    modalHeight: PropTypes.string
+    isSearchEnabled: PropTypes.bool,
+    onSearch: PropTypes.func,
+    delayTime: PropTypes.number,
+    minimumChars: PropTypes.number,
+    modalHeight: PropTypes.string,
   }
 
   static defaultProps = {
@@ -24,6 +28,10 @@ class ModalSelector extends WixComponent {
     onCancel: () => {},
     loadMore: () => {},
     hasMore: false,
+    isSearchEnabled: true,
+    delayTime: 0,
+    minimumChars: 1,
+    onSearch: () => {},
   }
 
   render() {
@@ -36,7 +44,19 @@ class ModalSelector extends WixComponent {
       children,
       loadMore,
       hasMore,
+      isSearchEnabled,
+      delayTime,
+      minimumChars,
+      onSearch,
     } = this.props;
+
+    const search = isSearchEnabled ? (
+      <Search
+        onChange={onSearch}
+        minimumChars={minimumChars}
+        delayTime={delayTime}
+        />
+    ) : null;
 
     return (
       <Modal
@@ -56,6 +76,7 @@ class ModalSelector extends WixComponent {
           onOk={onOk}
           onCancel={onCancel}
           onClose={onClose}
+          prefixContent={search}
           >
           <InfiniteScroll
             loadMore={loadMore}

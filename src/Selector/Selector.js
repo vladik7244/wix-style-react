@@ -48,10 +48,7 @@ class Selector extends WixComponent {
       extra
     } = this.props;
     return (
-      <div
-        className={styles.selector}
-        onClick={this.toggle}
-        >
+      <div className={styles.selector} onClick={this.toggle}>
         <Checkbox style={checkBoxStyle} checked={this.state.checked}/>
         {imageSrc ? <div style={imageStyle}><Image imageSrc={imageSrc} imageSize={imageSize}/></div> : ''}
         <span>
