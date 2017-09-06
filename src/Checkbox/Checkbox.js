@@ -26,7 +26,9 @@ class Checkbox extends WixComponent {
 
   static defaultProps = {
     size: 'medium',
-    onChange: (e) => { e.stopPropagation()},
+    onChange: e => {
+      e.stopPropagation();
+    },
   }
 
   static displayName = 'Checkbox'

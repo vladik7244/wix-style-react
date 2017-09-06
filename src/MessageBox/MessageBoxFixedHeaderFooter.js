@@ -32,15 +32,15 @@ class MessageBoxFixedHeaderFooter extends WixComponent {
       <div className={styles.content} style={{width}}>
 
         <HeaderLayout className={styles.header} title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
-        <div className={classNames(styles.body ,styles[`body-${paddingStyle}`])}>
+        <div className={classNames(styles.body, styles[`body-${paddingStyle}`])}>
           <Scrollable>
             {children}
           </Scrollable>
         </div>
         {
           !hideFooter ?
-            <FooterLayout className={styles.footer} enableCancel={!disableCancel} enableOk={!disableConfirmation} buttonsHeight={buttonsHeight} confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={theme}/>
-            : null
+            <FooterLayout className={styles.footer} enableCancel={!disableCancel} enableOk={!disableConfirmation} buttonsHeight={buttonsHeight} confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={theme}/> :
+            null
         }
       </div>
     );

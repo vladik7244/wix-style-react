@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import * as styles from './MessageBoxFunctionalLayout.scss';
 import HeaderLayout from './HeaderLayout';
 import FooterLayout from './FooterLayout';

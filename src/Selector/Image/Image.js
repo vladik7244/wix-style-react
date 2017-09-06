@@ -5,12 +5,12 @@ import WixComponent from '../../BaseComponents/WixComponent';
 import styles from './Image.scss';
 
 const sizeMap = {
-  'Tiny Square' : 'tiny',
-  'Small Square' : 'small',
-  'Portrait' : 'portrait',
-  'Large Square' : 'large',
-  'Cinema View' : 'cinema'
-}
+  'Tiny Square': 'tiny',
+  'Small Square': 'small',
+  Portrait: 'portrait',
+  'Large Square': 'large',
+  'Cinema View': 'cinema'
+};
 
 class Image extends WixComponent {
   static propTypes = {
@@ -34,7 +34,7 @@ class Image extends WixComponent {
       <img
         className={classNames(styles[`size-${sizeMap[imageSize]}`])}
         src={imageSrc}
-        alt="{alt}"
+        alt={alt}
         />
     );
   }

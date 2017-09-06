@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import styles from './Scrollable.scss';
 
 class Scrollable extends WixComponent {
-  static propTypes = {
-  };
+  // static propTypes = {
+  // };
 
-  static defaultProps = {
-  };
+  // static defaultProps = {
+  // };
 
 
   render() {
