@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import * as styles from './MessageBoxFunctionalLayout.scss';
+import * as styles from './MessageBoxFixedHeaderFooter.scss';
 import HeaderLayout from './HeaderLayout';
 import FooterLayout from './FooterLayout';
 import WixComponent from '../BaseComponents/WixComponent';
+import Scrollable from '../Scrollable';
 
-class MessageBoxFunctionalLayout extends WixComponent {
+class MessageBoxFixedHeaderFooter extends WixComponent {
 
   render() {
     const {
@@ -23,26 +24,32 @@ class MessageBoxFunctionalLayout extends WixComponent {
       closeButton,
       disableConfirmation,
       disableCancel,
-      width
+      width,
+      paddingStyle
     } = this.props;
 
     return (
       <div className={styles.content} style={{width}}>
-        <HeaderLayout title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
-        <div className={styles.body} >
-          {children}
+
+        <HeaderLayout className={styles.header} title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
+        <div className={classNames(styles.body ,styles[`body-${paddingStyle}`])}>
+          <Scrollable>
+            {children}
+          </Scrollable>
         </div>
         {
           !hideFooter ?
-            <FooterLayout enableCancel={!disableCancel} enableOk={!disableConfirmation} buttonsHeight={buttonsHeight} confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={theme}/> : null
+            <FooterLayout className={styles.footer} enableCancel={!disableCancel} enableOk={!disableConfirmation} buttonsHeight={buttonsHeight} confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={theme}/>
+            : null
         }
       </div>
     );
   }
 }
 
-MessageBoxFunctionalLayout.propTypes = {
+MessageBoxFixedHeaderFooter.propTypes = {
   hideFooter: PropTypes.bool,
+  fixedHeaderFooter: PropTypes.bool,
   confirmText: PropTypes.string,
   cancelText: PropTypes.string,
   theme: PropTypes.string,
@@ -53,16 +60,19 @@ MessageBoxFunctionalLayout.propTypes = {
   title: PropTypes.node,
   children: PropTypes.any,
   buttonsHeight: PropTypes.string,
+  paddingStyle: PropTypes.oneOf(['default', 'wide']),
   closeButton: PropTypes.bool,
   disableCancel: PropTypes.bool,
   disableConfirmation: PropTypes.bool
 };
 
-MessageBoxFunctionalLayout.defaultProps = {
+MessageBoxFixedHeaderFooter.defaultProps = {
   buttonsHeight: 'small',
   disableCancel: false,
+  fixedHeaderFooter: false,
   disableConfirmation: false,
-  width: '600px'
+  width: '600px',
+  paddingStyle: 'default'
 };
 
-export default MessageBoxFunctionalLayout;
+export default MessageBoxFixedHeaderFooter;

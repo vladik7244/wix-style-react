@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ModalSelector from 'wix-style-react/ModalSelector';
-import Selector from 'wix-style-react/Selector';
+import ModalSelector from '../../src/ModalSelector';
+import Selector from '../../src/Selector';
 import {Button} from 'wix-style-react/Backoffice';
 
 class ControlledModalSelector extends Component {

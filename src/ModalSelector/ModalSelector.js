@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import Modal from '../Modal/Modal';
 import Search from './Search';
-import MessageBoxFunctionalLayout from '../MessageBox/MessageBoxFunctionalLayout';
+import MessageBoxFixedHeaderFooter from '../MessageBox/MessageBoxFixedHeaderFooter';
 import InfiniteScroll from '../DataTable/InfiniteScroll';
-
 
 class ModalSelector extends WixComponent {
   static propTypes = {
@@ -42,9 +41,11 @@ class ModalSelector extends WixComponent {
         isOpen={isOpen}
         onRequestClose={onClose}
         contentLabel="Items Selection Modal"
-        scrollableContent={true}
+        scrollableContent={false}
+        scrollable={false}
+        height="540px"
         >
-        <MessageBoxFunctionalLayout
+        <MessageBoxFixedHeaderFooter
           theme="blue"
           paddingStyle="wide"
           title="Choose Your Items"
@@ -60,7 +61,7 @@ class ModalSelector extends WixComponent {
             >
             {children}
           </InfiniteScroll>
-        </MessageBoxFunctionalLayout>
+        </MessageBoxFixedHeaderFooter>
       </Modal>
     );
   }
