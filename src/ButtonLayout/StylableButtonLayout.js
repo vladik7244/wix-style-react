@@ -2,11 +2,11 @@ import React from 'react';
 import {any, bool, oneOf} from 'prop-types';
 import classNames from 'classnames';
 
-import {SBStateless as sbstateless} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './ButtonLayout.st.css';
 
 const ButtonLayout = props => {
-  const {theme, hover, active, disabled, height, children} = props;
+  const {theme, hover, active, disabled, height, children, matchParent} = props;
 
   const className = classNames({
     [styles.root]: true,
@@ -24,6 +24,10 @@ const ButtonLayout = props => {
       display: 'inline-block'
     }
   );
+
+  if (matchParent) {
+    _style.width = '100%';
+  }
 
   if (React.Children.count(children) === 1) {
     return React.cloneElement(
@@ -47,6 +51,7 @@ ButtonLayout.propTypes = {
   disabled: bool,
   height: oneOf(['small', 'medium', 'large', 'x-large']),
   hover: bool,
+  matchParent: bool,
   theme: oneOf([
     'transparent',
     'fullred',
@@ -77,7 +82,7 @@ ButtonLayout.propTypes = {
 
 ButtonLayout.displayName = 'ButtonLayout';
 
-const StylableButtonLayout = sbstateless(ButtonLayout, styles);
+const StylableButtonLayout = stylable(styles)(ButtonLayout);
 StylableButtonLayout.defaultProps = ButtonLayout.defaultProps;
 StylableButtonLayout.propTypes = ButtonLayout.propTypes;
 StylableButtonLayout.displayName = ButtonLayout.displayName;

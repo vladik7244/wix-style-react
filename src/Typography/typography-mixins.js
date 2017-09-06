@@ -2,15 +2,15 @@ const DEFAULT_TYPE = 't';
 const DEFAULT_SIZE = '1';
 const DEFAULT_COLOR = '0';
 
-const FONTS_FALLBACK = '"Helvetica Neue", "Helvetica", "Arial", "メイリオ, meiryo", "ヒラギノ角ゴ pro w3", "hiragino kaku gothic pro", "sans-serif"';
+const FONTS_FALLBACK = 'Helvetica Neue, Helvetica, Arial, メイリオ, meiryo, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, sans-serif';
 
 const FONTS = {
-  FontUltraThin: `"HelveticaNeueW01-UltLt", "HelveticaNeueW02-UltLt", "HelveticaNeueW10-25UltL", ${FONTS_FALLBACK}`,
-  FontThin: `"HelveticaNeueW01-Thin", "HelveticaNeueW02-Thin", "HelveticaNeueW10-35Thin", ${FONTS_FALLBACK}`,
-  FontLight: `"HelveticaNeueW01-45Ligh", "HelveticaNeueW02-45Ligh", "HelveticaNeueW10-45Ligh", ${FONTS_FALLBACK}`,
-  FontRoman: `"HelveticaNeueW01-55Roma", "HelveticaNeueW02-55Roma", "HelveticaNeueW10-55Roma", ${FONTS_FALLBACK}`,
-  FontMedium: `"HelveticaNeueW01-65Medi", "HelveticaNeueW02-65Medi", "HelveticaNeueW10-65Medi", ${FONTS_FALLBACK}`,
-  FontBold: `"HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW10-75Bold", ${FONTS_FALLBACK}`
+  FontUltraThin: `HelveticaNeueW01-UltLt, HelveticaNeueW02-UltLt, HelveticaNeueW10-25UltL, ${FONTS_FALLBACK}`,
+  FontThin: `HelveticaNeueW01-Thin, HelveticaNeueW02-Thin, HelveticaNeueW10-35Thin, ${FONTS_FALLBACK}`,
+  FontLight: `HelveticaNeueW01-45Ligh, HelveticaNeueW02-45Ligh, HelveticaNeueW10-45Ligh, ${FONTS_FALLBACK}`,
+  FontRoman: `HelveticaNeueW01-55Roma, HelveticaNeueW02-55Roma, HelveticaNeueW10-55Roma, ${FONTS_FALLBACK}`,
+  FontMedium: `HelveticaNeueW01-65Medi, HelveticaNeueW02-65Medi, HelveticaNeueW10-65Medi, ${FONTS_FALLBACK}`,
+  FontBold: `HelveticaNeueW01-75Bold, HelveticaNeueW02-75Bold, HelveticaNeueW10-75Bold, ${FONTS_FALLBACK}`
 };
 
 const COLORS = {
@@ -39,9 +39,18 @@ const TYPOGRAPHY = {
     }
   },
   h: {
-
+    4: {
+      font: FONTS.FontRoman,
+      fontSize: '10px',
+      lineHeight: '18px',
+      colors: [COLORS.D20],
+      uppercase: true,
+      letterSpacing: '1.2'
+    }
   }
 };
+
+const fontMixin = font => () => ({'font-family': font});
 
 module.exports = {};
 module.exports.Typography = optionsArr => {
@@ -53,10 +62,20 @@ module.exports.Typography = optionsArr => {
 
   const typography = TYPOGRAPHY[options.type][options.size];
 
-  return {
+  const rules = {
     'font-family': typography.font,
     'font-size': typography.fontSize,
     'line-height': typography.lineHeight,
     color: typography.colors[options.color]
   };
+  if (typography.uppercase) {
+    rules['text-transform'] = 'uppercase';
+  }
+  if (typography.letterSpacing) {
+    rules['letter-spacing'] = `${typography.letterSpacing}px`;
+  }
+
+  return rules;
 };
+
+Object.keys(FONTS).forEach(fontName => module.exports[fontName] = fontMixin(FONTS[fontName]));

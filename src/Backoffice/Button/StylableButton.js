@@ -4,10 +4,11 @@ import WixComponent from '../../BaseComponents/WixComponent';
 import ButtonLayout from '../../ButtonLayout/StylableButtonLayout';
 import omit from 'omit';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './Button.st.css';
 
-class Button extends WixComponent {
+@stylable(styles)
+export default class Button extends WixComponent {
   static propTypes = {
     ...ButtonLayout.propTypes,
     children: any,
@@ -21,6 +22,8 @@ class Button extends WixComponent {
   }
 
   static defaultProps = ButtonLayout.defaultProps;
+
+  static displayName = 'Button';
 
   constructor(props) {
     super(props);
@@ -52,7 +55,6 @@ class Button extends WixComponent {
   render() {
     const {disabled, onClick, children, type, onMouseEnter, onMouseLeave} = this.props;
     const buttonLayoutProps = omit(['id', 'onClick', 'prefixIcon', 'suffixIcon', 'type'], this.props);
-
     return (
       <ButtonLayout {...buttonLayoutProps}>
         <button onClick={onClick} disabled={disabled} type={type} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -64,7 +66,3 @@ class Button extends WixComponent {
     );
   }
 }
-
-Button.displayName = 'Button';
-
-export default sbcomponent(Button, styles);
