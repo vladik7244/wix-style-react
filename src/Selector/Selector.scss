@@ -5,12 +5,13 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding: 0 30px;
 
   &:hover {
-    background-color: red;
+    background-color: $B50;
 
     &:active {
-      background-color: darkred;
+      background-color: $B30;
     }
   }
 }

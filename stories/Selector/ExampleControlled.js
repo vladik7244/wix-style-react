@@ -29,7 +29,63 @@ class ControlledModalSelector extends Component {
           onCancel={close}
           onClose={close}
           >
-          <Selector
+            <Selector
+            title="TITLE TEXT"
+            subTitle="SUBTITLE TEXT"
+            imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
+            imageSize="Cinema View"
+            onToggle={(state) => {console.log(`toggle state is ${state}`)}}
+            />
+            <Selector
+            title="TITLE TEXT"
+            subTitle="SUBTITLE TEXT"
+            imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
+            imageSize="Cinema View"
+            onToggle={(state) => {console.log(`toggle state is ${state}`)}}
+            />
+            <Selector
+            title="TITLE TEXT"
+            subTitle="SUBTITLE TEXT"
+            imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
+            imageSize="Cinema View"
+            onToggle={(state) => {console.log(`toggle state is ${state}`)}}
+            />
+            <Selector
+            title="TITLE TEXT"
+            subTitle="SUBTITLE TEXT"
+            imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
+            imageSize="Cinema View"
+            onToggle={(state) => {console.log(`toggle state is ${state}`)}}
+            />
+            <Selector
+            title="TITLE TEXT"
+            subTitle="SUBTITLE TEXT"
+            imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
+            imageSize="Cinema View"
+            onToggle={(state) => {console.log(`toggle state is ${state}`)}}
+            />
+            <Selector
+            title="TITLE TEXT"
+            subTitle="SUBTITLE TEXT"
+            imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
+            imageSize="Cinema View"
+            onToggle={(state) => {console.log(`toggle state is ${state}`)}}
+            />
+            <Selector
+            title="TITLE TEXT"
+            subTitle="SUBTITLE TEXT"
+            imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
+            imageSize="Cinema View"
+            onToggle={(state) => {console.log(`toggle state is ${state}`)}}
+            />
+            <Selector
+            title="TITLE TEXT"
+            subTitle="SUBTITLE TEXT"
+            imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
+            imageSize="Cinema View"
+            onToggle={(state) => {console.log(`toggle state is ${state}`)}}
+            />
+            <Selector
             title="TITLE TEXT"
             subTitle="SUBTITLE TEXT"
             imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="

@@ -46,6 +46,7 @@ class ModalSelector extends WixComponent {
         >
         <MessageBoxFunctionalLayout
           theme="blue"
+          paddingStyle="wide"
           title="Choose Your Items"
           confirmText="OK"
           cancelText="Cancel"

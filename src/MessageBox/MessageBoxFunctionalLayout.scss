@@ -10,9 +10,16 @@
 .body
 {
     @include FontLight();
-    padding   : 36px 30px 42px 30px;
     color     : $paletteD2;
     font-size : 16px;
     line-height: 24px;
+
+    &-default {
+        padding   : 36px 30px 42px 30px;
+    }
+
+    &-wide {
+        padding   : 36px 0 42px;
+    }
 }
 
