@@ -5,10 +5,11 @@ import moment from 'moment';
 
 import Input from '../Input';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './TimeInput.st.css';
 
-class TimeInput extends Component {
+@stylable(styles)
+export default class TimeInput extends Component {
   static displayName = 'TimePicker'
 
   static propTypes = {
@@ -218,14 +219,14 @@ class TimeInput extends Component {
 
     return (
       <div
-        cssStates={{disabled}}
+        style-state={{disabled}}
         style={style}
         data-hook={dataHook}
         >
         <div
           onMouseOver={() => this.handleHover(true)}
           onMouseOut={() => this.handleHover(false)}
-          cssStates={{focus, hover: hover && !focus, rtl}}
+          style-state={{focus, hover: hover && !focus, rtl}}
           className="time"
           >
           {this.renderTimeTextbox()}
@@ -234,5 +235,3 @@ class TimeInput extends Component {
     );
   }
 }
-
-export default sbcomponent(TimeInput, styles);

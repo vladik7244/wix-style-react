@@ -2,10 +2,15 @@ import React from 'react';
 import isUndefined from 'lodash/isUndefined';
 import InputWithOptions from '../InputWithOptions';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './Dropdown.st.css';
 
-class Dropdown extends InputWithOptions {
+@stylable(styles)
+export default class Dropdown extends InputWithOptions {
+
+  static propTypes = InputWithOptions.propTypes;
+
+  static defaultProps = InputWithOptions.defaultProps;
 
   constructor(props) {
     super(props);
@@ -53,15 +58,10 @@ class Dropdown extends InputWithOptions {
 
   render() {
     return React.cloneElement(super.render(), {
-      cssStates: {
+      'style-state': {
         noBorder: this.props.noBorder,
         noRightBorderRadius: this.props.noRightBorderRadius
       }
     });
   }
 }
-
-Dropdown.propTypes = InputWithOptions.propTypes;
-Dropdown.defaultProps = InputWithOptions.defaultProps;
-
-export default sbcomponent(Dropdown, styles);

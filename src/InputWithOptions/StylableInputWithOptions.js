@@ -5,10 +5,36 @@ import Input from '../Input';
 import omit from 'omit';
 import DropdownLayout from '../DropdownLayout';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './InputWithOptions.st.css';
 
-class InputWithOptions extends WixComponent {
+@stylable(styles)
+export default class InputWithOptions extends WixComponent {
+
+  static defaultProps = {
+    ...Input.defaultProps,
+    ...DropdownLayout.defaultProps,
+    onSelect: () => {},
+    options: [],
+    closeOnSelect: true,
+    inputElement: <Input/>,
+    valueParser: option => option.value,
+    dropdownWidth: null,
+    dropdownOffsetLeft: '0'
+  };
+
+  static propTypes = {
+    ...Input.propTypes,
+    ...DropdownLayout.propTypes,
+    inputElement: PropTypes.element,
+    closeOnSelect: PropTypes.bool,
+    onManuallyInput: PropTypes.func,
+    valueParser: PropTypes.func,
+    dropdownWidth: PropTypes.string,
+    dropdownOffsetLeft: PropTypes.string
+  };
+
+  static displayName = 'InputWithOptions';
 
   // Abstraction
   dropdownAdditionalProps() {}
@@ -194,30 +220,3 @@ class InputWithOptions extends WixComponent {
     this.input.select();
   }
 }
-
-InputWithOptions.defaultProps = {
-  ...Input.defaultProps,
-  ...DropdownLayout.defaultProps,
-  onSelect: () => {},
-  options: [],
-  closeOnSelect: true,
-  inputElement: <Input/>,
-  valueParser: option => option.value,
-  dropdownWidth: null,
-  dropdownOffsetLeft: '0'
-};
-
-InputWithOptions.propTypes = {
-  ...Input.propTypes,
-  ...DropdownLayout.propTypes,
-  inputElement: PropTypes.element,
-  closeOnSelect: PropTypes.bool,
-  onManuallyInput: PropTypes.func,
-  valueParser: PropTypes.func,
-  dropdownWidth: PropTypes.string,
-  dropdownOffsetLeft: PropTypes.string
-};
-
-InputWithOptions.displayName = 'InputWithOptions';
-
-export default sbcomponent(InputWithOptions, styles);

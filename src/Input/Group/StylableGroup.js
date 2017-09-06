@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {SBStateless as sbstateless} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './Group.st.css';
 
 const Group = ({children}) =>
@@ -14,7 +14,7 @@ Group.propTypes = {
   children: PropTypes.node
 };
 
-const StylableGroup = sbstateless(Group, styles);
+const StylableGroup = stylable(styles)(Group);
 StylableGroup.displayName = Group.displayName;
 StylableGroup.propTypes = Group.propTypes;
 

@@ -38,7 +38,7 @@
 
 .up:disabled path,
 .down:disabled path {
-    stroke: GR10;
+    stroke: value(GR10);
 }
 
 .down svg {

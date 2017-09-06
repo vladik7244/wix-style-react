@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {SBStateless as sbstateless} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './Unit.st.css';
 import inputStyles from '../Input.st.css';
 
@@ -19,7 +19,7 @@ Unit.propTypes = {
   value: PropTypes.string
 };
 
-const StylableUnit = sbstateless(Unit, styles);
+const StylableUnit = stylable(styles)(Unit);
 StylableUnit.displayName = Unit.displayName;
 StylableUnit.propTypes = Unit.propTypes;
 

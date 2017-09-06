@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import {SBStateless as sbstateless} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './Ticker.st.css';
 
 const ArrowUp = () =>
@@ -13,8 +13,8 @@ const ArrowUp = () =>
 const Ticker = ({onUp, onDown, upDisabled, downDisabled}) => {
   return (
     <div data-hook="ticker">
-      <div cssStates={{disabled: upDisabled}} className="up" onClick={upDisabled ? null : onUp}><ArrowUp/></div>
-      <div cssStates={{disabled: downDisabled}} className="down" onClick={downDisabled ? null : onDown}><ArrowUp/></div>
+      <div style-state={{disabled: upDisabled}} className="up" onClick={upDisabled ? null : onUp}><ArrowUp/></div>
+      <div style-state={{disabled: downDisabled}} className="down" onClick={downDisabled ? null : onDown}><ArrowUp/></div>
     </div>
   );
 };
@@ -28,7 +28,7 @@ Ticker.propTypes = {
   downDisabled: PropTypes.bool
 };
 
-const StylableTicker = sbstateless(Ticker, styles);
+const StylableTicker = stylable(styles)(Ticker);
 StylableTicker.displayName = Ticker.displayName;
 StylableTicker.propTypes = Ticker.propTypes;
 
