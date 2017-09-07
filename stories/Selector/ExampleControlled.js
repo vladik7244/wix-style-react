@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ModalSelector from '../../src/ModalSelector';
 import Selector from '../../src/Selector';
-import Checkbox from '../../src/Checkbox';
 import {Button} from 'wix-style-react/Backoffice';
 
 const optionsList = [
@@ -29,47 +28,61 @@ class ControlledModalSelector extends Component {
     super();
     this.state = {
       isOpen,
-      numOfSelected: 0
+      footerChecked: false
     };
   }
 
+  generateSetState = state => () => this.setState(state);
+
+  close = this.generateSetState({isOpen: false});
+  open = this.generateSetState({isOpen: true});
+
+  selectorToggle = id => {
+    const newToggleState = !optionsList[id].selected;
+    optionsList[id].selected = newToggleState;
+
+    this.setFooterText();
+  };
+
+  setFooterText = () => {
+    const numOfSelected = optionsList.filter(x => x.selected).length;
+    this.setState({
+      footerText:
+        numOfSelected ?
+          `Deselect (${numOfSelected})` :
+          `Select All(${optionsList.length})`,
+      footerChecked: !!numOfSelected
+    });
+  }
+
+  toggleFooterStatus = () => {
+    const numOfSelected = optionsList.filter(x => x.selected).length;
+    if (numOfSelected) {
+      optionsList.forEach(x => x.selected = false);
+    } else {
+      optionsList.forEach(x => x.selected = true);
+    }
+
+    this.setFooterText();
+  };
+
+  componentWillMount() {
+    this.setFooterText();
+  }
+
   render() {
-    const setState = state => () => this.setState(state);
-
-    const close = setState({isOpen: false});
-    const open = setState({isOpen: true});
-    const listToggle = id => {
-      const newToggleState = !optionsList[id].selected;
-      optionsList[id].selected = newToggleState;
-      if (newToggleState) {
-        this.setState({numOfSelected: this.state.numOfSelected + 1});
-      } else {
-        this.setState({numOfSelected: this.state.numOfSelected - 1});
-      }
-    };
-
-    const toggleFooterStatus = () => {
-      if (this.state.numOfSelected) {
-        optionsList.forEach(x => x.selected = false);
-        this.setState({numOfSelected: 0});
-      } else {
-        optionsList.forEach(x => x.selected = true);
-        this.setState({numOfSelected: 4});
-      }
-    };
-
     return (
       <div>
-        <Button onClick={open} >Open Modal Selector</Button>
+        <Button onClick={this.open} >Open Modal Selector</Button>
         <ModalSelector
           isOpen={this.state.isOpen}
-          onOk={close}
-          onCancel={close}
-          onClose={close}
+          onOk={this.close}
+          onCancel={this.close}
+          onClose={this.close}
           modalHeight="540px"
-          footerStatus={<div style={{paddingLeft: '32px'}}>
-            <Checkbox checked={!!this.state.numOfSelected} indeterminate onChange={toggleFooterStatus}/> {this.state.numOfSelected ? `Deselect (${this.state.numOfSelected})` : `Select All (${4})`}
-          </div>}
+          onCheckBoxFooterClick={this.toggleFooterStatus}
+          footerText={this.state.footerText}
+          footerChecked={this.state.footerChecked}
           >
           {optionsList.map((x, i) => <Selector
             title="TITLE TEXT"
@@ -78,7 +91,7 @@ class ControlledModalSelector extends Component {
             subTitle="SUBTITLE TEXT"
             imageSrc="http://media.istockphoto.com/photos/orange-picture-id185284489?k=6&m=185284489&s=612x612&w=0&h=x_w4oMnanMTQ5KtSNjSNDdiVaSrlxM4om-3PQTIzFaY="
             imageSize="Cinema View"
-            onToggle={listToggle}
+            onToggle={this.selectorToggle}
             isSelected={x.selected}
             />)}
         </ModalSelector>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import Modal from '../Modal/Modal';
 import Search from './Search';
+import FooterStatus from './FooterStatus';
 import MessageBoxFixedHeaderFooter from '../MessageBox/MessageBoxFixedHeaderFooter';
 import InfiniteScroll from '../DataTable/InfiniteScroll';
 
@@ -19,7 +20,9 @@ class ModalSelector extends WixComponent {
     delayTime: PropTypes.number,
     minimumChars: PropTypes.number,
     modalHeight: PropTypes.string,
-    footerStatus: PropTypes.node
+    onCheckBoxFooterClick: PropTypes.func,
+    footerText: PropTypes.string,
+    footerChecked: PropTypes.bool
   }
 
   static defaultProps = {
@@ -49,7 +52,9 @@ class ModalSelector extends WixComponent {
       delayTime,
       minimumChars,
       onSearch,
-      footerStatus
+      onCheckBoxFooterClick,
+      footerText,
+      footerChecked
     } = this.props;
 
     const search = isSearchEnabled ? (
@@ -79,7 +84,7 @@ class ModalSelector extends WixComponent {
           onCancel={onCancel}
           onClose={onClose}
           prefixContent={search}
-          footerStatus={footerStatus}
+          footerStatus={<FooterStatus checked={footerChecked} text={footerText} onCheckBoxClick={onCheckBoxFooterClick}/>}
           >
           <InfiniteScroll
             loadMore={loadMore}

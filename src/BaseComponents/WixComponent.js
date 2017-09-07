@@ -29,6 +29,7 @@ class WixComponent extends React.Component {
     return [ReactDOM.findDOMNode(this)];
   }
 
+  // feedback: styles will be ignored if there is this.props.styles, i don't think it's ok
   setStyles(styles, typography = {}) {
     if (this.props.styles) {
       this.styles = this.props.styles;
