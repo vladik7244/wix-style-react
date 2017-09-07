@@ -17,12 +17,12 @@ const placementToMoveBy = {
   bottom: {x: 0, y: -8},
 };
 
-const AmaterialErrorSuffix = ({focused, error, errorMessage, placement, onShow}) => focused ?
+const AmaterialErrorSuffix = ({focused, error, errorMessage, placement, onShow, maxTooltipWidth}) => focused ?
   null : <Tooltip
     dataHook="input-tooltip"
     disabled={!error && !errorMessage}
     placement={placement}
-    maxWidth="250px"
+    maxWidth={maxTooltipWidth}
     hideDelay={5}
     showDelay={5}
     active={focused}
@@ -41,26 +41,29 @@ AmaterialErrorSuffix.propTypes = {
   error: PropTypes.bool,
   focused: PropTypes.bool,
   placement: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
-  onShow: PropTypes.func
+  onShow: PropTypes.func,
+  maxTooltipWidth: PropTypes.string
 };
 
 AmaterialErrorSuffix.defaultProps = {
-  placement: 'right'
+  placement: 'right',
+  maxTooltipWidth: '250px'
 };
 
 
 
 class ThemedInputErrorSuffix extends InputErrorSuffix {
   render() {
-    const {theme, focused, error, errorMessage, tooltipPlacement, onTooltipShow} = this.props;
+    const {theme, focused, error, errorMessage, tooltipPlacement, maxTooltipWidth, onTooltipShow} = this.props;
     return theme === 'amaterial' ?
-      <AmaterialErrorSuffix focused={focused} error={error} errorMessage={errorMessage} placement={tooltipPlacement} onShow={onTooltipShow}/> :
+      <AmaterialErrorSuffix focused={focused} error={error} errorMessage={errorMessage} maxTooltipWidth={maxTooltipWidth} placement={tooltipPlacement} onShow={onTooltipShow}/> :
       super.render();
   }
 }
 
 ThemedInputErrorSuffix.propTypes = {
   tooltipPlacement: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  maxTooltipWidth: PropTypes.string,
   onTooltipShow: PropTypes.func
 };
 

@@ -43,6 +43,7 @@
 | noRightBorderRadius | bool | false | - | When set to true, this input will have no rounded corners on its right |
 | tooltipPlacement | [top, bottom, right, left] | - | - | Placement of the error and help tooltips (supported only for amaterial them for now) |
 | onTooltipShow | func | - | - | onShow prop for the error and help tooltips (supported only for amaterial them for now)|
+| maxTooltipWidth | string | 250px | - | Max width for a validation/help tooltip (see maxWidth prop of Tooltip component)|
 | autocomplete | [on, off] | - | - | Turns on or off autocomplete property, which is responsible for default browser autocomplete suggestions|
 
 ## Functions

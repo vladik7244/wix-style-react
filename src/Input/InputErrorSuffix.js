@@ -16,6 +16,7 @@ class InputErrorSuffix extends React.Component {
         content={this.props.errorMessage}
         overlay=""
         theme="dark"
+        maxWidth={this.props.maxTooltipWidth}
         hideDelay={150}
         >
         <div className={styles.exclamation}><SvgExclamation width={2} height={11}/></div>
@@ -27,6 +28,7 @@ class InputErrorSuffix extends React.Component {
 InputErrorSuffix.propTypes = {
   theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
   errorMessage: PropTypes.string.isRequired,
+  maxTooltipWidth: PropTypes.string,
   focused: PropTypes.bool
 };
 

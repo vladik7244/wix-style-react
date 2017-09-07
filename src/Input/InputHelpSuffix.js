@@ -11,7 +11,7 @@ class InputHelpSuffix extends React.Component {
       <Tooltip
         dataHook="input-tooltip"
         disabled={this.props.helpMessage.length === 0}
-        maxWidth="250px"
+        maxWidth={this.props.maxTooltipWidth}
         placement="right"
         alignment="center"
         hideDelay={100}
@@ -27,7 +27,12 @@ class InputHelpSuffix extends React.Component {
 InputHelpSuffix.propTypes = {
   theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial']),
   helpMessage: PropTypes.string.isRequired,
-  help: PropTypes.bool
+  help: PropTypes.bool,
+  maxTooltipWidth: PropTypes.string,
+};
+
+InputHelpSuffix.defaultProps = {
+  maxTooltipWidth: '250px',
 };
 
 

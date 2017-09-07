@@ -51,6 +51,7 @@ class Input extends Component {
       error,
       width,
       tooltipPlacement,
+      maxTooltipWidth,
       onTooltipShow,
       autocomplete
     } = this.props;
@@ -125,6 +126,7 @@ class Input extends Component {
         focused={this.state.focus}
         suffix={suffix}
         tooltipPlacement={tooltipPlacement}
+        maxTooltipWidth={maxTooltipWidth}
         onTooltipShow={onTooltipShow}
         /> }
     </div>);
@@ -248,6 +250,7 @@ Input.propTypes = {
   tooltipPlacement: PropTypes.string,
   onTooltipShow: PropTypes.func,
   withSelection: PropTypes.bool,
+  maxTooltipWidth: PropTypes.string,
   autocomplete: PropTypes.oneOf(['off', 'on']),
 };
 

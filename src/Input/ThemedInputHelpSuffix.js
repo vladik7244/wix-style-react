@@ -14,11 +14,11 @@ const placementToMoveBy = {
   bottom: {x: 0, y: -15},
 };
 
-const AmaterialHelpSuffix = ({help, helpMessage, placement, onShow}) =>
+const AmaterialHelpSuffix = ({help, helpMessage, placement, onShow, maxTooltipWidth}) =>
   <Tooltip
     dataHook="input-tooltip"
     disabled={!help || helpMessage.length === 0}
-    maxWidth="250px"
+    maxWidth={maxTooltipWidth}
     placement={placement}
     moveBy={placementToMoveBy[placement]}
     alignment="center"
@@ -35,26 +35,29 @@ AmaterialHelpSuffix.propTypes = {
   help: PropTypes.bool,
   helpMessage: PropTypes.node,
   placement: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
-  onShow: PropTypes.func
+  onShow: PropTypes.func,
+  maxTooltipWidth: PropTypes.string
 };
 
 AmaterialHelpSuffix.defaultProps = {
-  placement: 'right'
+  placement: 'right',
+  maxTooltipWidth: '250px',
 };
 
 
 class ThemedInputHelpSuffix extends InputHelpSuffix {
   render() {
-    const {theme, help, helpMessage, tooltipPlacement, onTooltipShow} = this.props;
+    const {theme, help, helpMessage, tooltipPlacement, maxTooltipWidth, onTooltipShow} = this.props;
 
     return theme === 'amaterial' ?
-      <AmaterialHelpSuffix help={help} helpMessage={helpMessage} placement={tooltipPlacement} onShow={onTooltipShow}/> :
+      <AmaterialHelpSuffix help={help} helpMessage={helpMessage} placement={tooltipPlacement} maxTooltipWidth={maxTooltipWidth} onShow={onTooltipShow}/> :
       super.render();
   }
 }
 
 ThemedInputHelpSuffix.propTypes = {
   tooltipPlacement: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  maxTooltipWidth: PropTypes.string,
   onTooltipShow: PropTypes.func
 };
 
