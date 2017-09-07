@@ -6,9 +6,20 @@
 	
 	.bar {
 		align-items: center;
+		background: white;
 		display: flex;
 		height: 2px;
 		margin: 0 0 0 6px;
-		width: 100%;
+		width: 108px;
+
+		.bar-value {
+			background: $B10;
+			height: 100%;
+		}
+
+		.bar-leftover {
+			background: $B40;
+			height: 100%;
+		}
 	}
 }

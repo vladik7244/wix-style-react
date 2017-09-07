@@ -94,8 +94,9 @@ class ControlledModalSelector extends Component {
             onToggle={this.selectorToggle}
             isSelected={x.selected}
             >
-            <Selector.ExtraText text="Extra Text"/>
+            {/* <Selector.ExtraText text="Extra Text"/> */}
             {/* <Selector.ExtraIcon name="add"/> */}
+            <Selector.ProgressBar progress={83}/>
           </Selector>)}
         </ModalSelector>
       </div>

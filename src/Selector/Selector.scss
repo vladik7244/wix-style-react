@@ -18,10 +18,11 @@
   .main {
     align-items: center;
     display: flex;
-    flex: 2;
+    flex: 1;
   }
 
   .extra {
-    flex: 1;
+    align-items: flex-end;
+    flex: 0;
   }
 }
