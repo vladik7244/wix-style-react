@@ -93,7 +93,10 @@ class ControlledModalSelector extends Component {
             imageSize="Cinema View"
             onToggle={this.selectorToggle}
             isSelected={x.selected}
-            />)}
+            >
+            <Selector.ExtraText text="Extra Text"/>
+            {/* <Selector.ExtraIcon name="add"/> */}
+          </Selector>)}
         </ModalSelector>
       </div>
     );

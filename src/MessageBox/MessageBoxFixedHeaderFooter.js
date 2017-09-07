@@ -34,13 +34,13 @@ class MessageBoxFixedHeaderFooter extends WixComponent {
       <div className={styles.content} style={{width}}>
 
         <HeaderLayout className={styles.header} title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
-        <div className="prefix-content">
+        <div className={styles['prefix-content']}>
           {prefixContent}
         </div>
         <div className={classNames(styles.body, styles[`body-${paddingStyle}`])}>
           {children}
         </div>
-        <div className="suffix-content">
+        <div className={styles['prefix-content']}>
           {suffixContent}
         </div>
         {}

@@ -5,6 +5,9 @@ import Checkbox from '../Checkbox/Checkbox';
 import Image from './Image';
 import Text from '../Text';
 import styles from './Selector.scss';
+import ExtraText from './ExtraText';
+import ExtraIcon from './ExtraIcon';
+import ProgressBar from './ProgressBar';
 
 const checkBoxStyle = {
   display: 'inline-block',
@@ -23,7 +26,6 @@ class Selector extends WixComponent {
     title: PropTypes.string.isRequired,
     image: PropTypes.string,
     subTitle: PropTypes.string,
-    extraText: PropTypes.string,
     id: PropTypes.number.isRequired
   };
 
@@ -45,9 +47,9 @@ class Selector extends WixComponent {
       imageSrc,
       title,
       subTitle,
-      extra,
       isSelected,
-      id
+      id,
+      children,
     } = this.props;
 
     return (
@@ -55,16 +57,24 @@ class Selector extends WixComponent {
         className={styles.selector}
         onClick={() => this.toggle(id)}
         >
-        <Checkbox style={checkBoxStyle} checked={isSelected}/>
-        {imageSrc ? <div style={imageStyle}><Image imageSrc={imageSrc} imageSize={imageSize}/></div> : ''}
-        <span>
-          <div><Text appearance="T1">{title}</Text></div>
-          {subTitle ? <div><Text appearance="T3">{subTitle}</Text></div> : ''}
-        </span>
-        {extra || ''}
+        <div className={styles.main}>
+          <Checkbox style={checkBoxStyle} checked={isSelected}/>
+          {imageSrc ? <div style={imageStyle}><Image imageSrc={imageSrc} imageSize={imageSize}/></div> : ''}
+          <span>
+            <div><Text appearance="T1">{title}</Text></div>
+            {subTitle ? <div><Text appearance="T3">{subTitle}</Text></div> : ''}
+          </span>
+        </div>
+        <div className={styles.extra}>
+          {children}
+        </div>
       </div>
     );
   }
 }
+
+Selector.ExtraText = ExtraText;
+Selector.ExtraIcon = ExtraIcon;
+Selector.ProgressBar = ProgressBar;
 
 export default Selector;

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../../BaseComponents/WixComponent';
+import Text from '../../Text';
 
-class Text extends WixComponent {
+class ExtraText extends WixComponent {
   static propTypes = {
     text: PropTypes.string.isRequired,
   };
@@ -14,4 +15,4 @@ class Text extends WixComponent {
   }
 }
 
-export default Text;
+export default ExtraText;

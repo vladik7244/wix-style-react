@@ -2,20 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../../BaseComponents/WixComponent';
 import * as Icons from 'wix-style-react/Icons';
-import s from './style.scss';
 
-class Icon extends WixComponent {
+class ExtraIcon extends WixComponent {
   static propTypes = {
     name: PropTypes.string.isRequired,
   };
 
   render() {
     return (
-      <div className={s.singleIconView} key={name}>
+      <div key={name}>
         <span>{React.createElement(Icons[name])}</span>
       </div>
     );
   }
 }
 
-export default Icon;
+export default ExtraIcon;
