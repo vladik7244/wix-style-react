@@ -1,90 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import * as styles from './MessageBoxFixedHeaderFooter.scss';
-import HeaderLayout from './HeaderLayout';
-import FooterLayout from './FooterLayout';
 import WixComponent from '../BaseComponents/WixComponent';
 
 class MessageBoxFixedHeaderFooter extends WixComponent {
 
   render() {
     const {
-      title,
-      onCancel,
-      onOk,
-      onClose,
-      confirmText,
-      cancelText,
       children,
-      buttonsHeight,
-      hideFooter,
-      theme,
-      closeButton,
-      disableConfirmation,
-      disableCancel,
       width,
-      paddingStyle,
       prefixContent,
       suffixContent,
-      footerStatus
+      footer,
+      header
     } = this.props;
+
+    const customHeader = header && <div className={styles.header}>
+      {header}
+    </div>;
+    const customPrefixContent = prefixContent && <div className={styles['prefix-content']}>
+      {prefixContent}
+    </div>;
+    const customSuffixContent = suffixContent && <div className={styles['prefix-content']}>
+      {suffixContent}
+    </div>;
+    const customFooter = footer && <div className={styles.footer}>
+      {footer}
+    </div>;
 
     return (
       <div className={styles.content} style={{width}}>
-
-        <HeaderLayout className={styles.header} title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
-        <div className={styles['prefix-content']}>
-          {prefixContent}
-        </div>
-        <div className={classNames(styles.body, styles[`body-${paddingStyle}`])}>
+        {customHeader}
+        {customPrefixContent}
+        <div className={styles.body}>
           {children}
         </div>
-        <div className={styles['prefix-content']}>
-          {suffixContent}
-        </div>
-        {}
-        {
-          !hideFooter ?
-            <FooterLayout className={styles.footer} enableCancel={!disableCancel} enableOk={!disableConfirmation} buttonsHeight={buttonsHeight} confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk} theme={theme}>
-              {footerStatus}
-            </FooterLayout> :
-            null
-        }
+        {customSuffixContent}
+        {customFooter}
       </div>
     );
   }
 }
 
 MessageBoxFixedHeaderFooter.propTypes = {
-  hideFooter: PropTypes.bool,
-  fixedHeaderFooter: PropTypes.bool,
-  confirmText: PropTypes.string,
-  cancelText: PropTypes.string,
-  theme: PropTypes.string,
-  onOk: PropTypes.func,
-  onCancel: PropTypes.func,
-  onClose: PropTypes.func,
   width: PropTypes.string,
-  title: PropTypes.node,
-  footerStatus: PropTypes.node,
+  footer: PropTypes.node,
+  header: PropTypes.node,
   children: PropTypes.any,
-  buttonsHeight: PropTypes.string,
-  paddingStyle: PropTypes.oneOf(['default', 'wide']),
-  closeButton: PropTypes.bool,
-  disableCancel: PropTypes.bool,
-  disableConfirmation: PropTypes.bool,
   prefixContent: PropTypes.node,
   sufixContent: PropTypes.node,
 };
 
 MessageBoxFixedHeaderFooter.defaultProps = {
-  buttonsHeight: 'small',
-  disableCancel: false,
-  fixedHeaderFooter: false,
-  disableConfirmation: false,
   width: '600px',
-  paddingStyle: 'default'
 };
 
 export default MessageBoxFixedHeaderFooter;

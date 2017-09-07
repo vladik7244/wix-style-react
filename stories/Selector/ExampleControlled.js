@@ -80,9 +80,14 @@ class ControlledModalSelector extends Component {
           onCancel={this.close}
           onClose={this.close}
           modalHeight="540px"
-          onCheckBoxFooterClick={this.toggleFooterStatus}
-          footerText={this.state.footerText}
-          footerChecked={this.state.footerChecked}
+          prefixContent={
+            <ModalSelector.Search
+              onChange={() => {}}
+              minimumChars={2}
+              delayTime={1000}
+              />
+          }
+          footerStatus={<ModalSelector.FooterStatus checked={this.state.footerChecked} text={this.state.footerText} onCheckBoxClick={this.toggleFooterStatus}/>}
           >
           {optionsList.map((x, i) => <Selector
             title="TITLE TEXT"
