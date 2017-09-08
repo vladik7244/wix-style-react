@@ -6,10 +6,25 @@ import last from 'lodash/last';
 import difference from 'difference';
 import uniqueId from 'lodash/uniqueId';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './MultiSelect.st.css';
 
-class MultiSelect extends InputWithOptions {
+@stylable(styles)
+export default class MultiSelect extends InputWithOptions {
+  static propTypes = {
+    ...InputWithOptions.propTypes,
+    predicate: PropTypes.func,
+    tags: PropTypes.array,
+    delimiters: PropTypes.array
+  };
+
+  static defaultProps = {
+    ...InputWithOptions.defaultProps,
+    predicate: () => true,
+    tags: [],
+    delimiters: [',']
+  };
+
   constructor(props) {
     super(props);
     this.onKeyDown = this.onKeyDown.bind(this);
@@ -164,19 +179,3 @@ class MultiSelect extends InputWithOptions {
     }
   }
 }
-
-MultiSelect.propTypes = {
-  ...InputWithOptions.propTypes,
-  predicate: PropTypes.func,
-  tags: PropTypes.array,
-  delimiters: PropTypes.array
-};
-
-MultiSelect.defaultProps = {
-  ...InputWithOptions.defaultProps,
-  predicate: () => true,
-  tags: [],
-  delimiters: [',']
-};
-
-export default sbcomponent(MultiSelect, styles);

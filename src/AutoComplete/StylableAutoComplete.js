@@ -1,10 +1,11 @@
 import {func} from 'prop-types';
 import InputWithOptions from '../InputWithOptions';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './AutoComplete.st.css';
 
-class AutoComplete extends InputWithOptions {
+@stylable(styles)
+export default class AutoComplete extends InputWithOptions {
   static propTypes = {
     ...InputWithOptions.propTypes,
     predicate: func
@@ -21,5 +22,3 @@ class AutoComplete extends InputWithOptions {
     return {options: options.filter(filterFunc)};
   }
 }
-
-export default sbcomponent(AutoComplete, styles);

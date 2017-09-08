@@ -1,11 +1,31 @@
-import React from 'react';
+//import React from 'react';
 import isUndefined from 'lodash/isUndefined';
 import InputWithOptions from '../InputWithOptions';
 
-import {stylable} from 'wix-react-tools';
+import {onRootElement} from 'wix-react-tools/dist/src/react-decor/react-decor-class';
 import styles from './Dropdown.st.css';
 
-@stylable(styles)
+@onRootElement((instance, props, args) => {
+  const origClassName = args.elementProps.className;
+  args.elementProps.className = styles.root;
+  if (origClassName) {
+    args.elementProps.className += (' ' + origClassName);
+  }
+
+  const namespace = styles.$stylesheet.namespace.toLowerCase();
+  const styleState = {
+    noBorder: props.noBorder,
+    noRightBorderRadius: props.noRightBorderRadius
+  };
+
+  Object.keys(styleState).forEach(stateName => {
+    if (styleState[stateName]) {
+      args.elementProps[`data-${namespace}-${stateName.toLowerCase()}`] = 'true';
+    }
+  });
+
+  return args;
+})
 export default class Dropdown extends InputWithOptions {
 
   static propTypes = InputWithOptions.propTypes;
@@ -54,14 +74,5 @@ export default class Dropdown extends InputWithOptions {
   _onSelect(option) {
     this.setState({value: this.props.valueParser(option), selectedId: option.id});
     super._onSelect(option);
-  }
-
-  render() {
-    return React.cloneElement(super.render(), {
-      'style-state': {
-        noBorder: this.props.noBorder,
-        noRightBorderRadius: this.props.noRightBorderRadius
-      }
-    });
   }
 }

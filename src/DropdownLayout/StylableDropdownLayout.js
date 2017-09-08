@@ -4,7 +4,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 import isEqual from 'deep-eql';
 import trim from 'lodash/trim';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './DropdownLayout.st.css';
 
 const modulu = (n, m) => {
@@ -14,7 +14,49 @@ const modulu = (n, m) => {
 
 const NOT_HOVERED_INDEX = -1;
 
-class DropdownLayout extends WixComponent {
+@stylable(styles)
+export default class DropdownLayout extends WixComponent {
+
+  static propTypes = {
+    dropDirectionUp: PropTypes.bool,
+    onClose: PropTypes.func,
+    onSelect: PropTypes.func,
+    visible: PropTypes.bool,
+    options: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]).isRequired,
+      value: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.string
+      ]).isRequired,
+      disabled: PropTypes.bool,
+      overrideStyle: PropTypes.bool
+    })),
+    selectedId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    tabIndex: PropTypes.number,
+    theme: PropTypes.string,
+    onClickOutside: PropTypes.func,
+    fixedHeader: PropTypes.node,
+    fixedFooter: PropTypes.node,
+    maxHeightPixels: PropTypes.number,
+    withArrow: PropTypes.bool,
+    closeOnSelect: PropTypes.bool
+  };
+
+  static defaultProps = {
+    options: [],
+    tabIndex: 1,
+    selectedId: NOT_HOVERED_INDEX,
+    maxHeightPixels: 260,
+    closeOnSelect: true
+  };
+
+  static NONE_SELECTED_ID = NOT_HOVERED_INDEX;
 
   constructor(props) {
     super(props);
@@ -147,9 +189,9 @@ class DropdownLayout extends WixComponent {
     const {options, visible, dropDirectionUp, tabIndex, fixedHeader, fixedFooter, withArrow} = this.props;
 
     return (
-      <div tabIndex={tabIndex} className={`theme-${this.props.theme || 'none'}`} onKeyDown={this._onKeyDown}>
+      <div tabIndex={tabIndex} className={this.props.theme ? `theme-${this.props.theme}` : ''} onKeyDown={this._onKeyDown}>
         <div
-          cssStates={{shown: visible, up: dropDirectionUp, down: !dropDirectionUp, withArrow}}
+          style-state={{shown: visible, up: dropDirectionUp, down: !dropDirectionUp, withArrow}}
           className="content-container"
           style={{maxHeight: this.props.maxHeightPixels + 'px'}}
           >
@@ -194,7 +236,7 @@ class DropdownLayout extends WixComponent {
     }
     return (
       <div
-        cssStates={{selected, hovered, disabled, title}}
+        style-state={{selected, hovered, disabled, title}}
         className={optionClassName}
         onClick={!disabled ? () => this._onSelect(idx) : null}
         key={idx}
@@ -209,7 +251,7 @@ class DropdownLayout extends WixComponent {
 
   renderTopArrow() {
     const {withArrow, visible, dropDirectionUp} = this.props;
-    return withArrow && visible ? <div cssStates={{up: dropDirectionUp, down: !dropDirectionUp}} className="arrow"/> : null;
+    return withArrow && visible ? <div style-state={{up: dropDirectionUp, down: !dropDirectionUp}} className="arrow"/> : null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -242,46 +284,3 @@ class DropdownLayout extends WixComponent {
     return option.value !== '-' && !option.disabled && !option.title;
   }
 }
-
-DropdownLayout.propTypes = {
-  dropDirectionUp: PropTypes.bool,
-  onClose: PropTypes.func,
-  onSelect: PropTypes.func,
-  visible: PropTypes.bool,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]).isRequired,
-    value: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.string
-    ]).isRequired,
-    disabled: PropTypes.bool,
-    overrideStyle: PropTypes.bool
-  })),
-  selectedId: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  tabIndex: PropTypes.number,
-  theme: PropTypes.string,
-  onClickOutside: PropTypes.func,
-  fixedHeader: PropTypes.node,
-  fixedFooter: PropTypes.node,
-  maxHeightPixels: PropTypes.number,
-  withArrow: PropTypes.bool,
-  closeOnSelect: PropTypes.bool
-};
-
-DropdownLayout.defaultProps = {
-  options: [],
-  tabIndex: 1,
-  selectedId: NOT_HOVERED_INDEX,
-  maxHeightPixels: 260,
-  closeOnSelect: true
-};
-
-DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;
-
-export default sbcomponent(DropdownLayout, styles);

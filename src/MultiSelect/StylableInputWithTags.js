@@ -4,10 +4,30 @@ import Tag from '../Tag/Tag';
 import Input from '../Input';
 import omit from 'omit';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './InputWithTags.st.css';
 
-class InputWithTags extends React.Component {
+@stylable(styles)
+export default class InputWithTags extends React.Component {
+  static propTypes = {
+    onRemoveTag: PropTypes.func,
+    tags: PropTypes.array,
+    onKeyDown: PropTypes.func,
+    placeholder: PropTypes.string,
+    onFocus: PropTypes.func,
+    autoFocus: PropTypes.bool,
+    disabled: PropTypes.bool,
+    error: PropTypes.bool,
+    delimiters: PropTypes.array
+  };
+
+  static defaultProps = {
+    onRemoveTag: () => {},
+    tags: [],
+    placeholder: '',
+    delimiters: []
+  };
+
   constructor(props) {
     super(props);
     this.focus = this.focus.bind(this);
@@ -38,7 +58,7 @@ class InputWithTags extends React.Component {
     const fontSize = (desiredProps.size && desiredProps.size === 'small') ? '14px' : '16px';
 
     return (
-      <div cssStates={{disabled, error, hasFocus}} onClick={() => this.handleInputFocus()}>
+      <div style-state={{disabled, error, hasFocus}} onClick={() => this.handleInputFocus()}>
 
         {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
         <span className="input" data-hook="inner-input-with-tags">
@@ -76,24 +96,3 @@ class InputWithTags extends React.Component {
     this.input.select();
   }
 }
-
-InputWithTags.propTypes = {
-  onRemoveTag: PropTypes.func,
-  tags: PropTypes.array,
-  onKeyDown: PropTypes.func,
-  placeholder: PropTypes.string,
-  onFocus: PropTypes.func,
-  autoFocus: PropTypes.bool,
-  disabled: PropTypes.bool,
-  error: PropTypes.bool,
-  delimiters: PropTypes.array
-};
-
-InputWithTags.defaultProps = {
-  onRemoveTag: () => {},
-  tags: [],
-  placeholder: '',
-  delimiters: []
-};
-
-export default sbcomponent(InputWithTags, styles);

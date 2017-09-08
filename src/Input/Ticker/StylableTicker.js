@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import {stylable} from 'wix-react-tools';
 import styles from './Ticker.st.css';

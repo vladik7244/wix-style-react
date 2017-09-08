@@ -113,7 +113,7 @@ InputSuffix.propTypes = {
 };
 
 const StylableInputSuffix = sbstateless(InputSuffix, styles);
-StylableInputSuffix.propTypes = Ticker.propTypes;
+StylableInputSuffix.propTypes = InputSuffix.propTypes;
 
 export default StylableInputSuffix;
 export {getVisibleSuffixCount};
