@@ -130,47 +130,49 @@ class ExampleSideMenuDrill extends React.Component {
     });
   }
 
+  renderFooter() {
+    return (
+      <SideMenu.Footer>
+        <SideMenu.FooterLink
+          href="https://support.wix.com/"
+          target="_blank"
+          icon={<HelpIcon size="1em"/>}
+          >
+          Help Me!
+        </SideMenu.FooterLink>
+
+        <SideMenu.FooterTinyLink
+          href="https://support.wix.com/en/article/wix-seo-wiz-suggestions-and-feedback"
+          target="_blank"
+          icon={<div style={{marginTop: 2}}><ChatIcon size="1em"/></div>}
+          tooltip="Hey, come talk to me!"
+          onClick={() => console.log('clicked on tiny link yay!')}
+          />
+      </SideMenu.Footer>
+    );
+  }
+
   render() {
     const {items} = this.state;
 
     return (
-      <div>
-        <div style={{width: 220, height: 700, display: 'flex'}}>
-          <div style={{display: 'flex', flexGrow: 1}}>
-            <SideMenuDrill inFlex>
-              <SideMenu.Header>
-                <div onClick={() => console.log('Header clicked')}>
-                  <TrashIcon size="5em"/>
-                  <h2 style={{color: '#fff'}}>My Application</h2>
-                </div>
-              </SideMenu.Header>
-              {this.renderNavigation(items)}
-              <SideMenu.Promotion>
-                <Button theme="fullpurple" onClick={() => console.log('Promotion button clicked!')}>
-                  Buy 1 for price of 2!
-                </Button>
-              </SideMenu.Promotion>
-              <SideMenu.Footer>
-                <SideMenu.FooterLink
-                  href="https://support.wix.com/"
-                  target="_blank"
-                  icon={<HelpIcon size="1em"/>}
-                  >
-                  Help Me!
-                </SideMenu.FooterLink>
-
-                <SideMenu.FooterTinyLink
-                  href="https://support.wix.com/en/article/wix-seo-wiz-suggestions-and-feedback"
-                  target="_blank"
-                  icon={<div style={{marginTop: 2}}><ChatIcon size="1em"/></div>}
-                  tooltip="Hey, come talk to me!"
-                  onClick={() => console.log('clicked on tiny link yay!')}
-                  />
-              </SideMenu.Footer>
-            </SideMenuDrill>
-          </div>
+      <div style={{width: 220, height: 700, display: 'flex'}}>
+        <div style={{display: 'flex', flexGrow: 1}}>
+          <SideMenuDrill inFlex stickyFooter={this.renderFooter()}>
+            <SideMenu.Header>
+              <div onClick={() => console.log('Header clicked')}>
+                <TrashIcon size="5em"/>
+                <h2 style={{color: '#fff'}}>My Application</h2>
+              </div>
+            </SideMenu.Header>
+            {this.renderNavigation(items)}
+            <SideMenu.Promotion>
+              <Button theme="fullpurple" onClick={() => console.log('Promotion button clicked!')}>
+                Buy 1 for price of 2!
+              </Button>
+            </SideMenu.Promotion>
+          </SideMenuDrill>
         </div>
-        <Button onClick={() => this.addItem()}>Add link to root menu</Button>
       </div>
     );
   }

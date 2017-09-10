@@ -11,12 +11,12 @@ describe('CollpasedHeader', () => {
   const createDriver = createDriverFactory(collapsedHeaderDriverFactory);
 
   it('should have a title', () => {
-    const driver = createDriver(<CollapsedHeader title="Header Title"/>);
+    const driver = createDriver(<CollapsedHeader title="Header Title"><div/></CollapsedHeader>);
     expect(driver.title()).toBe('Header Title');
   });
 
   it('should have a subtitle', () => {
-    const driver = createDriver(<CollapsedHeader title="Header Title" subtitle="Header Subtitle"/>);
+    const driver = createDriver(<CollapsedHeader title="Header Title" subtitle="Header Subtitle"><div/></CollapsedHeader>);
     expect(driver.subtitle()).toBe('Header Subtitle');
   });
 
@@ -24,7 +24,7 @@ describe('CollpasedHeader', () => {
     it('should exist', () => {
       const div = document.createElement('div');
       const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><CollapsedHeader title="Header Title" subtitle="Header Subtitle" dataHook={dataHook}/></div>));
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><CollapsedHeader title="Header Title" subtitle="Header Subtitle" dataHook={dataHook}><div/></CollapsedHeader></div>));
       const collapsedHeaderTestkit = collapsedHeaderTestkitFactory({wrapper, dataHook});
       expect(collapsedHeaderTestkit.exists()).toBeTruthy();
     });
@@ -33,7 +33,7 @@ describe('CollpasedHeader', () => {
   describe('enzyme testkit', () => {
     it('should exist', () => {
       const dataHook = 'myDataHook';
-      const wrapper = mount(<CollapsedHeader title="Header Title" subtitle="Header Subtitle" dataHook={dataHook}/>);
+      const wrapper = mount(<CollapsedHeader title="Header Title" subtitle="Header Subtitle" dataHook={dataHook}><div/></CollapsedHeader>);
       const collapsedDriverTestkit = enzymeCollapsedHeaderTestkitFactory({wrapper, dataHook});
       expect(collapsedDriverTestkit.exists()).toBeTruthy();
     });

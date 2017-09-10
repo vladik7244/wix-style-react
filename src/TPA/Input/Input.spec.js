@@ -32,7 +32,7 @@ describe('Input', () => {
 
   it('should return passed value', () => {
     const wrapper = renderToDocument(
-      <Input value="the value" defaultValue="some default value" dataHook={dataHook}/>
+      <Input value="the value" onChange={() => {}} dataHook={dataHook}/>
     );
 
     const inputTestkit = inputTestkitFactory({wrapper, dataHook});
@@ -51,7 +51,7 @@ describe('Input', () => {
 
   it('should be in error state', () => {
     const wrapper = renderToDocument(
-      <Input error={true} styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
+      <Input error styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
     );
 
     const inputTestkit = inputTestkitFactory({wrapper, dataHook});
@@ -60,7 +60,7 @@ describe('Input', () => {
 
   it('should be able to pass error class name', () => {
     const wrapper = renderToDocument(
-      <Input error={true} errorClassName="customErrorClassName" styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
+      <Input error errorClassName="customErrorClassName" styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
     );
 
     const inputTestkit = inputTestkitFactory({wrapper, dataHook});
@@ -69,7 +69,7 @@ describe('Input', () => {
 
   it('should be able to pass custom input css class name', () => {
     const wrapper = renderToDocument(
-      <Input error={true} inputClassName="customInputClassName" styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
+      <Input error inputClassName="customInputClassName" styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
     );
 
     const inputTestkit = inputTestkitFactory({wrapper, dataHook});

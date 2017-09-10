@@ -67,6 +67,31 @@ describe('PopoverMenu', () => {
       expect(driver.menu.isShown()).toBe(false);
     });
   });
+
+  it('should not render non-existing items', async () => {
+    const driver = createDriver(
+      <PopoverMenu>
+        <PopoverMenuItem
+          dataHook={menuItemDataHook}
+          text="Menu Item #1"
+          />
+        {false && (
+          <PopoverMenuItem
+            dataHook={menuItemDataHook}
+            text="Menu Item #2"
+            />
+        )}
+      </PopoverMenu>
+    ).init.menuItemDataHook(menuItemDataHook);
+
+    driver.click();
+
+    await waitFor(() => {
+      expect(driver.menu.isShown()).toBe(true);
+    });
+
+    expect(driver.menu.itemsLength()).toBe(1);
+  });
 });
 
 describe('Testkits', () => {
@@ -82,12 +107,10 @@ describe('Testkits', () => {
   );
 
   it('Using ReactTestUtils testkit', () => {
-    expect(isTestkitExists(<span/>, popoverMenuTestkitFactory)).toBe(false);
     expect(isTestkitExists(genPopoverMenuElement(), popoverMenuTestkitFactory)).toBe(true);
   });
 
   it('Using Enzyme testkit', () => {
-    expect(isEnzymeTestkitExists(<span/>, enzymePopoverMenuTestkitFactory)).toBe(false);
     expect(isEnzymeTestkitExists(genPopoverMenuElement(), enzymePopoverMenuTestkitFactory)).toBe(true);
   });
 });

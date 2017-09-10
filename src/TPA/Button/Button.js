@@ -30,7 +30,7 @@ class Button extends WixComponent {
     ], className)).trim();
 
     return (
-      <button className={classes} data-theme={theme} {...omit(['children', 'theme', 'className', 'dataHook'], this.props)}>
+      <button className={classes} data-theme={theme} {...omit(['injectedStyles', 'children', 'theme', 'className', 'dataHook'], this.props)}>
         {children}
       </button>
     );

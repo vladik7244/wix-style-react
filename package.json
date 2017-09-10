@@ -129,6 +129,7 @@
     "setupFiles": [
       "<rootDir>/node_modules/babel-polyfill"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/testkit/setup-jest",
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/mock-st-css.js",
       "\\.(less|scss)$": "identity-obj-proxy"

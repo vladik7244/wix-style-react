@@ -13,12 +13,12 @@ describe('ToggleSwitch', () => {
 
   describe('checked attribute', () => {
     it('should pass down to input', () => {
-      const driver = createDriver(<ToggleSwitch checked={true} onChange=""/>);
+      const driver = createDriver(<ToggleSwitch checked={true} onChange={() => {}}/>);
       expect(driver.isChecked()).toBeTruthy();
     });
 
     it('should pass down to input', () => {
-      const driver = createDriver(<ToggleSwitch checked={false} onChange=""/>);
+      const driver = createDriver(<ToggleSwitch checked={false} onChange={() => {}}/>);
       expect(driver.isChecked()).toBeFalsy();
     });
   });
@@ -35,21 +35,21 @@ describe('ToggleSwitch', () => {
 
   describe('size attribute', () => {
     it('should create a large toggle by default', () => {
-      const driver = createDriver(<ToggleSwitch checked={false} onChange={null}/>);
+      const driver = createDriver(<ToggleSwitch checked={false} onChange={() => {}}/>);
       expect(driver.isXSmall()).toBeFalsy();
       expect(driver.isSmall()).toBeFalsy();
       expect(driver.isLarge()).toBeTruthy();
     });
 
     it('should create a small toggle once given size', () => {
-      const driver = createDriver(<ToggleSwitch checked={false} onChange={null} size="small"/>);
+      const driver = createDriver(<ToggleSwitch checked={false} onChange={() => {}} size="small"/>);
       expect(driver.isXSmall()).toEqual(false);
       expect(driver.isSmall()).toEqual(true);
       expect(driver.isLarge()).toEqual(false);
     });
 
     it('should create a x-small toggle once given size', () => {
-      const driver = createDriver(<ToggleSwitch checked={false} onChange={null} size="x-small"/>);
+      const driver = createDriver(<ToggleSwitch checked={false} onChange={() => {}} size="x-small"/>);
       expect(driver.isXSmall()).toEqual(true);
       expect(driver.isSmall()).toEqual(false);
       expect(driver.isLarge()).toEqual(false);

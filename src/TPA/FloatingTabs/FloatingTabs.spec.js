@@ -13,8 +13,8 @@ describe('FloatingTabs', () => {
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
         <FloatingTabs dataHook={dataHook}>
-          <FloatingTabItem>1</FloatingTabItem>
-          <FloatingTabItem>2</FloatingTabItem>
+          <FloatingTabItem id="first">1</FloatingTabItem>
+          <FloatingTabItem id="second">2</FloatingTabItem>
         </FloatingTabs>
       </div>
     ));

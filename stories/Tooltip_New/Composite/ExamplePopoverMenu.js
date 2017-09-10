@@ -90,11 +90,13 @@ class ExamplePopoverMenu extends Component {
             <Label>Button Theme</Label>
             <div className={styles.flex}>
               <RadioGroup
-                display="horizontal"
+                display="vertical"
                 value={this.state.buttonTheme}
                 onChange={buttonTheme => this.setState({buttonTheme})}
                 >
                 <RadioGroup.Radio value="icon-greybackground">Icon Grey Background</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-standard">Icon Blue</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-standardsecondary">Icon Blue Secondary</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-white">Icon White</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-whitesecondary">Icon White Secondary</RadioGroup.Radio>
               </RadioGroup>
