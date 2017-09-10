@@ -1,0 +1,533 @@
+@namespace "Input";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D10, D20, D50, D55, D60, D80, B10, B20, B30, B50, R05, R10, GR20, GR40, paletteE6, paletteD3, paletteB4, paletteR1;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontRoman, FontLight, Typography;
+}
+
+:import {
+    -st-from: "./input-mixins.js";
+    -st-named: BoxSizing, BorderRadius, Placeholder, Selection, Size;
+}
+
+:import {
+    -st-from: "./input-theme-mixins.js";
+    -st-named: ThemeDefault, ThemeHover, ThemeFocus, ThemeError, ThemeDisable, ThemeDisableHover, ThemeFlat;
+}
+
+:vars {
+    gap: 6px;
+    doubleGap: 12px;
+    materialGap: 8px;
+    paneltitleDefaultBackground: rgba(22,45,61,0.6);
+    paneltitleHoverBackground: rgba(22,45,61,0.4);
+    paneltitleFocusShadowColor: rgba(56,153,236,0.6);
+}
+
+.root {
+    -st-states: rtl, disabled, hasError, hasHover, hasFocus, roundInput, hasValue;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border: solid 1px;
+    border-radius: 6px;
+    -st-mixin: BoxSizing FontRoman;
+}
+
+.inputWrapper {
+    display: flex;
+    width: 100%;
+}
+
+.input {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 20px;
+    padding: 0 value(doubleGap);
+    margin: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    -st-mixin: BorderRadius(6px) FontRoman Placeholder(value(paletteE6)) Selection(value(paletteB4));
+}
+
+.input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.input[type=number]::-webkit-outer-spin-button,
+.input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input.withPrefix {
+    padding-left: 0;
+}
+
+.input.withSuffix {
+    padding-right: 0;
+}
+
+.input.withSuffixes {
+    padding-right: value(gap);
+}
+
+/* Remove IE10+ automatically x button */
+.input::-ms-clear {
+   display: none;
+}
+
+.prefixes,
+.suffixes {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-grow: 0;
+    min-width: 0;
+    user-select: none;
+}
+
+.prefix,
+.suffix {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.prefix:first-child .unitSeparator,
+.suffix:first-child .unitSeparator {
+    margin-left: value(doubleGap);
+}
+
+.prefix:last-child .unit,
+.suffix:last-child .unit {
+    padding-right: value(doubleGap);
+}
+
+.root:roundInput.size-normal {
+    -st-mixin: BorderRadius(18px);
+}
+
+.root:roundInput.size-small {
+    -st-mixin: BorderRadius(15px);
+}
+
+.root:roundInput.size-large {
+    -st-mixin: BorderRadius(27px);
+}
+
+.root:roundInput .menuArrow {
+    padding: 0 value(doubleGap);
+}
+
+.size-small {
+    -st-extends: root;
+    -st-mixin: Size(30px, 14px);
+}
+
+.size-normal {
+    -st-extends: root;
+    -st-mixin: Size(36px, 16px);
+}
+
+.size-normal-with-selection {
+    -st-extends: root;
+    -st-mixin: Size(34px, 16px);
+}
+
+.size-large {
+    -st-extends: root;
+    -st-mixin: Size(60px, 22px);
+}
+
+.theme-normal {
+    -st-extends: root;
+/*@include ThemeFocus($borderColor: $B20, $boxShadow: inset 0px 0px 5px 0px fade($B10, 60%));*/
+/*@include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));*/
+    -st-mixin: ThemeDefault(value(B30), value(D80), value(D10)) ThemeHover(value(B50)) ThemeFocus(value(B20), inset 0px 0px 5px 0px white) ThemeError(value(paletteR1), inset 0px 0px 5px 0px white) ThemeDisable(value(D60), value(D80), value(D55)) ThemeDisableHover(value(GR20));
+}
+
+.theme-paneltitle {
+    -st-extends: root;
+/*@include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));*/
+    -st-mixin: ThemeDefault(#c1e4fe, value(paneltitleDefaultBackground), white) ThemeHover(value(paneltitleHoverBackground)) ThemeFocus(#4eb7f5, inset 0 0 5px 0 value(paneltitleFocusShadowColor)) ThemeError(value(paletteR1), inset 0px 0px 5px 0px white) ThemeDisable(value(GR40), value(paneltitleDefaultBackground), white);
+}
+
+.theme-amaterial {
+    -st-extends: root;
+    border: 0;
+}
+
+.theme-amaterial .errorIcon {
+    padding: 0 6px 16px;
+    color: #f2564d;
+}
+
+.theme-amaterial.size-normal {
+    padding-bottom: 4px;
+    -st-mixin: Size(34px, 20px);
+}
+
+.theme-amaterial label,
+.theme-amaterial .input {
+    color: #43515c;
+}
+
+.theme-amaterial label {
+    font-size: 20px;
+    transition:all .2s ease-in-out;
+    position: absolute;
+    top: 2px;
+    padding: 0 12px;
+}
+
+.theme-amaterial .input {
+    -st-mixin: FontLight Placeholder(white);
+    z-index: 1;
+    transition: border-bottom .3s, border-color .3s, border-width .3s, border .3s ease-in-out;
+    line-height: 1;
+    display: block;
+    margin-top: 0;
+
+    background: none;
+    border-radius: 0;
+    border-style: solid; /* Firefox fix */
+
+    /* Fix number inputs in Firefox to be full-width */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.theme-amaterial.root:hasFocus .input,
+.theme-amaterial.root:hasValue .input {
+    -st-mixin: Placeholder(value(paletteE6));
+}
+
+.theme-amaterial.root:hasFocus input,
+.theme-amaterial.root:hasValue input {
+    border-bottom: 0;
+}
+
+.theme-amaterial.root:hasFocus .bar:before,
+.theme-amaterial.root:hasFocus .bar:after,
+.theme-amaterial.root:hasValue .bar:before,
+.theme-amaterial.root:hasValue .bar:after {
+    height: 2px;
+    background-color: #3899ec;
+}
+
+.theme-amaterial.root:hasFocus label,
+.theme-amaterial.root:hasValue label {
+    top: -22px;
+    font-size: 14px;
+}
+
+.theme-amaterial .bar {
+    position: absolute;
+    bottom: 0;
+    left: -1px;
+    right: -1px;
+    height: 1px;
+    background: value(D60);
+    transition: 0.3s ease all;
+}
+
+.theme-amaterial .bar:before, .theme-amaterial .bar:after {
+    content: '';
+    height: 1px;
+    width: 0;
+    bottom: 0;
+    position: absolute;
+    background: #000;
+    transition: 0.3s all;
+}
+
+.root:hasFocus .barBlue:before,
+.root:hasFocus .barBlue:after {
+    width:100%;
+}
+
+.theme-amaterial .input:hover ~ .barBlue, .theme-amaterial .input.hasHover ~ .barBlue {
+    background-color: #000;
+    transition: 0.3s ease all;
+}
+
+.theme-amaterial.root:hasError .bar,
+.theme-amaterial.root:hasError .input:hover ~ .barBlue,
+.theme-amaterial.root:hasError .input.hasHover ~ .barBlue {
+    background-color: #f2564d;
+    height: 2px;
+}
+
+.theme-material {
+    -st-extends: root;
+    border-radius: 0;
+    -st-mixin: ThemeDefault(transparent, value(D80), value(D10));
+}
+
+.theme-material .prefixes,
+.theme-material .suffixes {
+    padding: 0 4px;
+}
+
+.theme-material.size-normal {
+    -st-mixin: Size(34px, 18px);
+}
+
+.theme-material .input {
+    -st-mixin: FontLight;
+    padding: 0 value(materialGap);
+}
+
+.theme-material .bar {
+    position: absolute;
+    bottom: 0;
+    left: -1px;
+    right: -1px;
+    height: 1px;
+    background: value(D60);
+}
+
+.theme-material .bar:before,
+.theme-material .bar:after {
+    content: '';
+    height: 1px;
+    width: 0;
+    bottom: 0;
+    position: absolute;
+    background: value(D50);
+    transition: 0.2s ease all;
+}
+
+.theme-material .bar:before {
+    left: 50%;
+}
+
+.theme-material .bar:after {
+    right: 50%;
+}
+
+.root:hasFocus .barBlack:before,
+.root:hasFocus .bar:after {
+    width: 50%;
+}
+
+.theme-material.root:hasError .bar {
+    background: value(R05);
+}
+
+.theme-material.root:hasError .bar:before,
+.theme-material.root:hasError .bar:after {
+    background: value(R05);
+}
+
+.theme-flat {
+    -st-extends: root;
+    border: none;
+    border-radius: 0;
+    -st-mixin: ThemeFlat(value(D20));
+}
+
+.theme-flat.size-large {
+    -st-mixin: Size(54px, 20px);
+}
+
+.theme-flat:hover, .theme-flat.root:hasFocus {
+    -st-mixin: ThemeFlat(value(B20));
+}
+
+.theme-flat:active {
+    -st-mixin: ThemeFlat(value(B10));
+}
+
+.theme-flat.root:disabled {
+    -st-mixin: ThemeFlat(value(D50));
+}
+
+.theme-flatdark {
+    -st-extends: root;
+    border: none;
+    border-radius: 0;
+    -st-mixin: ThemeFlat(value(D80));
+}
+
+.theme-flatdark.size-large {
+    -st-mixin: Size(54px, 20px);
+}
+
+.theme-flatdark:hover, .theme-flatdark.root:hasFocus {
+    -st-mixin: ThemeFlat(value(B20));
+}
+
+.theme-flatdark:active {
+    -st-mixin: ThemeFlat(value(B10));
+}
+
+.theme-flatdark.root:disabled {
+    -st-mixin: ThemeFlat(value(D50));
+}
+
+/* RTL layout based on global style set on document body or parent element */
+:global(.rtl) .root,
+:global(.rtl) .inputWrapper,
+:global(.rtl) .prefixes,
+:global(.rtl) .suffixes {
+    flex-direction: row-reverse;
+}
+
+:global(.rtl) .input {
+    direction: rtl;
+}
+
+:global(.rtl) .input.withPrefix {
+    padding-right: 0;
+    padding-left: value(doubleGap);
+}
+
+:global(.rtl) .input.withSuffix {
+    padding-left: 0;
+    padding-right: value(doubleGap);
+}
+
+:global(.rtl) .prefix:first-child .unitSeparator,
+:global(.rtl) .suffix:first-child .unitSeparator {
+    margin-right: value(doubleGap);
+    margin-left: value(gap);
+}
+
+:global(.rtl) .prefix:last-child .unit,
+:global(.rtl) .suffix:last-child .unit {
+    padding-left: value(doubleGap);
+    padding-right: value(gap);
+}
+
+/* RTL layout based on a property passed directly to the component. */
+.root:rtl {
+    flex-direction: row-reverse;
+}
+
+.root:rtl .prefixes,
+.root:rtl .suffixes {
+    flex-direction: row-reverse;
+}
+
+.root:rtl .input {
+    direction: rtl;
+}
+
+.magnifyingGlass {
+    margin: 0 value(gap);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.magnifyingGlass path {
+    fill: value(B10);
+}
+
+.magnifyingGlass line {
+    stroke: value(B10);
+}
+
+.magnifyingGlass[disabled] path {
+    fill: value(GR40);
+}
+
+.magnifyingGlass[disabled] line {
+    stroke: value(GR40);
+}
+
+.exclamation {
+    margin: 0 value(gap);
+    background-color: value(paletteR1);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exclamation path {
+    stroke: #fff;
+}
+
+.help {
+    margin: 0 value(gap);
+    color: value(B20);
+    padding-top: 4px;
+}
+
+:global(.rtl) .help,
+:global(.rtl) .amaterialHelp {
+    transform: scaleX(-1);
+}
+
+.amaterialHelp {
+    margin: 0 value(gap);
+    color: value(B20);
+    padding-bottom: 14px;
+}
+
+.clearButton {
+    cursor: pointer;
+    padding: 0 value(doubleGap);
+    height: 6px;
+    line-height: 6px;
+    font-size: 6px;
+}
+
+.clearButton path {
+    stroke: value(B10);
+}
+
+.unit {
+    padding: 0 value(gap);
+    color: value(paletteD3);
+    -st-mixin: FontLight;
+}
+
+.unitSeparator {
+    width: 1px;
+    margin: 0 value(gap);
+    background-color: value(paletteB4);
+    height: 18px;
+}
+
+.root:hasError .unitSeparator {
+    background-color: value(paletteR1);
+}
+
+.menuArrow {
+    padding: 0 value(doubleGap);
+}
+
+.menuArrow path {
+    fill: value(B10);
+}
+
+.menuArrow[disabled] path {
+    fill: value(GR40);
+}
+.menuArrow[disabled] line {
+    stroke: value(GR40);
+}
+
+.roundInput .menuArrow {
+    padding: 0 value(doubleGap);
+}
+
+.materialTitle {
+    -st-mixin: Typography(t, 1, 1);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

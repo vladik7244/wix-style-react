@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 
 import Tooltip from '../Tooltip';
 import SvgExclamation from '../svg/Exclamation.js';
-
-import {SBComponent as sbcomponent} from 'stylable-react-component';
-import styles from './InputErrorSuffix.st.css';
 import inputStyles from './Input.st.css';
 
 class InputErrorSuffix extends React.Component {
@@ -33,4 +30,4 @@ InputErrorSuffix.propTypes = {
   focused: PropTypes.bool
 };
 
-export default sbcomponent(InputErrorSuffix, styles);
+export default InputErrorSuffix;

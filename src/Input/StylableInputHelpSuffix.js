@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 
 import Tooltip from '../Tooltip';
 import Help from '../Icons/dist/components/Help';
-
-import {SBComponent as sbcomponent} from 'stylable-react-component';
-import styles from './InputHelpSuffix.st.css';
 import inputStyles from './Input.st.css';
 
 class InputHelpSuffix extends React.Component {
@@ -33,4 +30,5 @@ InputHelpSuffix.propTypes = {
   help: PropTypes.bool
 };
 
-export default sbcomponent(InputHelpSuffix, styles);
+
+export default InputHelpSuffix;

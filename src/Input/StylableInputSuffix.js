@@ -4,12 +4,10 @@ import PropTypes from 'prop-types';
 import CloseThin from './../Icons/dist/components/CloseThin';
 import ArrowDownThin from './../Icons/dist/components/ArrowDownThin';
 import Search4 from './../Icons/dist/components/Search4';
-import ThemedInputErrorSuffix from './ThemedInputErrorSuffix';
-import ThemedInputHelpSuffix from './ThemedInputHelpSuffix';
+import ThemedInputErrorSuffix from './StylableThemedInputErrorSuffix';
+import ThemedInputHelpSuffix from './StylableThemedInputHelpSuffix';
 
-import {SBStateless as sbstateless} from 'stylable-react-component';
-import styles from './InputSuffix.st.css';
-import inputStyles from './Input.scss';
+import inputStyles from './Input.st.css';
 
 const isFixVisible = fix => fix.isVisible;
 
@@ -112,8 +110,5 @@ InputSuffix.propTypes = {
   onTooltipShow: PropTypes.func
 };
 
-const StylableInputSuffix = sbstateless(InputSuffix, styles);
-StylableInputSuffix.propTypes = InputSuffix.propTypes;
-
-export default StylableInputSuffix;
+export default InputSuffix;
 export {getVisibleSuffixCount};
