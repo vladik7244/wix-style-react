@@ -5,10 +5,58 @@ import omit from 'omit';
 import DropdownLayout from '../DropdownLayout';
 import Button from '../Button';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './ButtonWithOptions.st.css';
 
-class ButtonWithOptions extends WixComponent {
+const Option = function () {
+  return null;
+};
+Option.displayName = 'ButtonWithOptions.Option';
+
+const StaticButton = function (props) {
+  return <Button {...props}/>;
+};
+StaticButton.displayName = 'ButtonWithOptions.Button';
+
+@stylable(styles)
+export default class ButtonWithOptions extends WixComponent {
+  static defaultProps = {
+    ...DropdownLayout.defaultProps,
+    onSelect: () => {
+    },
+    options: [],
+    closeOnSelect: true,
+    valueParser: option => option.value,
+    dropdownOffsetLeft: '0',
+    restrainDropdownSize: true
+  };
+
+  static propTypes = {
+    ...DropdownLayout.propTypes,
+    closeOnSelect: PropTypes.bool,
+    valueParser: PropTypes.func,
+    dropdownWidth: PropTypes.string,
+    dropdownOffsetLeft: PropTypes.string,
+    restrainDropdownSize: PropTypes.bool,
+    children: PropTypes.arrayOf((propValue, key) => {
+      if (key === 0 && propValue[key].type !== ButtonWithOptions.Button) {
+        return new Error(`ButtonWithOptions: Invalid Prop children, first child must be ButtonWithOptions.Button`);
+      }
+
+      if (key !== 0) {
+        React.Children.forEach(propValue[key], item => {
+          if (item.type !== ButtonWithOptions.Option) {
+            return new Error(`ButtonWithOptions: Invalid Prop children was given. Validation failed on child number ${key}`);
+          }
+        });
+      }
+    })
+  };
+
+  static Option = Option;
+
+  static Button = StaticButton;
+
   // Abstraction
   dropdownAdditionalProps() {
   }
@@ -139,48 +187,3 @@ class ButtonWithOptions extends WixComponent {
     }
   }
 }
-
-ButtonWithOptions.defaultProps = {
-  ...DropdownLayout.defaultProps,
-  onSelect: () => {
-  },
-  options: [],
-  closeOnSelect: true,
-  valueParser: option => option.value,
-  dropdownOffsetLeft: '0',
-  restrainDropdownSize: true
-};
-
-ButtonWithOptions.propTypes = {
-  ...DropdownLayout.propTypes,
-  closeOnSelect: PropTypes.bool,
-  valueParser: PropTypes.func,
-  dropdownWidth: PropTypes.string,
-  dropdownOffsetLeft: PropTypes.string,
-  restrainDropdownSize: PropTypes.bool,
-  children: PropTypes.arrayOf((propValue, key) => {
-    if (key === 0 && propValue[key].type !== ButtonWithOptions.Button) {
-      return new Error(`ButtonWithOptions: Invalid Prop children, first child must be ButtonWithOptions.Button`);
-    }
-
-    if (key !== 0) {
-      React.Children.forEach(propValue[key], item => {
-        if (item.type !== ButtonWithOptions.Option) {
-          return new Error(`ButtonWithOptions: Invalid Prop children was given. Validation failed on child number ${key}`);
-        }
-      });
-    }
-  })
-};
-
-ButtonWithOptions.Option = function () {
-  return null;
-};
-ButtonWithOptions.Option.displayName = 'ButtonWithOptions.Option';
-
-ButtonWithOptions.Button = function (props) {
-  return <Button {...props}/>;
-};
-ButtonWithOptions.Button.displayName = 'ButtonWithOptions.Button';
-
-export default sbcomponent(ButtonWithOptions, styles);

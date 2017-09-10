@@ -4,7 +4,7 @@ import Label from '../Label';
 import AutoComplete from '../AutoComplete';
 import InputAreaWithLabelComposite from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite';
 
-import {SBStateless as sbstateless} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './AutoCompleteComposite.st.css';
 
 const AutoCompleteComposite = ({...props, children}) => (
@@ -19,7 +19,7 @@ AutoCompleteComposite.propTypes = {
 
 AutoCompleteComposite.displayName = 'AutoCompleteComposite';
 
-const StylableAutoCompleteComposite = sbstateless(AutoCompleteComposite, styles);
+const StylableAutoCompleteComposite = stylable(styles)(AutoCompleteComposite);
 StylableAutoCompleteComposite.propTypes = AutoCompleteComposite.propTypes;
 StylableAutoCompleteComposite.displayName = AutoCompleteComposite.displayName;
 export default StylableAutoCompleteComposite;
