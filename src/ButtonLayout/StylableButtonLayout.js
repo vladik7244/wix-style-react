@@ -15,7 +15,10 @@ const ButtonLayout = props => {
     [styles.active]: active,
     [styles.disabled]: disabled,
     [styles[`height${height}`]]: height !== 'medium'
-  }, children.props.className);
+  },
+    children.props.className,
+    props.className /* TODO: Remove this when wix-react-tools supports cloneElement */
+  );
 
   const _style = Object.assign({},
     children.props.style,
