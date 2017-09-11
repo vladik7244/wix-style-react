@@ -61,8 +61,8 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
       return {
         mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(option),
         mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
-        isHovered: () => isClassExists(option, 'hovered'),
-        isSelected: () => isClassExists(option, 'selected'),
+        isHovered: () => hasCssState(option, styles, {hovered: true}),
+        isSelected: () => hasCssState(option, styles, {selected: true}),
         isHoveredWithGlobalClassName: () => isClassExists(option, 'wixstylereactHovered'),
         isSelectedWithGlobalClassName: () => isClassExists(option, 'wixstylereactSelected'),
         content: () => option.textContent,
