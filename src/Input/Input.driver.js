@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import styles from './Input.scss';
+import styles from './Input.st.css';
+import {hasCssState} from '../stylable-has-css-state';
 
 const inputDriverFactory = ({element, wrapper, component}) => {
   const input = element && element.querySelector('input');
@@ -34,7 +35,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     suffixComponentExists: style => !!element.querySelector(`.${styles.suffix} ${style}`),
     hasExclamation: () => !!element.querySelector(`.${styles.exclamation}`),
     hasHelp: () => !!element.querySelector(`.${styles.help}`),
-    hasError: () => element.classList.contains(styles.hasError),
+    hasError: () => hasCssState(element, styles, {hasError: true}),
     getTooltipElement: () => element,
     getTooltipDataHook: () => 'input-tooltip',
     getDataHook: () => element.getAttribute('data-hook'),
@@ -42,10 +43,10 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     hasMagnifyingGlass: () => !!element.querySelector(`.${styles.magnifyingGlass}`),
     hasMenuArrow: () => !!element.querySelector(`.${styles.menuArrow}`),
     hasClearButton: () => !!clearButton,
-    isRTL: () => element.className.indexOf(styles.rtl) >= 0,
-    isFocusedStyle: () => element.classList.contains(styles.hasFocus),
-    isHoveredStyle: () => element.classList.contains(styles.hasHover),
-    isDisabled: () => element.classList.contains(styles.disabled),
+    isRTL: () => hasCssState(element, styles, {rtl: true}),
+    isFocusedStyle: () => hasCssState(element, styles, {hasFocus: true}),
+    isHoveredStyle: () => hasCssState(element, styles, {hasHover: true}),
+    isDisabled: () => hasCssState(element, styles, {disabled: true}),
     isOfStyle: style => element.classList.contains(styles[`theme-${style}`]),
     isOfSize: size => element.classList.contains(styles[`size-${size}`]),
     isFocus: () => document.activeElement === input,

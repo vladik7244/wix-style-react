@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import styles from './DropdownLayout.scss';
+import styles from './DropdownLayout.st.css';
 import values from 'lodash/values';
+import {hasCssState} from '../stylable-has-css-state';
 
 const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
@@ -20,9 +21,9 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
   return {
     exists: () => !!element,
-    isShown: () => isClassExists(contentContainer, 'shown'),
-    isDown: () => isClassExists(contentContainer, 'down'),
-    isUp: () => isClassExists(contentContainer, 'up'),
+    isShown: () => hasCssState(element, styles, {shown: true}),
+    isDown: () => hasCssState(element, styles, {down: true}),
+    isUp: () => hasCssState(element, styles, {up: true}),
     hasTheme: theme => isClassExists(element, `theme-${theme}`),
     tabIndex: () => element.tabIndex,
     optionsLength: () => optionsLength(),

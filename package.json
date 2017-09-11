@@ -131,7 +131,8 @@
     ],
     "setupTestFrameworkScriptFile": "<rootDir>/testkit/setup-jest",
     "moduleNameMapper": {
-      "\\.(css|less|scss)$": "identity-obj-proxy"
+      "\\.(css)$": "<rootDir>/src/mock-st-css.js",
+      "\\.(less|scss)$": "identity-obj-proxy"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/dist/",
