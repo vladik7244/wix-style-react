@@ -18,7 +18,7 @@ const AmaterialHelpSuffix = ({help, helpMessage, placement, onShow}) =>
   <Tooltip
     dataHook="input-tooltip"
     disabled={!help || helpMessage.length === 0}
-    maxWidth="250px"
+    maxWidth="230px"
     placement={placement}
     moveBy={placementToMoveBy[placement]}
     alignment="center"
