@@ -42,7 +42,7 @@ Badge.propTypes = {
   type: oneOf(['default', 'primary', 'success', 'info', 'warning', 'danger', 'businessManagerCounter']),
 
   /** set `vertical-align` */
-  alignment: oneOf(['top', 'bottom', 'middle', 'circle']),
+  alignment: oneOf(['top', 'bottom', 'middle']),
 
   /** choose appearance of typography. For Typography examples see storybook **Common** -> **Typography** */
   appearance: oneOf([

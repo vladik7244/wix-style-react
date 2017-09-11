@@ -13,15 +13,6 @@
 
 .ellipse { border-radius: 1em; }
 .rectangle { border-radius: 0; }
-.circle {
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 13px;
-  line-height: 18px;
-  padding: 0;
-  letter-spacing: normal;
-}
 
 .default { background: $paletteD3; }
 .primary { background: $paletteE1; }
@@ -29,7 +20,13 @@
 .info    { background: $paletteE5; }
 .warning { background: $paletteY1; }
 .danger  { background: $paletteR1; }
-.businessManagerCounter { background: $BMCounter; }
+.businessManagerCounter {
+  background: $BMCounter;
+  padding: 0 6px;
+  letter-spacing: 0.8px;
+  font-size: 11px;
+  line-height: 18px;
+}
 
 .top    { vertical-align: top;    }
 .middle { vertical-align: middle; }

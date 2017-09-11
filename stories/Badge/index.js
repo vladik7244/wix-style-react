@@ -29,7 +29,7 @@ storiesOf('Core', module)
           <DefaultBadgeExample/>
         </CodeExample>
 
-        <CodeExample title="Shape (Rectangle/circle)" code={RectangleBadgeExampleRaw}>
+        <CodeExample title="Shape (Rectangle)" code={RectangleBadgeExampleRaw}>
           <RectangleBadgeExample/>
         </CodeExample>
 
