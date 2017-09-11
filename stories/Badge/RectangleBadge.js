@@ -9,6 +9,7 @@ export default () => (
     <Badge type="success" shape="rectangle">Success</Badge>&nbsp;
     <Badge type="info" shape="rectangle">Info</Badge>&nbsp;
     <Badge type="warning" shape="rectangle">Warning</Badge>&nbsp;
-    <Badge type="danger" shape="rectangle">Danger</Badge>
+    <Badge type="danger" shape="rectangle">Danger</Badge>&nbsp;
+    <Badge type="businessManagerCounter" shape="circle">3</Badge>&nbsp;
   </div>
 );
