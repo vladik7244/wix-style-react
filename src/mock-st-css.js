@@ -12,7 +12,8 @@ const proxy = new Proxy({}, {
             }
             return states;
           }, {}) : {};
-        }
+        },
+        namespace
       };
     }
 

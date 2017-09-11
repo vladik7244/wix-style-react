@@ -21,9 +21,9 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
   return {
     exists: () => !!element,
-    isShown: () => hasCssState(element, styles, {shown: true}),
-    isDown: () => hasCssState(element, styles, {down: true}),
-    isUp: () => hasCssState(element, styles, {up: true}),
+    isShown: () => hasCssState(contentContainer, styles, {shown: true}),
+    isDown: () => hasCssState(contentContainer, styles, {down: true}),
+    isUp: () => hasCssState(contentContainer, styles, {up: true}),
     hasTheme: theme => isClassExists(element, `theme-${theme}`),
     tabIndex: () => element.tabIndex,
     optionsLength: () => optionsLength(),
@@ -31,8 +31,8 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     mouseLeaveAtOption: position => doIfOptionExists(position, () => ReactTestUtils.Simulate.mouseLeave(optionAt(position))),
     mouseClickOutside: () => ReactTestUtils.Simulate.blur(contentContainer),
     isOptionExists: optionText => [].filter.call(options.childNodes, opt => opt.textContent === optionText).length > 0,
-    isOptionHovered: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'hovered')),
-    isOptionSelected: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'selected')),
+    isOptionHovered: position => doIfOptionExists(position, () => hasCssState(optionAt(position), styles, {hovered: true})),
+    isOptionSelected: position => doIfOptionExists(position, () => hasCssState(optionAt(position), styles, {selected: true})),
     isOptionHoveredWithGlobalClassName: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'wixstylereactHovered')),
     isOptionSelectedWithGlobalClassName: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'wixstylereactSelected')),
     classes: () => options.className,

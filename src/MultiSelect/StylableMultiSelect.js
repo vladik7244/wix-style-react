@@ -15,6 +15,7 @@ export default class MultiSelect extends InputWithOptions {
     ...InputWithOptions.propTypes,
     predicate: PropTypes.func,
     tags: PropTypes.array,
+    maxHeight: PropTypes.string,
     delimiters: PropTypes.array
   };
 
@@ -54,7 +55,7 @@ export default class MultiSelect extends InputWithOptions {
 
   inputAdditionalProps() {
     return {
-      inputElement: <InputWithTags/>,
+      inputElement: <InputWithTags maxHeight={this.props.maxHeight}/>,
       onKeyDown: this.onKeyDown,
       delimiters: this.props.delimiters,
       onPaste: this.onPaste
@@ -120,6 +121,7 @@ export default class MultiSelect extends InputWithOptions {
 
     if (event.key === 'Enter' || event.key === 'Tab' || delimiters.includes(event.key)) {
       if (this.props.value.trim()) {
+        this._onManuallyInput(this.state.inputValue);
         const unselectedOptions = this.getUnselectedOptions();
         const visibleOptions = unselectedOptions.filter(this.props.predicate);
         const maybeNearestOption = visibleOptions[0];

@@ -11,7 +11,7 @@
 }
 
 .root {
-    -st-states: disabled, error, hasFocus;
+    -st-states: disabled, error, hasFocus, hasMaxHeight;
     width: 100%;
     -st-mixin: FontThin;
     border: 1px solid value(B30);
@@ -24,12 +24,16 @@
     font-size: 16px;
 }
 
+.root:hasMaxHeight {
+    overflow-y: scroll;
+}
+
 .root div {
     border: none !important;
 }
 
 .root div:hover {
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
 .root:disabled {

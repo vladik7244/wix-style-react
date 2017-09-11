@@ -50,7 +50,7 @@ export default class DropdownLayout extends WixComponent {
 
   static defaultProps = {
     options: [],
-    tabIndex: 1,
+    tabIndex: 0,
     selectedId: NOT_HOVERED_INDEX,
     maxHeightPixels: 260,
     closeOnSelect: true
@@ -257,7 +257,7 @@ export default class DropdownLayout extends WixComponent {
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
       if (nextProps.visible) {
-        this.setState({hovered: this.state.selectedId || NOT_HOVERED_INDEX});
+        this.setState({hovered: this.props.options.findIndex(item => item.id === this.state.selectedId) || NOT_HOVERED_INDEX});
       } else {
         this.setState({hovered: NOT_HOVERED_INDEX});
       }

@@ -4,6 +4,8 @@ import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.
 import tagDriverFactory from '../Tag/Tag.driver';
 import ReactDOM from 'react-dom';
 import initial from 'lodash/initial';
+import inputStyles from '../Input/Input.st.css';
+import {hasCssState} from '../stylable-has-css-state';
 
 const multiSelectDriverFactory = ({element, wrapper, component}) => {
 
@@ -15,7 +17,7 @@ const multiSelectDriverFactory = ({element, wrapper, component}) => {
 
   const multiSelectDriver = Object.assign(driver, {
     clickOnInputWrapper: () => ReactTestUtils.Simulate.click(inputWrapper),
-    inputWrapperHasFocus: () => inputWrapper.classList.contains('hasFocus'),
+    inputWrapperHasFocus: () => hasCssState(inputWrapper, inputStyles, {hasFocus: true}),
     numberOfTags: () => tags.length,
     getTagLabelAt: index => tags[index].textContent,
     pressCommaKey: () => inputDriver.keyDown(','),
