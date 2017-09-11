@@ -20,6 +20,13 @@
 .info    { background: $paletteE5; }
 .warning { background: $paletteY1; }
 .danger  { background: $paletteR1; }
+.businessManagerCounter {
+  background: $BMCounter;
+  padding: 0 6px;
+  letter-spacing: 0.8px;
+  font-size: 11px;
+  line-height: 18px;
+}
 
 .top    { vertical-align: top;    }
 .middle { vertical-align: middle; }
