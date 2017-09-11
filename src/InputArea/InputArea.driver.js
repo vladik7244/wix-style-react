@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import styles from './InputArea.scss';
+import styles from './InputArea.st.css';
 import $ from 'jquery';
+import {hasCssState} from '../stylable-has-css-state';
 
 const inputAreaDriverFactory = ({element, wrapper, component}) => {
   const $component = $(element);
@@ -19,12 +20,12 @@ const inputAreaDriverFactory = ({element, wrapper, component}) => {
     getMaxLength: () => textArea.maxLength,
     getTabIndex: () => textArea.tabIndex,
     getReadOnly: () => textArea.readOnly,
-    getResizable: () => textAreaElement.classList.contains(styles.resizable),
-    getHasCounter: () => textAreaElement.classList.contains(styles.hasCounter),
+    getResizable: () => hasCssState(textAreaElement, styles, {resizable: true}),
+    getHasCounter: () => hasCssState(textAreaElement, styles, {hasCounter: true}),
     hasExclamation: () => $component.find(`.${styles.exclamation}`).length === 1,
-    hasError: () => textAreaElement.classList.contains(styles.hasError),
-    isFocusedStyle: () => textAreaElement.classList.contains(styles.hasFocus),
-    isHoveredStyle: () => textAreaElement.classList.contains(styles.hasHover),
+    hasError: () => hasCssState(textAreaElement, styles, {hasError: true}),
+    isFocusedStyle: () => hasCssState(textAreaElement, styles, {hasFocus: true}),
+    isHoveredStyle: () => hasCssState(textAreaElement, styles, {hasHover: true}),
     isOfStyle: style => textAreaElement.classList.contains(styles[`theme-${style}`]),
     isFocus: () => document.activeElement === textArea,
     exists: () => !!textArea,

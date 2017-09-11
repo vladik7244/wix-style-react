@@ -28,6 +28,17 @@ module.exports.ThemeHover = optionsArr => {
   };
 };
 
+module.exports.AreaThemeHover = optionsArr => {
+  const options = {
+    backgroundColor: optionsArr[0]
+  };
+
+  return {
+    '&:hover': {'background-color': options.backgroundColor},
+    '&.inputAreaRoot:hasHover': {'background-color': options.backgroundColor}
+  };
+};
+
 const DEFAULT_BOX_SHADOW = 'none';
 
 module.exports.ThemeFocus = optionsArr => {
@@ -44,6 +55,20 @@ module.exports.ThemeFocus = optionsArr => {
   };
 };
 
+module.exports.AreaThemeFocus = optionsArr => {
+  const options = {
+    borderColor: optionsArr[0],
+    boxShadow: optionsArr[1] || DEFAULT_BOX_SHADOW
+  };
+
+  return {
+    '&.inputAreaRoot:hasFocus': {
+      'border-color': options.borderColor,
+      'box-shadow': options.boxShadow
+    }
+  };
+};
+
 module.exports.ThemeError = optionsArr => {
   const options = {
     borderColor: optionsArr[0],
@@ -52,6 +77,20 @@ module.exports.ThemeError = optionsArr => {
 
   return {
     '&.root:hasError': {
+      'border-color': options.borderColor,
+      'box-shadow': options.boxShadow
+    }
+  };
+};
+
+module.exports.AreaThemeError = optionsArr => {
+  const options = {
+    borderColor: optionsArr[0],
+    boxShadow: optionsArr[1] || DEFAULT_BOX_SHADOW
+  };
+
+  return {
+    '&.inputAreaRoot:hasError': {
       'border-color': options.borderColor,
       'box-shadow': options.boxShadow
     }
