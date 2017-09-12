@@ -54,7 +54,7 @@ class MessageBoxMarketerialLayout extends WixComponent {
 MessageBoxMarketerialLayout.propTypes = {
   title: PropTypes.node.isRequired,
   content: PropTypes.node.isRequired,
-  primaryButtonLabel: PropTypes.string.isRequired,
+  primaryButtonLabel: PropTypes.string,
   secondaryButtonLabel: PropTypes.string,
   onPrimaryButtonClick: PropTypes.func,
   onSecondaryButtonClick: PropTypes.func,

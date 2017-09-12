@@ -3,7 +3,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import toggleSwitchDriverFactory from './ToggleSwitch.driver';
 import {createDriverFactory} from '../test-common';
 import {toggleSwitchTestkitFactory} from '../../testkit';
-import ToggleSwitch from './ToggleSwitch';
+import ToggleSwitch from './index';
 import {toggleSwitchTestkitFactory as enzymeToggleSwitchTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
 
