@@ -4,6 +4,7 @@ import * as styles from './MessageBoxFunctionalLayout.scss';
 import HeaderLayout from './HeaderLayout';
 import FooterLayout from './FooterLayout';
 import WixComponent from '../BaseComponents/WixComponent';
+import classNames from 'classnames';
 
 class MessageBoxFunctionalLayout extends WixComponent {
 
@@ -22,13 +23,14 @@ class MessageBoxFunctionalLayout extends WixComponent {
       closeButton,
       disableConfirmation,
       disableCancel,
-      width
+      width,
+      noBodyPadding
     } = this.props;
 
     return (
       <div className={styles.content} style={{width}}>
         <HeaderLayout title={title} onCancel={onClose ? onClose : onCancel} theme={theme} closeButton={closeButton}/>
-        <div className={styles.body} >
+        <div className={classNames(styles.body, noBodyPadding ? styles.noPadding : styles.withPadding)} data-hook="message-box-body">
           {children}
         </div>
         {
@@ -54,14 +56,16 @@ MessageBoxFunctionalLayout.propTypes = {
   buttonsHeight: PropTypes.string,
   closeButton: PropTypes.bool,
   disableCancel: PropTypes.bool,
-  disableConfirmation: PropTypes.bool
+  disableConfirmation: PropTypes.bool,
+  noBodyPadding: PropTypes.bool
 };
 
 MessageBoxFunctionalLayout.defaultProps = {
   buttonsHeight: 'small',
   disableCancel: false,
   disableConfirmation: false,
-  width: '600px'
+  width: '600px',
+  noBodyPadding: false
 };
 
 export default MessageBoxFunctionalLayout;
