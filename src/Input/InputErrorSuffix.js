@@ -13,9 +13,11 @@ class InputErrorSuffix extends React.Component {
         disabled={this.props.errorMessage.length === 0}
         placement="top"
         alignment="center"
+        textAlign="left"
         content={this.props.errorMessage}
         overlay=""
         theme="dark"
+        maxWidth="230px"
         hideDelay={150}
         >
         <div className={styles.exclamation}><SvgExclamation width={2} height={11}/></div>

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 const MOUSE_EVENTS_SUPPORTED = ['click'];
 
-class WixComponent extends React.Component {
+class WixComponent extends React.PureComponent {
 
   constructor(params) {
     super(params);

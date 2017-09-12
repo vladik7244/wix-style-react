@@ -14,7 +14,7 @@
 | withArrow | bool | false | - | Whether the component has a pointing arrow to the top by default or bottom for dropDirectionUp |
 | visible | bool | false | - | Should show or hide the component |
 | selectedId | string/number | - | - | The id of the selected option in the list |
-| tabIndex| number | 1 | - | Specifies the tab order of the component |
+| tabIndex| number | 0 | - | Specifies the tab order of the component |
 | fixedHeader | node | - | - | A fixed header to the list |
 | fixedFooter | node | - | - | A fixed footer to the list |
 | theme | string | - | - | The theme of the dropdown. currently only 'b2b' theme is supported |

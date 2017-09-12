@@ -39,7 +39,7 @@ Badge.propTypes = {
   children: node.isRequired,
 
   /** define purpose of a badge, different color for each type */
-  type: oneOf(['default', 'primary', 'success', 'info', 'warning', 'danger']),
+  type: oneOf(['default', 'primary', 'success', 'info', 'warning', 'danger', 'businessManagerCounter']),
 
   /** set `vertical-align` */
   alignment: oneOf(['top', 'bottom', 'middle']),
@@ -71,4 +71,3 @@ Badge.defaultProps = {
 Badge.displayName = 'Badge';
 
 export default Badge;
-

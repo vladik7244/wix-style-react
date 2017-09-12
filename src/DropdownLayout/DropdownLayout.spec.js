@@ -38,13 +38,12 @@ describe('DropdownLayout', () => {
 
   it('should have a default tab index', () => {
     const driver = createDriver(<DropdownLayout visible options={options}/>);
-    expect(driver.tabIndex()).toBe(1);
+    expect(driver.tabIndex()).toBe(0);
   });
 
   it('should have options', () => {
     const driver = createDriver(<DropdownLayout visible options={options}/>);
     expect(driver.optionsLength()).toBe(6);
-
     expect(driver.optionContentAt(0)).toBe('Option 1');
     expect(driver.isOptionADivider(4)).toBeTruthy();
     expect(driver.optionByHook('dropdown-item-divider1').isDivider()).toBeTruthy();

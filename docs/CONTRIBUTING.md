@@ -19,11 +19,8 @@ For any questions regarding product design/UX please contact [Ben Benhorin](http
 
 ### Adding new component
 
-* Check [Adding new components](https://github.com/wix/wix-style-react/projects/1) project if someone already working on your component or there is an open issue for that component
-* If no one is working on it and no issue exists:
-    * create a new issue for your component;
-    * add it to [Adding new components](https://github.com/wix/wix-style-react/projects/1) -> “In Progress”;
-    * assign it to yourself.
+* If no one is working on the new component and no issue exists, create a new issue for your component and assign it to yourself;
+* Stick to the UX design that is specified in the [Zeplin](https://app.zeplin.io/project/5864e02695b5754a69f56150).
 * Add the component docs to [stories](https://github.com/wix/wix-style-react/tree/master/stories)
 
     > refer to [Badge docs](https://github.com/wix/wix-style-react/blob/master/stories/Badge/index.js) for example.
@@ -38,11 +35,5 @@ For any questions regarding product design/UX please contact [Ben Benhorin](http
     * `wix-style-react/testkit/enzyme.js`
     * `wix-style-react/testkit/protractor.js`
 
+* Each component in the library extends WixComponent, so please do it with you component as well.
 
-### Enhancing an existing component:
-
-* Check [Enhancing existing components](https://github.com/wix/wix-style-react/projects/2) project if someone already working on your request or there is an open issue for it
-* If no one is working on it and no issue exists:
-    * create a new issue;
-    * add it to [Enhancing existing components](https://github.com/wix/wix-style-react/projects/2) -> “In Progress”;
-    * assign to yourself.
