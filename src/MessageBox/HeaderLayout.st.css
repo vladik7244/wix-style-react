@@ -1,0 +1,65 @@
+@namespace "HeaderLayout";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: FontLight, paletteR1, paletteB1, paletteG1, paletteG2;
+}
+
+.root {
+    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    box-sizing: border-box;
+    min-height: 57px;
+    padding: 16px 18px;
+    padding-left: 30px;
+    font-weight: normal;
+    font-size: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px 8px 0px 0px;
+    line-height: 24px;
+}
+
+.titleLabel {
+    display: inline-block;
+    width: calc(100% - 40px);
+    word-break: break-word;
+}
+
+.close {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(22, 45, 61, 0.2);
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.close:hover, .close:focus {
+    background-color: rgba(22, 45, 61, 0.4);
+}
+
+.close > svg {
+    margin: 3px auto 0 auto;
+}
+
+.close > svg > path {
+    stroke: #fff;
+}
+
+.red {
+    background-color: value(paletteR1);
+}
+
+.blue {
+    background-color: value(paletteB1);
+}
+
+.green {
+    background-color: value(paletteG1);
+}
+
+.lightGreen {
+    background-color: value(paletteG2);
+}

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'wix-style-react/Modal';
 import {Button} from 'wix-style-react/Backoffice';
-import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
+import {MessageBoxFunctionalLayout} from 'wix-style-react/MessageBox';
 
 class ControlledModal extends Component {
   static propTypes = {

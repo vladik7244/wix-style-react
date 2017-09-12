@@ -1,7 +1,7 @@
-import MessageBoxMarketerialLayout from './MessageBoxMarketerialLayout';
-import MessageBoxFunctionalLayout from './MessageBoxFunctionalLayout';
-import HeaderLayout from './HeaderLayout';
-import FooterLayout from './FooterLayout';
+import MessageBoxMarketerialLayout from './StylableMessageBoxMarketerialLayout';
+import MessageBoxFunctionalLayout from './StylableMessageBoxFunctionalLayout';
+import HeaderLayout from './StylableHeaderLayout';
+import FooterLayout from './StylableFooterLayout';
 
 export {
     MessageBoxMarketerialLayout,
@@ -10,4 +10,3 @@ export {
     FooterLayout, FooterLayout as FooterLayout1,
     MessageBoxFunctionalLayout, MessageBoxFunctionalLayout as MessageBoxLayout2
 };
-
