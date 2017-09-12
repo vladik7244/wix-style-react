@@ -2,7 +2,12 @@
 
 :import {
     -st-from: "../common.st.css";
-    -st-named: FontThin, FontLight, D10, P10, B10;
+    -st-named: D10, P10, B10;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontThin, FontLight;
 }
 
 :vars {
@@ -80,7 +85,7 @@
 }
 
 .title {
-    font-family: value(FontThin); /* TODO: Mixin like in common? */
+    -st-mixin: FontThin;
     width: 384px;
     margin: 0 auto 19px auto;
     font-size: 36px;
@@ -90,7 +95,7 @@
 }
 
 .content {
-    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    -st-mixin: FontLight;
     width: 384px;
     margin-left: auto;
     margin-right: auto;
@@ -107,7 +112,7 @@
 }
 
 .primaryButtonContainer {
-    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    -st-mixin: FontLight;
     font-size: 14px;
     line-height: 1.29;
     color: value(B10);
@@ -115,7 +120,7 @@
 }
 
 .secondaryButtonContainer {
-    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    -st-mixin: FontLight;
     margin-top: 21px;
     font-size: 14px;
     line-height: 1.29;

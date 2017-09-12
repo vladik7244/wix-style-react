@@ -2,7 +2,12 @@
 
 :import {
     -st-from: "../common.st.css";
-    -st-named: FontLight, paletteD2;
+    -st-named: paletteD2;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontLight;
 }
 
 .root {
@@ -12,7 +17,7 @@
 }
 
 .body {
-    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    -st-mixin: FontLight;
     padding: 36px 30px 42px 30px;
     color: value(paletteD2);
     font-size: 16px;

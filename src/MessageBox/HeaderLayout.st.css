@@ -2,11 +2,16 @@
 
 :import {
     -st-from: "../common.st.css";
-    -st-named: FontLight, paletteR1, paletteB1, paletteG1, paletteG2;
+    -st-named: paletteR1, paletteB1, paletteG1, paletteG2;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontLight;
 }
 
 .root {
-    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    -st-mixin: FontLight;
     box-sizing: border-box;
     min-height: 57px;
     padding: 16px 18px;
