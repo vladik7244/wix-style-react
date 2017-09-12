@@ -1,12 +1,13 @@
-import styles from './ToggleSwitch.scss';
+import styles from './ToggleSwitch.st.css';
+import {hasCssState} from '../stylable-has-css-state';
 
 const toggleSwitchDriverFactory = component => ({
   click: () => component.click(),
   element: () => component,
   checked: () => component.$('input').isSelected(),
-  isXSmall: () => component.getAttribute('class').then(classes => classes.includes(styles.toggleSwitchXSmall)),
-  isSmall: () => component.getAttribute('class').then(classes => classes.includes(styles.toggleSwitchSmall)),
-  isLarge: () => component.getAttribute('class').then(classes => !classes.includes(styles.toggleSwitchSmall) && !classes.includes(styles.toggleSwitchXSmall))
+  isXSmall: () => hasCssState(element, styles, {toggleSwitchXSmall: true}),
+  isSmall: () => hasCssState(element, styles, {toggleSwitchSmall: true}),
+  isLarge: () => !hasCssState(element, styles, {toggleSwitchXSmall: true}) && !hasCssState(element, styles, {toggleSwitchSmall: true}),
 });
 
 export default toggleSwitchDriverFactory;
