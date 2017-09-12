@@ -15,31 +15,33 @@
 }
 
 .large {
+    -st-extends: root;
     -st-variant: true;
     -st-mixin: Breadcrumbs(36px, 14px);
 }
 
 .medium {
+    -st-extends: root;
     -st-variant: true;
     -st-mixin: Breadcrumbs(30px, 10px);
 }
 
 .onWhiteBackground {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: BreadcrumbsHover(value(D30), value(B40));*/
-    -st-mixin: BreadcrumbsHover(#577083, #daeffe);
+    -st-mixin: BreadcrumbsHover(value(D30), value(B40));
 }
 
 .onGrayBackground {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: BreadcrumbsHover(value(D30), value(D80));*/
-    -st-mixin: BreadcrumbsHover(#577083, #ffffff);
+    -st-mixin: BreadcrumbsHover(value(D30), value(D80));
 }
 
 .onDarkBackground {
+    -st-extends: root;
     -st-variant: true;
-    /*-st-mixin: BreadcrumbsHover(value(D60), value(darkBackgroundHover));*/
-    -st-mixin: BreadcrumbsHover(#dfe5eb, value(darkBackgroundHover));
+    -st-mixin: BreadcrumbsHover(value(D60), value(darkBackgroundHover));
 }
 
 .item:not(.disabled):not(.active) {

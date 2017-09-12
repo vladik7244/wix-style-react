@@ -26,7 +26,7 @@ export default class Tag extends WixComponent {
     removable: true,
     theme: 'standard'
   };
-  
+
   render() {
     const {id, children, thumb, removable, onRemove, size, wrap, disabled, theme} = this.props;
 

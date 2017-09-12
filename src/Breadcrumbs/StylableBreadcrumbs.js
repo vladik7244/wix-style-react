@@ -4,10 +4,11 @@ import WixComponent from '../BaseComponents/WixComponent';
 import Text from '../Text';
 import BreadcrumbsPathFactory from './BreadcrumbsPathFactory';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './Breadcrumbs.st.css';
 
-class Breadcrumbs extends WixComponent {
+@stylable(styles)
+export default class Breadcrumbs extends WixComponent {
   static propTypes = {
     items: arrayOf(shape({
       id: oneOfType([
@@ -129,4 +130,3 @@ class Breadcrumbs extends WixComponent {
 }
 
 export const breadcrumbsPathFactory = BreadcrumbsPathFactory;
-export default sbcomponent(Breadcrumbs, styles);
