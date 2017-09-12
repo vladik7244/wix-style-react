@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Tag from '../Tag/Tag';
+import Tag from '../Tag';
 import Input from '../Input';
 import omit from 'omit';
 import isUndefined from 'lodash/isUndefined';

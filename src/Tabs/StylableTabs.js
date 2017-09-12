@@ -35,7 +35,7 @@ export default class Tabs extends WixComponent {
   static defaultProps = {
     hasDivider: true,
   };
-  
+
   render() {
     const {items, onClick, activeId, type, hasDivider, width} = this.props;
     const style = {};

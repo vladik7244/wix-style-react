@@ -2,12 +2,17 @@
 
 :import {
     -st-from: "../common.st.css";
-    -st-named: FontLight, FontRoman, D10, D30, B10, B40, R20, GR30, Y10;
+    -st-named: D10, D30, B10, B40, R20, GR30, Y10;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontLight, Typography;
 }
 
 .root {
     -st-states: disabled, large, tagWrap;
-    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    -st-mixin: FontLight;
     position: relative;
     border-radius: 100px;
     display: flex;
@@ -62,11 +67,7 @@
 
 .innerChildren {
     -st-states: innerTagWrap;
-    /* TODO: Replace with Typography mixin when Button Stylable conversion is merged */
-    font-family: value(FontRoman);
-    font-size: 14px;
-    line-height: 18px;
-    color: value(D10);
+    -st-mixin: Typography(t, 4);
 }
 
 .innerChildren:innerTagWrap {
@@ -76,6 +77,7 @@
 }
 
 .standard-theme {
+    -st-extends: root;
     background-color: value(B40);
 }
 
@@ -84,6 +86,7 @@
 }
 
 .warning-theme {
+    -st-extends: root;
     background-color: value(Y10);
 }
 
@@ -92,6 +95,7 @@
 }
 
 .error-theme {
+    -st-extends: root;
     background-color: value(R20);
 }
 

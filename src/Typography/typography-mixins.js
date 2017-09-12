@@ -43,6 +43,12 @@ const TYPOGRAPHY = {
       fontSize: '14px',
       lineHeight: '18px',
       colors: [COLORS.D10, COLORS.D20, COLORS.D80, COLORS.B10, COLORS.GR10, COLORS.R10, COLORS.P10]
+    },
+    4: {
+      font: FONTS.FontRoman,
+      fontSize: '14px',
+      lineHeight: '18px',
+      colors: [COLORS.D10, COLORS.D20, COLORS.D80, COLORS.B10]
     }
   },
   h: {
