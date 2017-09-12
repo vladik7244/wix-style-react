@@ -38,11 +38,23 @@
     cursor: pointer;
 }
 
+.compact {
+    -st-extends: root;
+}
+
 .compact .tab {
     padding-right: 0;
     padding-left: 0;
     margin-right: 30px;
     margin-left: 30px;
+}
+
+.uniformSide {
+    -st-extends: root;
+}
+
+.uniformFull {
+    -st-extends: root;
 }
 
 .uniformFull .tab {
