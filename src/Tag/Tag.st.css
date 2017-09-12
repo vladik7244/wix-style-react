@@ -1,0 +1,100 @@
+@namespace "Tag";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: FontLight, FontRoman, D10, D30, B10, B40, R20, GR30, Y10;
+}
+
+.root {
+    -st-states: disabled, large, tagWrap;
+    font-family: value(FontLight); /* TODO: Mixin like in common? */
+    position: relative;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    padding: 2px 12px 2px 12px;
+    margin-left: 7px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height: 24px;
+}
+
+.root .thumb {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 18px;
+    height: 18px;
+    left: -6px;
+}
+
+.root .tagRemoveButton {
+    cursor: pointer;
+    margin-left: 12px;
+    width: 6px;
+    font-size: 6px;
+    line-height: 6px;
+    display: inherit;
+}
+
+.root:disabled {
+    background-color: value(GR30);
+    color: value(D30);
+}
+
+.root:large {
+    height: 36px;
+}
+.root:large .thumb {
+    height: 24px;
+    width: 24px;
+}
+.root:large .tagRemoveButton {
+    margin-left: 20px;
+    width: 8px;
+    font-size: 8px;
+    line-height: 8px;
+}
+
+.root:tagWrap {
+    overflow: hidden;
+}
+
+.innerChildren {
+    -st-states: innerTagWrap;
+    /* TODO: Replace with Typography mixin when Button Stylable conversion is merged */
+    font-family: value(FontRoman);
+    font-size: 14px;
+    line-height: 18px;
+    color: value(D10);
+}
+
+.innerChildren:innerTagWrap {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.standard-theme {
+    background-color: value(B40);
+}
+
+.standard-theme .tagRemoveButton {
+    color: value(B10);
+}
+
+.warning-theme {
+    background-color: value(Y10);
+}
+
+.warning-theme .tagRemoveButton {
+    color: white;
+}
+
+.error-theme {
+    background-color: value(R20);
+}
+
+.error-theme .tagRemoveButton {
+    color: black;
+}

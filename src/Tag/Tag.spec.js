@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from './Tag';
+import Tag from './StylableTag';
 import tagDriverFactory from './Tag.driver';
 import {createDriverFactory} from '../test-common';
 import {tagTestkitFactory} from '../../testkit';
