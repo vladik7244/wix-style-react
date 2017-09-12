@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Backoffice/Button';
 
-import {SBStateless as sbstateless} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './FooterLayout.st.css';
 
 const FooterLayout = ({children, theme, cancelText, onCancel, onOk, confirmText, buttonsHeight, enableOk, enableCancel}) => {
@@ -43,7 +43,7 @@ FooterLayout.defaultProps = {
   enableCancel: true
 };
 
-const StylableFooterLayout = sbstateless(FooterLayout, styles);
+const StylableFooterLayout = stylable(styles)(FooterLayout);
 StylableFooterLayout.propTypes = FooterLayout.propTypes;
 StylableFooterLayout.defaultProps = FooterLayout.defaultProps;
 export default StylableFooterLayout;

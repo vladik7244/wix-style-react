@@ -4,10 +4,35 @@ import HeaderLayout from './StylableHeaderLayout';
 import FooterLayout from './StylableFooterLayout';
 import WixComponent from '../BaseComponents/WixComponent';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './MessageBoxFunctionalLayout.st.css';
 
-class MessageBoxFunctionalLayout extends WixComponent {
+@stylable(styles)
+export default class MessageBoxFunctionalLayout extends WixComponent {
+
+  static propTypes = {
+    hideFooter: PropTypes.bool,
+    confirmText: PropTypes.string,
+    cancelText: PropTypes.string,
+    theme: PropTypes.string,
+    onOk: PropTypes.func,
+    onCancel: PropTypes.func,
+    onClose: PropTypes.func,
+    width: PropTypes.string,
+    title: PropTypes.node,
+    children: PropTypes.any,
+    buttonsHeight: PropTypes.string,
+    closeButton: PropTypes.bool,
+    disableCancel: PropTypes.bool,
+    disableConfirmation: PropTypes.bool
+  };
+
+  static defaultProps = {
+    buttonsHeight: 'small',
+    disableCancel: false,
+    disableConfirmation: false,
+    width: '600px'
+  };
 
   render() {
     const {
@@ -41,29 +66,3 @@ class MessageBoxFunctionalLayout extends WixComponent {
     );
   }
 }
-
-MessageBoxFunctionalLayout.propTypes = {
-  hideFooter: PropTypes.bool,
-  confirmText: PropTypes.string,
-  cancelText: PropTypes.string,
-  theme: PropTypes.string,
-  onOk: PropTypes.func,
-  onCancel: PropTypes.func,
-  onClose: PropTypes.func,
-  width: PropTypes.string,
-  title: PropTypes.node,
-  children: PropTypes.any,
-  buttonsHeight: PropTypes.string,
-  closeButton: PropTypes.bool,
-  disableCancel: PropTypes.bool,
-  disableConfirmation: PropTypes.bool
-};
-
-MessageBoxFunctionalLayout.defaultProps = {
-  buttonsHeight: 'small',
-  disableCancel: false,
-  disableConfirmation: false,
-  width: '600px'
-};
-
-export default sbcomponent(MessageBoxFunctionalLayout, styles);

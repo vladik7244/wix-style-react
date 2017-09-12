@@ -49,17 +49,21 @@
 }
 
 .red {
+    -st-extends: root;
     background-color: value(paletteR1);
 }
 
 .blue {
+    -st-extends: root;
     background-color: value(paletteB1);
 }
 
 .green {
+    -st-extends: root;
     background-color: value(paletteG1);
 }
 
 .lightGreen {
+    -st-extends: root;
     background-color: value(paletteG2);
 }

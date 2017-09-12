@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SvgX from '../svg/X.js';
 
-import {SBStateless as sbstateless} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './HeaderLayout.st.css';
 
 const HeaderLayout = ({title, onCancel, theme, closeButton}) => {
@@ -33,7 +33,7 @@ HeaderLayout.propTypes = {
   theme: PropTypes.oneOf(['red', 'green', 'blue', 'lightGreen'])
 };
 
-const StylableHeaderLayout = sbstateless(HeaderLayout, styles);
+const StylableHeaderLayout = stylable(styles)(HeaderLayout);
 StylableHeaderLayout.defaultProps = HeaderLayout.defaultProps;
 StylableHeaderLayout.propTypes = HeaderLayout.propTypes;
 export default StylableHeaderLayout;

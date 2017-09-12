@@ -5,10 +5,31 @@ import WixComponent from '../BaseComponents/WixComponent';
 import Button from '../Backoffice/Button';
 import SvgX from '../svg/X.js';
 
-import {SBComponent as sbcomponent} from 'stylable-react-component';
+import {stylable} from 'wix-react-tools';
 import styles from './MessageBoxMarketerialLayout.st.css';
 
-class MessageBoxMarketerialLayout extends WixComponent {
+@stylable(styles)
+export default class MessageBoxMarketerialLayout extends WixComponent {
+
+  static propTypes = {
+    title: PropTypes.node.isRequired,
+    content: PropTypes.node.isRequired,
+    primaryButtonLabel: PropTypes.string,
+    secondaryButtonLabel: PropTypes.string,
+    onPrimaryButtonClick: PropTypes.func,
+    onSecondaryButtonClick: PropTypes.func,
+    imageUrl: PropTypes.string,
+    onClose: PropTypes.func.isRequired,
+    imageComponent: PropTypes.node,
+    theme: PropTypes.oneOf([
+      'blue',
+      'purple'
+    ])
+  };
+
+  static defaultProps = {
+    theme: 'blue'
+  };
 
   render() {
     const {title, content, primaryButtonLabel, secondaryButtonLabel, onPrimaryButtonClick, onSecondaryButtonClick, imageUrl, onClose, theme, imageComponent} = this.props;
@@ -50,25 +71,3 @@ class MessageBoxMarketerialLayout extends WixComponent {
     );
   }
 }
-
-MessageBoxMarketerialLayout.propTypes = {
-  title: PropTypes.node.isRequired,
-  content: PropTypes.node.isRequired,
-  primaryButtonLabel: PropTypes.string,
-  secondaryButtonLabel: PropTypes.string,
-  onPrimaryButtonClick: PropTypes.func,
-  onSecondaryButtonClick: PropTypes.func,
-  imageUrl: PropTypes.string,
-  onClose: PropTypes.func.isRequired,
-  imageComponent: PropTypes.node,
-  theme: PropTypes.oneOf([
-    'blue',
-    'purple'
-  ])
-};
-
-MessageBoxMarketerialLayout.defaultProps = {
-  theme: 'blue'
-};
-
-export default sbcomponent(MessageBoxMarketerialLayout, styles);
