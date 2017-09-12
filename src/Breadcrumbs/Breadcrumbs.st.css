@@ -1,0 +1,83 @@
+@namespace "Breadcrumbs";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D30, D60, D80, B40;
+}
+
+:import {
+    -st-from: "./breadcrumbs-mixins.js";
+    -st-named: Breadcrumbs, BreadcrumbsHover;
+}
+
+:vars {
+    darkBackgroundHover: rgba(255, 255, 255, 0.1); /* transparentize($D80, .9) */
+}
+
+.large {
+    -st-variant: true;
+    -st-mixin: Breadcrumbs(36px, 14px);
+}
+
+.medium {
+    -st-variant: true;
+    -st-mixin: Breadcrumbs(30px, 10px);
+}
+
+.onWhiteBackground {
+    -st-variant: true;
+    /*-st-mixin: BreadcrumbsHover(value(D30), value(B40));*/
+    -st-mixin: BreadcrumbsHover(#577083, #daeffe);
+}
+
+.onGrayBackground {
+    -st-variant: true;
+    /*-st-mixin: BreadcrumbsHover(value(D30), value(D80));*/
+    -st-mixin: BreadcrumbsHover(#577083, #ffffff);
+}
+
+.onDarkBackground {
+    -st-variant: true;
+    /*-st-mixin: BreadcrumbsHover(value(D60), value(darkBackgroundHover));*/
+    -st-mixin: BreadcrumbsHover(#dfe5eb, value(darkBackgroundHover));
+}
+
+.item:not(.disabled):not(.active) {
+    cursor: pointer;
+}
+
+.disabled {
+    tab-index: -1;
+    cursor: default;
+}
+
+.itemContainer {
+    display: inline-flex;
+    align-items: center;
+}
+
+.divider {
+    display: inline-block;
+    width: 6px;
+    min-height: 30px;
+    margin: 0 8px;
+    /*background: url('../assets/arrow-right-icon.svg') no-repeat 50% 50%;*/
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjAuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNiIgaGVpZ2h0PSIxNCIKCSB2aWV3Qm94PSIwIDAgNiAxNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNiAxNDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNCNkMxQ0Q7fQo8L3N0eWxlPgo8cG9seWdvbiBpZD0iRGFyay1CcmVhZGNydW1iLUFycm93IiBjbGFzcz0ic3QwIiBwb2ludHM9IjAuOCwwIDAsMC43IDQuNiw3IDAsMTMuMyAwLjgsMTQgNiw3ICIvPgo8L3N2Zz4K) no-repeat 50% 50%;
+}
+:global(.rtl) .divider {
+    transform: rotate(180deg);
+}
+
+.button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+.button:not(.disabled):not(.active) {
+    cursor: pointer;
+}
+
+.link {
+    color: inherit;
+    text-decoration: inherit;
+}

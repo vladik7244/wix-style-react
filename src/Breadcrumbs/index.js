@@ -1,1 +1,1 @@
-export {default} from './Breadcrumbs';
+export {default, breadcrumbsPathFactory} from './StylableBreadcrumbs';

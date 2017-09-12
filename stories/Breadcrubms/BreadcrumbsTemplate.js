@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 
-import Breadcrumbs from '../../src/Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '../../src/Breadcrumbs';
 
 export default class Form extends Component {
 
