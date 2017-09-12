@@ -1,0 +1,144 @@
+@namespace "ToggleSwitch";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: GR10;
+}
+
+:import {
+    -st-from: "./size-mixin.js";
+    -st-named: Size;
+}
+
+:vars {
+    transitionSpeed: 0.3s;
+}
+
+.root {
+    -st-states: toggleSwitchSmall, toggleSwitchXSmall, disabled;
+    -st-mixin: Size;
+    display: inline-block;
+}
+
+.inputCheckbox {
+    display: none;
+}
+
+.inputCheckbox:checked + .outerLabel {
+    background: #3899eb;
+}
+
+.inputCheckbox:checked + .outerLabel:disabled {
+    background: value(GR10);
+}
+
+.inputCheckbox:checked + .outerLabel .innerLabel .toggleActive {
+    display: block;
+    transition: all value(transitionSpeed) cubic-bezier(1,0,1,0);
+}
+
+.inputCheckbox:checked + .outerLabel .innerLabel .toggleInactive {
+    display: none;
+    transition: all value(transitionSpeed) cubic-bezier(0,1,0,1);
+}
+
+.root label {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    transition: all value(transitionSpeed) ease;
+}
+
+.outerLabel {
+    -st-states: disabled;
+    display: inline-block;
+    background: #b0def8;
+    position: relative;
+    cursor: pointer;
+}
+
+.outerLabel:disabled {
+    cursor: default;
+    background: value(GR10);
+}
+
+.innerLabel {
+    -st-states: disabled;
+    display: flex;
+    background: white;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    z-index: 1;
+    text-align: center;
+    cursor: pointer;
+
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1.5px 1.5px 1px rgba(0,0,0,0.2);
+}
+
+.innerLabel:disabled {
+    cursor: default;
+}
+
+:global(.rtl) .innerLabel {
+    left: 23px;
+}
+
+:global(.rtl) .root:toggleSwitchSmall .innerLabel {
+    left: 17px;
+}
+
+:global(.rtl) .root:toggleSwitchXSmall .innerLabel {
+    left: 14px;
+}
+
+:global(.rtl) .inputCheckbox:checked + .outerLabel .innerLabel,
+:global(.rtl) .root:toggleSwitchSmall .inputCheckbox:checked + .outerLabel .innerLabel,
+:global(.rtl) .root:toggleSwitchXSmall .inputCheckbox:checked + .outerLabel .innerLabel {
+    left: 1px;
+}
+
+.toggleActive {
+    -st-states: disabled;
+    display:none;
+    width: 8px;
+    height: 6px;
+    transition: all value(transitionSpeed) cubic-bezier(0,1,0,1);
+}
+
+.toggleActive path {
+    fill: #3899eb;
+}
+
+.toggleActive:disabled path {
+    fill: value(GR10);
+}
+
+.toggleInactive {
+    transition: all value(transitionSpeed) cubic-bezier(1,0,1,0);
+    width: 8px;
+    height: 6px;
+}
+
+.toggleInactive path {
+    fill: #6daae3;
+}
+
+.toggleInactive:disabled path {
+    fill: value(GR10);
+}
+
+.root:toggleSwitchSmall {
+    -st-mixin: Size(small);
+}
+
+.root:toggleSwitchXSmall {
+    -st-mixin: Size(x-small);
+}
+
+.root:toggleSwitchXSmall .toggleActive, .toggleInactive {
+    display: none !important;
+}
+
