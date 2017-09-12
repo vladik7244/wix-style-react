@@ -3,7 +3,7 @@ import ReactTestUtils from 'react-dom/test-utils';
 import {mount} from 'enzyme';
 import {createDriverFactory} from '../test-common';
 import tabsDriverFactory from './Tabs.driver';
-import Tabs from './Tabs';
+import Tabs from './index';
 import {tabsTestkitFactory} from '../../testkit';
 import {tabsTestkitFactory as enzymeTabsTestkitFactory} from '../../testkit/enzyme';
 
