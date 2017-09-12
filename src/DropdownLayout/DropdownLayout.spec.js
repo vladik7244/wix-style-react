@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import {createDriverFactory} from '../test-common';
-import DropdownLayout from './DropdownLayout';
+import DropdownLayout from './index';
 import dropdownLayoutDriverFactory from './DropdownLayout.driver';
 import {dropdownLayoutTestkitFactory} from '../../testkit';
 import {dropdownLayoutTestkitFactory as enzymeDropdownLayoutTestkitFactory} from '../../testkit/enzyme';

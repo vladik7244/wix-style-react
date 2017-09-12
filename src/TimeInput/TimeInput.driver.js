@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {tickerTestkitFactory} from '../Input/Ticker/testkit/Ticker';
 import ReactTestUtils from 'react-dom/test-utils';
-import styles from './TimeInput.scss';
+import styles from './TimeInput.st.css';
 import {testkitFactoryCreator} from '../test-common';
 import inputDriverFactory from '../Input/Input.driver';
+import {hasCssState} from '../stylable-has-css-state';
 
 const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
 
@@ -20,7 +21,7 @@ const timeInputDriverFactory = ({element, wrapper, component}) => {
     isAmPmIndicatorExist: () => !!amPmIndicator(),
     toggleAmPmIndicator: () => ReactTestUtils.Simulate.click(amPmIndicator()),
     getAmPmIndicatorText: () => amPmIndicator().textContent,
-    isRtl: () => !!element.querySelector(`.${styles.rtl}`),
+    isRtl: () => hasCssState(element.querySelector(`.${styles.time}`), styles, {rtl: true}),
     setValue: value => input().enterText(value),
     blur: () => input().blur(),
     setProps: props => {

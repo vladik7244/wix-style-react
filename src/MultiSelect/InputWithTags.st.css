@@ -1,0 +1,61 @@
+@namespace "InputWithTags";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D30, D55, B20, B30, paletteR1;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontThin, FontRoman;
+}
+
+.root {
+    -st-states: disabled, error, hasFocus, hasMaxHeight;
+    width: 100%;
+    -st-mixin: FontThin;
+    border: 1px solid value(B30);
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: none;
+    color: value(D30);
+    font-size: 16px;
+}
+
+.root:hasMaxHeight {
+    overflow-y: scroll;
+}
+
+.root div {
+    border: none !important;
+}
+
+.root div:hover {
+    background-color: transparent !important;
+}
+
+.root:disabled {
+    border-color: value(D55);
+}
+
+.root:error {
+    border-color: value(paletteR1);
+}
+
+.root:hasFocus {
+    border-color: value(B20);
+}
+
+.input {
+    min-width: 100px;
+}
+
+.hiddenDiv {
+    -st-mixin: FontRoman;
+    visibility: hidden;
+    padding: 0 12px;
+    white-space: pre;
+    height: 0;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import multiSelectDriverFactory from './MultiSelect.driver';
-import MultiSelect from './MultiSelect';
+import MultiSelect from './index';
 import {createDriverFactory} from '../test-common';
 import {multiSelectTestkitFactory} from '../../testkit';
 import {multiSelectTestkitFactory as enzymeMultiSelectTestkitFactory} from '../../testkit/enzyme';

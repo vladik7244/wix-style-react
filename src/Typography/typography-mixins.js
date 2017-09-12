@@ -16,6 +16,7 @@ const FONTS = {
 const COLORS = {
   D10: '#162d3d',
   D20: '#32536A',
+  D50: '#b6c1cd',
   D80: '#ffffff',
   B10: '#3899ec',
   GR10: '#c8c8c8',
@@ -30,6 +31,12 @@ const TYPOGRAPHY = {
       fontSize: '16px',
       lineHeight: '24px',
       colors: [COLORS.D10, COLORS.D20, COLORS.D80, COLORS.B10, COLORS.GR10, COLORS.R10, COLORS.P10]
+    },
+    2: {
+      font: FONTS.FontRoman,
+      fontSize: '16px',
+      lineHeight: '24px',
+      colors: [COLORS.D10, COLORS.D50, COLORS.D80, COLORS.B10]
     },
     3: {
       font: FONTS.FontLight,

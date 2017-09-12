@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
-import styles from './DropdownLayout.scss';
+import styles from './DropdownLayout.st.css';
 import values from 'lodash/values';
+import {hasCssState} from '../stylable-has-css-state';
 
 const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
@@ -20,9 +21,9 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
 
   return {
     exists: () => !!element,
-    isShown: () => isClassExists(contentContainer, 'shown'),
-    isDown: () => isClassExists(contentContainer, 'down'),
-    isUp: () => isClassExists(contentContainer, 'up'),
+    isShown: () => hasCssState(contentContainer, styles, {shown: true}),
+    isDown: () => hasCssState(contentContainer, styles, {down: true}),
+    isUp: () => hasCssState(contentContainer, styles, {up: true}),
     hasTheme: theme => isClassExists(element, `theme-${theme}`),
     tabIndex: () => element.tabIndex,
     optionsLength: () => optionsLength(),
@@ -30,8 +31,8 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
     mouseLeaveAtOption: position => doIfOptionExists(position, () => ReactTestUtils.Simulate.mouseLeave(optionAt(position))),
     mouseClickOutside: () => ReactTestUtils.Simulate.blur(contentContainer),
     isOptionExists: optionText => [].filter.call(options.childNodes, opt => opt.textContent === optionText).length > 0,
-    isOptionHovered: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'hovered')),
-    isOptionSelected: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'selected')),
+    isOptionHovered: position => doIfOptionExists(position, () => hasCssState(optionAt(position), styles, {hovered: true})),
+    isOptionSelected: position => doIfOptionExists(position, () => hasCssState(optionAt(position), styles, {selected: true})),
     isOptionHoveredWithGlobalClassName: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'wixstylereactHovered')),
     isOptionSelectedWithGlobalClassName: position => doIfOptionExists(position, () => isClassExists(optionAt(position), 'wixstylereactSelected')),
     classes: () => options.className,
@@ -60,8 +61,8 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
       return {
         mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(option),
         mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
-        isHovered: () => isClassExists(option, 'hovered'),
-        isSelected: () => isClassExists(option, 'selected'),
+        isHovered: () => hasCssState(option, styles, {hovered: true}),
+        isSelected: () => hasCssState(option, styles, {selected: true}),
         isHoveredWithGlobalClassName: () => isClassExists(option, 'wixstylereactHovered'),
         isSelectedWithGlobalClassName: () => isClassExists(option, 'wixstylereactSelected'),
         content: () => option.textContent,

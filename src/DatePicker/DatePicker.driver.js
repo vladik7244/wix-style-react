@@ -3,7 +3,7 @@ import inputDriverFactory from '../Input/Input.driver';
 
 const datePickerDriverFactory = ({element, wrapper}) => {
 
-  const inputRoot = element && element.children[0].querySelector('.root');
+  const inputRoot = element && element.children[0].querySelector('.theme-normal');
   const inputDriver = inputDriverFactory({element: inputRoot, wrapper});
   const getCalendar = () => element.querySelector('.react-datepicker');
   const getNthDay = n => element.querySelectorAll('[role="option"]:not([class*="outside-month"])')[n];

@@ -1,0 +1,28 @@
+@namespace "Dropdown";
+
+:import {
+    -st-from: "../InputWithOptions/InputWithOptions.st.css";
+    -st-default: InputWithOptions;
+}
+
+.root {
+    -st-states: noBorder, noRightBorderRadius;
+    -st-extends: InputWithOptions;
+}
+
+.root::dropdownWrapper {}
+
+.root::inputWrapper, .root::inputWrapper input {
+    cursor: pointer;
+}
+
+.root:noBorder::inputWrapper, .root:noBorder::inputWrapper > div {
+    border: none;
+}
+
+.root:noRightBorderRadius::inputWrapper > div {
+    /*border-bottom-left-radius: 0;*/
+    /*border-top-left-radius: 0;*/
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}

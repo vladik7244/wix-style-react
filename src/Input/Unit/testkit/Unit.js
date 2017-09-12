@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-import Unit from '../Unit';
+import Unit from '../index';
 
 const unitDriverFactory = ({element}) => {
   return {

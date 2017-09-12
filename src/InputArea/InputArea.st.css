@@ -1,0 +1,212 @@
+@namespace "InputArea";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D10, D50, D60, D80, B20, B30, B50, GR60, paletteE6, paletteB4, paletteR1;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontRoman, FontLight, Typography;
+}
+
+:import {
+    -st-from: "../Input/input-mixins.js";
+    -st-named: BoxSizing, Placeholder, Selection;
+}
+
+:import {
+    -st-from: "../Input/input-theme-mixins.js";
+    -st-named: ThemeDefault, AreaThemeHover, AreaThemeFocus, AreaThemeError;
+}
+
+:vars {
+    inputAreaPaddingExclamation: 34px;
+    inputAreaPaddingHorizontal: 12px;
+    inputAreaPaddingTop: 6px;
+    exclamationHorizontal: 8px;
+    exclamationTop: 4px;
+    paneltitleDefaultBackground: rgba(22,45,61,0.6);
+    paneltitleHoverBackground: rgba(22,45,61,0.4);
+    paneltitleFocusShadowColor: rgba(56,153,236,0.6);
+}
+
+.root {
+    position: relative;
+}
+
+.inputAreaRoot {
+    -st-states: hasError, hasHover, hasFocus, resizable, hasCounter, nonResizable;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border: solid 1px;
+    border-radius: 6px;
+    -st-mixin: BoxSizing FontRoman;
+}
+
+.theme-normal {
+/*@include ThemeFocus($borderColor: $B20, $boxShadow: inset 0px 0px 5px 0px fade($B10, 60%));*/
+/*@include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));*/
+    -st-mixin: ThemeDefault(value(B30), value(D80), value(D10)) AreaThemeHover(value(B50)) AreaThemeFocus(value(B20), inset 0px 0px 5px 0px white) AreaThemeError(value(paletteR1), inset 0px 0px 5px 0px white);
+}
+
+.theme-paneltitle {
+/*@include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));*/
+    -st-mixin: ThemeDefault(#c1e4fe, value(paneltitleDefaultBackground), white) AreaThemeHover(value(paneltitleHoverBackground)) AreaThemeFocus(#4eb7f5, inset 0 0 5px 0 value(paneltitleFocusShadowColor)) AreaThemeError(value(paletteR1), inset 0px 0px 5px 0px white);
+}
+
+.theme-amaterial {
+    border-radius: 0;
+/*@include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));*/
+    -st-mixin: ThemeDefault(#e0e3e5, value(D80), value(D10)) AreaThemeError(value(paletteR1), inset 0px 0px 5px 0px white);
+}
+
+.theme-amaterial .input {
+    -st-mixin: FontLight Placeholder(value(GR60));
+    padding-right: 37px;
+}
+
+.theme-material {
+    border-radius: 0;
+    -st-mixin: ThemeDefault(transparent, value(D80), value(D10));
+}
+
+.bar {
+    position: absolute;
+    bottom: 0;
+    left: -1px;
+    right: -1px;
+    height: 1px;
+    background: value(D60);
+}
+
+.bar:before, .bar:after {
+    content: '';
+    height: 1px;
+    width: 0;
+    bottom: 0;
+    position: absolute;
+    background: value(D50);
+    transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+.inputAreaRoot:hasFocus .bar:before,
+.inputAreaRoot:hasFocus .bar:after {
+    width: 50%;
+}
+
+.theme-material .input {
+    -st-mixin: FontLight;
+}
+
+.input {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 20px;
+    min-height: 36px;
+    padding: value(inputAreaPaddingTop) value(inputAreaPaddingHorizontal);
+    margin: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    -st-mixin: Typography(t, 2, 1) Placeholder(value(paletteE6)) Selection(value(paletteB4));
+}
+
+.inputAreaRoot:hasCounter {
+    margin-bottom: 30px;
+}
+
+.counter {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    font-size: 14px;
+    line-height: 1.3;
+    -st-mixin: Placeholder(value(GR60));
+    color: #7a92a5;
+}
+
+.inputAreaRoot:hasError > .input {
+    padding-right: value(inputAreaPaddingExclamation);
+}
+
+.inputAreaRoot:resizable > textarea {
+    resize: vertical;
+}
+
+.inputAreaRoot:nonResizable > textarea {
+    resize: none;
+}
+
+.errorIcon {
+    padding: 0 7px 16px;
+    color: #f2564d;
+    margin-top: 6px;
+}
+
+.error {
+    position: absolute;
+    right: 6px;
+    top: 0;
+}
+
+.exclamation {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-grow: 0;
+    min-width: 0;
+    user-select: none;
+    margin: 0 6px;
+    background-color: value(paletteR1);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    top: value(exclamationTop);
+    right: value(exclamationHorizontal);
+}
+
+.exclamation:last-child {
+    margin: 0;
+}
+
+.exclamation path {
+    stroke: #fff;
+}
+
+/* RTL layout based on global style set on document body or parent element. */
+
+:global(.rtl) .exclamation {
+    left: value(exclamationHorizontal);
+    right: initial;
+}
+
+:global(.rtl) .error {
+    position: absolute;
+    left: 6px;
+    top: 0;
+}
+
+:global(.rtl) .input {
+    direction: rtl;
+}
+
+:global(.rtl) .counter {
+    right: auto;
+}
+
+:global(.rtl) .inputAreaRoot:hasError > .input {
+    padding-left: value(inputAreaPaddingExclamation);
+    padding-right: value(inputAreaPaddingHorizontal);
+}

@@ -1,0 +1,257 @@
+@namespace "DropdownLayout";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D10, D20, D30, D50, D70, D80, B00, B10, B20, B30, B50;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontLight, Typography;
+}
+
+:vars {
+    optionHeight: 35px;
+    contentContainerHeight: 260px;
+    topArrowSize: 8px;
+}
+
+.root {
+    box-sizing: border-box;
+    position: relative;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.root * {
+    box-sizing: border-box;
+}
+
+.content-container {
+    -st-states: shown, up, down, withArrow;
+    background: value(D80);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.14);
+    display: block;
+    opacity: 0;
+    overflow: auto;
+    padding: 0;
+    transition: opacity 0.2s ease;
+    visibility: hidden;
+    width: 100%;
+    z-index: 6;
+    position: absolute;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.content-container:withArrow {
+    padding: 10px 0;
+}
+
+.content-container:up {
+    bottom: 0;
+    margin-top: 15px;
+}
+
+.content-container:up:withArrow {
+    margin-bottom: value(topArrowSize);
+}
+
+.content-container:down {
+    top: 0;
+    margin-bottom: 15px;
+}
+
+.content-container:down:withArrow {
+    margin-top: value(topArrowSize);
+}
+
+.content-container:shown {
+    visibility: visible;
+    opacity: 1;
+}
+
+.options {
+    position: relative;
+    overflow: auto;
+}
+
+.options::-webkit-scrollbar {
+    width: 16px;
+    background-color: none;
+}
+
+.options::-webkit-scrollbar-button {
+    height: 6px;
+}
+
+.options::-webkit-scrollbar-thumb  {
+    background-color: rgba(110, 181, 241, 0.45);
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 4px solid rgba(0, 0, 0, 0);
+    height: 58px;
+}
+
+.options::-webkit-scrollbar-thumb:hover  {
+    background-color: value(B30);
+}
+
+.options::-webkit-scrollbar-thumb:active {
+    background-color: value(B00);
+}
+
+.divider {
+    height: 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    margin: 0;
+}
+
+.overrideOption {
+    -st-states: disabled, title;
+}
+
+.option {
+    -st-states: selected, hovered, disabled, title;
+    line-height: value(optionHeight);
+    min-height: value(optionHeight);
+    height: value(optionHeight);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+
+    padding-top: 0;
+    padding-left: 24px;
+    padding-right: 20px;
+    -st-mixin: FontLight;
+
+    font-size: 16px;
+    color: value(D10);
+    cursor: pointer;
+
+    width: 100%;
+}
+
+.option:disabled, .overrideOption:disabled {
+    color: value(D50);
+    cursor: default;
+}
+
+.option:title, .overrideOption:title {
+    -st-mixin: FontLight Typography(h, 4);
+    background: value(D70);
+    line-height: value(optionHeight);
+}
+
+:global(.rtl) .option {
+    text-align: right;
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.option:hovered {
+    background: value(B50);
+    color: value(D10);
+}
+
+.option:focus {
+    outline: none;
+}
+
+.option:selected {
+    background-color: value(B10);
+    color: value(D80);
+}
+
+.option:selected:hovered {
+    background-color: value(B20);
+    color: value(D80);
+}
+
+.arrow {
+    -st-states: up, down;
+    position: absolute;
+    left: 50%;
+    z-index: 10;
+    transform: translateX(-50%) rotateZ(45deg);
+    height: value(topArrowSize);
+    width: value(topArrowSize);
+    background: value(D80);
+}
+
+.arrow:up {
+    bottom: calc(value(topArrowSize) / 2);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, .1);
+}
+
+.arrow:down {
+    top: calc(value(topArrowSize) / 2);
+    box-shadow: -3px -3px 8px rgba(0, 0, 0, .1);
+}
+
+.theme-b2b {
+    -st-extends: root;
+    -st-variant: true;
+}
+
+.theme-b2b .content-container {
+    border-radius: 0;
+}
+
+.theme-b2b .option {
+    -st-mixin: FontLight;
+    color: #8090a2;
+    font-size: 16px;
+}
+
+.theme-b2b .option:selected {
+    background-color: #5cb4ff;
+    color: value(D80);
+}
+
+.theme-b2b .option:selected:hovered {
+    background-color: #71c4f6;
+    color: value(D80);
+}
+
+.theme-b2b .options::-webkit-scrollbar {
+    width: 14px;
+}
+
+.theme-b2b .options::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background-color: rgba(182, 193, 205, 0.5);
+    background-clip: padding-box;
+    box-sizing: border-box;
+    border: 4px solid rgba(0, 0, 0, 0);
+}
+
+.theme-material {
+    -st-extends: root;
+    -st-variant: true;
+}
+
+.theme-material .content-container:up {
+    bottom: 5px;
+}
+
+.theme-material .content-container:down {
+    top: 5px;
+}
+
+.theme-material .option {
+    min-height: 36px;
+    line-height: 36px;
+    font-size: 15px;
+    color: value(D30);
+}

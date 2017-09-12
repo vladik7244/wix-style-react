@@ -1,6 +1,6 @@
 import React from 'react';
 import inputAreaDriverFactory from './InputArea.driver';
-import InputArea from './InputArea';
+import InputArea from './index';
 import {createDriverFactory} from '../test-common';
 import {inputAreaTestkitFactory, tooltipTestkitFactory} from '../../testkit';
 import {inputAreaTestkitFactory as enzymeInputAreaTestkitFactory} from '../../testkit/enzyme';

@@ -1,9 +1,10 @@
 import React from 'react';
 import {Simulate, renderIntoDocument} from 'react-dom/test-utils';
 
-import Ticker from '../Ticker';
+import Ticker from '../index';
 
-import styles from '../Ticker.scss';
+import styles from '../Ticker.st.css';
+import {hasCssState} from '../../../stylable-has-css-state';
 
 export const tickerDriverFactory = component => {
   const handlers = {
@@ -11,8 +12,8 @@ export const tickerDriverFactory = component => {
     getDown: () => component.querySelector(`.${styles.down}`),
     clickUp: () => Simulate.click(handlers.getUp()),
     clickDown: () => Simulate.click(handlers.getDown()),
-    isUpDisabled: () => handlers.getUp().classList.contains(styles.disabled),
-    isDownDisabled: () => handlers.getDown().classList.contains(styles.disabled),
+    isUpDisabled: () => hasCssState(handlers.getUp(), styles, {disabled: true}),
+    isDownDisabled: () => hasCssState(handlers.getDown(), styles, {disabled: true}),
     exists: () => !!component
   };
   return handlers;
