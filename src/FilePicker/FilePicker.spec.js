@@ -1,5 +1,5 @@
 import React from 'react';
-import FilePicker from './FilePicker';
+import FilePicker from './index';
 import filePickerDriverFactory from './FilePicker.driver';
 import {createDriverFactory} from '../test-common';
 import {filePickerTestkitFactory} from '../../testkit';

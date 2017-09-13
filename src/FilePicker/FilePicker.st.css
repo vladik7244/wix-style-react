@@ -1,0 +1,80 @@
+@namespace "FilePicker";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: D30, B10, B40, R10;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: FontMedium, FontRoman, FontLight;
+}
+
+:vars {
+    contentWidth: 250px;
+}
+
+.root {}
+
+.content > span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: value(contentWidth);
+}
+
+.header {
+    display: block;
+    margin-bottom: 13px;
+    -st-mixin: FontMedium;
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.label {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.label:hover svg {
+    border-radius: 50%;
+    background: value(B40);
+}
+
+.cta {
+    -st-mixin: FontRoman;
+    font-size: 20px;
+    color: value(B10);
+}
+
+.info {
+    -st-mixin: FontLight;
+    font-size: 16px;
+    color: value(D30);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.input {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.icon {
+    margin-right: 10px;
+    color: value(B10);
+    padding-top: 3px;
+}
+
+.error {
+    -st-mixin: FontLight;
+    font-size: 16px;
+    color: value(R10);
+}
