@@ -1,7 +1,5 @@
 # Wix Style - React
 
-[![Build Status](https://travis-ci.org/wix/wix-style-react.svg?branch=master)](https://travis-ci.org/wix/wix-style-react)
-
 'Wix Style' is a common name to the different UX style libraries designed by the UX guild (for dashboard, settings, editor, and viewer). The wix-style-react package contains React implemenations for the different components in the style library.
 
 ## Demo
