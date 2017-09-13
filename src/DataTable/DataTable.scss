@@ -1,10 +1,10 @@
 @import '../common';
 
 .table {
-    border-collapse: collapse;
-    font-family:HelveticaNeueW01-55Roma,HelveticaNeueW02-55Roma,HelveticaNeueW10-55Roma,sans-serif;
-    table-layout: fixed;
-    background-color: white;
+  border-collapse: collapse;
+  font-family:HelveticaNeueW01-55Roma,HelveticaNeueW02-55Roma,HelveticaNeueW10-55Roma,sans-serif;
+  table-layout: fixed;
+  background-color: white;
 }
 
 .table th {
@@ -40,7 +40,16 @@
 }
 
 .clickableDataRow {
+  td {
+    border-bottom: none medium;
+  }
   cursor: pointer;
+
+  &:nth-last-child(2) {
+    td {
+      border-bottom: 1px solid $D70;
+    }
+  }
 }
 
 .sortArrowAsc,
@@ -50,4 +59,13 @@
 }
 .sortArrowDesc svg{
   transform: rotate(180deg);
+}
+
+.row-details:not(:last-child) {
+  border-bottom: 1px solid $D70;
+
+  .row-details-inner {
+    border-top: 1px solid $D70;
+  }
+
 }

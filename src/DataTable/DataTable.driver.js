@@ -8,7 +8,7 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
   const getHeader = () => element.querySelector('thead');
   const hasHeader = () => !!getHeader();
 
-  const getRows = () => element.querySelectorAll('tbody tr');
+  const getRows = () => element.querySelectorAll('tbody tr[data-hook="dataTableRow"]');
   const getRowsCount = () => getRows().length;
   const getRow = rowIndex => getRows()[rowIndex];
   const getRowDetails = index => element.querySelector(`tbody tr td[data-hook="${index}_details"]`);
