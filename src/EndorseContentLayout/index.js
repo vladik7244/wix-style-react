@@ -1,2 +1,2 @@
-export {default} from './EndorseContentLayout';
+export {default} from './StylableEndorseContentLayout';
 

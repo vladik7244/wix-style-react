@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import EndorseContentLayout from './';
-import styles from './styles.scss';
+import EndorseContentLayout from './index';
+import styles from './EndorseContentLayout.st.css';
 
 export default class EndorseContentLayoutDriver {
   component;
@@ -11,7 +11,7 @@ export default class EndorseContentLayoutDriver {
   }
 
   get = {
-    root: () => this.component.find(`.${styles.root}`),
+    root: () => this.component.find(`.${styles.rootElement}`),
     head: () => this.component.find(`.${styles.head}`),
     content: () => this.component.find(`.${styles.content}`),
     primaryCta: () => this.component.find(`.${styles.primaryCta}`),

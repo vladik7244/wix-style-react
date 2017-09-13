@@ -1,0 +1,32 @@
+@namespace "EndorseContentLayout";
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: Typography;
+}
+
+.root {
+    margin: 0 auto;
+    width: 443px;
+    text-align: center;
+}
+
+.rootElement {
+    -st-extends: root;
+}
+
+.head {
+    -st-mixin: Typography(h, 1);
+    margin-bottom: 19px;
+}
+
+.content {
+    -st-mixin: Typography(t, 1);
+    margin-bottom: 48px;
+}
+
+.primaryCta {
+    margin-bottom: 21px;
+}
+
+.secondaryCta {}
