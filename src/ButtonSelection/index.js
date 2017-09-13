@@ -1,1 +1,1 @@
-export {default} from './ButtonSelection.js';
+export {default} from './StylableButtonSelection';

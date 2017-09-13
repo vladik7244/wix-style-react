@@ -49,16 +49,56 @@ const TYPOGRAPHY = {
       fontSize: '14px',
       lineHeight: '18px',
       colors: [COLORS.D10, COLORS.D20, COLORS.D80, COLORS.B10]
+    },
+    5: {
+      font: FONTS.FontMedium,
+      fontSize: '10px',
+      lineHeight: '12px',
+      colors: [COLORS.D20, COLORS.D80],
+      uppercase: true,
+      letterSpacing: '1px'
+    },
+    6: {
+      font: FONTS.FontBold,
+      fontSize: '10px',
+      lineHeight: '12px',
+      colors: [COLORS.D20, COLORS.D80]
     }
   },
   h: {
+    0: {
+      font: FONTS.FontUltraThin,
+      fontSize: '48px',
+      lineHeight: '54px',
+      colors: [COLORS.D10]
+    },
+    1: {
+      font: FONTS.FontThin,
+      fontSize: '36px',
+      lineHeight: '48px',
+      colors: [COLORS.D10]
+    },
+    2: {
+      font: FONTS.FontLight,
+      fontSize: '20px',
+      lineHeight: '36px',
+      colors: [COLORS.D10, COLORS.D80]
+    },
+    3: {
+      font: FONTS.FontLight,
+      fontSize: '13px',
+      lineHeight: '24px',
+      colors: [COLORS.D20],
+      uppercase: true,
+      letterSpacing: '2px'
+    },
     4: {
       font: FONTS.FontRoman,
       fontSize: '10px',
       lineHeight: '18px',
       colors: [COLORS.D20],
       uppercase: true,
-      letterSpacing: '1.2'
+      letterSpacing: '1.2px'
     }
   }
 };
@@ -85,7 +125,7 @@ module.exports.Typography = optionsArr => {
     rules['text-transform'] = 'uppercase';
   }
   if (typography.letterSpacing) {
-    rules['letter-spacing'] = `${typography.letterSpacing}px`;
+    rules['letter-spacing'] = typography.letterSpacing;
   }
 
   return rules;
