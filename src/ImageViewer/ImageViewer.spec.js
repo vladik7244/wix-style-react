@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageViewer from './ImageViewer';
+import ImageViewer from './index';
 import ImageViewerDriverFactory from './ImageViewer.driver';
 import {createDriverFactory} from '../test-common';
 import {imageViewerTestkitFactory} from '../../testkit';

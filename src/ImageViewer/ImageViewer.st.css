@@ -1,0 +1,136 @@
+@namespace "ImageViewer";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: B40;
+}
+
+.root {
+    -st-states: hasLogo;
+    width: 204.7px;
+    height: 144px;
+    border-radius: 8px;
+    background-color: #eaf7ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: background .2s linear;
+    overflow: hidden;
+
+    /* This fixes animation bug when border radius doesn't affect on animation */
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+.dashedBorder {
+    border: dashed 1px rgba(78, 183, 245, 0.5);
+    border-radius: 3px;
+    width: 90%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    height: 100%;
+    transform: scale(1);
+    transition: transform .2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.plusIcon {
+    color: rgb(78, 183, 245);
+    height: 47px;
+    width: 47px;
+    position: absolute;
+}
+
+.addLogo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageLayout {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.changeLogoContainer {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+}
+
+.imageBackground {
+    transition: all 0.1s linear;
+    border-radius: 6px;
+    background-color: rgba(32, 69, 94, 0);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: auto;
+}
+
+.buttons {
+    color: white;
+    justify-content: center;
+    display: flex;
+    height: 38%;
+    align-items: baseline;
+    opacity: 0;
+    transition: opacity .1s linear;
+}
+
+.button {
+    transition: background .1s linear;
+    background: rgba(255, 255, 255, 0);
+    height: 36px;
+    width: 36px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.button:first-child {
+    margin-right: 20px;
+}
+
+.root:hasLogo .addLogo {
+    display: none;
+}
+
+.root:hover {
+    background-color: value(B40);
+}
+
+.root:hover .buttons {
+    opacity: 1;
+}
+
+.root:hover .image {
+    transform: scale(1.1);
+}
+
+.root:hover .imageBackground {
+    background-color: rgba(32, 69, 94, .8);
+}
