@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import InfiniteScroll from './InfiniteScroll';
 import WixComponent from '../BaseComponents/WixComponent';
 import ArrowVertical from '../Icons/dist/components/ArrowVertical';
+import {Animator} from 'wix-animations';
 
 export const DataTableHeader = props => (
   <div>
@@ -153,9 +154,16 @@ class DataTable extends WixComponent {
 
     if (rowDetails) {
       const showDetails = !!this.state.selectedRows[rowNum];
+
       rowsToRender.push(
-        <tr key={`${rowNum}_details`}>
-          <td data-hook={`${rowNum}_details`} className={classNames(s.details, showDetails ? s.active : '')} colSpan={this.props.columns.length}>{showDetails && rowDetails(rowData, rowNum)}</td>
+        <tr key={`${rowNum}_details`} className={classNames(s.rowDetails)}>
+          <td data-hook={`${rowNum}_details`} className={classNames(s.details, showDetails ? s.active : '')} colSpan={this.props.columns.length}>
+            <div className={classNames(s.rowDetailsInner)}>
+              <Animator show={showDetails} height>
+                {rowDetails(rowData, rowNum)}
+              </Animator>
+            </div>
+          </td>
         </tr>
       );
     }

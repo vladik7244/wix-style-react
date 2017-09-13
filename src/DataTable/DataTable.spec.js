@@ -132,19 +132,32 @@ describe('Table', () => {
     });
 
     it('should expand with correct content and collapse', () => {
+      const animationSpeed = 500;
+
       const props = {
         ...defaultProps,
         rowDetails: row => <span>{row.a}</span>,
-        onRowClick: jest.fn()
       };
+
       const driver = createDriver(<DataTable {...props}/>);
       expect(driver.hasRowDetails(0)).toBe(true);
       expect(driver.getRowDetailsText(0)).toBe('');
       driver.clickRow(0);
+
+      // After clicking content will appear at once
       expect(driver.getRowDetailsText(0)).toBe(defaultProps.data[0].a);
       driver.clickRow(0);
       expect(driver.hasRowDetails(0)).toBe(true);
-      expect(driver.getRowDetailsText(0)).toBe('');
+
+      // When we clicking second time to collapse content will disappear after a while (based on animation speed)
+      expect(driver.getRowDetailsText(0)).not.toBe('');
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          expect(driver.getRowDetailsText(0)).toBe('');
+        }, animationSpeed);
+        resolve();
+      });
     });
 
     it('should assign the class to rows when rowDetails prop is provided', () => {

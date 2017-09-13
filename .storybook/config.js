@@ -61,8 +61,8 @@ function loadStories() {
   require('../stories/TextArea');
   require('../stories/Text');
   require('../stories/RichTextArea');
-  require('../stories/RichTextAreaComposite');
   require('../stories/FieldWithSelectionComposite');
+  require('../stories/RichTextAreaComposite');
   require('../stories/Range');
   require('../stories/MultiSelect');
   require('../stories/AutoCompleteComposite');

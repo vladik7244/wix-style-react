@@ -12,8 +12,8 @@ import ExampleRaw from '!raw-loader!./Example';
 import ExampleCallingServer from './ExampleCallingServer';
 import ExampleCallingServerRaw from '!raw-loader!./ExampleCallingServer';
 
-import ExampleWithRowDetails from './ExampleWithRowDetails';
-import ExampleWithRowDetailsRaw from '!raw-loader!./ExampleWithRowDetails';
+import ExampleWithAnimatedRowDetails from './ExampleWithAnimatedRowDetails';
+import ExampleWithAnimatedRowDetailsRaw from '!raw-loader!./ExampleWithAnimatedRowDetails';
 import ExampleSortable from './ExampleSortable';
 import ExampleSortableRaw from '!raw-loader!./ExampleSortable';
 
@@ -26,8 +26,8 @@ storiesOf('Core', module)
         <CodeExample title="With infinite scroll" code={ExampleRaw}>
           <Example/>
         </CodeExample>
-        <CodeExample title="With row details" code={ExampleWithRowDetailsRaw}>
-          <ExampleWithRowDetails/>
+        <CodeExample title="With animated row details" code={ExampleWithAnimatedRowDetailsRaw}>
+          <ExampleWithAnimatedRowDetails/>
         </CodeExample>
         <CodeExample title="With sorting" code={ExampleSortableRaw}>
           <ExampleSortable/>
