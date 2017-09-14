@@ -1,0 +1,124 @@
+@namespace "Badge";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: paletteD3, paletteE1, paletteE5, paletteG1, paletteY1, paletteR1, BMCounter;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: Typography;
+}
+
+.root {
+    display: inline-block;
+    padding: 0 1em;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    font-weight: bold;
+}
+
+.badge {
+    -st-extends: root;
+    color: #fff !important;
+    line-height: 2em !important;
+}
+
+.ellipse {
+    -st-extends: root;
+    border-radius: 1em;
+}
+
+.rectangle {
+    -st-extends: root;
+    border-radius: 0;
+}
+
+.default {
+    -st-extends: root;
+    background: value(paletteD3);
+}
+
+.primary {
+    -st-extends: root;
+    background: value(paletteE1);
+}
+
+.success {
+    -st-extends: root;
+    background: value(paletteG1);
+}
+
+.info {
+    -st-extends: root;
+    background: value(paletteE5);
+}
+
+.warning {
+    -st-extends: root;
+    background: value(paletteY1);
+}
+
+.danger {
+    -st-extends: root;
+    background: value(paletteR1);
+}
+
+.businessManagerCounter {
+    -st-extends: root;
+    background: value(BMCounter);
+    padding: 0 6px;
+    letter-spacing: 0.8px !important;
+    font-size: 11px !important;
+    line-height: 18px !important;
+}
+
+.top {
+    -st-extends: root;
+    vertical-align: top;
+}
+
+.middle {
+    -st-extends: root;
+    vertical-align: middle;
+}
+
+.bottom {
+    -st-extends: root;
+    vertical-align: bottom;
+}
+
+.h0   { -st-variant: true; -st-extends: root; -st-mixin: Typography(h, 0); }
+.h1   { -st-variant: true; -st-extends: root; -st-mixin: Typography(h, 1); }
+.h2   { -st-variant: true; -st-extends: root; -st-mixin: Typography(h, 2); }
+.h2_1 { -st-variant: true; -st-extends: root; -st-mixin: Typography(h, 2, 1); }
+.h3   { -st-variant: true; -st-extends: root; -st-mixin: Typography(h, 3); }
+.h4   { -st-variant: true; -st-extends: root; -st-mixin: Typography(h, 4); }
+
+.t1   { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 1); }
+.t1_1 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 1, 1); }
+.t1_2 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 1, 2); }
+.t1_3 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 1, 3); }
+.t1_4 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 1, 4); }
+.t1_5 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 1, 5); }
+.t1_6 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 1, 6); }
+.t2   { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 2); }
+.t2_1 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 2, 1); }
+.t2_2 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 2, 2); }
+.t2_3 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 2, 3); }
+.t3   { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 3); }
+.t3_1 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 3, 1); }
+.t3_2 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 3, 2); }
+.t3_3 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 3, 3); }
+.t3_4 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 3, 4); }
+.t3_5 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 3, 5); }
+.t3_6 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 3, 6); }
+.t4   { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 4); }
+.t4_1 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 4, 1); }
+.t4_2 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 4, 2); }
+.t4_3 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 4, 3); }
+.t5   { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 5); }
+.t5_1 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 5, 1); }
+.t6   { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 6); }
+.t6_1 { -st-variant: true; -st-extends: root; -st-mixin: Typography(t, 6, 1); }

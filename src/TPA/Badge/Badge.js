@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import tpaStyleInjector from '../TpaStyleInjector';
 import {string, any} from 'prop-types';
-import WixStyleBadge from '../../Badge';
+import WixStyleBadge from '../../Badge/Badge';
 
 
 let badgeStyles = {locals: {}};

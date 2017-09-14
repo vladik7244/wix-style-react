@@ -1,6 +1,6 @@
 import React from 'react';
 import badgeDriverFactory from './Badge.driver';
-import Badge from './Badge';
+import Badge from './index';
 import {createDriverFactory} from '../test-common';
 
 describe('Badge', () => {

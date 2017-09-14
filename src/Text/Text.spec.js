@@ -6,7 +6,7 @@ import {textTestkitFactory} from '../../testkit';
 import {textTestkitFactory as enzymeTextTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
 
-import Text from './Text';
+import Text from './index';
 import styles from './styles.scss';
 import typography from '../Typography';
 
@@ -48,7 +48,7 @@ describe('Component: Text', () => {
 
       appearancesAndClassNames.map(([appearance, className]) => {
         const driver = createDriver(<Text appearance={appearance}/>);
-        return expect(driver.getClassName()).toEqual(`${className} ${styles.headingDefaults}`);
+        return expect(driver.getClassName()).toContain(`${className} ${styles.headingDefaults}`);
       });
     });
   });
