@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left, .right {
+  width: 40%;
+}
+
+.row {
+  display: flex;
+  & > * {
+    padding: 5px 15px;
+  }
+}
