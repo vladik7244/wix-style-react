@@ -59,5 +59,13 @@ export default () =>
         <div>With prefix</div>
         <Dropdown options={options} dropDirectionUp prefix={<Input.Unit>$</Input.Unit>}/>
       </div>
+      <div className="ltr" style={style}>
+        <div>With suffix</div>
+        <Dropdown options={options} dropDirectionUp suffix={<Input.Unit>%</Input.Unit>}/>
+      </div>
+      <div className="rtl" style={style}>
+        <div>With suffix RTL</div>
+        <Dropdown options={options} dropDirectionUp suffix={<Input.Unit>%</Input.Unit>}/>
+      </div>
     </div>
   </div>;

@@ -451,6 +451,11 @@ describe('Input', () => {
       const driver = createDriver(<Input suffix="hello" magnifyingGlass/>);
       expect(driver.hasSuffixesClass()).toBeTruthy();
     });
+
+    it('should render menu arrow as the last suffix', () => {
+      const driver = createDriver(<Input suffix="hello" menuArrow/>);
+      expect(driver.isMenuArrowLast()).toBeTruthy();
+    });
   });
 
   describe('aria attributes', () => {

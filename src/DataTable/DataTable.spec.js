@@ -169,6 +169,18 @@ describe('Table', () => {
       const driver = createDriver(<DataTable {...props}/>);
       expect(driver.isRowClickable(0)).toBe(true);
     });
+
+    it('should have correct row count when row details enabled', () => {
+      const props = {
+        ...defaultProps,
+        rowDetails: jest.fn()
+      };
+
+      const driver = createDriver(<DataTable {...props}/>);
+      expect(driver.getRowsCount()).toBe(2);
+      driver.clickRow(0);
+      expect(driver.getRowsCount()).toBe(2);
+    });
   });
 
   describe('Sortable column titles', () => {

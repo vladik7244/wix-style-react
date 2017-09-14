@@ -32,6 +32,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     hasSuffixesClass: () => element.querySelectorAll(`.${styles.input}.${styles.withSuffixes}`).length === 1,
     prefixComponentExists: style => !!element.querySelector(`.${styles.prefix} ${style}`),
     suffixComponentExists: style => !!element.querySelector(`.${styles.suffix} ${style}`),
+    isMenuArrowLast: () => element.querySelectorAll(`.${styles.suffixes} .${styles.suffix}:last-child > .${styles.menuArrow}`).length === 1,
     hasExclamation: () => !!element.querySelector(`.${styles.exclamation}`),
     hasHelp: () => !!element.querySelector(`.${styles.help}`),
     hasError: () => element.classList.contains(styles.hasError),
