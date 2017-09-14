@@ -181,7 +181,6 @@ describe('Table', () => {
       driver.clickRow(0);
       expect(driver.getRowsCount()).toBe(2);
     });
-    
   });
 
   describe('Sortable column titles', () => {
