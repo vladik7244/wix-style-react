@@ -1,0 +1,63 @@
+@namespace "PopoverMenuItem";
+
+:import {
+    -st-from: "../common.st.css";
+    -st-named: B10;
+}
+
+:import {
+    -st-from: "../Typography/typography-mixins.js";
+    -st-named: Typography;
+}
+
+.root {
+    -st-mixin: Typography(t, 3);
+}
+
+.root + .root {
+    margin-top: 6px;
+}
+
+.button {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    outline: none;
+}
+
+.button:hover {
+    color: value(B10);
+}
+
+.icon svg {
+    vertical-align: middle;
+}
+
+.text {
+    vertical-align: middle;
+    margin-left: 6px;
+    margin-right: 0;
+}
+
+:global(.ltr) .text {
+    margin-left: 6px;
+    margin-right: 0;
+}
+
+:global(.rtl) .text {
+    margin-right: 6px;
+    margin-left: 0;
+}
+
+:global(.ltr) .icon + .text, .icon + .text {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+:global(.rtl) .icon + .text {
+    margin-right: 12px;
+    margin-left: 0;
+}

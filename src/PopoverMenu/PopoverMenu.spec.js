@@ -2,8 +2,8 @@ import React from 'react';
 import waitForCond from 'wait-for-cond';
 
 import popoverMenuDriverFactory from './PopoverMenu.driver';
-import PopoverMenu from './PopoverMenu';
-import PopoverMenuItem from '../PopoverMenuItem/PopoverMenuItem';
+import PopoverMenu from './index';
+import PopoverMenuItem from '../PopoverMenuItem';
 import {createDriverFactory} from '../test-common';
 import {
   isTestkitExists,

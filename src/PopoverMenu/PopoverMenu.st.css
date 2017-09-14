@@ -1,0 +1,29 @@
+@namespace "PopoverMenu";
+
+.root {
+    -st-states: topPlacement, rightPlacement, bottomPlacement, leftPlacement;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+}
+
+:global(.ltr) .root {
+    text-align: left;
+}
+
+:global(.rtl) .root {
+    text-align: right;
+}
+
+.root:topPlacement {
+    margin: 0 -6px 8px -6px;
+}
+.root:rightPlacement {
+    margin: 0 -6px 0 0px;
+}
+.root:bottomPlacement {
+    margin: 8px -6px 0 -6px;
+}
+.root:leftPlacement {
+    margin: 0 0 0 -6px;
+}
