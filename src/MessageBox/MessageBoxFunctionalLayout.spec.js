@@ -174,7 +174,7 @@ describe('MessageBox', () => {
         <div>Content</div>
       </MessageBoxFunctionalLayout>);
       expect(regularDriver.toHaveBodyPadding()).toBeTruthy();
-      //
+
       const zeroPaddingDriver = createDriver(<MessageBoxFunctionalLayout {...zeroPaddingRendering}>
         <div>Content</div>
       </MessageBoxFunctionalLayout>);
