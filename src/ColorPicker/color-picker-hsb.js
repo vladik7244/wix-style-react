@@ -18,7 +18,7 @@ export default class ColorPickerHsb extends WixComponent {
     const style = {
       left: `${current.saturationv()}%`,
       top: `${100 - current.lightness()}%`
-    }
+    };
     return (
       <div className={css.root}>
         <div className={css.hue} style={{background: hue.hex()}}/>

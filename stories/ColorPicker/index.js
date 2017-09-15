@@ -16,6 +16,6 @@ storiesOf('Core', module)
           <ExampleDefault/>
         </InteractiveCodeExample>
       </div>
-      <AutoDocs source={ColorPicker} />
+      <AutoDocs source={ColorPicker}/>
     </TabbedView>
   ));

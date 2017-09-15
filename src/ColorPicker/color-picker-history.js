@@ -3,7 +3,7 @@ import {bool, object} from 'prop-types';
 
 import css from './color-picker-history.scss';
 
-const ColorPickerHistory = ({ show, current, previous }) => {
+const ColorPickerHistory = ({show, current, previous}) => {
   if (show) {
     return (
       <div className={css.root}>

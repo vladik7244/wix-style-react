@@ -20,7 +20,6 @@ export default class ColorPickerConverterRgb extends WixComponent {
   }
 
   render() {
-    const {current} = this.props;
     return (
       <div className={css.root}>
         <div className={css.distribute}>

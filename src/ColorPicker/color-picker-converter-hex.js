@@ -23,7 +23,6 @@ export default class ColorPickerConverterHex extends WixComponent {
   }
 
   render() {
-    const {current} = this.props;
     return (
       <div className={css.root}>
         <Input size="small" value={this.state.hex} onChange={this.change}/>
