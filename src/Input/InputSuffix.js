@@ -57,13 +57,6 @@ const InputSuffix = ({theme, errorMessage, error, disabled, help, helpMessage, o
       isVisible: suffixRules.clearButton({isClearButtonVisible})
     },
     {
-      component: () =>
-        <div className={styles.menuArrow} disabled={disabled} onClick={onIconClicked}>
-          <ArrowDownThin size={'0.6em'}/>
-        </div>,
-      isVisible: suffixRules.menuArrow({menuArrow, isClearButtonVisible, error, magnifyingGlass})
-    },
-    {
       component: () => <div className={styles.unitSeparator}/>,
       isVisible: suffixRules.unitSeparator({unit})
     },
@@ -74,6 +67,13 @@ const InputSuffix = ({theme, errorMessage, error, disabled, help, helpMessage, o
     {
       component: () => suffix,
       isVisible: suffixRules.customSuffix({suffix})
+    },
+    {
+      component: () =>
+        <div className={styles.menuArrow} disabled={disabled} onClick={onIconClicked}>
+          <ArrowDownThin size={'0.6em'}/>
+        </div>,
+      isVisible: suffixRules.menuArrow({menuArrow, isClearButtonVisible, error, magnifyingGlass})
     }
   ].filter(isFixVisible);
 
