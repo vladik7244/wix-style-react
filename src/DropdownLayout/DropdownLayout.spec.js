@@ -131,6 +131,13 @@ describe('DropdownLayout', () => {
     expect(onSelect).toBeCalledWith(options[5], false);
   });
 
+  it('should not call onSelect when composing text via external means', () => {
+    const onSelect = jest.fn();
+    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);
+    driver.pressEnterKey();
+    expect(onSelect).not.toBeCalled();
+  });
+
   it('should click an option by value', () => {
     const onSelect = jest.fn();
     const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect}/>);

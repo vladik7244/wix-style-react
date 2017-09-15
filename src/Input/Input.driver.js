@@ -52,6 +52,8 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     isFocus: () => document.activeElement === input,
     exists: () => !!(element && element.querySelector('input')),
     hasIconLeft: () => !!element.querySelectorAll(`.${styles.prefix}`),
+    startComposing: () => ReactTestUtils.Simulate.compositionStart(input),
+    endComposing: () => ReactTestUtils.Simulate.compositionEnd(input),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
