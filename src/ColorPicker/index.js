@@ -1,1 +1,1 @@
-export {default} from './ColorPicker.js';
+export {default} from './color-picker.js';

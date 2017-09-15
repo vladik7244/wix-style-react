@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {oneOfType, string, object, bool, func} from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
-import ColorPicker from 'wix-style-react/ColorPicker';
+
+import ColorPicker from '../../src/ColorPicker/color-picker';
 
 export default class Template extends Component {
 

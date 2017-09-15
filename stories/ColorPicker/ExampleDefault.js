@@ -67,7 +67,7 @@ export default class ExampleDefault extends Component {
         <div className={s.right}>
           <Template
             {...this.state}
-            onChangeColor={value => this.setState({value})}
+            onChangeColor={value => this.setState({value: value.hex()})}
             onChange={this.props.onChange}
             />
         </div>

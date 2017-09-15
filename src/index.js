@@ -48,4 +48,3 @@ export {default as PopoverMenu} from './PopoverMenu';
 export {default as PopoverMenuItem} from './PopoverMenuItem';
 export {default as Icons} from './Icons';
 export {default as Badge} from './Badge';
-export {default as ColorPicker} from './ColorPicker';

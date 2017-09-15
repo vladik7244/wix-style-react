@@ -4,7 +4,7 @@ import {storiesOf} from '@storybook/react';
 import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
 import AutoDocs from '../utils/Components/AutoDocs';
 import TabbedView from '../utils/Components/TabbedView';
-import ColorPicker from '!raw-loader!../../src/ColorPicker/ColorPicker';
+import ColorPicker from '!raw-loader!../../src/ColorPicker/color-picker';
 
 import ExampleDefault from './ExampleDefault';
 
