@@ -3,13 +3,24 @@
   justify-content: space-between;
 }
 
-.left, .right {
+.left {
   width: 40%;
+}
+
+.right {
+  background: #f6f8fa;
+  flex-grow: 1;
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .row {
   display: flex;
-  & > * {
-    padding: 5px 15px;
+  align-items: center;
+  height: 45px;
+  & > :first-child {
+    width: 150px;
   }
 }

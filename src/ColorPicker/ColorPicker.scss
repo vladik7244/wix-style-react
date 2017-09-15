@@ -8,25 +8,27 @@
 
 .root {
   width: 210px;
-  overflow: visible;
+  background: #fff;
+}
+
+.root, .root * {
+  box-sizing: border-box;
 }
 
 .palette {
   height: 126px;
   position: relative;
-
   .circle {
-    height: 16px;
-    width: 16px;
-    box-shadow: 0 1px 2px 0 rgba(22, 45, 61, 0.24), 0 0 3px 0 rgba(22, 45, 61, 0.12);
+    height: 12px;
+    width: 12px;
     border-radius: 50%;
     top: 0;
     left: 0;
-    margin-top: -8px;
-    margin-left: -8px;
+    margin-top: -6px;
+    margin-left: -6px;
     position: absolute;
+    border: solid 1px #162d3d;
     cursor: pointer;
-    border: solid 2px black;
   }
 }
 
@@ -81,17 +83,7 @@
 }
 
 .input {
-  padding: 12px 18px;
-}
-
-.actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 8px;
-
-  & >* {
-    margin: 0 8px;
-  }
+  padding: 12px 18px 0 18px;
 }
 
 .distribute {
