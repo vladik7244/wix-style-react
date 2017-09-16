@@ -183,6 +183,13 @@ const runInputWithOptionsTest = driverFactory => {
       expect(onFocus).toBeCalled();
     });
 
+    it('should not call onBlur if clicked outside input and inner input is not focused', () => {
+      const onBlur = jest.fn();
+      const {driver} = createDriver(<InputWithOptions options={options} onBlur={onBlur}/>);
+      driver.outsideClick();
+      expect(onBlur).not.toBeCalled();
+    });
+
     describe('testkit', () => {
       it('should exist', () => {
         const div = document.createElement('div');

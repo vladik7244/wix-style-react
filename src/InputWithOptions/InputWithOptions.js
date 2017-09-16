@@ -38,7 +38,7 @@ class InputWithOptions extends WixComponent {
   }
 
   onClickOutside() {
-    this.hideOptions();
+    this.setState({showOptions: false});
   }
 
   renderInput() {
