@@ -124,7 +124,6 @@ module.exports = {
 Please refer to the specific elements for code-based examples of how to use this library, e.g., [Button](https://wix.github.io/wix-style-react/?selectedKind=3.%20Buttons&selectedStory=3.1%20Standard&full=0&down=0&left=1&panelRight=0)  
 For wix-js stack projects no config needed just use ```import Button from 'wix-style-react/dist/src/Button';```
 
-
 #### Notes
 See the Storybook, and the story fields, for all the elements and the different parameters they receive.
 
