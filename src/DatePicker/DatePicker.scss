@@ -33,6 +33,17 @@ $calendarMargin: 15px;
     background-color: #fff;
     padding-top: 20px;
 }
+:global(.react-datepicker__day-names) {
+    background-color: #fff;
+    padding-top: 20px;
+}
+
+:global(.react-datepicker__day--today) {
+    border-radius: 50%;
+    padding: 4px;
+    background-color: red;
+}
+
 :global(.react-datepicker__navigation--previous),
 :global(.react-datepicker__navigation--next) {
     background-position-x: 15px;
@@ -77,6 +88,14 @@ $calendarMargin: 15px;
     @include FontLight();
     margin: $cellMargin;
 }
+
+:global(.react-datepicker__day-name) {
+    color: $D50;
+    font-weight: normal;
+    @include FontLight();
+    margin: $cellMargin;
+}
+
 :global(.react-datepicker__header__dropdown) {
     width: 100%;
     box-sizing: border-box;
