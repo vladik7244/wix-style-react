@@ -35,6 +35,11 @@ class InputWithOptions extends WixComponent {
     this._renderDropdownLayout = this._renderDropdownLayout.bind(this);
     this._onInputClicked = this._onInputClicked.bind(this);
     this.closeOnSelect = this.closeOnSelect.bind(this);
+    this.onCompositionChange = this.onCompositionChange.bind(this);
+  }
+
+  onCompositionChange(isComposing) {
+    this.setState({isComposing});
   }
 
   onClickOutside() {
@@ -51,7 +56,8 @@ class InputWithOptions extends WixComponent {
       theme: this.props.theme,
       onChange: this._onChange,
       onInputClicked: this._onInputClicked,
-      onFocus: this.showOptions
+      onFocus: this.showOptions,
+      onCompositionChange: this.onCompositionChange,
     });
   }
 
@@ -71,6 +77,7 @@ class InputWithOptions extends WixComponent {
           visible={this.state.showOptions}
           onClose={this.hideOptions}
           onSelect={this._onSelect}
+          isComposing={this.state.isComposing}
           />
       </div>
     );
@@ -103,6 +110,10 @@ class InputWithOptions extends WixComponent {
   }
 
   _onManuallyInput(inputValue) {
+    if (this.state.isComposing) {
+      return;
+    }
+
     inputValue = inputValue.trim();
     if (this.closeOnSelect()) {
       this.hideOptions();
