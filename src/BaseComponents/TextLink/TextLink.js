@@ -39,7 +39,8 @@ export default class BaseTextLink extends WixComponent {
       style: {
         textDecoration: 'inherit',
         color: this.props.color ? this.props.color : 'inherit',
-        tabIndex: 0
+        tabIndex: 0,
+        display: 'inline-block'
       }
     };
 
@@ -64,11 +65,11 @@ export default class BaseTextLink extends WixComponent {
     }
 
     return (
-      <TextLinkLayout {...this.props}>
-        <a {...props}>
+      <a {...props}>
+        <TextLinkLayout {...this.props}>
           {children}
-        </a>
-      </TextLinkLayout>
+        </TextLinkLayout>
+      </a>
     );
   }
 }
