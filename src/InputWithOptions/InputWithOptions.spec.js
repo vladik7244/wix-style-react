@@ -183,6 +183,17 @@ const runInputWithOptionsTest = driverFactory => {
       expect(onFocus).toBeCalled();
     });
 
+    it('should not call onManuallyInput when composing text via external means', () => {
+      const onManualInput = jest.fn();
+      const {driver, inputDriver} = createDriver(<InputWithOptions options={options} onManuallyInput={onManualInput}/>);
+      inputDriver.startComposing();
+      driver.pressEnterKey();
+      expect(onManualInput).not.toBeCalled();
+      inputDriver.endComposing();
+      driver.pressEnterKey();
+      expect(onManualInput).toBeCalled();
+    });
+
     describe('testkit', () => {
       it('should exist', () => {
         const div = document.createElement('div');

@@ -22,6 +22,14 @@ class Input extends Component {
     this.props.autoFocus && this._onFocus();
   }
 
+  onCompositionChange = isComposing => {
+    if (this.props.onCompositionChange) {
+      this.props.onCompositionChange(isComposing);
+    }
+
+    this.isComposing = isComposing;
+  };
+
   render(props = {}) {
     const {
       id,
@@ -60,6 +68,7 @@ class Input extends Component {
         this._onFocus();
       }
     };
+
 
     const isClearButtonVisible = onClear && !error && !disabled && !!value;
 
@@ -101,6 +110,8 @@ class Input extends Component {
         readOnly={readOnly}
         type={type}
         autoComplete={autocomplete}
+        onCompositionStart={() => this.onCompositionChange(true)}
+        onCompositionEnd={() => this.onCompositionChange(false)}
         {...ariaAttribute}
         {...props}
         />);
@@ -166,6 +177,10 @@ class Input extends Component {
   };
 
   _onKeyDown = e => {
+    if (this.isComposing) {
+      return;
+    }
+
     this.props.onKeyDown && this.props.onKeyDown(e);
 
     if (e.keyCode === 13 /* enter */) {
@@ -249,6 +264,7 @@ Input.propTypes = {
   onTooltipShow: PropTypes.func,
   withSelection: PropTypes.bool,
   autocomplete: PropTypes.oneOf(['off', 'on']),
+  onCompositionChange: PropTypes.func,
 };
 
 export default Input;
