@@ -80,6 +80,7 @@ class CollapsedHeader extends WixComponent {
           prefixIcon={this.state.isCollapsed ? <ArrowDownThin/> : <ArrowUpThin/>}
           onClick={this.toggleCollapsed}
           theme="whiteblueprimary"
+          type="button"
           >
           {this.state.isCollapsed ? buttonExpandText : buttonCollapseText}
         </Button>
