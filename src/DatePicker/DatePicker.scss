@@ -40,8 +40,8 @@ $calendarMargin: 15px;
 
 :global(.react-datepicker__day--today) {
     border-radius: 50%;
-    padding: 4px;
-    background-color: red;
+    background-color: $D70;
+    font-weight: 300;
 }
 
 :global(.react-datepicker__navigation--previous),
