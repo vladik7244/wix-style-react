@@ -163,10 +163,13 @@ $calendarMargin: 15px;
     border-radius: 50%;
     padding: $padding;
     margin: $cellMargin - $padding;
+}
+:global(.react-datepicker__day--selected) {
     background-color: $B10 !important;
+    color: #FFF !important;
 }
 :global(.react-datepicker__day--keyboard-selected) {
-    background-color: $B00 !important;
+    background-color: $B00;
 }
 :global(.react-datepicker__day:hover) {
     $padding: 4px;
@@ -175,6 +178,7 @@ $calendarMargin: 15px;
     margin: $cellMargin - $padding - 1px;
     background-color: transparent;
     border: 1px solid $B10;
+    color: #000;
 }
 :global(.react-datepicker__day--outside-month) {
     pointer-events: none;

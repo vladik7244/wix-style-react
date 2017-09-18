@@ -35,6 +35,7 @@ function loadStories() {
   require('../stories/Tag');
   require('../stories/TimeInput');
   require('../stories/ToggleSwitch');
+  require('../stories/ColorPicker');
   // require('../stories/Tooltip/Core');
   require('../stories/Tooltip_New/Core');
 
