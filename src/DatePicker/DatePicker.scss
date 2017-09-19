@@ -169,3 +169,14 @@ $calendarMargin: 15px;
 :global(.react-datepicker__month-option--selected) {
     left: 3px;
 }
+
+:global{
+    .react-datepicker__current-month.react-datepicker__current-month--hasYearDropdown,.react-datepicker__current-month.react-datepicker__current-month--hasMonthDropdown {
+        display:none;
+    }
+    .react-datepicker--hide-header{
+        .react-datepicker__navigation--previous, .react-datepicker__navigation--next {
+            top: -13px;
+        }
+    }
+}
