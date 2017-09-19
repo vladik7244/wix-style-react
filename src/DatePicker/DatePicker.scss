@@ -1,6 +1,6 @@
 @import '../common.scss';
 
-$cellMargin: 8px;
+$cellMargin: 6px;
 $calendarMargin: 15px;
 
 :global {
@@ -42,6 +42,9 @@ $calendarMargin: 15px;
     border-radius: 50%;
     background-color: $D70;
     font-weight: 300;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
 }
 
 :global(.react-datepicker__navigation--previous),
@@ -151,7 +154,11 @@ $calendarMargin: 15px;
 :global(.react-datepicker__day) {
     @include FontLight();
     margin: $cellMargin;
-    box-sizing: content-box;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
 }
 :global(.react-datepicker__month) {
     margin: $calendarMargin;
@@ -161,12 +168,11 @@ $calendarMargin: 15px;
 :global(.react-datepicker__day--keyboard-selected) {
     $padding: 4px;
     border-radius: 50%;
-    padding: $padding;
-    margin: $cellMargin - $padding;
 }
 :global(.react-datepicker__day--selected) {
     background-color: $B10 !important;
     color: #FFF !important;
+    box-shadow: 0 0 0 5px $B10 !important;
 }
 :global(.react-datepicker__day--keyboard-selected) {
     background-color: $B00;
@@ -174,10 +180,8 @@ $calendarMargin: 15px;
 :global(.react-datepicker__day:hover) {
     $padding: 4px;
     border-radius: 50%;
-    padding: $padding;
-    margin: $cellMargin - $padding - 1px;
     background-color: transparent;
-    border: 1px solid $B10;
+    box-shadow: 0 0 0 1px $B10;
     color: #000;
 }
 :global(.react-datepicker__day--outside-month) {
