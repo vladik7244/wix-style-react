@@ -18,20 +18,21 @@ export default class ColorPickerConverterHex extends WixComponent {
     super(props);
     this.change = this.change.bind(this);
     this.state = {
-      hex: props.current.hex()
+      hex: props.current.hex(),
+      inFocus: false,
     };
   }
 
   render() {
     return (
       <div className={css.root}>
-        <Input size="small" value={this.state.hex} onChange={this.change}/>
+        <Input size="small" value={this.state.hex} onChange={this.change} onFocus={this.handleOnFocus} onBlur={this.handleOnBlur}/>
       </div>
     );
   }
 
   componentWillReceiveProps(props) {
-    if (this.state.hex !== props.current.hex()) {
+    if (!this.state.inFocus && this.state.hex !== props.current.hex()) {
       this.setState({
         hex: props.current.hex()
       });
@@ -44,6 +45,19 @@ export default class ColorPickerConverterHex extends WixComponent {
       if (color) {
         this.props.onChange(color);
       }
+    });
+  }
+
+  handleOnFocus = () => {
+    this.setState({
+      inFocus: true,
+    });
+  }
+
+  handleOnBlur = () => {
+    this.setState({
+      inFocus: false,
+      hex: this.props.current.hex(),
     });
   }
 }
