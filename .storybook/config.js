@@ -2,6 +2,10 @@ import {configure} from '@storybook/react';
 import {setOptions} from '@storybook/addon-options';
 
 function loadStories() {
+  if (process.env.STORYBOOK_E2E) {
+    require('./e2e-styles.scss');
+  }
+
   require('../stories/stories.scss');
 
   // Introduction
