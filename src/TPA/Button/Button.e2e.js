@@ -6,11 +6,13 @@ describe('TPA Button', () => {
   const beforeClickState = 'Click Me!';
   const clickedState = 'Clicked!';
 
+  beforeEach(() => {
+    browser.get(storyUrl);
+  });
+
   eyes.it('should click a button', () => {
     const dataHook = 'story-button-enabled';
     const driver = tpaButtonTestkitFactory({dataHook});
-
-    browser.get(storyUrl);
 
     waitForVisibilityOf(driver.element(), 'Cannot find Button')
       .then(() => {
@@ -24,7 +26,6 @@ describe('TPA Button', () => {
     const dataHookDisabled = 'story-button-disabled';
     const driverDisabled = tpaButtonTestkitFactory({dataHook: dataHookDisabled});
 
-    // browser.get(storyUrl);
     waitForVisibilityOf([driverDisabled.element()], 'Cannot find Button')
       .then(() => {
         expect(driverDisabled.isButtonDisabled()).toBe(true);

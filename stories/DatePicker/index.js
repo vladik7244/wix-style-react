@@ -38,7 +38,7 @@ storiesOf('Core', module)
             onChange: value => console.log('DatePicker value is now ', value.toString()),
             dateFormat: 'YYYY/MM/DD',
             dataHook: 'storybook-datepicker',
-            value: moment(moment.now())
+            value: moment('2017/01/01')
           }}
           />
 
